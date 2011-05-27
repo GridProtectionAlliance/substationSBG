@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HistorianAdapters</name>
+    </assembly>
+    <members>
+        <member name="T:HistorianAdapters.LocalOutputAdapter">
+            <summary>
+            Represents an output adapter that archives measurements to a local archive.
+            </summary>
+        </member>
+        <member name="M:HistorianAdapters.LocalOutputAdapter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HistorianAdapters.LocalOutputAdapter"/> class.
+            </summary>
+        </member>
+        <member name="M:HistorianAdapters.LocalOutputAdapter.RefreshMetadata">
+            <summary>
+            Refreshes metadata using all available and enabled providers.
+            </summary>
+        </member>
+        <member name="M:HistorianAdapters.LocalOutputAdapter.Initialize">
+            <summary>
+            Initializes this <see cref="T:HistorianAdapters.LocalOutputAdapter"/>.
+            </summary>
+            <exception cref="T:System.ArgumentException"><b>InstanceName</b> is missing from the <see cref="P:TimeSeriesFramework.Adapters.AdapterBase.Settings"/>.</exception>
+        </member>
+        <member name="M:HistorianAdapters.LocalOutputAdapter.GetShortStatus(System.Int32)">
+            <summary>
+            Gets a short one-line status of this <see cref="T:HistorianAdapters.LocalOutputAdapter"/>.
+            </summary>
+            <param name="maxLength">Maximum length of the status message.</param>
+            <returns>Text of the status message.</returns>
+        </member>
+        <member name="M:HistorianAdapters.LocalOutputAdapter.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by this <see cref="T:HistorianAdapters.LocalOutputAdapter"/> and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:HistorianAdapters.LocalOutputAdapter.AttemptConnection">
+            <summary>
+            Attempts to connect to this <see cref="T:HistorianAdapters.LocalOutputAdapter"/>.
+            </summary>
+        </member>
+        <member name="M:HistorianAdapters.LocalOutputAdapter.AttemptDisconnection">
+            <summary>
+            Attempts to disconnect from this <see cref="T:HistorianAdapters.LocalOutputAdapter"/>.
+            </summary>
+        </member>
+        <member name="M:HistorianAdapters.LocalOutputAdapter.ProcessMeasurements(TimeSeriesFramework.IMeasurement[])">
+            <summary>
+            Archives <paramref name="measurements"/> locally.
+            </summary>
+            <param name="measurements">Measurements to be archived.</param>
+            <exception cref="T:System.InvalidOperationException">Local archive is closed.</exception>
+        </member>
+        <member name="P:HistorianAdapters.LocalOutputAdapter.InstanceName">
+            <summary>
+            Gets or sets instance name defined for this <see cref="T:HistorianAdapters.LocalOutputAdapter"/>.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.LocalOutputAdapter.ArchivePath">
+            <summary>
+            Gets or sets the path to the archive.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.LocalOutputAdapter.AutoRefreshMetadata">
+            <summary>
+            Gets or sets a boolean indicating whether or not metadata is
+            refreshed when the adapter attempts to connect to the archive.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.LocalOutputAdapter.OutputIsForArchive">
+            <summary>
+            Returns a flag that determines if measurements sent to this <see cref="T:HistorianAdapters.LocalOutputAdapter"/> are destined for archival.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.LocalOutputAdapter.UseAsyncConnect">
+            <summary>
+            Gets flag that determines if this <see cref="T:HistorianAdapters.LocalOutputAdapter"/> uses an asynchronous connection.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.LocalOutputAdapter.Status">
+            <summary>
+            Returns the detailed status of the data output source.
+            </summary>
+        </member>
+        <member name="T:HistorianAdapters.RemoteOutputAdapter">
+            <summary>
+            Represents an output adapter that publishes measurements to TVA Historian for archival.
+            </summary>
+        </member>
+        <member name="M:HistorianAdapters.RemoteOutputAdapter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HistorianAdapters.RemoteOutputAdapter"/> class.
+            </summary>
+        </member>
+        <member name="M:HistorianAdapters.RemoteOutputAdapter.Initialize">
+            <summary>
+            Initializes this <see cref="T:HistorianAdapters.RemoteOutputAdapter"/>.
+            </summary>
+            <exception cref="T:System.ArgumentException"><b>Server</b> is missing from the <see cref="P:TimeSeriesFramework.Adapters.AdapterBase.Settings"/>.</exception>
+        </member>
+        <member name="M:HistorianAdapters.RemoteOutputAdapter.GetShortStatus(System.Int32)">
+            <summary>
+            Gets a short one-line status of this <see cref="T:HistorianAdapters.RemoteOutputAdapter"/>.
+            </summary>
+            <param name="maxLength">Maximum length of the status message.</param>
+            <returns>Text of the status message.</returns>
+        </member>
+        <member name="M:HistorianAdapters.RemoteOutputAdapter.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by this <see cref="T:HistorianAdapters.RemoteOutputAdapter"/> and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:HistorianAdapters.RemoteOutputAdapter.AttemptConnection">
+            <summary>
+            Attempts to connect to this <see cref="T:HistorianAdapters.RemoteOutputAdapter"/>.
+            </summary>
+        </member>
+        <member name="M:HistorianAdapters.RemoteOutputAdapter.AttemptDisconnection">
+            <summary>
+            Attempts to disconnect from this <see cref="T:HistorianAdapters.RemoteOutputAdapter"/>.
+            </summary>
+        </member>
+        <member name="M:HistorianAdapters.RemoteOutputAdapter.ProcessMeasurements(TimeSeriesFramework.IMeasurement[])">
+            <summary>
+            Publishes <paramref name="measurements"/> for archival.
+            </summary>
+            <param name="measurements">Measurements to be archived.</param>
+            <exception cref="T:System.OperationCanceledException">Acknowledgement is not received from historian for published data.</exception>
+        </member>
+        <member name="P:HistorianAdapters.RemoteOutputAdapter.Server">
+            <summary>
+            Gets or sets the host name for the server hosting the remote historian.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.RemoteOutputAdapter.Port">
+            <summary>
+            Gets or sets the port on which the remote historian is listening.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.RemoteOutputAdapter.PayloadAware">
+            <summary>
+            Gets or sets a boolean value indicating whether the payload
+            boundaries are to be preserved during transmission.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.RemoteOutputAdapter.ConserveBandwidth">
+            <summary>
+            Gets or sets a boolean value that determines the packet
+            type to be used when sending data to the server.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.RemoteOutputAdapter.OutputIsForArchive">
+            <summary>
+            Returns a flag that determines if measurements sent to this <see cref="T:HistorianAdapters.RemoteOutputAdapter"/> are destined for archival.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.RemoteOutputAdapter.ThrottleTransmission">
+            <summary>
+            Gets or sets a boolean value that determines whether to wait for
+            acknowledgement from the historian that the last set of points have
+            been received before attempting to send the next set of points.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.RemoteOutputAdapter.SamplesPerTransmission">
+            <summary>
+            Gets or sets an integer that indicates the maximum number
+            of points to be published to the historian at once.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.RemoteOutputAdapter.UseAsyncConnect">
+            <summary>
+            Gets flag that determines if this <see cref="T:HistorianAdapters.RemoteOutputAdapter"/> uses an asynchronous connection.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.RemoteOutputAdapter.Status">
+            <summary>
+            Returns the detailed status of the data output source.
+            </summary>
+        </member>
+        <member name="T:HistorianAdapters.InputAdapter">
+            <summary>
+            Represents an input adapters that listens for time-series data from TVA Historian.
+            </summary>
+        </member>
+        <member name="M:HistorianAdapters.InputAdapter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:HistorianAdapters.InputAdapter"/> class.
+            </summary>
+        </member>
+        <member name="M:HistorianAdapters.InputAdapter.Initialize">
+            <summary>
+            Initializes this <see cref="T:HistorianAdapters.InputAdapter"/>.
+            </summary>
+            <exception cref="T:System.ArgumentException"><b>HistorianID</b>, <b>Server</b>, <b>Port</b>, <b>Protocol</b>, or <b>InitiateConnection</b> is missing from the <see cref="P:TimeSeriesFramework.Adapters.AdapterBase.Settings"/>.</exception>
+        </member>
+        <member name="M:HistorianAdapters.InputAdapter.GetShortStatus(System.Int32)">
+            <summary>
+            Gets a short one-line status of this <see cref="T:HistorianAdapters.InputAdapter"/>.
+            </summary>
+            <param name="maxLength">Maximum length of the status message.</param>
+            <returns>Text of the status message.</returns>
+        </member>
+        <member name="M:HistorianAdapters.InputAdapter.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by this <see cref="T:HistorianAdapters.InputAdapter"/> and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:HistorianAdapters.InputAdapter.AttemptConnection">
+            <summary>
+            Attempts to connect to this <see cref="T:HistorianAdapters.InputAdapter"/>.
+            </summary>
+        </member>
+        <member name="M:HistorianAdapters.InputAdapter.AttemptDisconnection">
+            <summary>
+            Attempts to disconnect from this <see cref="T:HistorianAdapters.InputAdapter"/>.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.InputAdapter.Status">
+            <summary>
+            Returns the detailed status of the data input source.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.InputAdapter.UseAsyncConnect">
+            <summary>
+            Gets flag that determines if this <see cref="T:HistorianAdapters.InputAdapter"/> uses an asynchronous connection.
+            </summary>
+        </member>
+    </members>
+</doc>

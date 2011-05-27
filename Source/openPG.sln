@@ -1,0 +1,200 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{A594B55D-0C88-4F66-AF6E-86266F933DF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{300F8C7D-35CC-4CFA-A97A-82824E4E59BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Access", "Access", "{BB1570F0-8947-4B88-8A76-D8A88D3DD6E2}"
+	ProjectSection(SolutionItems) = preProject
+		Data\Access\openPG-InitialDataSet.mdb = Data\Access\openPG-InitialDataSet.mdb
+		Data\Access\openPG-SampleDataSet.mdb = Data\Access\openPG-SampleDataSet.mdb
+		Data\Access\openPG.mdb = Data\Access\openPG.mdb
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MySQL", "MySQL", "{3DDEA712-A92F-4252-AA36-EC3D20EE70CB}"
+	ProjectSection(SolutionItems) = preProject
+		Data\MySQL\AuditLog.sql = Data\MySQL\AuditLog.sql
+		Data\MySQL\InitialDataSet.sql = Data\MySQL\InitialDataSet.sql
+		Data\MySQL\openPG.sql = Data\MySQL\openPG.sql
+		Data\MySQL\SampleDataSet.sql = Data\MySQL\SampleDataSet.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL Server", "SQL Server", "{C1140554-1896-43B3-A109-26B601B38A7E}"
+	ProjectSection(SolutionItems) = preProject
+		Data\SQL Server\AuditLog.sql = Data\SQL Server\AuditLog.sql
+		Data\SQL Server\InitialDataSet.sql = Data\SQL Server\InitialDataSet.sql
+		Data\SQL Server\openPG.sql = Data\SQL Server\openPG.sql
+		Data\SQL Server\SampleDataSet.sql = Data\SQL Server\SampleDataSet.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{1DBBCC7B-37F1-43D2-B00A-786874D6E7C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{7497D95C-1F53-42E5-9678-FC20062B46AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "openPG", "Applications\openPG\openPG\openPG.csproj", "{F6986F10-FC76-475B-A7D0-10315EBF4910}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "openPGConsole", "Applications\openPG\openPGConsole\openPGConsole.csproj", "{018FDA38-8662-4733-A3C8-22EC24A0CE85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeSeriesFramework", "TimeSeriesFramework", "{047CE9C4-48F2-4333-B5D9-C22063322F28}"
+	ProjectSection(SolutionItems) = preProject
+		Dependencies\TimeSeriesFramework\Menu.xml = Dependencies\TimeSeriesFramework\Menu.xml
+		Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll
+		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.dll
+		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.dll
+		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.XML = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.XML
+		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.xml = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.xml
+		Dependencies\TimeSeriesFramework\TimeSeriesFramework.XML = Dependencies\TimeSeriesFramework\TimeSeriesFramework.XML
+		Dependencies\TimeSeriesFramework\TsfManager.exe = Dependencies\TimeSeriesFramework\TsfManager.exe
+		Dependencies\TimeSeriesFramework\TsfManager.exe.config = Dependencies\TimeSeriesFramework\TsfManager.exe.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TVA", "TVA", "{F109961B-329B-4114-87AA-CE0B8F08F32B}"
+	ProjectSection(SolutionItems) = preProject
+		Dependencies\TVA\AdoAdapters.dll = Dependencies\TVA\AdoAdapters.dll
+		Dependencies\TVA\AdoAdapters.XML = Dependencies\TVA\AdoAdapters.XML
+		Dependencies\TVA\Hadoop.Replication.dll = Dependencies\TVA\Hadoop.Replication.dll
+		Dependencies\TVA\Hadoop.Replication.XML = Dependencies\TVA\Hadoop.Replication.XML
+		Dependencies\TVA\HistorianAdapters.dll = Dependencies\TVA\HistorianAdapters.dll
+		Dependencies\TVA\HistorianAdapters.XML = Dependencies\TVA\HistorianAdapters.XML
+		Dependencies\TVA\TestingAdapters.dll = Dependencies\TVA\TestingAdapters.dll
+		Dependencies\TVA\TestingAdapters.xml = Dependencies\TVA\TestingAdapters.xml
+		Dependencies\TVA\TVA.Communication.dll = Dependencies\TVA\TVA.Communication.dll
+		Dependencies\TVA\TVA.Communication.xml = Dependencies\TVA\TVA.Communication.xml
+		Dependencies\TVA\TVA.Core.dll = Dependencies\TVA\TVA.Core.dll
+		Dependencies\TVA\TVA.Core.XML = Dependencies\TVA\TVA.Core.XML
+		Dependencies\TVA\TVA.Historian.dll = Dependencies\TVA\TVA.Historian.dll
+		Dependencies\TVA\TVA.Historian.XML = Dependencies\TVA\TVA.Historian.XML
+		Dependencies\TVA\TVA.PhasorProtocols.dll = Dependencies\TVA\TVA.PhasorProtocols.dll
+		Dependencies\TVA\TVA.PhasorProtocols.xml = Dependencies\TVA\TVA.PhasorProtocols.xml
+		Dependencies\TVA\TVA.Security.dll = Dependencies\TVA\TVA.Security.dll
+		Dependencies\TVA\TVA.Security.XML = Dependencies\TVA\TVA.Security.XML
+		Dependencies\TVA\TVA.Services.dll = Dependencies\TVA\TVA.Services.dll
+		Dependencies\TVA\TVA.Services.XML = Dependencies\TVA\TVA.Services.XML
+		Dependencies\TVA\TVA.Web.dll = Dependencies\TVA\TVA.Web.dll
+		Dependencies\TVA\TVA.Web.XML = Dependencies\TVA\TVA.Web.XML
+		Dependencies\TVA\TVA.Windows.dll = Dependencies\TVA\TVA.Windows.dll
+		Dependencies\TVA\TVA.Windows.XML = Dependencies\TVA\TVA.Windows.XML
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{D5E46AB8-FE9C-44EE-8BF6-85828422D537}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationSetupUtility", "Tools\ConfigurationSetupUtility\ConfigurationSetupUtility.csproj", "{2A74EACF-8291-47C7-A2ED-0D58771F24E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Setup", "Tools\Setup\Setup.csproj", "{A4C500AC-70AC-4869-8A08-E10CCD45F64F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FD76D07C-74B9-437C-B009-94DFD4575359} = {FD76D07C-74B9-437C-B009-94DFD4575359}
+		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873} = {0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "openPGSetup64", "Applications\openPG\openPGSetup\openPGSetup64.vdproj", "{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "openPGSetup", "Applications\openPG\openPGSetup\openPGSetup.vdproj", "{FD76D07C-74B9-437C-B009-94DFD4575359}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs07
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Applications\\openPG\\openPG\\openPG.csproj
+		SccProjectTopLevelParentUniqueName1 = openPG.sln
+		SccProjectName1 = Applications/openPG/openPG
+		SccLocalPath1 = Applications\\openPG\\openPG
+		SccProjectUniqueName2 = Applications\\openPG\\openPGConsole\\openPGConsole.csproj
+		SccProjectTopLevelParentUniqueName2 = openPG.sln
+		SccProjectName2 = Applications/openPG/openPGConsole
+		SccLocalPath2 = Applications\\openPG\\openPGConsole
+		SccProjectUniqueName3 = Applications\\openPG\\openPGSetup\\openPGSetup.vdproj
+		SccProjectTopLevelParentUniqueName3 = openPG.sln
+		SccProjectName3 = Applications/openPG/openPGSetup
+		SccLocalPath3 = Applications\\openPG\\openPGSetup
+		SccProjectUniqueName4 = Applications\\openPG\\openPGSetup\\openPGSetup64.vdproj
+		SccProjectTopLevelParentUniqueName4 = openPG.sln
+		SccProjectName4 = Applications/openPG/openPGSetup
+		SccLocalPath4 = Applications\\openPG\\openPGSetup
+		SccProjectUniqueName5 = Tools\\ConfigurationSetupUtility\\ConfigurationSetupUtility.csproj
+		SccProjectTopLevelParentUniqueName5 = openPG.sln
+		SccProjectName5 = Tools/ConfigurationSetupUtility
+		SccLocalPath5 = Tools\\ConfigurationSetupUtility
+		SccProjectUniqueName6 = Tools\\Setup\\Setup.csproj
+		SccProjectTopLevelParentUniqueName6 = openPG.sln
+		SccProjectName6 = Tools/Setup
+		SccLocalPath6 = Tools\\Setup
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6986F10-FC76-475B-A7D0-10315EBF4910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6986F10-FC76-475B-A7D0-10315EBF4910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6986F10-FC76-475B-A7D0-10315EBF4910}.Debug|x86.ActiveCfg = Debug|x86
+		{F6986F10-FC76-475B-A7D0-10315EBF4910}.Debug|x86.Build.0 = Debug|x86
+		{F6986F10-FC76-475B-A7D0-10315EBF4910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6986F10-FC76-475B-A7D0-10315EBF4910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6986F10-FC76-475B-A7D0-10315EBF4910}.Release|x86.ActiveCfg = Release|x86
+		{F6986F10-FC76-475B-A7D0-10315EBF4910}.Release|x86.Build.0 = Release|x86
+		{018FDA38-8662-4733-A3C8-22EC24A0CE85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{018FDA38-8662-4733-A3C8-22EC24A0CE85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{018FDA38-8662-4733-A3C8-22EC24A0CE85}.Debug|x86.ActiveCfg = Debug|x86
+		{018FDA38-8662-4733-A3C8-22EC24A0CE85}.Debug|x86.Build.0 = Debug|x86
+		{018FDA38-8662-4733-A3C8-22EC24A0CE85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{018FDA38-8662-4733-A3C8-22EC24A0CE85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{018FDA38-8662-4733-A3C8-22EC24A0CE85}.Release|x86.ActiveCfg = Release|x86
+		{018FDA38-8662-4733-A3C8-22EC24A0CE85}.Release|x86.Build.0 = Release|x86
+		{2A74EACF-8291-47C7-A2ED-0D58771F24E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A74EACF-8291-47C7-A2ED-0D58771F24E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A74EACF-8291-47C7-A2ED-0D58771F24E2}.Debug|x86.ActiveCfg = Debug|x86
+		{2A74EACF-8291-47C7-A2ED-0D58771F24E2}.Debug|x86.Build.0 = Debug|x86
+		{2A74EACF-8291-47C7-A2ED-0D58771F24E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A74EACF-8291-47C7-A2ED-0D58771F24E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A74EACF-8291-47C7-A2ED-0D58771F24E2}.Release|x86.ActiveCfg = Release|x86
+		{2A74EACF-8291-47C7-A2ED-0D58771F24E2}.Release|x86.Build.0 = Release|x86
+		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Debug|x86.ActiveCfg = Debug|x86
+		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Debug|x86.Build.0 = Debug|x86
+		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Release|x86.ActiveCfg = Release|x86
+		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Release|x86.Build.0 = Release|x86
+		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Debug|Any CPU.ActiveCfg = Debug
+		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Debug|Any CPU.Build.0 = Debug
+		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Debug|x86.ActiveCfg = Debug
+		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Debug|x86.Build.0 = Debug
+		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Release|Any CPU.ActiveCfg = Release
+		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Release|Any CPU.Build.0 = Release
+		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Release|x86.ActiveCfg = Release
+		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Release|x86.Build.0 = Release
+		{FD76D07C-74B9-437C-B009-94DFD4575359}.Debug|Any CPU.ActiveCfg = Debug
+		{FD76D07C-74B9-437C-B009-94DFD4575359}.Debug|Any CPU.Build.0 = Debug
+		{FD76D07C-74B9-437C-B009-94DFD4575359}.Debug|x86.ActiveCfg = Debug
+		{FD76D07C-74B9-437C-B009-94DFD4575359}.Debug|x86.Build.0 = Debug
+		{FD76D07C-74B9-437C-B009-94DFD4575359}.Release|Any CPU.ActiveCfg = Release
+		{FD76D07C-74B9-437C-B009-94DFD4575359}.Release|Any CPU.Build.0 = Release
+		{FD76D07C-74B9-437C-B009-94DFD4575359}.Release|x86.ActiveCfg = Release
+		{FD76D07C-74B9-437C-B009-94DFD4575359}.Release|x86.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F6986F10-FC76-475B-A7D0-10315EBF4910} = {A594B55D-0C88-4F66-AF6E-86266F933DF0}
+		{018FDA38-8662-4733-A3C8-22EC24A0CE85} = {A594B55D-0C88-4F66-AF6E-86266F933DF0}
+		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873} = {A594B55D-0C88-4F66-AF6E-86266F933DF0}
+		{FD76D07C-74B9-437C-B009-94DFD4575359} = {A594B55D-0C88-4F66-AF6E-86266F933DF0}
+		{BB1570F0-8947-4B88-8A76-D8A88D3DD6E2} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
+		{3DDEA712-A92F-4252-AA36-EC3D20EE70CB} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
+		{C1140554-1896-43B3-A109-26B601B38A7E} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
+		{7497D95C-1F53-42E5-9678-FC20062B46AF} = {1DBBCC7B-37F1-43D2-B00A-786874D6E7C4}
+		{047CE9C4-48F2-4333-B5D9-C22063322F28} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
+		{F109961B-329B-4114-87AA-CE0B8F08F32B} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
+		{2A74EACF-8291-47C7-A2ED-0D58771F24E2} = {D5E46AB8-FE9C-44EE-8BF6-85828422D537}
+		{A4C500AC-70AC-4869-8A08-E10CCD45F64F} = {D5E46AB8-FE9C-44EE-8BF6-85828422D537}
+	EndGlobalSection
+EndGlobal
