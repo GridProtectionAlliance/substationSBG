@@ -137,7 +137,7 @@ CREATE TABLE Node(
     ImagePath TEXT NULL,
     Settings TEXT NULL,
     MenuType VARCHAR(200) NOT NULL DEFAULT 'File',
-    MenuData TEXT NOT NULL DEFAULT 'Menu.xml',
+    MenuData TEXT NOT NULL,
     Master TINYINT NOT NULL DEFAULT 0,
     LoadOrder INT NOT NULL DEFAULT 0,
     Enabled TINYINT NOT NULL DEFAULT 0,
