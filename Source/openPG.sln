@@ -41,12 +41,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeSeriesFramework", "TimeSeriesFramework", "{047CE9C4-48F2-4333-B5D9-C22063322F28}"
 	ProjectSection(SolutionItems) = preProject
 		Dependencies\TimeSeriesFramework\Menu.xml = Dependencies\TimeSeriesFramework\Menu.xml
-		Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.dll
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.dll
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.XML = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.XML
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.xml = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.xml
-		Dependencies\TimeSeriesFramework\TimeSeriesFramework.XML = Dependencies\TimeSeriesFramework\TimeSeriesFramework.XML
 		Dependencies\TimeSeriesFramework\TsfManager.exe = Dependencies\TimeSeriesFramework\TsfManager.exe
 		Dependencies\TimeSeriesFramework\TsfManager.exe.config = Dependencies\TimeSeriesFramework\TsfManager.exe.config
 	EndProjectSection
@@ -156,7 +154,6 @@ Global
 		{2A74EACF-8291-47C7-A2ED-0D58771F24E2}.Release|x86.ActiveCfg = Release|x86
 		{2A74EACF-8291-47C7-A2ED-0D58771F24E2}.Release|x86.Build.0 = Release|x86
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Debug|x86.ActiveCfg = Debug|x86
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Debug|x86.Build.0 = Debug|x86
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -164,7 +161,6 @@ Global
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Release|x86.ActiveCfg = Release|x86
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Release|x86.Build.0 = Release|x86
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Debug|Any CPU.ActiveCfg = Debug
-		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Debug|Any CPU.Build.0 = Debug
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Debug|x86.ActiveCfg = Debug
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Debug|x86.Build.0 = Debug
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Release|Any CPU.ActiveCfg = Release
@@ -172,7 +168,6 @@ Global
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Release|x86.ActiveCfg = Release
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Release|x86.Build.0 = Release
 		{FD76D07C-74B9-437C-B009-94DFD4575359}.Debug|Any CPU.ActiveCfg = Debug
-		{FD76D07C-74B9-437C-B009-94DFD4575359}.Debug|Any CPU.Build.0 = Debug
 		{FD76D07C-74B9-437C-B009-94DFD4575359}.Debug|x86.ActiveCfg = Debug
 		{FD76D07C-74B9-437C-B009-94DFD4575359}.Debug|x86.Build.0 = Debug
 		{FD76D07C-74B9-437C-B009-94DFD4575359}.Release|Any CPU.ActiveCfg = Release
