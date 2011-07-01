@@ -8253,6 +8253,16 @@
             additional needed measurement meta-data attributes (i.e., ID, Source, Adder and Multiplier).
             </remarks>
         </member>
+        <member name="M:TVA.PhasorProtocols.CommonPhasorServices.PhasorDataSourceValidation(System.Data.IDbConnection,System.Type,System.String,System.Action{System.Object,TVA.EventArgs{System.String}},System.Action{System.Object,TVA.EventArgs{System.Exception}})">
+            <summary>
+            Apply start-up phasor data source validations
+            </summary>
+            <param name="connection">The database connection.</param>
+            <param name="adapterType">The database adapter type.</param>
+            <param name="nodeIDQueryString">Current node ID in proper query format.</param>
+            <param name="statusMessage">The delegate which will display a status message to the user.</param>
+            <param name="processException">The delegate which will handle exception logging.</param>
+        </member>
         <member name="M:TVA.PhasorProtocols.CommonPhasorServices.CreateDefaultNode(System.Data.IDbConnection,System.String,System.Action{System.Object,TVA.EventArgs{System.String}},System.Action{System.Object,TVA.EventArgs{System.Exception}})">
             <summary>
             Creates the default node for the Node table.
@@ -8299,6 +8309,15 @@
             Loads the default configuration for the Statistic table.
             </summary>
             <param name="connection">The database connection.</param>
+            <param name="statusMessage">The delegate which will display a status message to the user.</param>
+            <param name="processException">The delegate which will handle exception logging.</param>
+        </member>
+        <member name="M:TVA.PhasorProtocols.CommonPhasorServices.EstablishDefaultMeasurementKeyCache(System.Data.IDbConnection,System.Type,System.Action{System.Object,TVA.EventArgs{System.String}},System.Action{System.Object,TVA.EventArgs{System.Exception}})">
+            <summary>
+            Establish default <see cref="T:TimeSeriesFramework.MeasurementKey"/> cache.
+            </summary>
+            <param name="connection">The database connection.</param>
+            <param name="adapterType">The database adapter type.</param>
             <param name="statusMessage">The delegate which will display a status message to the user.</param>
             <param name="processException">The delegate which will handle exception logging.</param>
         </member>
