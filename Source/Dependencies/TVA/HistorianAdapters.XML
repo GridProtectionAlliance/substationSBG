@@ -221,6 +221,26 @@
             Attempts to disconnect from this <see cref="T:HistorianAdapters.InputAdapter"/>.
             </summary>
         </member>
+        <member name="P:HistorianAdapters.InputAdapter.Server">
+            <summary>
+            Gets or sets the host name or IP address of the TVA Historian.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.InputAdapter.Port">
+            <summary>
+            Gets or sets the port on which the TVA Historian is broadcasting data.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.InputAdapter.Protocol">
+            <summary>
+            Gets or sets the type of connection used to connect to the TVA Historian.
+            </summary>
+        </member>
+        <member name="P:HistorianAdapters.InputAdapter.InitiateConnection">
+            <summary>
+            Gets or sets a value that indicates whether the listener will initiate the connection to the TVA Historian.
+            </summary>
+        </member>
         <member name="P:HistorianAdapters.InputAdapter.Status">
             <summary>
             Returns the detailed status of the data input source.

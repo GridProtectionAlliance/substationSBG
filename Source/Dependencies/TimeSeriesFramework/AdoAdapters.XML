@@ -42,6 +42,37 @@
             </summary>
             <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         </member>
+        <member name="P:AdoAdapters.AdoInputAdapter.TableName">
+            <summary>
+            Gets or sets the table name in the data source from which measurements are read.
+            </summary>
+        </member>
+        <member name="P:AdoAdapters.AdoInputAdapter.DbConnectionString">
+            <summary>
+            Gets or sets the connection string used to connect to the data source.
+            </summary>
+        </member>
+        <member name="P:AdoAdapters.AdoInputAdapter.DataProviderString">
+            <summary>
+            Gets or sets the data provider string used to connect to the data source.
+            </summary>
+        </member>
+        <member name="P:AdoAdapters.AdoInputAdapter.TimestampFormat">
+            <summary>
+            Gets or sets the format used to read measurements from the data source.
+            </summary>
+        </member>
+        <member name="P:AdoAdapters.AdoInputAdapter.FramesPerSecond">
+            <summary>
+            Gets or sets the framerate simulated by this adapter.
+            </summary>
+        </member>
+        <member name="P:AdoAdapters.AdoInputAdapter.SimulateTimestamps">
+            <summary>
+            Gets or sets a value that determines whether the timestamps should
+            be simulated for the purposes of real-time concentration.
+            </summary>
+        </member>
         <member name="P:AdoAdapters.AdoInputAdapter.UseAsyncConnect">
             <summary>
             Gets a flag that determines if this <see cref="T:AdoAdapters.AdoInputAdapter"/>
@@ -94,7 +125,7 @@
         </member>
         <member name="P:AdoAdapters.AdoOutputAdapter.TableName">
             <summary>
-            Gets or sets the table name used by the <see cref="T:AdoAdapters.AdoOutputAdapter"/>.
+            Gets or sets the table name in the data source used to archive data.
             </summary>
         </member>
         <member name="P:AdoAdapters.AdoOutputAdapter.DbConnectionString">

@@ -40,24 +40,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencie
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeSeriesFramework", "TimeSeriesFramework", "{047CE9C4-48F2-4333-B5D9-C22063322F28}"
 	ProjectSection(SolutionItems) = preProject
+		Dependencies\TimeSeriesFramework\AdoAdapters.dll = Dependencies\TimeSeriesFramework\AdoAdapters.dll
+		Dependencies\TimeSeriesFramework\AdoAdapters.XML = Dependencies\TimeSeriesFramework\AdoAdapters.XML
+		Dependencies\TimeSeriesFramework\CsvAdapters.dll = Dependencies\TimeSeriesFramework\CsvAdapters.dll
+		Dependencies\TimeSeriesFramework\CsvAdapters.XML = Dependencies\TimeSeriesFramework\CsvAdapters.XML
+		Dependencies\TimeSeriesFramework\DataQualityMonitoring.dll = Dependencies\TimeSeriesFramework\DataQualityMonitoring.dll
+		Dependencies\TimeSeriesFramework\DataQualityMonitoring.XML = Dependencies\TimeSeriesFramework\DataQualityMonitoring.XML
 		Dependencies\TimeSeriesFramework\Menu.xml = Dependencies\TimeSeriesFramework\Menu.xml
+		Dependencies\TimeSeriesFramework\MongoAdapters.dll = Dependencies\TimeSeriesFramework\MongoAdapters.dll
+		Dependencies\TimeSeriesFramework\MongoAdapters.XML = Dependencies\TimeSeriesFramework\MongoAdapters.XML
+		Dependencies\TimeSeriesFramework\MySqlAdapters.dll = Dependencies\TimeSeriesFramework\MySqlAdapters.dll
+		Dependencies\TimeSeriesFramework\MySqlAdapters.XML = Dependencies\TimeSeriesFramework\MySqlAdapters.XML
+		Dependencies\TimeSeriesFramework\TestingAdapters.dll = Dependencies\TimeSeriesFramework\TestingAdapters.dll
+		Dependencies\TimeSeriesFramework\TestingAdapters.XML = Dependencies\TimeSeriesFramework\TestingAdapters.XML
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.dll
+		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.dll
+		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.XML = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.XML
+		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.xml = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.xml
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.xml = Dependencies\TimeSeriesFramework\TimeSeriesFramework.xml
 		Dependencies\TimeSeriesFramework\TsfManager.exe = Dependencies\TimeSeriesFramework\TsfManager.exe
 		Dependencies\TimeSeriesFramework\TsfManager.exe.config = Dependencies\TimeSeriesFramework\TsfManager.exe.config
+		Dependencies\TimeSeriesFramework\WavInputAdapter.dll = Dependencies\TimeSeriesFramework\WavInputAdapter.dll
+		Dependencies\TimeSeriesFramework\WavInputAdapter.XML = Dependencies\TimeSeriesFramework\WavInputAdapter.XML
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TVA", "TVA", "{F109961B-329B-4114-87AA-CE0B8F08F32B}"
 	ProjectSection(SolutionItems) = preProject
-		Dependencies\TVA\AdoAdapters.dll = Dependencies\TVA\AdoAdapters.dll
-		Dependencies\TVA\AdoAdapters.XML = Dependencies\TVA\AdoAdapters.XML
 		Dependencies\TVA\Hadoop.Replication.dll = Dependencies\TVA\Hadoop.Replication.dll
 		Dependencies\TVA\Hadoop.Replication.XML = Dependencies\TVA\Hadoop.Replication.XML
 		Dependencies\TVA\HistorianAdapters.dll = Dependencies\TVA\HistorianAdapters.dll
 		Dependencies\TVA\HistorianAdapters.XML = Dependencies\TVA\HistorianAdapters.XML
-		Dependencies\TVA\TestingAdapters.dll = Dependencies\TVA\TestingAdapters.dll
-		Dependencies\TVA\TestingAdapters.xml = Dependencies\TVA\TestingAdapters.xml
 		Dependencies\TVA\TVA.Communication.dll = Dependencies\TVA\TVA.Communication.dll
 		Dependencies\TVA\TVA.Communication.xml = Dependencies\TVA\TVA.Communication.xml
 		Dependencies\TVA\TVA.Core.dll = Dependencies\TVA\TVA.Core.dll
@@ -68,8 +81,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TVA", "TVA", "{F109961B-329
 		Dependencies\TVA\TVA.PhasorProtocols.xml = Dependencies\TVA\TVA.PhasorProtocols.xml
 		Dependencies\TVA\TVA.Security.dll = Dependencies\TVA\TVA.Security.dll
 		Dependencies\TVA\TVA.Security.XML = Dependencies\TVA\TVA.Security.XML
-		Dependencies\TVA\TVA.Services.dll = Dependencies\TVA\TVA.Services.dll
-		Dependencies\TVA\TVA.Services.XML = Dependencies\TVA\TVA.Services.XML
 		Dependencies\TVA\TVA.Web.dll = Dependencies\TVA\TVA.Web.dll
 		Dependencies\TVA\TVA.Web.XML = Dependencies\TVA\TVA.Web.XML
 		Dependencies\TVA\TVA.Windows.dll = Dependencies\TVA\TVA.Windows.dll
@@ -89,6 +100,14 @@ EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "openPGSetup64", "Applications\openPG\openPGSetup\openPGSetup64.vdproj", "{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "openPGSetup", "Applications\openPG\openPGSetup\openPGSetup.vdproj", "{FD76D07C-74B9-437C-B009-94DFD4575359}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDB", "MongoDB", "{C48B01AA-FA62-47C7-91AA-5A0A117DF463}"
+	ProjectSection(SolutionItems) = preProject
+		Dependencies\MongoDB\MongoDB.dll = Dependencies\MongoDB\MongoDB.dll
+		Dependencies\MongoDB\MongoDB.GridFS.dll = Dependencies\MongoDB\MongoDB.GridFS.dll
+		Dependencies\MongoDB\MongoDB.GridFS.xml = Dependencies\MongoDB\MongoDB.GridFS.xml
+		Dependencies\MongoDB\MongoDB.xml = Dependencies\MongoDB\MongoDB.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -188,6 +207,7 @@ Global
 		{7497D95C-1F53-42E5-9678-FC20062B46AF} = {1DBBCC7B-37F1-43D2-B00A-786874D6E7C4}
 		{047CE9C4-48F2-4333-B5D9-C22063322F28} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
 		{F109961B-329B-4114-87AA-CE0B8F08F32B} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
+		{C48B01AA-FA62-47C7-91AA-5A0A117DF463} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
 		{2A74EACF-8291-47C7-A2ED-0D58771F24E2} = {D5E46AB8-FE9C-44EE-8BF6-85828422D537}
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F} = {D5E46AB8-FE9C-44EE-8BF6-85828422D537}
 	EndGlobalSection
