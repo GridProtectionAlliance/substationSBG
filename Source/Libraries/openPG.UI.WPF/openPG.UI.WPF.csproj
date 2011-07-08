@@ -85,26 +85,27 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TimeSeriesFramework, Version=1.0.73.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\openpdc\Synchrophasor\Current Version\Source\Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll</HintPath>
+    <Reference Include="TimeSeriesFramework">
+      <HintPath>..\..\Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll</HintPath>
     </Reference>
-    <Reference Include="TVA.Communication">
-      <HintPath>..\..\..\..\..\openpdc\Synchrophasor\Current Version\Source\Dependencies\TVA\TVA.Communication.dll</HintPath>
+    <Reference Include="TVA.Communication, Version=4.0.2.60, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\TVA\TVA.Communication.dll</HintPath>
     </Reference>
-    <Reference Include="TVA.Core">
-      <HintPath>..\..\..\..\..\openpdc\Synchrophasor\Current Version\Source\Dependencies\TVA\TVA.Core.dll</HintPath>
+    <Reference Include="TVA.Core, Version=4.0.2.60, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\TVA\TVA.Core.dll</HintPath>
     </Reference>
-    <Reference Include="TVA.PhasorProtocols">
-      <HintPath>..\..\..\..\..\openpdc\Synchrophasor\Current Version\Build\Output\Debug\Libraries\TVA.PhasorProtocols.dll</HintPath>
+    <Reference Include="TVA.PhasorProtocols, Version=1.5.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\TVA\TVA.PhasorProtocols.dll</HintPath>
     </Reference>
-    <Reference Include="TVA.Security">
-      <HintPath>..\..\..\..\..\openpdc\Synchrophasor\Current Version\Source\Dependencies\TVA\TVA.Security.dll</HintPath>
+    <Reference Include="TVA.Security, Version=4.0.2.60, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\TVA\TVA.Security.dll</HintPath>
     </Reference>
-    <Reference Include="TVA.Services">
-      <HintPath>..\..\..\..\..\openpdc\Synchrophasor\Current Version\Source\Dependencies\TVA\TVA.Services.dll</HintPath>
+    <Reference Include="TVA.ServiceProcess">
+      <HintPath>..\..\Dependencies\TVA\TVA.ServiceProcess.dll</HintPath>
     </Reference>
-    <Reference Include="TVA.Windows">
-      <HintPath>..\..\..\..\..\openpdc\Synchrophasor\Current Version\Source\Dependencies\TVA\TVA.Windows.dll</HintPath>
+    <Reference Include="TVA.Windows, Version=4.0.2.60, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\TVA\TVA.Windows.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
