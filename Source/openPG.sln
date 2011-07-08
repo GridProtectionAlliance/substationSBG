@@ -109,9 +109,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDB", "MongoDB", "{C48B
 		Dependencies\MongoDB\MongoDB.xml = Dependencies\MongoDB\MongoDB.xml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{3B319B01-4C55-4CD3-86A5-1298E91D9138}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "openPG.UI", "Libraries\openPG.UI\openPG.UI.csproj", "{94F36768-E9A0-4783-BB0F-8C2C1771352E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "openPG.UI.WPF", "Libraries\openPG.UI.WPF\openPG.UI.WPF.csproj", "{134819C5-C1BB-4ED1-BE23-49AB5FB33744}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
+		SccNumberOfProjects = 9
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs07
 		SccLocalPath0 = .
@@ -139,6 +145,14 @@ Global
 		SccProjectTopLevelParentUniqueName6 = openPG.sln
 		SccProjectName6 = Tools/Setup
 		SccLocalPath6 = Tools\\Setup
+		SccProjectUniqueName7 = Libraries\\openPG.UI\\openPG.UI.csproj
+		SccProjectTopLevelParentUniqueName7 = openPG.sln
+		SccProjectName7 = Libraries/openPG.UI
+		SccLocalPath7 = Libraries\\openPG.UI
+		SccProjectUniqueName8 = Libraries\\openPG.UI.WPF\\openPG.UI.WPF.csproj
+		SccProjectTopLevelParentUniqueName8 = openPG.sln
+		SccProjectName8 = Libraries/openPG.UI.WPF
+		SccLocalPath8 = Libraries\\openPG.UI.WPF
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -192,6 +206,22 @@ Global
 		{FD76D07C-74B9-437C-B009-94DFD4575359}.Release|Any CPU.Build.0 = Release
 		{FD76D07C-74B9-437C-B009-94DFD4575359}.Release|x86.ActiveCfg = Release
 		{FD76D07C-74B9-437C-B009-94DFD4575359}.Release|x86.Build.0 = Release
+		{94F36768-E9A0-4783-BB0F-8C2C1771352E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94F36768-E9A0-4783-BB0F-8C2C1771352E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94F36768-E9A0-4783-BB0F-8C2C1771352E}.Debug|x86.ActiveCfg = Debug|x86
+		{94F36768-E9A0-4783-BB0F-8C2C1771352E}.Debug|x86.Build.0 = Debug|x86
+		{94F36768-E9A0-4783-BB0F-8C2C1771352E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94F36768-E9A0-4783-BB0F-8C2C1771352E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94F36768-E9A0-4783-BB0F-8C2C1771352E}.Release|x86.ActiveCfg = Release|x86
+		{94F36768-E9A0-4783-BB0F-8C2C1771352E}.Release|x86.Build.0 = Release|x86
+		{134819C5-C1BB-4ED1-BE23-49AB5FB33744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{134819C5-C1BB-4ED1-BE23-49AB5FB33744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{134819C5-C1BB-4ED1-BE23-49AB5FB33744}.Debug|x86.ActiveCfg = Debug|x86
+		{134819C5-C1BB-4ED1-BE23-49AB5FB33744}.Debug|x86.Build.0 = Debug|x86
+		{134819C5-C1BB-4ED1-BE23-49AB5FB33744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{134819C5-C1BB-4ED1-BE23-49AB5FB33744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{134819C5-C1BB-4ED1-BE23-49AB5FB33744}.Release|x86.ActiveCfg = Release|x86
+		{134819C5-C1BB-4ED1-BE23-49AB5FB33744}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -210,5 +240,7 @@ Global
 		{C48B01AA-FA62-47C7-91AA-5A0A117DF463} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
 		{2A74EACF-8291-47C7-A2ED-0D58771F24E2} = {D5E46AB8-FE9C-44EE-8BF6-85828422D537}
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F} = {D5E46AB8-FE9C-44EE-8BF6-85828422D537}
+		{94F36768-E9A0-4783-BB0F-8C2C1771352E} = {3B319B01-4C55-4CD3-86A5-1298E91D9138}
+		{134819C5-C1BB-4ED1-BE23-49AB5FB33744} = {3B319B01-4C55-4CD3-86A5-1298E91D9138}
 	EndGlobalSection
 EndGlobal
