@@ -84,6 +84,12 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="openPDCManager.UI">
+      <HintPath>..\..\..\Dependencies\openPDC\openPDCManager.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="openPDCManager.UI.WPF">
+      <HintPath>..\..\..\Dependencies\openPDC\openPDCManager.UI.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Configuration.Install" />
@@ -144,6 +150,10 @@
     <None Include="PostBuildSetup.bat" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Menu.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -181,6 +191,16 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\openPG.UI.WPF\openPG.UI.WPF.csproj">
+      <Project>{134819C5-C1BB-4ED1-BE23-49AB5FB33744}</Project>
+      <Name>openPG.UI.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\openPG.UI\openPG.UI.csproj">
+      <Project>{94F36768-E9A0-4783-BB0F-8C2C1771352E}</Project>
+      <Name>openPG.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
