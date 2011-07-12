@@ -3,11 +3,11 @@
   <MenuDataItem Icon="" MenuText="Home" Description="System Overview" Roles="*" UserControlAssembly="TsfManager.exe" UserControlPath="TsfManager.HomeUserControl" />
   <MenuDataItem Icon="" MenuText="Devices" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
     <SubMenuItems>
-      <MenuDataItem Icon="" MenuText="Browse" Description="Browse Devices" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.DeviceListUserControl" />
-      <MenuDataItem Icon="" MenuText="Add New" Description="Manage Device Configuration" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.DeviceUserControl" />
-      <MenuDataItem Icon="" MenuText="Input Wizard" Description="Input Device Configuration Wizard" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.InputWizardUserControl" />
+      <MenuDataItem Icon="" MenuText="Browse" Description="Browse Devices" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.DeviceListUserControl" />
+      <MenuDataItem Icon="" MenuText="Add New" Description="Manage Device Configuration" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.DeviceUserControl" />
+      <MenuDataItem Icon="" MenuText="Input Wizard" Description="Input Device Configuration Wizard" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.InputWizardUserControl" />
       <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath=""/>
-      <MenuDataItem Icon="" MenuText="Real-Time Statistics" Description="Real-Time Statistics" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserCsndontrols.RealTimeStatisticsUserControl"/>
+      <MenuDataItem Icon="" MenuText="Real-Time Statistics" Description="Real-Time Statistics" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.RealTimeStatisticsUserControl"/>
       <MenuDataItem Icon="" MenuText="Real-Time Measurements" Description="Real-Time Measurements" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.DeviceMeasurementsUserControl"/>
     </SubMenuItems>
   </MenuDataItem>
@@ -21,22 +21,22 @@
       <!-- Calculated Measurements menu item is openPDC specific and should be migrated to that project -->
       <MenuDataItem Icon="" MenuText="Calculated Measurements" Description="Manage Calculated Measurements" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.CalculatedMeasurementUserControl" />
       <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath="" />
-      <MenuDataItem Icon="" MenuText="Input Adapters" Description="Manage Input Adapters" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.CustomInputAdapterUserControl" />
-      <MenuDataItem Icon="" MenuText="Action Adapters" Description="Manage Action Adapters" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.CustomActionAdapterUserControl" />
-      <MenuDataItem Icon="" MenuText="Output Adapters" Description="Manage Output Adapters" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.CustomOutputAdapterUserControl" />
+      <MenuDataItem Icon="" MenuText="Input Adapters" Description="Manage Input Adapters" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.CustomInputAdapterUserControl" />
+      <MenuDataItem Icon="" MenuText="Action Adapters" Description="Manage Action Adapters" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.CustomActionAdapterUserControl" />
+      <MenuDataItem Icon="" MenuText="Output Adapters" Description="Manage Output Adapters" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.CustomOutputAdapterUserControl" />
       <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath="" />
-      <MenuDataItem Icon="" MenuText="Iaon Tree" Description=" View Iaon Tree" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.IaonTreeUserControl"/>
+      <MenuDataItem Icon="" MenuText="Iaon Tree" Description=" View Iaon Tree" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.IaonTreeUserControl"/>
     </SubMenuItems>
   </MenuDataItem>
   <!-- Subscription Management menu items are openPG specific and should be migrated to that project -->
   <MenuDataItem Icon="" MenuText="Subscription Management" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
     <SubMenuItems>
-      <MenuDataItem Icon="" MenuText="Authorized Subscribers" Description="Manage Authorized Subscribers" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.WPF.UserControls.SubscriberUserControl"/>
-      <MenuDataItem Icon="" MenuText="Subscriber Measurement Access" Description="Manage Subscriber Measurement Access" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.WPF.UserControls.SubscriberMeasurementUserControl"/>
-      <MenuDataItem Icon="" MenuText="Measurement Groups" Description="Manage Subscriber Measurement Groups" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.WPF.UserControls.MeasurementGroupUserControl"/>
+      <MenuDataItem Icon="" MenuText="Authorized Subscribers" Description="Manage Authorized Subscribers" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscriberUserControl"/>
+      <MenuDataItem Icon="" MenuText="Subscriber Measurement Access" Description="Manage Subscriber Measurement Access" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscriberMeasurementUserControl"/>
+      <MenuDataItem Icon="" MenuText="Measurement Groups" Description="Manage Subscriber Measurement Groups" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.MeasurementGroupUserControl"/>
       <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath="" />
-      <MenuDataItem Icon="" MenuText="Measurement Subscription" Description="Manage Local Measurement Subscriptions from External Gateways" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.WPF.UserControls.SubscribeMeasurementUserControl"/>
-      <MenuDataItem Icon="" MenuText="Create Authentication Request" Description="Create Authentication Request for Access to External Gateway" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.WPF.UserControls.SubscriberRequestUserControl"/>
+      <MenuDataItem Icon="" MenuText="Measurement Subscription" Description="Manage Local Measurement Subscriptions from External Gateways" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscribeMeasurementUserControl"/>
+      <MenuDataItem Icon="" MenuText="Create Authentication Request" Description="Create Authentication Request for Access to External Gateway" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscriberRequestUserControl"/>
     </SubMenuItems>
   </MenuDataItem>
   <MenuDataItem Icon="" MenuText="Manage" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
