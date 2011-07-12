@@ -25,9 +25,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using openPG.UI.WPF.ViewModels;
+using openPG.UI.ViewModels;
+using TimeSeriesFramework.UI.DataModels;
 
-namespace openPG.UI.WPF.UserControls
+namespace openPG.UI.UserControls
 {
     /// <summary>
     /// Interaction logic for SelectMeasurementUserControl.xaml
@@ -54,7 +55,7 @@ namespace openPG.UI.WPF.UserControls
 
         // Fields
         private SelectMeasurements m_dataContext;
-        private ObservableCollection<openPG.UI.DataModels.Measurement> m_itemsSource;
+        private ObservableCollection<Measurement> m_itemsSource;
 
         #endregion
 
@@ -107,7 +108,7 @@ namespace openPG.UI.WPF.UserControls
         /// <summary>
         /// Gets updated measurement list.
         /// </summary>
-        public ObservableCollection<openPG.UI.DataModels.Measurement> UpdatedMeasurements
+        public ObservableCollection<Measurement> UpdatedMeasurements
         {
             get
             {
@@ -161,7 +162,7 @@ namespace openPG.UI.WPF.UserControls
         /// <param name="e">Event arguments.</param>
         private void CheckBox_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
-            foreach (openPG.UI.DataModels.Measurement measurement in m_itemsSource)
+            foreach (Measurement measurement in m_itemsSource)
             {
                 measurement.Selected = true;
             }
@@ -174,7 +175,7 @@ namespace openPG.UI.WPF.UserControls
         /// <param name="e">Event arguments.</param>
         private void CheckBox_Unchecked(object sender, System.Windows.RoutedEventArgs e)
         {
-            foreach (openPG.UI.DataModels.Measurement measurement in m_itemsSource)
+            foreach (Measurement measurement in m_itemsSource)
             {
                 measurement.Selected = false;
             }
@@ -185,7 +186,7 @@ namespace openPG.UI.WPF.UserControls
         /// </summary>
         public void UncheckSelection()
         {
-            foreach (openPG.UI.DataModels.Measurement measurement in m_itemsSource)
+            foreach (Measurement measurement in m_itemsSource)
             {
                 measurement.Selected = false;
             }
@@ -200,7 +201,7 @@ namespace openPG.UI.WPF.UserControls
             m_dataContext = new SelectMeasurements(ItemsPerPage, true, InternalOnly, deviceID);
             m_itemsSource = m_dataContext.ItemsSource;
 
-            foreach (openPG.UI.DataModels.Measurement measurement in m_itemsSource)
+            foreach (Measurement measurement in m_itemsSource)
             {
                 measurement.PropertyChanged += measurement_PropertyChanged;
             }

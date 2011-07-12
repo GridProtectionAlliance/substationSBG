@@ -33,11 +33,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using openPG.UI.DataModels;
-using openPG.UI.WPF.ViewModels;
+using openPG.UI.ViewModels;
+using TimeSeriesFramework.UI;
 using TVA;
 using TVA.Security.Cryptography;
 
-namespace openPG.UI.WPF.UserControls
+namespace openPG.UI.UserControls
 {
     /// <summary>
     /// Interaction logic for SubscriberUserControl.xaml

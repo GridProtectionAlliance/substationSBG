@@ -29,15 +29,17 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using openPG.UI.WPF.Commands;
 using openPG.UI.DataModels;
+using TimeSeriesFramework.UI;
+using TimeSeriesFramework.UI.Commands;
+using TimeSeriesFramework.UI.DataModels;
 
-namespace openPG.UI.WPF.ViewModels
+namespace openPG.UI.ViewModels
 {
     /// <summary>
     /// Class to hold bindable <see cref="Subscriber"/> collection and current selection information for UI.
     /// </summary>
-    internal class Subscribers : PagedViewModelBase<Subscriber, Guid>
+    internal class Subscribers : PagedViewModelBase<openPG.UI.DataModels.Subscriber, Guid>
     {
         #region [ Members ]
 
@@ -259,13 +261,13 @@ namespace openPG.UI.WPF.ViewModels
         /// <param name="parameter">Collection of measurements to be allowed.</param>
         private void AddAllowedMeasurement(object parameter)
         {
-            ObservableCollection<openPG.UI.DataModels.Measurement> measurementsToBeAdded = (ObservableCollection<openPG.UI.DataModels.Measurement>)parameter;
+            ObservableCollection<Measurement> measurementsToBeAdded = (ObservableCollection<Measurement>)parameter;
 
             if (measurementsToBeAdded != null && measurementsToBeAdded.Count > 0)
             {
                 List<Guid> measurementIDs = new List<Guid>();
 
-                foreach (openPG.UI.DataModels.Measurement measurement in measurementsToBeAdded)
+                foreach (Measurement measurement in measurementsToBeAdded)
                 {
                     if (!CurrentItem.AllowedMeasurements.ContainsKey(measurement.SignalID) &&
                         !CurrentItem.DeniedMeasurements.ContainsKey(measurement.SignalID) && measurement.Selected)
@@ -274,7 +276,7 @@ namespace openPG.UI.WPF.ViewModels
 
                 if (measurementIDs.Count > 0)
                 {
-                    string result = Subscriber.AddMeasurements(null, CurrentItem.ID, measurementIDs, true);
+                    string result = openPG.UI.DataModels.Subscriber.AddMeasurements(null, CurrentItem.ID, measurementIDs, true);
                     Popup(result, "Allow Measurements", MessageBoxImage.Information);
                 }
                 else
@@ -285,8 +287,8 @@ namespace openPG.UI.WPF.ViewModels
                 if (MeasurementsAdded != null)
                     MeasurementsAdded(this, null);
 
-                CurrentItem.AllowedMeasurements = Subscriber.GetAllowedMeasurements(null, CurrentItem.ID);
-                CurrentItem.AvailableMeasurements = Subscriber.GetAvailableMeasurements(null, CurrentItem.ID);
+                CurrentItem.AllowedMeasurements = openPG.UI.DataModels.Subscriber.GetAllowedMeasurements(null, CurrentItem.ID);
+                CurrentItem.AvailableMeasurements = openPG.UI.DataModels.Subscriber.GetAvailableMeasurements(null, CurrentItem.ID);
             }
         }
 
@@ -305,11 +307,11 @@ namespace openPG.UI.WPF.ViewModels
                 foreach (object item in items)
                     measurementIDs.Add(((KeyValuePair<Guid, string>)item).Key);
 
-                string result = Subscriber.RemoveMeasurements(null, CurrentItem.ID, measurementIDs);
+                string result = openPG.UI.DataModels.Subscriber.RemoveMeasurements(null, CurrentItem.ID, measurementIDs);
 
                 Popup(result, "Remove Measurements", MessageBoxImage.Information);
 
-                CurrentItem.AllowedMeasurements = Subscriber.GetAllowedMeasurements(null, CurrentItem.ID);
+                CurrentItem.AllowedMeasurements = openPG.UI.DataModels.Subscriber.GetAllowedMeasurements(null, CurrentItem.ID);
             }
         }
 
@@ -319,13 +321,13 @@ namespace openPG.UI.WPF.ViewModels
         /// <param name="parameter">Collection of measurements to be denied.</param>
         private void AddDeniedMeasurement(object parameter)
         {
-            ObservableCollection<openPG.UI.DataModels.Measurement> measurementsToBeAdded = (ObservableCollection<openPG.UI.DataModels.Measurement>)parameter;
+            ObservableCollection<Measurement> measurementsToBeAdded = (ObservableCollection<Measurement>)parameter;
 
             if (measurementsToBeAdded != null && measurementsToBeAdded.Count > 0)
             {
                 List<Guid> measurementIDs = new List<Guid>();
 
-                foreach (openPG.UI.DataModels.Measurement measurement in measurementsToBeAdded)
+                foreach (Measurement measurement in measurementsToBeAdded)
                 {
                     if (!CurrentItem.AllowedMeasurements.ContainsKey(measurement.SignalID) &&
                         !CurrentItem.DeniedMeasurements.ContainsKey(measurement.SignalID) && measurement.Selected)
@@ -334,7 +336,7 @@ namespace openPG.UI.WPF.ViewModels
 
                 if (measurementIDs.Count > 0)
                 {
-                    string result = Subscriber.AddMeasurements(null, CurrentItem.ID, measurementIDs, false);
+                    string result = openPG.UI.DataModels.Subscriber.AddMeasurements(null, CurrentItem.ID, measurementIDs, false);
                     Popup(result, "Allow Measurements", MessageBoxImage.Information);
                 }
                 else
@@ -345,8 +347,8 @@ namespace openPG.UI.WPF.ViewModels
                 if (MeasurementsAdded != null)
                     MeasurementsAdded(this, null);
 
-                CurrentItem.DeniedMeasurements = Subscriber.GetDeniedMeasurements(null, CurrentItem.ID);
-                CurrentItem.AvailableMeasurements = Subscriber.GetAvailableMeasurements(null, CurrentItem.ID);
+                CurrentItem.DeniedMeasurements = openPG.UI.DataModels.Subscriber.GetDeniedMeasurements(null, CurrentItem.ID);
+                CurrentItem.AvailableMeasurements = openPG.UI.DataModels.Subscriber.GetAvailableMeasurements(null, CurrentItem.ID);
             }
         }
 
@@ -365,11 +367,11 @@ namespace openPG.UI.WPF.ViewModels
                 foreach (object item in items)
                     measurementIDs.Add(((KeyValuePair<Guid, string>)item).Key);
 
-                string result = Subscriber.RemoveMeasurements(null, CurrentItem.ID, measurementIDs);
+                string result = openPG.UI.DataModels.Subscriber.RemoveMeasurements(null, CurrentItem.ID, measurementIDs);
 
                 Popup(result, "Remove Measurements", MessageBoxImage.Information);
 
-                CurrentItem.DeniedMeasurements = Subscriber.GetDeniedMeasurements(null, CurrentItem.ID);
+                CurrentItem.DeniedMeasurements = openPG.UI.DataModels.Subscriber.GetDeniedMeasurements(null, CurrentItem.ID);
             }
         }
 
@@ -388,12 +390,12 @@ namespace openPG.UI.WPF.ViewModels
                 foreach (object item in items)
                     measurementGroupIDs.Add(((KeyValuePair<int, string>)item).Key);
 
-                string result = Subscriber.AddMeasurementGroups(null, CurrentItem.ID, measurementGroupIDs, true);
+                string result = openPG.UI.DataModels.Subscriber.AddMeasurementGroups(null, CurrentItem.ID, measurementGroupIDs, true);
 
                 Popup(result, "Allow Measurement Groups", MessageBoxImage.Information);
 
-                CurrentItem.AllowedMeasurementGroups = Subscriber.GetAllowedMeasurementGroups(null, CurrentItem.ID);
-                CurrentItem.AvailableMeasurementGroups = Subscriber.GetAvailableMeasurementGroups(null, CurrentItem.ID);
+                CurrentItem.AllowedMeasurementGroups = openPG.UI.DataModels.Subscriber.GetAllowedMeasurementGroups(null, CurrentItem.ID);
+                CurrentItem.AvailableMeasurementGroups = openPG.UI.DataModels.Subscriber.GetAvailableMeasurementGroups(null, CurrentItem.ID);
             }
         }
 
@@ -412,12 +414,12 @@ namespace openPG.UI.WPF.ViewModels
                 foreach (object item in items)
                     measurementGroupIDs.Add(((KeyValuePair<int, string>)item).Key);
 
-                string result = Subscriber.RemoveMeasurementGroups(null, CurrentItem.ID, measurementGroupIDs);
+                string result = openPG.UI.DataModels.Subscriber.RemoveMeasurementGroups(null, CurrentItem.ID, measurementGroupIDs);
 
                 Popup(result, "Remove Measurement Groups", MessageBoxImage.Information);
 
-                CurrentItem.AllowedMeasurementGroups = Subscriber.GetAllowedMeasurementGroups(null, CurrentItem.ID);
-                CurrentItem.AvailableMeasurementGroups = Subscriber.GetAvailableMeasurementGroups(null, CurrentItem.ID);
+                CurrentItem.AllowedMeasurementGroups = openPG.UI.DataModels.Subscriber.GetAllowedMeasurementGroups(null, CurrentItem.ID);
+                CurrentItem.AvailableMeasurementGroups = openPG.UI.DataModels.Subscriber.GetAvailableMeasurementGroups(null, CurrentItem.ID);
             }
         }
 
@@ -436,12 +438,12 @@ namespace openPG.UI.WPF.ViewModels
                 foreach (object item in items)
                     measurementGroupIDs.Add(((KeyValuePair<int, string>)item).Key);
 
-                string result = Subscriber.AddMeasurementGroups(null, CurrentItem.ID, measurementGroupIDs, false);
+                string result = openPG.UI.DataModels.Subscriber.AddMeasurementGroups(null, CurrentItem.ID, measurementGroupIDs, false);
 
                 Popup(result, "Deny Measurement Groups", MessageBoxImage.Information);
 
-                CurrentItem.AvailableMeasurementGroups = Subscriber.GetAvailableMeasurementGroups(null, CurrentItem.ID);
-                CurrentItem.DeniedMeasurementGroups = Subscriber.GetDeniedMeasurementGroups(null, CurrentItem.ID);
+                CurrentItem.AvailableMeasurementGroups = openPG.UI.DataModels.Subscriber.GetAvailableMeasurementGroups(null, CurrentItem.ID);
+                CurrentItem.DeniedMeasurementGroups = openPG.UI.DataModels.Subscriber.GetDeniedMeasurementGroups(null, CurrentItem.ID);
             }
         }
 
@@ -460,12 +462,12 @@ namespace openPG.UI.WPF.ViewModels
                 foreach (object item in items)
                     measurementGroupIDs.Add(((KeyValuePair<int, string>)item).Key);
 
-                string result = Subscriber.RemoveMeasurementGroups(null, CurrentItem.ID, measurementGroupIDs);
+                string result = openPG.UI.DataModels.Subscriber.RemoveMeasurementGroups(null, CurrentItem.ID, measurementGroupIDs);
 
                 Popup(result, "Remove Measurement Groups", MessageBoxImage.Information);
 
-                CurrentItem.AvailableMeasurementGroups = Subscriber.GetAvailableMeasurementGroups(null, CurrentItem.ID);
-                CurrentItem.DeniedMeasurementGroups = Subscriber.GetDeniedMeasurementGroups(null, CurrentItem.ID);
+                CurrentItem.AvailableMeasurementGroups = openPG.UI.DataModels.Subscriber.GetAvailableMeasurementGroups(null, CurrentItem.ID);
+                CurrentItem.DeniedMeasurementGroups = openPG.UI.DataModels.Subscriber.GetDeniedMeasurementGroups(null, CurrentItem.ID);
             }
         }
 

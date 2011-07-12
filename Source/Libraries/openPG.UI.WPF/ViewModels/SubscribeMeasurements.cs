@@ -27,13 +27,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using openPG.UI.WPF.Commands;
-using openPG.UI.DataModels;
-using TimeSeriesFramework;
+using openPDCManager.UI.DataModels;
 using TimeSeriesFramework.UI;
+using TimeSeriesFramework.UI.Commands;
 using TVA.Data;
 
-namespace openPG.UI.WPF.ViewModels
+namespace openPG.UI.ViewModels
 {
     internal class SubscribeMeasurements : PagedViewModelBase<Device, int>
     {
@@ -41,12 +40,12 @@ namespace openPG.UI.WPF.ViewModels
 
         // Fields
         private Dictionary<int, string> m_deviceList;
-        private ObservableCollection<DataModels.Measurement> m_subscribedMeasurements;
-        private RelayCommand m_subscribMeasurementCommand;
+        private ObservableCollection<Measurement> m_subscribedMeasurements;
+        private RelayCommand m_subscribeMeasurementCommand;
         private RelayCommand m_unsubscribeMeasurementCommand;
         private KeyValuePair<int, string> m_currentDevice;
         private int m_currentDeviceID;
-        private ObservableCollection<DataModels.Measurement> m_measurementsToBeSubscribed;
+        private ObservableCollection<Measurement> m_measurementsToBeSubscribed;
 
         // Delegates
 
@@ -121,7 +120,7 @@ namespace openPG.UI.WPF.ViewModels
         /// <summary>
         /// Gets or sets measurements with Subscribed flag set to true.
         /// </summary>
-        public ObservableCollection<DataModels.Measurement> SubscribedMeasurements
+        public ObservableCollection<Measurement> SubscribedMeasurements
         {
             get
             {
@@ -141,10 +140,10 @@ namespace openPG.UI.WPF.ViewModels
         {
             get
             {
-                if (m_subscribMeasurementCommand == null)
-                    m_subscribMeasurementCommand = new RelayCommand(SubscribeMeasurement, (param) => CanSave);
+                if (m_subscribeMeasurementCommand == null)
+                    m_subscribeMeasurementCommand = new RelayCommand(SubscribeMeasurement, (param) => CanSave);
 
-                return m_subscribMeasurementCommand;
+                return m_subscribeMeasurementCommand;
             }
         }
 
@@ -200,7 +199,7 @@ namespace openPG.UI.WPF.ViewModels
         /// <summary>
         /// Gets or sets collection of measurements where Internal = false and Subscribed = false.
         /// </summary>
-        public ObservableCollection<DataModels.Measurement> MeasurementsToBeSubscribed
+        public ObservableCollection<Measurement> MeasurementsToBeSubscribed
         {
             get
             {
@@ -252,7 +251,7 @@ namespace openPG.UI.WPF.ViewModels
 
         public override void Load()
         {
-            SubscribedMeasurements = DataModels.Measurement.GetSubscribedMeasurements(null);
+            SubscribedMeasurements = Measurement.GetSubscribedMeasurements(null);
             DeviceList = Device.GetLookupList(null, "Measurement", true);
             CurrentDevice = DeviceList.First();
         }
@@ -264,7 +263,7 @@ namespace openPG.UI.WPF.ViewModels
 
         private void SubscribeMeasurement(object parameter)
         {
-            ObservableCollection<openPG.UI.DataModels.Measurement> measurementsToBeAdded = (ObservableCollection<openPG.UI.DataModels.Measurement>)parameter;
+            ObservableCollection<Measurement> measurementsToBeAdded = (ObservableCollection<Measurement>)parameter;
 
             if (measurementsToBeAdded != null && measurementsToBeAdded.Count > 0)
             {
@@ -272,21 +271,21 @@ namespace openPG.UI.WPF.ViewModels
                 AdoDataConnection database = new AdoDataConnection(CommonFunctions.DefaultSettingsCategory);
                 try
                 {
-                    foreach (DataModels.Measurement measurement in measurementsToBeAdded)
+                    foreach (Measurement measurement in measurementsToBeAdded)
                     {
                         if (measurement.Selected)
                         {
                             measurement.Internal = false;
                             measurement.Subscribed = true;
 
-                            DataModels.Measurement.Save(database, measurement);
+                            Measurement.Save(database, measurement);
                         }
                     }
 
                     if (SubscriptionChanged != null)
                         SubscriptionChanged(this, null);
 
-                    SubscribedMeasurements = DataModels.Measurement.GetSubscribedMeasurements(database);
+                    SubscribedMeasurements = Measurement.GetSubscribedMeasurements(database);
                 }
                 catch (Exception ex)
                 {
@@ -312,18 +311,18 @@ namespace openPG.UI.WPF.ViewModels
                 AdoDataConnection database = new AdoDataConnection(CommonFunctions.DefaultSettingsCategory);
                 try
                 {
-                    foreach (DataModels.Measurement measurement in measurementsToBeRemoved)
+                    foreach (Measurement measurement in measurementsToBeRemoved)
                     {
                         measurement.Internal = false;
                         measurement.Subscribed = false;
 
-                        DataModels.Measurement.Save(database, measurement);
+                        Measurement.Save(database, measurement);
                     }
 
                     if (SubscriptionChanged != null)
                         SubscriptionChanged(this, null);
 
-                    SubscribedMeasurements = DataModels.Measurement.GetSubscribedMeasurements(database);
+                    SubscribedMeasurements = Measurement.GetSubscribedMeasurements(database);
                 }
                 catch (Exception ex)
                 {

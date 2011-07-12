@@ -25,21 +25,22 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using openPG.UI.WPF.Commands;
-using openPG.UI.DataModels;
+using TimeSeriesFramework.UI;
+using TimeSeriesFramework.UI.Commands;
+using TimeSeriesFramework.UI.DataModels;
 using TVA;
 
-namespace openPG.UI.WPF.ViewModels
+namespace openPG.UI.ViewModels
 {
     /// <summary>
     /// Class to hold bindable <see cref="DataModels.Measurement"/> collection.
     /// </summary>
-    internal class SelectMeasurements : PagedViewModelBase<openPG.UI.DataModels.Measurement, Guid>
+    internal class SelectMeasurements : PagedViewModelBase<Measurement, Guid>
     {
         #region [ Members ]
 
         // Fields
-        private ObservableCollection<openPG.UI.DataModels.Measurement> m_measurements;
+        private ObservableCollection<Measurement> m_measurements;
         private RelayCommand m_searchCommand;
         private RelayCommand m_showAllCommand;
         private bool m_internalOnly;
@@ -139,9 +140,9 @@ namespace openPG.UI.WPF.ViewModels
             try
             {
                 if (m_internalOnly)
-                    m_measurements = openPG.UI.DataModels.Measurement.Load(null, m_deviceID, true);
+                    m_measurements = Measurement.Load(null, m_deviceID, true);
                 else
-                    m_measurements = MeasurementGroup.GetPossibleMeasurements(null, 0);
+                    m_measurements = openPG.UI.DataModels.MeasurementGroup.GetPossibleMeasurements(null, 0);
 
                 ItemsSource = m_measurements;
             }
@@ -172,7 +173,7 @@ namespace openPG.UI.WPF.ViewModels
             if (paramter != null && !string.IsNullOrEmpty(paramter.ToString()))
             {
                 string searchText = paramter.ToString().ToLower();
-                ItemsSource = new ObservableCollection<DataModels.Measurement>
+                ItemsSource = new ObservableCollection<Measurement>
                     (m_measurements.Where(m => m.PointTag.ToLower().Contains(searchText) ||
                                             m.SignalReference.ToLower().Contains(searchText) ||
                                             m.Description.ToNonNullString().ToLower().Contains(searchText) ||

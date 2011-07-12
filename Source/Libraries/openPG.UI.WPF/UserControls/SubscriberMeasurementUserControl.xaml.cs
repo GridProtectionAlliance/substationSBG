@@ -23,9 +23,9 @@
 
 using System.Windows;
 using System.Windows.Controls;
-using openPG.UI.WPF.ViewModels;
+using openPG.UI.ViewModels;
 
-namespace openPG.UI.WPF.UserControls
+namespace openPG.UI.UserControls
 {
     /// <summary>
     /// Interaction logic for SubscriberMeasurementUserControl.xaml

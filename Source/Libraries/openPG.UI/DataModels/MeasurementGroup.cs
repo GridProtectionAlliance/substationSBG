@@ -27,8 +27,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
-using TimeSeriesFramework;
 using TimeSeriesFramework.UI;
+using TimeSeriesFramework.UI.DataModels;
 using TVA.Data;
 
 namespace openPG.UI.DataModels

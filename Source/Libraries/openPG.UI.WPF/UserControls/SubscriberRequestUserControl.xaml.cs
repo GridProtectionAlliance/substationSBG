@@ -37,7 +37,7 @@ using TVA.Collections;
 using TVA.Data;
 using TVA.Security.Cryptography;
 
-namespace openPG.UI.WPF.UserControls
+namespace openPG.UI.UserControls
 {
     /// <summary>
     /// Interaction logic for SubscriberRequestUserControl.xaml
