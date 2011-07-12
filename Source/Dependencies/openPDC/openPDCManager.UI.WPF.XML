@@ -1,0 +1,662 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>openPDCManager.UI.WPF</name>
+    </assembly>
+    <members>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.CalculatedMeasurements.GetCurrentItemKey">
+            <summary>
+            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.CalculatedMeasurements.GetCurrentItemName">
+            <summary>
+            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.CalculatedMeasurements.Clear">
+            <summary>
+            Creates a new instance of <see cref="!:CalculatedMeasurement"/> and assigns it to CurrentItem.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.CalculatedMeasurements.IsNewRecord">
+            <summary>
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.CalculatedMeasurements.NodeLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Node"/> defined in the database.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.UserControls.DeviceUserControl">
+            <summary>
+            Interaction logic for DeviceUserControl.xaml
+            </summary>
+            <summary>
+            DeviceUserControl
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.DeviceUserControl.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:openPDCManager.UI.WPF.UserControls.DeviceUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.DeviceUserControl.#ctor(openPDCManager.UI.DataModels.Device)">
+            <summary>
+            Creates an instance of <see cref="T:openPDCManager.UI.WPF.UserControls.DeviceUserControl"/> class.
+            </summary>
+            <param name="device"><see cref="T:openPDCManager.UI.DataModels.Device"/> to be edited.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.DeviceUserControl.DeviceUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles unload event of the <see cref="T:openPDCManager.UI.WPF.UserControls.DeviceUserControl"/>.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Arguments for the event.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.DeviceUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.UserControls.InputWizardUserControl">
+            <summary>
+            Interaction logic for InputWizardUserControl.xaml
+            </summary>
+            <summary>
+            InputWizardUserControl
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.InputWizardUserControl.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:openPDCManager.UI.WPF.UserControls.InputWizardUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.InputWizardUserControl.CheckBoxAll_Checked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Hanldes checked event on the select all check box.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.InputWizardUserControl.CheckBoxAll_Unchecked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles unchecked event on the select all check box.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.InputWizardUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.UserControls.CalculatedMeasurementUserControl">
+            <summary>
+            Interaction logic for CalculatedMeasurementUserControl.xaml
+            </summary>
+            <summary>
+            CalculatedMeasurementUserControl
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.CalculatedMeasurementUserControl.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:openPDCManager.UI.WPF.UserControls.CalculatedMeasurementUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.CalculatedMeasurementUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.UserControls.DeviceListUserControl">
+            <summary>
+            Interaction logic for DeviceListUserControl.xaml
+            </summary>
+            <summary>
+            DeviceListUserControl
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.DeviceListUserControl.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:openPDCManager.UI.WPF.UserControls.DeviceListUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.DeviceListUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Handles PreviewKeyDown event on the datagrid.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Arguments for the event.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.DeviceListUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.ViewModels.InputWizardDevices">
+            <summary>
+            Bindable class to hold collection of <see cref="!:InputWizardDevice"/>.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Creates an instance of <see cref="T:openPDCManager.UI.WPF.ViewModels.InputWizardDevices"/> class.
+            </summary>
+            <param name="itemsPerPage">Integer value to determine number of items per page.</param>
+            <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.GetCurrentItemKey">
+            <summary>
+            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.GetCurrentItemName">
+            <summary>
+            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.BrowseConnectionFile">
+            <summary>
+            Handles BrowseConnectionFileCommand.
+            </summary>        
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.BrowseConfigurationFile">
+            <summary>
+            Handles BrowseConfigurationFileCommand.
+            </summary>        
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.ParseConfiguration">
+            <summary>
+            Parses IConfigurationFrame to retrieve devices and other configuration information.
+            </summary>        
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.SaveConfigurationFile">
+            <summary>
+            Saves current configuration information into XML file.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.BrowseIniFile">
+            <summary>
+            Handles BroseIniFileCommand.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.BuildConnectionString">
+            <summary>
+            Pops up another window to build or modify connection string.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.BuildAlternateCommandChannel">
+            <summary>
+            Pops up another window to build or modify alternate command channel.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.RequestConfiguration">
+            <summary>
+            Handles RequestConfigurationCommand.
+            </summary>        
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.ManualConfiguration">
+            <summary>
+            Handles ManualConfigurationCommand.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.Helper_ReceivedServiceUpdate(System.Object,TVA.EventArgs{TVA.UpdateType,System.String})">
+            <summary>
+            Handles ReceivedServiceUpdate event.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.Helper_ReceivedServiceResponse(System.Object,TVA.EventArgs{TVA.ServiceProcess.ServiceResponse})">
+            <summary>
+            Handles ReceivedServiceResponse event.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.SavePDC">
+            <summary>
+            Saves concentrating device information in to database.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.SaveConfiguration">
+            <summary>
+            Saves configuration information in to database.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.GenerateConnectionString">
+            <summary>
+            Generates connection string to save into database by merging connection string and alternate command channel.
+            </summary>
+            <returns>string, to store into database.</returns>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.IsNewRecord">
+            <summary>
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.ConnectionFileName">
+            <summary>
+            Gets or sets name of the connection file used for configuration.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.ConfigurationFileName">
+            <summary>
+            Gets or sets name of the xml configuration file used for configuration.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.IniFileName">
+            <summary>
+            Gets or sets name of the INI file used for configuration.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.CompanyLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Company"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.HistorianLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Historian"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.InterconnectionLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Interconnection"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.ProtocolLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Protocol"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.VendorDeviceLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.VendorDevice"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.ConnectionString">
+            <summary>
+            Gets or sets connection string to backend service.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.AlternateCommandChannel">
+            <summary>
+            Gets or sets command channel to communicate with backend service.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.AccessID">
+            <summary>
+            Gets or sets ID of the device to be configured.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.ProtocolID">
+            <summary>
+            Gets or sets protocol id for devices to be configured.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.ProtocolAcronym">
+            <summary>
+            Gets or sets protocol acronym for devices to be configured.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.ProtocolIsBpaPdcStream">
+            <summary>
+            Gets a flag indicating if selected protocol is BpaPdcStream. 
+            This is used to hide or display Ini file selection on input wizard screen.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.ConnectToConcentrator">
+            <summary>
+            Gets or sets boolean value indicating if connection is to concentrator.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.PdcID">
+            <summary>
+            Gets or sets ID of the concetrator device.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.PdcAcronym">
+            <summary>
+            Gets or setc acronym of the concentrator device.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.PdcMessage">
+            <summary>
+            Gets or sets message to be displayed on the screen when pdc acronym changes.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.PdcName">
+            <summary>
+            Gets or sets name of the concentrator device.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.PdcVendorDeviceID">
+            <summary>
+            Gets or sets vendor device id for this configuration.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.CompanyID">
+            <summary>
+            Gets or sets company ID to which devices are to be associated in this configuration.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.HistorianID">
+            <summary>
+            Gets or sets Historian ID to which devices are to be associated in this configuration.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.InterconnectionID">
+            <summary>
+            Gets or sets Interconnection ID to which devices are to be associated in this configuration.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.SkipDisableRealTimeData">
+            <summary>
+            Gets or sets a boolean flag for SkipDisableRealTimeData.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.BrowseConnectionFileCommand">
+            <summary>
+            Gets or sets <see cref="T:System.Windows.Input.ICommand"/> to browse to connection file.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.BuildConnectionStringCommand">
+            <summary>
+            Gets or sets <see cref="T:System.Windows.Input.ICommand"/> to build connection string.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.BuildAlternateCommandChannelCommand">
+            <summary>
+            Gets or sets <see cref="T:System.Windows.Input.ICommand"/> to build alternate command channel.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.BrowseIniFileCommand">
+            <summary>
+            Gets or sets <see cref="T:System.Windows.Input.ICommand"/> to browse to INI file.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.BrowseConfigurationFileCommand">
+            <summary>
+            Gets or sets <see cref="T:System.Windows.Input.ICommand"/> to browse to configuration file.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.RequestConfigurationCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> to request configuration frame from backed service.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.SaveConfigurationFileCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> to save current configuration to XML file.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.ManualConfigurationCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> to create or update configuration manually.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.ConfigurationSummary">
+            <summary>
+            Gets or sets summary message to be displayed on UI aftern parsing configuration file or frame.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.CanSave">
+            <summary>
+            Gets boolean flag indicating if configuration can be saved or not.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.ViewModels.Phasors">
+            <summary>
+            Class to hold bindable <see cref="T:openPDCManager.UI.DataModels.Phasor"/> collection and current selection information for UI.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Phasors.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Creates an instance of <see cref="T:openPDCManager.UI.WPF.ViewModels.Phasors"/> class.
+            </summary>
+            <param name="deviceID">ID of teh device to fileter phasors.</param>
+            <param name="itemsPerPage">Integer value to determine number of items per page.</param>
+            <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Phasors.GetCurrentItemKey">
+            <summary>
+            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Phasors.GetCurrentItemName">
+            <summary>
+            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Phasors.Load">
+            <summary>
+            Loads collection of <see cref="T:openPDCManager.UI.DataModels.Phasor"/> defined in the database for a <see cref="T:openPDCManager.UI.DataModels.Device"/>.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Phasors.Clear">
+            <summary>
+            Creates a new instance of <see cref="T:openPDCManager.UI.DataModels.Phasor"/> and assigns it to CurrentItem.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Phasors.IsNewRecord">
+            <summary>
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Phasors.PhaseLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of phase defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Phasors.TypeLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of type defined in the database.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.UserControls.PhasorUserControl">
+            <summary>
+            Interaction logic for PhasorUserControl.xaml
+            </summary>
+            <summary>
+            PhasorUserControl
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.PhasorUserControl.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of <see cref="T:openPDCManager.UI.WPF.UserControls.PhasorUserControl"/> class.
+            <param name="deviceID">ID of the device to filter data.</param>
+            </summary>        
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.PhasorUserControl.PhasorUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles unloaded event.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Arguments of the event.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.PhasorUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Handles key down event on the datagrid object.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Arguments of the event.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.PhasorUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.ViewModels.Devices">
+            <summary>
+            Class to hold bindable <see cref="!:Device"/> collection and current selection information for UI.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.#ctor(System.Int32,System.Boolean,openPDCManager.UI.DataModels.Device)">
+            <summary>
+            Creates an instance of <see cref="T:openPDCManager.UI.WPF.ViewModels.Devices"/> class.
+            </summary>
+            <param name="itemsPerPage"></param>
+            <param name="autoSave"></param>
+            <param name="device"><see cref="!:Device"/> to be edited.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.GetCurrentItemKey">
+            <summary>
+            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.GetCurrentItemName">
+            <summary>
+            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.Clear">
+            <summary>
+            Creates a new instance of <see cref="T:TimeSeriesFramework.UI.DataModels.Historian"/> and assigns it to CurrentItem.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.Load">
+            <summary>
+            Loads collection of <see cref="!:Device"/> information stored in the database.
+            </summary>
+            <remarks>This method is overridden because MethodInfo.Invoke in the base class did not like optional parameters.</remarks>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.Save">
+            <summary>
+            Saves <see cref="!:Device"/> information into database.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.GoToEdit(System.Object)">
+            <summary>
+            Handles <see cref="P:openPDCManager.UI.WPF.ViewModels.Devices.EditCommand"/>.
+            </summary>
+            <param name="parameter">Parameter to use for the command provided by commandparameter from UI.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.MakeCopy(System.Object)">
+            <summary>
+            Handles <see cref="P:openPDCManager.UI.WPF.ViewModels.Devices.CopyCommand"/>.
+            </summary>
+            <param name="parameter">Parameter to use for the command provided by commandparameter from UI.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.GoToMeasurements(System.Object)">
+            <summary>
+            Handles <see cref="P:openPDCManager.UI.WPF.ViewModels.Devices.MeasurementCommand"/>.
+            </summary>
+            <param name="parameter">Parameter to use for the command provided by commandparameter from UI.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.GoToPhasors(System.Object)">
+            <summary>
+            Handles <see cref="P:openPDCManager.UI.WPF.ViewModels.Devices.PhasorCommand"/>.
+            </summary>
+            <param name="parameter">Parameter to use for the command provided by commandparameter from UI.</param>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.BuildConnectionStringCommand">
+            <summary>
+            Gets or sets <see cref="T:System.Windows.Input.ICommand"/> to build connection string.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.BuildAlternateCommandChannelCommand">
+            <summary>
+            Gets or sets <see cref="T:System.Windows.Input.ICommand"/> to build alternate command channel.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.RuntimeID">
+            <summary>
+            Gets or sets <see cref="!:Device"/> RuntimeID.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.NodeLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Node"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.ConcentratorDeviceLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of concentrator <see cref="!:Device"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.CompanyLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Company"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.HistorianLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Historian"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.InterconnectionLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Interconnection"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.ProtocolLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Protocol"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.VendorDeviceLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.VendorDevice"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.TimezoneLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of system time zones.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.IsNewRecord">
+            <summary>
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.EditCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> for edit operation.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.CopyCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> for copy operation.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.PhasorCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> to go to phasors configuration.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.MeasurementCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> to go to measurements configuration.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.UserControls.RealTimeStatisticsUserControl">
+            <summary>
+            Interaction logic for RealTimeStatisticsUserControl.xaml
+            </summary>
+            <summary>
+            RealTimeStatisticsUserControl
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.RealTimeStatisticsUserControl.#ctor">
+            <summary>
+            Creates a <see cref="T:openPDCManager.UI.WPF.UserControls.RealTimeStatisticsUserControl"/>.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.RealTimeStatisticsUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+    </members>
+</doc>
