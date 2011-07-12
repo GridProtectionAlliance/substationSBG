@@ -2335,26 +2335,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C7E95DA275A849DAB49ADCA98B2B6A3A"
-            {
-            "SourcePath" = "8:..\\openPG\\Menu.xml"
-            "TargetName" = "8:Menu.xml"
-            "Tag" = "8:"
-            "Folder" = "8:_631D13B429EC407682E5BAD1058D6530"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C95EB28403A74AAEAF13A6FC45957DBE"
             {
             "SourcePath" = "8:openPGSetupLogo.jpg"

@@ -94,6 +94,19 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:openPDCManager.UI.WPF.UserControls.DeviceMeasurementsUserControl">
+            <summary>
+            Interaction logic for DeviceMeasurementsUserControl.xaml
+            </summary>
+            <summary>
+            DeviceMeasurementsUserControl
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.UserControls.DeviceMeasurementsUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:openPDCManager.UI.WPF.UserControls.CalculatedMeasurementUserControl">
             <summary>
             Interaction logic for CalculatedMeasurementUserControl.xaml
