@@ -18,7 +18,7 @@
         </member>
         <member name="M:openPDCManager.UI.WPF.ViewModels.CalculatedMeasurements.Clear">
             <summary>
-            Creates a new instance of <see cref="!:CalculatedMeasurement"/> and assigns it to CurrentItem.
+            Creates a new instance of <see cref="T:openPDCManager.UI.DataModels.CalculatedMeasurement"/> and assigns it to CurrentItem.
             </summary>
         </member>
         <member name="P:openPDCManager.UI.WPF.ViewModels.CalculatedMeasurements.IsNewRecord">
@@ -60,6 +60,38 @@
         <member name="M:openPDCManager.UI.WPF.UserControls.DeviceUserControl.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.ViewModels.PhasorMeasurements">
+            <summary>
+            Class to hold bindable <see cref="T:TimeSeriesFramework.UI.DataModels.Measurement"/> collection.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.ViewModels.PhasorMeasurements.Clear">
+            <summary>
+            Creates a new instance of <see cref="T:TimeSeriesFramework.UI.DataModels.Measurement"/> and assigns it to CurrentItem.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.ViewModels.PhasorMeasurements.Load">
+            <summary>
+            Loads collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Measurement"/> defined in the database.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.ViewModels.PhasorMeasurements.m_currentItem_PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Handles PropertyChanged event on CurrentItem. If DeviceID is changed then get the associated phasors list.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.PhasorMeasurements.DeviceLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of devices defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.PhasorMeasurements.PhasorLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of phasors defined in the database.
             </summary>
         </member>
         <member name="T:openPDCManager.UI.WPF.UserControls.InputWizardUserControl">
@@ -152,7 +184,7 @@
         </member>
         <member name="T:openPDCManager.UI.WPF.ViewModels.InputWizardDevices">
             <summary>
-            Bindable class to hold collection of <see cref="!:InputWizardDevice"/>.
+            Bindable class to hold collection of <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/>.
             </summary>
         </member>
         <member name="M:openPDCManager.UI.WPF.ViewModels.InputWizardDevices.#ctor(System.Int32,System.Boolean)">
@@ -425,6 +457,66 @@
             Gets boolean flag indicating if configuration can be saved or not.
             </summary>
         </member>
+        <member name="T:openPDCManager.UI.WPF.ConnectionSettings">
+            <summary>
+            Represents connection information defined in PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.ConnectionSettings.PhasorProtocol">
+            <summary>
+            Defines <see cref="F:openPDCManager.UI.WPF.ConnectionSettings.PhasorProtocol"/> from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.ConnectionSettings.TransportProtocol">
+            <summary>
+            Defines <see cref="F:openPDCManager.UI.WPF.ConnectionSettings.TransportProtocol"/> from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.ConnectionSettings.ConnectionString">
+            <summary>
+            Defines connection string from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.ConnectionSettings.PmuID">
+            <summary>
+            Defines ID of the source from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.ConnectionSettings.FrameRate">
+            <summary>
+            Defines frame rate from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.ConnectionSettings.AutoRepeatPlayback">
+            <summary>
+            Defines boolean flag if data needs to be repeated again and again.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.ConnectionSettings.ByteEncodingDisplayFormat">
+            <summary>
+            Defines byte encoding format from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.ConnectionSettings.ConnectionParameters">
+            <summary>
+            Defines additional connection information such as alternate command channel from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.ConnectionSettings.ConfigurationFileName">
+            <summary>
+            Defines name of the configuration file.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.ConnectionSettings.RefreshConfigurationFileOnChange">
+            <summary>
+            Defines boolean flag to refresh configuration file on change.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.ConnectionSettings.ParseWordCountFromByte">
+            <summary>
+            Defines boolean flag indicating if parse word count from byte.
+            </summary>
+        </member>
         <member name="T:openPDCManager.UI.WPF.ViewModels.Phasors">
             <summary>
             Class to hold bindable <see cref="T:openPDCManager.UI.DataModels.Phasor"/> collection and current selection information for UI.
@@ -510,7 +602,7 @@
         </member>
         <member name="T:openPDCManager.UI.WPF.ViewModels.Devices">
             <summary>
-            Class to hold bindable <see cref="!:Device"/> collection and current selection information for UI.
+            Class to hold bindable <see cref="T:openPDCManager.UI.DataModels.Device"/> collection and current selection information for UI.
             </summary>
         </member>
         <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.#ctor(System.Int32,System.Boolean,openPDCManager.UI.DataModels.Device)">
@@ -519,7 +611,7 @@
             </summary>
             <param name="itemsPerPage"></param>
             <param name="autoSave"></param>
-            <param name="device"><see cref="!:Device"/> to be edited.</param>
+            <param name="device"><see cref="T:openPDCManager.UI.DataModels.Device"/> to be edited.</param>
         </member>
         <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.GetCurrentItemKey">
             <summary>
@@ -540,13 +632,13 @@
         </member>
         <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.Load">
             <summary>
-            Loads collection of <see cref="!:Device"/> information stored in the database.
+            Loads collection of <see cref="T:openPDCManager.UI.DataModels.Device"/> information stored in the database.
             </summary>
             <remarks>This method is overridden because MethodInfo.Invoke in the base class did not like optional parameters.</remarks>
         </member>
         <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.Save">
             <summary>
-            Saves <see cref="!:Device"/> information into database.
+            Saves <see cref="T:openPDCManager.UI.DataModels.Device"/> information into database.
             </summary>
         </member>
         <member name="M:openPDCManager.UI.WPF.ViewModels.Devices.GoToEdit(System.Object)">
@@ -585,7 +677,7 @@
         </member>
         <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.RuntimeID">
             <summary>
-            Gets or sets <see cref="!:Device"/> RuntimeID.
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.Device"/> RuntimeID.
             </summary>
         </member>
         <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.NodeLookupList">
@@ -595,7 +687,7 @@
         </member>
         <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.ConcentratorDeviceLookupList">
             <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of concentrator <see cref="!:Device"/> defined in the database.
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of concentrator <see cref="T:openPDCManager.UI.DataModels.Device"/> defined in the database.
             </summary>
         </member>
         <member name="P:openPDCManager.UI.WPF.ViewModels.Devices.CompanyLookupList">
@@ -669,6 +761,239 @@
         <member name="M:openPDCManager.UI.WPF.UserControls.RealTimeStatisticsUserControl.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder">
+            <summary>
+            Interaction logic for ConnectionStringBuilder.xaml
+            </summary>
+            <summary>
+            ConnectionStringBuilder
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.#ctor(openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ConnectionType)">
+            <summary>
+            Creates a new instance of <see cref="T:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ConnectionStringBuilder_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles loaded event of the window.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ButtonSaveUdpServer_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Hanldes click event of the save button on UdpServer tab.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ButtonSaveFile_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Hanldes click event of the save button on File tab.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ButtonBrowseFile_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Hanldes click event of the browse button on File tab.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ButtonSaveSerial_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Hanldes click event of the save button on Serial tab.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ButtonSaveUDP_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Hanldes click event of the save button on UDP tab.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ButtonSaveTCP_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Hanldes click event of the save button on TCP tab.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ParseConnectionString">
+            <summary>
+            Parses <see cref="P:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ConnectionString"/> and creates <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.SetConnectionString(openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.TransportProtocol)">
+            <summary>
+            Creates connection string by merging keyvaluepairs defined in <see cref="T:System.Collections.Generic.Dictionary`2"/>.
+            </summary>
+            <param name="transportProtocol"><see cref="T:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.TransportProtocol"/> to format connection string.</param>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.FormatIP(System.String)">
+            <summary>
+            Formats IPv6 address.
+            </summary>
+            <param name="ipAddress">IP address to be formatted.</param>
+            <returns>string, formatted IP address.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ConnectionString">
+            <summary>
+            Gets or sets connection string from the parameters defined on the UI.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.TransportProtocol">
+            <summary>
+            Type of transport protocol enumeration.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.TransportProtocol.tcp">
+            <summary>
+            Defines TCP tranasport protocol.
+            </summary>
+            <remarks>
+            Use this to create connection string for TCP connection.
+            </remarks>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.TransportProtocol.udp">
+            <summary>
+            Defines UDP tranasport protocol.
+            </summary>
+            <remarks>
+            Use this to create connection string for UDP connection.
+            </remarks>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.TransportProtocol.serial">
+            <summary>
+            Defines Serial tranasport protocol.
+            </summary>
+            <remarks>
+            Use this to create connection string for Serial connection.
+            </remarks>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.TransportProtocol.file">
+            <summary>
+            Defines file based connection.
+            </summary>
+            <remarks>
+            Use this to create connection string for File based connection.
+            </remarks>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.TransportProtocol.udpserver">
+            <summary>
+            Defines UDP Server connection.
+            </summary>
+            <remarks>
+            Use this to create connection string for TCP Server connection.
+            </remarks>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ConnectionType">
+            <summary>
+            Type of connection enumeration.
+            </summary>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ConnectionType.DeviceConnection">
+            <summary>
+            Defines connection to a device.
+            </summary>
+            <remarks>
+            Use this to connect to a device.
+            </remarks>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ConnectionType.DataChannel">
+            <summary>
+            Defines data channel for communication.
+            </summary>
+            <remarks>
+            Use this to generate string to setup data channel.
+            </remarks>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ConnectionType.CommandChannel">
+            <summary>
+            Defines command channel for communication.
+            </summary>
+            <remarks>
+            Use this to generate string to setup command channel.
+            </remarks>
+        </member>
+        <member name="F:openPDCManager.UI.WPF.Modal.ConnectionStringBuilder.ConnectionType.AlternateCommandChannel">
+            <summary>
+            Defines alternate command channel.
+            </summary>
+            <remarks>
+            Use this to generate string to setup alternate command channel.
+            </remarks>
+        </member>
+        <member name="T:openPDCManager.UI.UserControls.PhasorMeasurementUserControl">
+            <summary>
+            Interaction logic for PhasorMeasurementUserControl.xaml
+            </summary>
+            <summary>
+            PhasorMeasurementUserControl
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.UserControls.PhasorMeasurementUserControl.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:openPDCManager.UI.UserControls.PhasorMeasurementUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.UserControls.PhasorMeasurementUserControl.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of <see cref="T:openPDCManager.UI.UserControls.PhasorMeasurementUserControl"/> class.
+            </summary>
+            <param name="deviceID">ID of the device to filter measurements.</param>
+        </member>
+        <member name="M:openPDCManager.UI.UserControls.PhasorMeasurementUserControl.PhasorMeasurementUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles unloaded event.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Arguments of the event.</param>
+        </member>
+        <member name="M:openPDCManager.UI.UserControls.PhasorMeasurementUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Handles key down event on the datagrid object.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Arguments of the event.</param>
+        </member>
+        <member name="M:openPDCManager.UI.UserControls.PhasorMeasurementUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.WPF.Modal.ConfigurationCreator">
+            <summary>
+            Interaction logic for ConfigurationCreator.xaml
+            </summary>
+            <summary>
+            ConfigurationCreator
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConfigurationCreator.#ctor">
+            <summary>
+            Creates a new <see cref="T:openPDCManager.UI.WPF.Modal.ConfigurationCreator"/>.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.WPF.Modal.ConfigurationCreator.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.WPF.Modal.ConfigurationCreator.ConfigurationFrame">
+            <summary>
+            Gets or sets the manually tweaked configuration frame.
             </summary>
         </member>
     </members>
