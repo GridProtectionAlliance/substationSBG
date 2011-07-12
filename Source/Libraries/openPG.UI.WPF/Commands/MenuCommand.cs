@@ -31,6 +31,8 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using TimeSeriesFramework;
+using TimeSeriesFramework.UI;
 
 namespace openPG.UI.WPF.Commands
 {

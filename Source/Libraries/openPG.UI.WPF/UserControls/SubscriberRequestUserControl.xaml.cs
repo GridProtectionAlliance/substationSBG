@@ -30,6 +30,8 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
+using TimeSeriesFramework;
+using TimeSeriesFramework.UI;
 using TVA;
 using TVA.Collections;
 using TVA.Data;

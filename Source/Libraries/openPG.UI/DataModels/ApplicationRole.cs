@@ -32,6 +32,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using TimeSeriesFramework;
+using TimeSeriesFramework.UI;
 using TVA.Data;
 
 namespace openPG.UI.DataModels

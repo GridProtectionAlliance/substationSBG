@@ -41,6 +41,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using TimeSeriesFramework;
+using TimeSeriesFramework.UI;
 using TVA;
 using TVA.Data;
 

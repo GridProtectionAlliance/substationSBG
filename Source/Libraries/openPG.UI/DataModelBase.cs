@@ -30,6 +30,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using TimeSeriesFramework;
+using TimeSeriesFramework.UI;
 using TVA;
 using TVA.Collections;
 using TVA.Data;

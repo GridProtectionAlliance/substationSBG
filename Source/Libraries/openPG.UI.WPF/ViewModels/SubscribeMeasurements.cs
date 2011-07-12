@@ -29,6 +29,8 @@ using System.Windows;
 using System.Windows.Input;
 using openPG.UI.WPF.Commands;
 using openPG.UI.DataModels;
+using TimeSeriesFramework;
+using TimeSeriesFramework.UI;
 using TVA.Data;
 
 namespace openPG.UI.WPF.ViewModels

@@ -86,6 +86,12 @@
     <Reference Include="TimeSeriesFramework">
       <HintPath>..\..\Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll</HintPath>
     </Reference>
+    <Reference Include="TimeSeriesFramework.UI">
+      <HintPath>..\..\Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="TimeSeriesFramework.UI.WPF">
+      <HintPath>..\..\Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="TVA.Communication, Version=4.0.2.60, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Dependencies\TVA\TVA.Communication.dll</HintPath>
     </Reference>
@@ -108,7 +114,6 @@
     <Compile Include="Binding\Column.cs" />
     <Compile Include="Binding\DataOperation.cs" />
     <Compile Include="Binding\GridButtonCommand.cs" />
-    <Compile Include="CommonFunctions.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\DictionaryToKeyValuePairConverter.cs" />
     <Compile Include="Converters\NotConverter.cs" />
