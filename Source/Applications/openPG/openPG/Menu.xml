@@ -3,12 +3,12 @@
   <MenuDataItem Icon="" MenuText="Home" Description="System Overview" Roles="*" UserControlAssembly="TsfManager.exe" UserControlPath="TsfManager.HomeUserControl" />
   <MenuDataItem Icon="" MenuText="Devices" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
     <SubMenuItems>
-      <MenuDataItem Icon="" MenuText="Browse" Description="Browse Devices" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.DeviceListUserControl" />
-      <MenuDataItem Icon="" MenuText="Add New" Description="Manage Device Configuration" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.DeviceUserControl" />
-      <MenuDataItem Icon="" MenuText="Input Wizard" Description="Input Device Configuration Wizard" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.InputWizardUserControl" />
+      <MenuDataItem Icon="" MenuText="Browse" Description="Browse Devices" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.DeviceListUserControl" />
+      <MenuDataItem Icon="" MenuText="Add New" Description="Manage Device Configuration" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.DeviceUserControl" />
+      <MenuDataItem Icon="" MenuText="Input Wizard" Description="Input Device Configuration Wizard" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.InputWizardUserControl" />
       <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath=""/>
-      <MenuDataItem Icon="" MenuText="Real-Time Statistics" Description="Real-Time Statistics" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.RealTimeStatisticsUserControl"/>
-      <MenuDataItem Icon="" MenuText="Real-Time Measurements" Description="Real-Time Measurements" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.DeviceMeasurementsUserControl"/>
+      <MenuDataItem Icon="" MenuText="Real-Time Statistics" Description="Real-Time Statistics" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.RealTimeStatisticsUserControl"/>
+      <MenuDataItem Icon="" MenuText="Real-Time Measurements" Description="Real-Time Measurements" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.DeviceMeasurementsUserControl"/>
     </SubMenuItems>
   </MenuDataItem>
   <MenuDataItem Icon="" MenuText="Monitoring" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
@@ -19,7 +19,7 @@
   <MenuDataItem Icon="" MenuText="Adapters" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
     <SubMenuItems>
       <!-- Calculated Measurements menu item is openPDC specific and should be migrated to that project -->
-      <MenuDataItem Icon="" MenuText="Calculated Measurements" Description="Manage Calculated Measurements" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.WPF.UserControls.CalculatedMeasurementUserControl" />
+      <MenuDataItem Icon="" MenuText="Calculated Measurements" Description="Manage Calculated Measurements" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.CalculatedMeasurementUserControl" />
       <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath="" />
       <MenuDataItem Icon="" MenuText="Input Adapters" Description="Manage Input Adapters" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.CustomInputAdapterUserControl" />
       <MenuDataItem Icon="" MenuText="Action Adapters" Description="Manage Action Adapters" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.CustomActionAdapterUserControl" />
