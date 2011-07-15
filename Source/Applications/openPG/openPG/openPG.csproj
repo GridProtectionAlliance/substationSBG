@@ -207,6 +207,7 @@
     <PostBuildEvent>CALL "$(ProjectDir)PostBuildSetup.bat" "$(TargetDir)Database Scripts" "$(SolutionDir)Data\*.*"
 CALL "$(ProjectDir)PostBuildSetup.bat" "$(TargetDir)" "$(SolutionDir)Dependencies\MongoDB\*.*"
 CALL "$(ProjectDir)PostBuildSetup.bat" "$(TargetDir)" "$(SolutionDir)Dependencies\TimeSeriesFramework\*.*"
+CALL "$(ProjectDir)PostBuildSetup.bat" "$(TargetDir)" "$(SolutionDir)Dependencies\SQLite\*.*"
 CALL "$(ProjectDir)PostBuildSetup.bat" "$(TargetDir)" "$(SolutionDir)Dependencies\TVA\HistorianAdapters.dll"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

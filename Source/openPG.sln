@@ -122,6 +122,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "openPDC", "openPDC", "{F132
 		Dependencies\openPDC\openPDCManager.UI.XML = Dependencies\openPDC\openPDCManager.UI.XML
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLite", "SQLite", "{BE55A303-AE5A-41D7-8F32-A327C66F5F64}"
+	ProjectSection(SolutionItems) = preProject
+		Data\SQLite\InitialDataSet.sql = Data\SQLite\InitialDataSet.sql
+		Data\SQLite\openPDC-InitialDataSet.db = Data\SQLite\openPDC-InitialDataSet.db
+		Data\SQLite\openPDC-SampleDataSet.db = Data\SQLite\openPDC-SampleDataSet.db
+		Data\SQLite\openPDC.db = Data\SQLite\openPDC.db
+		Data\SQLite\openPDC.sql = Data\SQLite\openPDC.sql
+		Data\SQLite\SampleDataSet.sql = Data\SQLite\SampleDataSet.sql
+		Data\SQLite\sqlite3.exe = Data\SQLite\sqlite3.exe
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLite", "SQLite", "{FCF4FAEF-8AA9-4403-A060-D1CB7DA2145B}"
+	ProjectSection(SolutionItems) = preProject
+		Dependencies\SQLite\SQLite.Interop.dll = Dependencies\SQLite\SQLite.Interop.dll
+		Dependencies\SQLite\sqlite3.dll = Dependencies\SQLite\sqlite3.dll
+		Dependencies\SQLite\System.Data.SQLite.dll = Dependencies\SQLite\System.Data.SQLite.dll
+		Dependencies\SQLite\System.Data.SQLite.Linq.dll = Dependencies\SQLite\System.Data.SQLite.Linq.dll
+		Dependencies\SQLite\System.Data.SQLite.Linq.xml = Dependencies\SQLite\System.Data.SQLite.Linq.xml
+		Dependencies\SQLite\System.Data.SQLite.xml = Dependencies\SQLite\System.Data.SQLite.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 9
@@ -241,11 +262,13 @@ Global
 		{BB1570F0-8947-4B88-8A76-D8A88D3DD6E2} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
 		{3DDEA712-A92F-4252-AA36-EC3D20EE70CB} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
 		{C1140554-1896-43B3-A109-26B601B38A7E} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
+		{BE55A303-AE5A-41D7-8F32-A327C66F5F64} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
 		{7497D95C-1F53-42E5-9678-FC20062B46AF} = {1DBBCC7B-37F1-43D2-B00A-786874D6E7C4}
 		{047CE9C4-48F2-4333-B5D9-C22063322F28} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
 		{F109961B-329B-4114-87AA-CE0B8F08F32B} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
 		{C48B01AA-FA62-47C7-91AA-5A0A117DF463} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
 		{F132223E-3142-4F1E-B0AF-CE14F4CA0AD2} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
+		{FCF4FAEF-8AA9-4403-A060-D1CB7DA2145B} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
 		{2A74EACF-8291-47C7-A2ED-0D58771F24E2} = {D5E46AB8-FE9C-44EE-8BF6-85828422D537}
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F} = {D5E46AB8-FE9C-44EE-8BF6-85828422D537}
 		{94F36768-E9A0-4783-BB0F-8C2C1771352E} = {3B319B01-4C55-4CD3-86A5-1298E91D9138}
