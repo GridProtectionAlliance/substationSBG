@@ -886,6 +886,14 @@
             <param name="nodeID">Current node ID</param>
             <returns>Dictionary of <see cref="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement"/> objects</returns>
         </member>
+        <member name="M:openPDCManager.UI.DataModels.TimeTaggedMeasurement.GetStatisticInfoList(TVA.Data.AdoDataConnection,System.Guid)">
+            <summary>
+            Gets the statistic info list used by statistic load functions.
+            </summary>
+            <param name="database">The database connection used to retrieve the statistic info list.</param>
+            <param name="nodeID">The ID of the node to which the statistics are associated.</param>
+            <returns>A list containing <see cref="T:openPDCManager.UI.DataModels.DetailStatisticInfo"/> objects that were retrieved from the database.</returns>
+        </member>
         <member name="M:openPDCManager.UI.DataModels.TimeTaggedMeasurement.GetStatisticMeasurementData(TVA.Data.AdoDataConnection,System.Guid)">
             <summary>
             
