@@ -249,11 +249,11 @@ namespace openPG.UI.DataModels
                     measurementGroupList.Add(new MeasurementGroup()
                     {
                         NodeID = database.Guid(row, "NodeID"),
-                        ID = row.Field<int>("ID"),
+                        ID = row.ConvertField<int>("ID"),
                         Name = row.Field<string>("Name"),
                         Description = row.Field<object>("Description") == null ? string.Empty : row.Field<string>("Description"),
-                        CurrentMeasurements = GetCurrentMeasurements(database, row.Field<int>("ID")),
-                        PossibleMeasurements = GetPossibleMeasurements(database, row.Field<int>("ID"))
+                        CurrentMeasurements = GetCurrentMeasurements(database, row.ConvertField<int>("ID")),
+                        PossibleMeasurements = GetPossibleMeasurements(database, row.ConvertField<int>("ID"))
                     });
                 }
 
@@ -290,7 +290,7 @@ namespace openPG.UI.DataModels
                     "ORDER BY SourceIndex", DefaultTimeout, database.CurrentNodeID());
 
                 foreach (DataRow row in MeasurementGroupTable.Rows)
-                    MeasurementGroupList[row.Field<int>("ID")] = row.Field<string>("Name");
+                    MeasurementGroupList[row.ConvertField<int>("ID")] = row.Field<string>("Name");
 
                 return MeasurementGroupList;
             }

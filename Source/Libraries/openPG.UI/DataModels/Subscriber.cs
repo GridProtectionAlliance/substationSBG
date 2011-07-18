@@ -516,7 +516,7 @@ namespace openPG.UI.DataModels
                     DefaultTimeout, subscriberID, true);
 
                 foreach (DataRow row in allowedMeasurementGroupTable.Rows)
-                    allowedMeasurementGroups[row.Field<int>("MeasurementGroupID")] = row.Field<string>("MeasurementGroupName");
+                    allowedMeasurementGroups[row.ConvertField<int>("MeasurementGroupID")] = row.Field<string>("MeasurementGroupName");
 
                 return allowedMeasurementGroups;
             }
@@ -547,7 +547,7 @@ namespace openPG.UI.DataModels
                     DefaultTimeout, subscriberID, false);
 
                 foreach (DataRow row in deniedMeasurementGroupTable.Rows)
-                    deniedMeasurementGroups[row.Field<int>("MeasurementGroupID")] = row.Field<string>("MeasurementGroupName");
+                    deniedMeasurementGroups[row.ConvertField<int>("MeasurementGroupID")] = row.Field<string>("MeasurementGroupName");
 
                 return deniedMeasurementGroups;
             }
@@ -579,7 +579,7 @@ namespace openPG.UI.DataModels
                     DefaultTimeout, subscriberID);
 
                 foreach (DataRow row in availableMeasurementGroupTable.Rows)
-                    availableMeasurementGroups[row.Field<int>("ID")] = row.Field<string>("Name");
+                    availableMeasurementGroups[row.ConvertField<int>("ID")] = row.Field<string>("Name");
 
                 return availableMeasurementGroups;
             }
