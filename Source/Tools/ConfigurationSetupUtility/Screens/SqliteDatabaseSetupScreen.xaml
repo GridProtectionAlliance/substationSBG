@@ -10,7 +10,7 @@
         <StackPanel DockPanel.Dock="Bottom">
             <TextBlock Name="m_sqliteDatabaseInstructionTextBlock" Text="Please select the location in which to save the new database file." TextAlignment="Center" TextWrapping="Wrap" Margin="20,0" />
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <TextBox Height="23" Width="240" Margin="0,0,5,0" TextChanged="SqliteDatabaseFilePathTextBox_TextChanged" Name="m_sqliteDatabaseFilePathTextBox" Text="openPDC.db" />
+                <TextBox Height="23" Width="240" Margin="0,0,5,0" TextChanged="SqliteDatabaseFilePathTextBox_TextChanged" Name="m_sqliteDatabaseFilePathTextBox" Text="openPG.db" />
                 <Button Content="Browse..." Height="23" Width="75" Click="BrowseButton_Click" />
             </StackPanel>
             <TextBlock TextAlignment="Center" TextWrapping="Wrap" Margin="20,0,20,10">

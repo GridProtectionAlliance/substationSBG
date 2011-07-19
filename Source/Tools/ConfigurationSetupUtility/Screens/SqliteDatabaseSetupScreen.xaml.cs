@@ -243,7 +243,7 @@ namespace ConfigurationSetupUtility.Screens
             try
             {
                 // Set a default path for SQLite database that will allow non-restrictive read/write access
-                string sqliteDatabaseFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "openPDC\\");
+                string sqliteDatabaseFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "openPG\\");
 
                 // Make sure path exists
 
