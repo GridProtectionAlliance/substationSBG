@@ -52,6 +52,10 @@ namespace ConfigurationSetupUtility
         public const string AccessConfigv2 = "openPGv2.mdb";
         public const string AccessSampleData = "openPG-SampleDataSet.mdb";
         public const string AccessInitialData = "openPG-InitialDataSet.mdb";
+        public const string BaseSqliteConfig = "openPG.db";
+        public const string SqliteConfigv2 = "openPGv2.db";
+        public const string SqliteSampleData = "openPG-SampleDataSet.db";
+        public const string SqliteInitialData = "openPG-InitialDataSet.db";
         private ErrorLogger m_errorLogger;
         private Func<string> m_defaultErrorText;
 
