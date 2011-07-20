@@ -14,6 +14,7 @@
   <MenuDataItem Icon="" MenuText="Monitoring" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
     <SubMenuItems>
       <MenuDataItem Icon="" MenuText="Remote System Console" Description="Remote System Console" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.MonitoringUserControl" />
+      <MenuDataItem Icon="" MenuText="Input Status &amp; Monitoring" Description="Input Status Monitor" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.InputStatusUserControl"/>
     </SubMenuItems>
   </MenuDataItem>
   <MenuDataItem Icon="" MenuText="Adapters" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
