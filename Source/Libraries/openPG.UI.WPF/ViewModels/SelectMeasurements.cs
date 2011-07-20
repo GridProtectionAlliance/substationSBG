@@ -33,7 +33,7 @@ using TVA;
 namespace openPG.UI.ViewModels
 {
     /// <summary>
-    /// Class to hold bindable <see cref="DataModels.Measurement"/> collection.
+    /// Class to hold bindable <see cref="TimeSeriesFramework.UI.DataModels.Measurement"/> collection.
     /// </summary>
     internal class SelectMeasurements : PagedViewModelBase<Measurement, Guid>
     {
@@ -132,7 +132,7 @@ namespace openPG.UI.ViewModels
         }
 
         /// <summary>
-        /// Loads collection of <see cref="openPG.UI.DataModels.Measurement"/> defined in the database.
+        /// Loads collection of <see cref="TimeSeriesFramework.UI.DataModels.Measurement"/> defined in the database.
         /// </summary>
         public override void Load()
         {
