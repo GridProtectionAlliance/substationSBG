@@ -50,7 +50,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeSeriesFramework", "Time
 		Dependencies\TimeSeriesFramework\MongoAdapters.XML = Dependencies\TimeSeriesFramework\MongoAdapters.XML
 		Dependencies\TimeSeriesFramework\MySqlAdapters.dll = Dependencies\TimeSeriesFramework\MySqlAdapters.dll
 		Dependencies\TimeSeriesFramework\MySqlAdapters.XML = Dependencies\TimeSeriesFramework\MySqlAdapters.XML
-		Dependencies\TimeSeriesFramework\TestingAdapters.dll = Dependencies\TimeSeriesFramework\TestingAdapters.dll
 		Dependencies\TimeSeriesFramework\TestingAdapters.XML = Dependencies\TimeSeriesFramework\TestingAdapters.XML
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.dll
@@ -59,7 +58,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeSeriesFramework", "Time
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.xml = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.xml
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.xml = Dependencies\TimeSeriesFramework\TimeSeriesFramework.xml
 		Dependencies\TimeSeriesFramework\TsfManager.exe = Dependencies\TimeSeriesFramework\TsfManager.exe
-		Dependencies\TimeSeriesFramework\TsfManager.exe.config = Dependencies\TimeSeriesFramework\TsfManager.exe.config
 		Dependencies\TimeSeriesFramework\WavInputAdapter.dll = Dependencies\TimeSeriesFramework\WavInputAdapter.dll
 		Dependencies\TimeSeriesFramework\WavInputAdapter.XML = Dependencies\TimeSeriesFramework\WavInputAdapter.XML
 	EndProjectSection

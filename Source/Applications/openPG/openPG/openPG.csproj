@@ -120,6 +120,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\TVA\TVA.Core.dll</HintPath>
     </Reference>
+    <Reference Include="TVA.ServiceBus">
+      <HintPath>..\..\..\Dependencies\TVA\TVA.ServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="TVA.ServiceModel">
+      <HintPath>..\..\..\Dependencies\TVA\TVA.ServiceModel.dll</HintPath>
+    </Reference>
     <Reference Include="TVA.ServiceProcess">
       <HintPath>..\..\..\Dependencies\TVA\TVA.ServiceProcess.dll</HintPath>
     </Reference>
