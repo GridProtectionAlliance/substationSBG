@@ -42,14 +42,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeSeriesFramework", "Time
 	ProjectSection(SolutionItems) = preProject
 		Dependencies\TimeSeriesFramework\AdoAdapters.dll = Dependencies\TimeSeriesFramework\AdoAdapters.dll
 		Dependencies\TimeSeriesFramework\AdoAdapters.XML = Dependencies\TimeSeriesFramework\AdoAdapters.XML
-		Dependencies\TimeSeriesFramework\CsvAdapters.dll = Dependencies\TimeSeriesFramework\CsvAdapters.dll
 		Dependencies\TimeSeriesFramework\CsvAdapters.XML = Dependencies\TimeSeriesFramework\CsvAdapters.XML
-		Dependencies\TimeSeriesFramework\DataQualityMonitoring.dll = Dependencies\TimeSeriesFramework\DataQualityMonitoring.dll
 		Dependencies\TimeSeriesFramework\DataQualityMonitoring.XML = Dependencies\TimeSeriesFramework\DataQualityMonitoring.XML
 		Dependencies\TimeSeriesFramework\MongoAdapters.dll = Dependencies\TimeSeriesFramework\MongoAdapters.dll
 		Dependencies\TimeSeriesFramework\MongoAdapters.XML = Dependencies\TimeSeriesFramework\MongoAdapters.XML
 		Dependencies\TimeSeriesFramework\MySqlAdapters.dll = Dependencies\TimeSeriesFramework\MySqlAdapters.dll
 		Dependencies\TimeSeriesFramework\MySqlAdapters.XML = Dependencies\TimeSeriesFramework\MySqlAdapters.XML
+		Dependencies\TimeSeriesFramework\TestingAdapters.dll = Dependencies\TimeSeriesFramework\TestingAdapters.dll
 		Dependencies\TimeSeriesFramework\TestingAdapters.XML = Dependencies\TimeSeriesFramework\TestingAdapters.XML
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.dll = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.dll
@@ -67,15 +66,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TVA", "TVA", "{F109961B-329
 		Dependencies\TVA\Hadoop.Replication.dll = Dependencies\TVA\Hadoop.Replication.dll
 		Dependencies\TVA\Hadoop.Replication.XML = Dependencies\TVA\Hadoop.Replication.XML
 		Dependencies\TVA\HistorianAdapters.dll = Dependencies\TVA\HistorianAdapters.dll
-		Dependencies\TVA\HistorianAdapters.XML = Dependencies\TVA\HistorianAdapters.XML
 		Dependencies\TVA\TVA.Communication.dll = Dependencies\TVA\TVA.Communication.dll
-		Dependencies\TVA\TVA.Communication.xml = Dependencies\TVA\TVA.Communication.xml
 		Dependencies\TVA\TVA.Core.dll = Dependencies\TVA\TVA.Core.dll
-		Dependencies\TVA\TVA.Core.XML = Dependencies\TVA\TVA.Core.XML
-		Dependencies\TVA\TVA.Historian.dll = Dependencies\TVA\TVA.Historian.dll
 		Dependencies\TVA\TVA.Historian.XML = Dependencies\TVA\TVA.Historian.XML
 		Dependencies\TVA\TVA.PhasorProtocols.dll = Dependencies\TVA\TVA.PhasorProtocols.dll
-		Dependencies\TVA\TVA.PhasorProtocols.xml = Dependencies\TVA\TVA.PhasorProtocols.xml
 		Dependencies\TVA\TVA.Security.dll = Dependencies\TVA\TVA.Security.dll
 		Dependencies\TVA\TVA.Security.XML = Dependencies\TVA\TVA.Security.XML
 		Dependencies\TVA\TVA.Web.dll = Dependencies\TVA\TVA.Web.dll
@@ -115,7 +109,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "openPDC", "openPDC", "{F132223E-3142-4F1E-B0AF-CE14F4CA0AD2}"
 	ProjectSection(SolutionItems) = preProject
 		Dependencies\openPDC\openPDCManager.UI.dll = Dependencies\openPDC\openPDCManager.UI.dll
-		Dependencies\openPDC\openPDCManager.UI.WPF.dll = Dependencies\openPDC\openPDCManager.UI.WPF.dll
 		Dependencies\openPDC\openPDCManager.UI.WPF.XML = Dependencies\openPDC\openPDCManager.UI.WPF.XML
 		Dependencies\openPDC\openPDCManager.UI.XML = Dependencies\openPDC\openPDCManager.UI.XML
 	EndProjectSection
@@ -146,6 +139,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "D3", "D3", "{32FFE65B-1193-4647-A5E6-67504EE51B31}"
 	ProjectSection(SolutionItems) = preProject
 		Dependencies\Microsoft\D3\DynamicDataDisplay.dll = Dependencies\Microsoft\D3\DynamicDataDisplay.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "x86", "x86", "{2F853B94-1653-485D-9323-E6D754113CAA}"
+	ProjectSection(SolutionItems) = preProject
+		Dependencies\TimeSeriesFramework\x86\TsfManager.exe = Dependencies\TimeSeriesFramework\x86\TsfManager.exe
 	EndProjectSection
 EndProject
 Global
@@ -275,6 +273,7 @@ Global
 		{F132223E-3142-4F1E-B0AF-CE14F4CA0AD2} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
 		{FCF4FAEF-8AA9-4403-A060-D1CB7DA2145B} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
 		{F87710C5-D8D3-4070-A2EB-73A14FDAE208} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
+		{2F853B94-1653-485D-9323-E6D754113CAA} = {047CE9C4-48F2-4333-B5D9-C22063322F28}
 		{2A74EACF-8291-47C7-A2ED-0D58771F24E2} = {D5E46AB8-FE9C-44EE-8BF6-85828422D537}
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F} = {D5E46AB8-FE9C-44EE-8BF6-85828422D537}
 		{94F36768-E9A0-4783-BB0F-8C2C1771352E} = {3B319B01-4C55-4CD3-86A5-1298E91D9138}

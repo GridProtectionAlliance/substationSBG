@@ -27,7 +27,7 @@
 
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <Import Project="..\..\..\..\Contributor Resources\Tools\Build Tools\Master Build\MasterBuild.buildproj"/>
+  <Import Project="..\..\..\Contributor Resources\Tools\Build Tools\Master Build\MasterBuild.buildproj"/>
 
   <Target Name="BeforePrepareSettings">
     <PropertyGroup>
@@ -40,7 +40,7 @@
     <PropertyGroup>
       <!-- Project specific settings. -->
       <ProjectSolution>$(LocalFolder)\Source\$(ProjectName).sln</ProjectSolution>
-      <BuildDeployFolder Condition="'$(BuildDeployFolder)' == ''">\\GPAWEB\NightlyBuilds\openPDC\Beta\</BuildDeployFolder>
+      <BuildDeployFolder Condition="'$(BuildDeployFolder)' == ''">\\GPAWEB\NightlyBuilds\openPG\Beta\</BuildDeployFolder>
     </PropertyGroup>
   </Target>
 
