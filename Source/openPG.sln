@@ -56,7 +56,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeSeriesFramework", "Time
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.XML = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.WPF.XML
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.xml = Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.xml
 		Dependencies\TimeSeriesFramework\TimeSeriesFramework.xml = Dependencies\TimeSeriesFramework\TimeSeriesFramework.xml
-		Dependencies\TimeSeriesFramework\TsfManager.exe = Dependencies\TimeSeriesFramework\TsfManager.exe
 		Dependencies\TimeSeriesFramework\WavInputAdapter.dll = Dependencies\TimeSeriesFramework\WavInputAdapter.dll
 		Dependencies\TimeSeriesFramework\WavInputAdapter.XML = Dependencies\TimeSeriesFramework\WavInputAdapter.XML
 	EndProjectSection
@@ -142,13 +141,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "D3", "D3", "{32FFE65B-1193-
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "x86", "x86", "{2F853B94-1653-485D-9323-E6D754113CAA}"
-	ProjectSection(SolutionItems) = preProject
-		Dependencies\TimeSeriesFramework\x86\TsfManager.exe = Dependencies\TimeSeriesFramework\x86\TsfManager.exe
-	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "openPGManager", "Applications\openPGManager\openPGManager.csproj", "{CCF1DF65-C4DA-41CE-9332-0293D33934C5}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
+		SccNumberOfProjects = 10
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs07
 		SccLocalPath0 = .
@@ -184,6 +182,10 @@ Global
 		SccProjectTopLevelParentUniqueName8 = openPG.sln
 		SccProjectName8 = Libraries/openPG.UI.WPF
 		SccLocalPath8 = Libraries\\openPG.UI.WPF
+		SccProjectUniqueName9 = Applications\\openPGManager\\openPGManager.csproj
+		SccProjectTopLevelParentUniqueName9 = openPG.sln
+		SccProjectName9 = Applications/openPGManager
+		SccLocalPath9 = Applications\\openPGManager
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -217,6 +219,7 @@ Global
 		{2A74EACF-8291-47C7-A2ED-0D58771F24E2}.Release|x86.ActiveCfg = Release|x86
 		{2A74EACF-8291-47C7-A2ED-0D58771F24E2}.Release|x86.Build.0 = Release|x86
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Debug|x86.ActiveCfg = Debug|x86
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Debug|x86.Build.0 = Debug|x86
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -224,6 +227,7 @@ Global
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Release|x86.ActiveCfg = Release|x86
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F}.Release|x86.Build.0 = Release|x86
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Debug|Any CPU.ActiveCfg = Debug
+		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Debug|Any CPU.Build.0 = Debug
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Debug|x86.ActiveCfg = Debug
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Debug|x86.Build.0 = Debug
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Release|Any CPU.ActiveCfg = Release
@@ -231,6 +235,7 @@ Global
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Release|x86.ActiveCfg = Release
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873}.Release|x86.Build.0 = Release
 		{FD76D07C-74B9-437C-B009-94DFD4575359}.Debug|Any CPU.ActiveCfg = Debug
+		{FD76D07C-74B9-437C-B009-94DFD4575359}.Debug|Any CPU.Build.0 = Debug
 		{FD76D07C-74B9-437C-B009-94DFD4575359}.Debug|x86.ActiveCfg = Debug
 		{FD76D07C-74B9-437C-B009-94DFD4575359}.Debug|x86.Build.0 = Debug
 		{FD76D07C-74B9-437C-B009-94DFD4575359}.Release|Any CPU.ActiveCfg = Release
@@ -253,6 +258,13 @@ Global
 		{134819C5-C1BB-4ED1-BE23-49AB5FB33744}.Release|Any CPU.Build.0 = Release|Any CPU
 		{134819C5-C1BB-4ED1-BE23-49AB5FB33744}.Release|x86.ActiveCfg = Release|x86
 		{134819C5-C1BB-4ED1-BE23-49AB5FB33744}.Release|x86.Build.0 = Release|x86
+		{CCF1DF65-C4DA-41CE-9332-0293D33934C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCF1DF65-C4DA-41CE-9332-0293D33934C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCF1DF65-C4DA-41CE-9332-0293D33934C5}.Debug|x86.ActiveCfg = Debug|x86
+		{CCF1DF65-C4DA-41CE-9332-0293D33934C5}.Debug|x86.Build.0 = Debug|x86
+		{CCF1DF65-C4DA-41CE-9332-0293D33934C5}.Release|Any CPU.ActiveCfg = Release|x86
+		{CCF1DF65-C4DA-41CE-9332-0293D33934C5}.Release|x86.ActiveCfg = Release|x86
+		{CCF1DF65-C4DA-41CE-9332-0293D33934C5}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -262,6 +274,7 @@ Global
 		{018FDA38-8662-4733-A3C8-22EC24A0CE85} = {A594B55D-0C88-4F66-AF6E-86266F933DF0}
 		{0B3CB7DA-497A-40B0-A4C9-1B966B9A4873} = {A594B55D-0C88-4F66-AF6E-86266F933DF0}
 		{FD76D07C-74B9-437C-B009-94DFD4575359} = {A594B55D-0C88-4F66-AF6E-86266F933DF0}
+		{CCF1DF65-C4DA-41CE-9332-0293D33934C5} = {A594B55D-0C88-4F66-AF6E-86266F933DF0}
 		{BB1570F0-8947-4B88-8A76-D8A88D3DD6E2} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
 		{3DDEA712-A92F-4252-AA36-EC3D20EE70CB} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
 		{C1140554-1896-43B3-A109-26B601B38A7E} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
