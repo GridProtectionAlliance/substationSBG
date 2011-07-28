@@ -73,20 +73,15 @@ namespace openPG.UI.UserControls
         private void CommonClickHandler(object sender, RoutedEventArgs e)
         {
             MenuDataItem item = new MenuDataItem();
-            FrameworkElement source = e.Source as FrameworkElement;
+            string stringToMatch = ((Button)sender).Tag.ToString();
 
-            switch (source.Name)
-            {
-                case "ButtonSecurity": GetMenuDataItem(m_menuDataItems, "Security", ref item);
-                    break;
-                default: break;
-            }
+            if (!string.IsNullOrEmpty(stringToMatch))
+                GetMenuDataItem(m_menuDataItems, stringToMatch, ref item);
 
             if (item.MenuText != null)
             {
                 item.Command.Execute(null);
             }
-
         }
 
         /// <summary>

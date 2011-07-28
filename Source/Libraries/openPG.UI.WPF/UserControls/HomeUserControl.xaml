@@ -28,44 +28,44 @@
         </Grid.ColumnDefinitions>
 
         <GroupBox Header="Quick Links">
-            <StackPanel Orientation="Vertical" ButtonBase.Click="CommonClickHandler">
-                <Button Style="{StaticResource HomeButtonStyle}">
+            <StackPanel Orientation="Vertical">
+                <Button Style="{StaticResource HomeButtonStyle}" Tag="Create Authentication Request" Click="CommonClickHandler">
                     <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
                         Subscription<LineBreak/>
                         PG AUTHORIZATION REQUEST
                     </TextBlock>
                 </Button>
-                <Button Style="{StaticResource HomeButtonStyle}">
+                <Button Style="{StaticResource HomeButtonStyle}" Tag="Measurement Subscription" Click="CommonClickHandler">
                     <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
                         Subscription<LineBreak/>
                         MEASUREMENT REQUESTS
                     </TextBlock>
                 </Button>
-                <Button Style="{StaticResource HomeButtonStyle}">
+                <Button Style="{StaticResource HomeButtonStyle}" Tag="Authorize Subscribers" Click="CommonClickHandler">
                     <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
                         Publication<LineBreak/>
                         SUBSCRIBING PGs
                     </TextBlock>
                 </Button>
-                <Button Style="{StaticResource HomeButtonStyle}">
+                <Button Style="{StaticResource HomeButtonStyle}" Tag="Measurement Groups" Click="CommonClickHandler">
                     <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
                         Publication<LineBreak/>
                         MEASUREMENT GROUPS
                     </TextBlock>
                 </Button>
-                <Button Style="{StaticResource HomeButtonStyle}">
+                <Button Style="{StaticResource HomeButtonStyle}" Tag="Subscriber Measurement Access" Click="CommonClickHandler">
                     <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
                         Publication<LineBreak/>
                         AUTHORIZED MEASUREMENTS
                     </TextBlock>
                 </Button>
-                <Button Style="{StaticResource HomeButtonStyle}">
+                <Button Style="{StaticResource HomeButtonStyle}" Tag="Browse" Click="CommonClickHandler">
                     <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
                         Local opnePG<LineBreak/>
                         BROWSE INPUTS
                     </TextBlock>
                 </Button>
-                <Button Style="{StaticResource HomeButtonStyle}">
+                <Button Style="{StaticResource HomeButtonStyle}" Tag="Security" Click="CommonClickHandler">
                     <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
                         Local openPG<LineBreak/>
                         MANAGE SECURITY
