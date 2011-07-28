@@ -23,53 +23,53 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="425"/>
-            <ColumnDefinition Width="425"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <GroupBox Header="Quick Links">
             <StackPanel Orientation="Vertical">
                 <Button Style="{StaticResource HomeButtonStyle}" Tag="Create Authentication Request" Click="CommonClickHandler">
-                    <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
-                        Subscription<LineBreak/>
-                        PG AUTHORIZATION REQUEST
-                    </TextBlock>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Subscription" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
+                        <TextBlock Text="PG Authorization Request" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
+                    </StackPanel>
                 </Button>
                 <Button Style="{StaticResource HomeButtonStyle}" Tag="Measurement Subscription" Click="CommonClickHandler">
-                    <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
-                        Subscription<LineBreak/>
-                        MEASUREMENT REQUESTS
-                    </TextBlock>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Subscription" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
+                        <TextBlock Text="Measurement Requests" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
+                    </StackPanel>
                 </Button>
                 <Button Style="{StaticResource HomeButtonStyle}" Tag="Authorize Subscribers" Click="CommonClickHandler">
-                    <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
-                        Publication<LineBreak/>
-                        SUBSCRIBING PGs
-                    </TextBlock>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Publication" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
+                        <TextBlock Text="Subscribing PGs" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
+                    </StackPanel>
                 </Button>
                 <Button Style="{StaticResource HomeButtonStyle}" Tag="Measurement Groups" Click="CommonClickHandler">
-                    <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
-                        Publication<LineBreak/>
-                        MEASUREMENT GROUPS
-                    </TextBlock>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Publication" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
+                        <TextBlock Text="Measurement Groups" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
+                    </StackPanel>
                 </Button>
                 <Button Style="{StaticResource HomeButtonStyle}" Tag="Subscriber Measurement Access" Click="CommonClickHandler">
-                    <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
-                        Publication<LineBreak/>
-                        AUTHORIZED MEASUREMENTS
-                    </TextBlock>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Publication" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
+                        <TextBlock Text="Authorized Measurements" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
+                    </StackPanel>
                 </Button>
                 <Button Style="{StaticResource HomeButtonStyle}" Tag="Browse" Click="CommonClickHandler">
-                    <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
-                        Local opnePG<LineBreak/>
-                        BROWSE INPUTS
-                    </TextBlock>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Local openPG" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
+                        <TextBlock Text="Browse Inputs" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
+                    </StackPanel>
                 </Button>
                 <Button Style="{StaticResource HomeButtonStyle}" Tag="Security" Click="CommonClickHandler">
-                    <TextBlock TextAlignment="Center" HorizontalAlignment="Center">
-                        Local openPG<LineBreak/>
-                        MANAGE SECURITY
-                    </TextBlock>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Local openPG" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
+                        <TextBlock Text="Manage Security" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
+                    </StackPanel>
                 </Button>
             </StackPanel>
         </GroupBox>        
