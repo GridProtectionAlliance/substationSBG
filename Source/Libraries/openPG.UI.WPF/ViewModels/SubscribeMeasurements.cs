@@ -265,6 +265,12 @@ namespace openPG.UI.ViewModels
         private void SubscribeMeasurement(object parameter)
         {
             ObservableCollection<Measurement> measurementsToBeAdded = (ObservableCollection<Measurement>)parameter;
+            ObservableCollection<int> deviceIDsForMeasurementsToBeAdded = new ObservableCollection<int>();
+
+            //If All Devices is not selected on the screen and a specific device is selected then we will just initialize that device.
+            //Otherwise, maintain a list of unique device ids for which measurements are being subscribed and initialize all of them.
+            if (CurrentDevice.Key > 0)
+                deviceIDsForMeasurementsToBeAdded.Add(CurrentDevice.Key);
 
             if (measurementsToBeAdded != null && measurementsToBeAdded.Count > 0)
             {
@@ -280,6 +286,12 @@ namespace openPG.UI.ViewModels
                             measurement.Subscribed = true;
 
                             Measurement.Save(database, measurement);
+
+                            if (CurrentDevice.Key == 0 && measurement.DeviceID != null)
+                            {
+                                if (!deviceIDsForMeasurementsToBeAdded.Contains((int)measurement.DeviceID))
+                                    deviceIDsForMeasurementsToBeAdded.Add((int)measurement.DeviceID);
+                            }
                         }
                     }
 
@@ -287,6 +299,9 @@ namespace openPG.UI.ViewModels
                         SubscriptionChanged(this, null);
 
                     SubscribedMeasurements = Measurement.GetSubscribedMeasurements(database);
+
+                    if (deviceIDsForMeasurementsToBeAdded.Count > 0)
+                        InitializeDeviceConnection(deviceIDsForMeasurementsToBeAdded);
                 }
                 catch (Exception ex)
                 {
@@ -305,6 +320,12 @@ namespace openPG.UI.ViewModels
         private void UnsubscribeMeasurement(object parameter)
         {
             ObservableCollection<object> measurementsToBeRemoved = (ObservableCollection<object>)parameter;
+            ObservableCollection<int> deviceIDsForMeasurementsToBeAdded = new ObservableCollection<int>();
+
+            //If All Devices is not selected on the screen and a specific device is selected then we will just initialize that device.
+            //Otherwise, maintain a list of unique device ids for which measurements are being subscribed and initialize all of them.
+            if (CurrentDevice.Key > 0)
+                deviceIDsForMeasurementsToBeAdded.Add(CurrentDevice.Key);
 
             if (measurementsToBeRemoved != null && measurementsToBeRemoved.Count > 0)
             {
@@ -318,12 +339,21 @@ namespace openPG.UI.ViewModels
                         measurement.Subscribed = false;
 
                         Measurement.Save(database, measurement);
+
+                        if (CurrentDevice.Key == 0 && measurement.DeviceID != null)
+                        {
+                            if (!deviceIDsForMeasurementsToBeAdded.Contains((int)measurement.DeviceID))
+                                deviceIDsForMeasurementsToBeAdded.Add((int)measurement.DeviceID);
+                        }
                     }
 
                     if (SubscriptionChanged != null)
                         SubscriptionChanged(this, null);
 
                     SubscribedMeasurements = Measurement.GetSubscribedMeasurements(database);
+
+                    if (deviceIDsForMeasurementsToBeAdded.Count > 0)
+                        InitializeDeviceConnection(deviceIDsForMeasurementsToBeAdded);
                 }
                 catch (Exception ex)
                 {
@@ -336,6 +366,19 @@ namespace openPG.UI.ViewModels
 
                     Mouse.OverrideCursor = null;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Initializes each device's connection.
+        /// </summary>
+        /// <param name="deviceIDs">List of device ids need to be initialized.</param>
+        private void InitializeDeviceConnection(ObservableCollection<int> deviceIDs)
+        {
+            foreach (int id in deviceIDs)
+            {
+                Device device = Device.GetDevice(null, "WHERE ID = " + id);
+                Device.NotifyService(device);
             }
         }
 
