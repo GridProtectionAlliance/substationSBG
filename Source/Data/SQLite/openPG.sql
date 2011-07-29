@@ -1247,7 +1247,7 @@ FOR EACH ROW
 CREATE TRIGGER Subscriber_InsertDefault AFTER INSERT ON Subscriber
 FOR EACH ROW
   BEGIN
-    UPDATE Subscriber SET ID = (SELECT * FROM NEW_GUID) WHERE ROWID = NEW.ROWID AND ID IS NULL;
+    UPDATE Subscriber SET ID = (SELECT * FROM NEW_GUID) WHERE ROWID = NEW.ROWID AND ID = '';
 	UPDATE Subscriber SET CreatedOn = strftime('%Y-%m-%d %H:%M:%f') WHERE ROWID = NEW.ROWID AND CreatedOn = '';
 	UPDATE Subscriber SET UpdatedOn = strftime('%Y-%m-%d %H:%M:%f') WHERE ROWID = NEW.ROWID AND UpdatedOn = '';
   END;
