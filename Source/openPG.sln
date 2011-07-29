@@ -114,6 +114,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "openPDC", "openPDC", "{F132
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLite", "SQLite", "{BE55A303-AE5A-41D7-8F32-A327C66F5F64}"
 	ProjectSection(SolutionItems) = preProject
+		Data\SQLite\db-update.bat = Data\SQLite\db-update.bat
+		Data\SQLite\InitialDataSet.sql = Data\SQLite\InitialDataSet.sql
+		Data\SQLite\openPG-InitialDataSet.db = Data\SQLite\openPG-InitialDataSet.db
+		Data\SQLite\openPG-SampleDataSet.db = Data\SQLite\openPG-SampleDataSet.db
+		Data\SQLite\openPG.db = Data\SQLite\openPG.db
+		Data\SQLite\openPG.sql = Data\SQLite\openPG.sql
 		Data\SQLite\SampleDataSet.sql = Data\SQLite\SampleDataSet.sql
 		Data\SQLite\sqlite3.exe = Data\SQLite\sqlite3.exe
 	EndProjectSection
