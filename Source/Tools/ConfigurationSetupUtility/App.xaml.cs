@@ -45,9 +45,9 @@ namespace ConfigurationSetupUtility
         public const string CipherLookupKey = "0679d9ae-aca5-4702-a3f5-604415096987";
         public const string ApplicationExe = "openPG.exe";
         public const string ApplicationConfig = "openPG.exe.config";
-        public const string Manager = "TsfManager";
-        public const string ManagerExe = "TsfManager.exe";
-        public const string ManagerConfig = "TsfManager.exe.config";
+        public const string Manager = "openPGManager";
+        public const string ManagerExe = "openPGManager.exe";
+        public const string ManagerConfig = "openPGManager.exe.config";
         public const string BaseAccessConfig = "openPG.mdb";
         public const string AccessConfigv2 = "openPGv2.mdb";
         public const string AccessSampleData = "openPG-SampleDataSet.mdb";

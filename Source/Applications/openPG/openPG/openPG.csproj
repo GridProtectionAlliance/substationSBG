@@ -153,10 +153,6 @@
     <None Include="PostBuildSetup.bat" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Menu.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
