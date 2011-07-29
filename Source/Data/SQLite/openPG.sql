@@ -616,7 +616,7 @@ CREATE TABLE SecurityGroupUserAccount (
 
 CREATE TABLE Subscriber (
     NodeID NCHAR(36) NOT NULL,
-    ID NCHAR(36) NOT NULL,
+    ID NCHAR(36) NOT NULL DEFAULT '',
     Acronym VARCHAR(200) NOT NULL,
     Name VARCHAR(200) NULL,
     SharedSecret VARCHAR(200) NOT NULL,
@@ -1242,6 +1242,14 @@ FOR EACH ROW
   BEGIN
     UPDATE Historian SET CreatedOn = strftime('%Y-%m-%d %H:%M:%f') WHERE ROWID = NEW.ROWID AND CreatedOn = '';
 	UPDATE Historian SET UpdatedOn = strftime('%Y-%m-%d %H:%M:%f') WHERE ROWID = NEW.ROWID AND UpdatedOn = '';
+  END;
+  
+CREATE TRIGGER Subscriber_InsertDefault AFTER INSERT ON Subscriber
+FOR EACH ROW
+  BEGIN
+    UPDATE Subscriber SET ID = (SELECT * FROM NEW_GUID) WHERE ROWID = NEW.ROWID AND ID IS NULL;
+	UPDATE Subscriber SET CreatedOn = strftime('%Y-%m-%d %H:%M:%f') WHERE ROWID = NEW.ROWID AND CreatedOn = '';
+	UPDATE Subscriber SET UpdatedOn = strftime('%Y-%m-%d %H:%M:%f') WHERE ROWID = NEW.ROWID AND UpdatedOn = '';
   END;
 
 CREATE TRIGGER Measurement_InsertDefault AFTER INSERT ON Measurement

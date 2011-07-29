@@ -544,7 +544,7 @@ CREATE TABLE AccessLog (
 );
 
 CREATE TABLE UserAccount (
-    ID NCHAR(36) NULL,
+    ID NCHAR(36) NOT NULL DEFAULT N'',
     Name VARCHAR(200) NOT NULL,
     Password VARCHAR(200) DEFAULT NULL,
     FirstName VARCHAR(200) DEFAULT NULL,
@@ -604,7 +604,7 @@ CREATE TABLE SecurityGroupUserAccount (
 
 CREATE TABLE Subscriber (
     NodeID NCHAR(36) NOT NULL,
-    ID NCHAR(36) NOT NULL,
+    ID NCHAR(36) NOT NULL DEFAULT N'',
     Acronym VARCHAR(200) NOT NULL,
     Name VARCHAR(200) NULL,
     SharedSecret VARCHAR(200) NOT NULL,
@@ -1269,6 +1269,9 @@ FOR EACH ROW SET NEW.UniqueID = UUID(), NEW.CreatedBy = USER(), NEW.CreatedOn = 
 
 CREATE TRIGGER Historian_InsertDefault BEFORE INSERT ON Historian
 FOR EACH ROW SET NEW.CreatedBy = USER(), NEW.CreatedOn = UTC_TIMESTAMP(), NEW.UpdatedBy = USER(), NEW.UpdatedOn = UTC_TIMESTAMP();
+
+CREATE TRIGGER Subscriber_InsertDefault BEFORE INSERT ON Subscriber
+FOR EACH ROW SET NEW.ID = UUID(), NEW.CreatedBy = USER(), NEW.CreatedOn = UTC_TIMESTAMP(), NEW.UpdatedBy = USER(), NEW.UpdatedOn = UTC_TIMESTAMP();
 
 CREATE TRIGGER Measurement_InsertDefault BEFORE INSERT ON Measurement
 FOR EACH ROW SET NEW.SignalID = UUID(), NEW.CreatedBy = USER(), NEW.CreatedOn = UTC_TIMESTAMP(), NEW.UpdatedBy = USER(), NEW.UpdatedOn = UTC_TIMESTAMP();
