@@ -25,7 +25,7 @@
             <Style TargetType="ListBox">
                 <Setter Property="Width" Value="250" />
                 <Setter Property="SelectionMode" Value="Multiple"/>
-                <Setter Property="Height" Value="470" />
+                <Setter Property="Height" Value="425" />
                 <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
                 <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
             </Style>
@@ -94,7 +94,7 @@
 
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Member Measurements" FontSize="{StaticResource SmallTextSize}" HorizontalAlignment="Left" FontWeight="Bold"/>
 
-            <myuc:SelectMeasurementUserControl x:Name="UserControlSelectMeasurements" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" ItemsPerPage="22" Width="455" Height="490" VerticalAlignment="Top" Margin="0,-5,0,0"/>
+            <myuc:SelectMeasurementUserControl x:Name="UserControlSelectMeasurements" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" ItemsPerPage="18" Width="455" Height="425" VerticalAlignment="Top" Margin="0,-5,0,0"/>
                                         
             <ListBox x:Name="ListBoxCurrentMeasurements" Grid.Column="0" Grid.Row="1" ItemsSource="{tsfBinding:Column Path=CurrentMeasurements}" DisplayMemberPath="Value" />
             

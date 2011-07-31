@@ -50,7 +50,7 @@
                 <sdk:DataGridTemplateColumn Header="Signal Reference" Width="2*" IsReadOnly="True">
                     <sdk:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=SignalReference}" ToolTip="{Binding Description}" HorizontalAlignment="Left"/>
+                            <TextBlock Text="{Binding Path=ID}" ToolTip="{Binding Description}" HorizontalAlignment="Left"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>

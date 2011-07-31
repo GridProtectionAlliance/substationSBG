@@ -108,6 +108,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "openPDC", "openPDC", "{F132223E-3142-4F1E-B0AF-CE14F4CA0AD2}"
 	ProjectSection(SolutionItems) = preProject
 		Dependencies\openPDC\openPDCManager.UI.dll = Dependencies\openPDC\openPDCManager.UI.dll
+		Dependencies\openPDC\openPDCManager.UI.WPF.dll = Dependencies\openPDC\openPDCManager.UI.WPF.dll
 		Dependencies\openPDC\openPDCManager.UI.WPF.XML = Dependencies\openPDC\openPDCManager.UI.WPF.XML
 		Dependencies\openPDC\openPDCManager.UI.XML = Dependencies\openPDC\openPDCManager.UI.XML
 	EndProjectSection

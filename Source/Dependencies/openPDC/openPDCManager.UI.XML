@@ -4,6 +4,312 @@
         <name>openPDCManager.UI</name>
     </assembly>
     <members>
+        <member name="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement">
+            <summary>
+            Represents a time-tagged measurement for real-time statistics.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.DataModels.TimeTaggedMeasurement.GetStatisticMeasurements(System.String,System.String)">
+            <summary>
+            Retrieves a dictionary of <see cref="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement"/> objects
+            </summary>
+            <param name="statisticDataUrl">URL that points to the service</param>
+            <param name="nodeID">Current node ID</param>
+            <returns>Dictionary of <see cref="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement"/> objects</returns>
+        </member>
+        <member name="M:openPDCManager.UI.DataModels.TimeTaggedMeasurement.GetStatisticInfoList(TVA.Data.AdoDataConnection,System.Guid)">
+            <summary>
+            Gets the statistic info list used by statistic load functions.
+            </summary>
+            <param name="database">The database connection used to retrieve the statistic info list.</param>
+            <param name="nodeID">The ID of the node to which the statistics are associated.</param>
+            <returns>A list containing <see cref="T:openPDCManager.UI.DataModels.DetailStatisticInfo"/> objects that were retrieved from the database.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.DataModels.TimeTaggedMeasurement.GetStatisticMeasurementData(TVA.Data.AdoDataConnection,System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="connection"></param>
+            <param name="nodeID"></param>
+            <returns></returns>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.TimeTaggedMeasurement.TimeTag">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement"/>'s time tag.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.TimeTaggedMeasurement.CurrentValue">
+            <summary>
+            Gets or sets the current value of the current <see cref="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement"/>
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.TimeTaggedMeasurement.Quality">
+            <summary>
+            Gets or sets the quality of the current <see cref="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement"/>
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.DataModels.StatisticMeasurementData">
+            <summary>
+            Represents a statistic measurement data object.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.DataModels.StreamInfo">
+            <summary>
+            Represents a stream info object.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.DataModels.DeviceStatistic">
+            <summary>
+            Class to hold device statistic info.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.DataModels.DetailStatisticInfo">
+            <summary>
+            Class to hold detail statistic info.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.DataModels.StatisticMeasurementDataForBinding">
+            <summary>
+            Class to bind statistic measurement data to view.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.DataModels.Statistic">
+            <summary>
+            Represents a record of <see cref="T:openPDCManager.UI.DataModels.Statistic"/> information as defined in the database.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.DataModels.Statistic.Load(TVA.Data.AdoDataConnection)">
+            <summary>
+            Loads <see cref="T:openPDCManager.UI.DataModels.Statistic"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <returns>Collection of <see cref="T:openPDCManager.UI.DataModels.Statistic"/>.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.DataModels.Statistic.GetLookupList(TVA.Data.AdoDataConnection,System.Boolean)">
+            <summary>
+            Gets a <see cref="T:System.Collections.Generic.Dictionary`2"/> style list of <see cref="T:openPDCManager.UI.DataModels.Statistic"/> information.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="isOptional">Indicates if selection on UI is optional for this collection.</param>
+            <returns><see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of statistics defined in the database.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.DataModels.Statistic.Save(TVA.Data.AdoDataConnection,openPDCManager.UI.DataModels.Statistic)">
+            <summary>
+            Saves <see cref="T:openPDCManager.UI.DataModels.Statistic"/> information into the database.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="statistic">Information about <see cref="T:openPDCManager.UI.DataModels.Statistic"/>.</param>
+            <returns>String, for display use, indicating success.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.DataModels.Statistic.Delete(TVA.Data.AdoDataConnection,System.Int32)">
+            <summary>
+            Deletes specified <see cref="T:openPDCManager.UI.DataModels.Statistic"/> record from database.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="statisticID">ID of the record to be deleted.</param>
+            <returns>String, for display use, indicating success.</returns>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.ID">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s ID.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.Source">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s Source.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.SignalIndex">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s SignalIndex.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.Name">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s Name.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.Description">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s Description.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.AssemblyName">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s AssemblyName.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.TypeName">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s TypeName.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.MethodName">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s MethodName.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.Arguments">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s Arguments.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.Enabled">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/> Enabled.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.DataType">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s DataType.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.DisplayFormat">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s DisplayFormat.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.IsConnectedState">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s IsConnectedState.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.Statistic.LoadOrder">
+            <summary>
+            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.Statistic"/>'s LoadOrder.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.DataModels.InputWizardDevice">
+            <summary>
+            Represents a record from IConfigurationFrame.
+            </summary>
+        </member>
+        <member name="M:openPDCManager.UI.DataModels.InputWizardDevice.Load(TVA.Data.AdoDataConnection)">
+            <summary>
+            Retrieves <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> type collection of <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/>.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <returns>Collection of <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/>.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.DataModels.InputWizardDevice.Save(TVA.Data.AdoDataConnection,openPDCManager.UI.DataModels.InputWizardDevice)">
+            <summary>
+            Saves <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> information in to database.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="inputWizardDevice">Information about <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/>.</param>
+            <returns>string, indicating success for UI display.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.DataModels.InputWizardDevice.GetLookupList(TVA.Data.AdoDataConnection,System.Boolean)">
+            <summary>
+            Gets a <see cref="T:System.Collections.Generic.Dictionary`2"/> style list of <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> information.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="isOptional">Indicates if selection on UI is optional for this collection.</param>
+            <returns><see cref="T:System.Collections.Generic.Dictionary`2"/> type collection.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.DataModels.InputWizardDevice.Delete(TVA.Data.AdoDataConnection,System.Int32)">
+            <summary>
+            Deletes specified record from database.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="deviceID">ID of the record to be deleted.</param>
+            <returns>String, for display use, indicating success.</returns>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.Acronym">
+            <summary>
+            Gets or sets acronym of the <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/>.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.Name">
+            <summary>
+            Gets or sets name of the <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/>.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.Longitude">
+            <summary>
+             Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> Longitude.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.Latitude">
+            <summary>
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> Latitude.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.VendorDeviceID">
+            <summary>
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> vendor device id.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.AccessID">
+            <summary>
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> access id.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.ParentAccessID">
+            <summary>
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> parent access id.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.Include">
+            <summary>
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> include flag.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.DigitalCount">
+            <summary>
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> digital count.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.AnalogCount">
+            <summary>
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> analog count.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.AddDigitals">
+            <summary>
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> add digitals flag.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.AddAnalogs">
+            <summary>
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> add analog flag.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.Existing">
+            <summary>
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> existing flag.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.PhasorList">
+            <summary>
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> phasor list.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.DataModels.InputWizardDevicePhasor">
+            <summary>
+            Represents phasor information for <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> from IConfigurationFrame.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevicePhasor.Label">
+            <summary>
+            Gets or sets the <see cref="T:openPDCManager.UI.DataModels.InputWizardDevicePhasor"/> Label.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevicePhasor.Type">
+            <summary>
+            Gets or sets the <see cref="T:openPDCManager.UI.DataModels.InputWizardDevicePhasor"/> Type.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevicePhasor.Phase">
+            <summary>
+            Gets or sets the Phase of the current <see cref="T:openPDCManager.UI.DataModels.InputWizardDevicePhasor"/>.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.InputWizardDevicePhasor.Include">
+            <summary>
+            Gets or sets boolean flag indicating if <see cref="T:openPDCManager.UI.DataModels.InputWizardDevicePhasor"/> needs to be saved into database.
+            </summary>
+        </member>
         <member name="T:openPDCManager.UI.DataModels.BasicStatisticInfo">
             <summary>
             Represents a Basic statistic info record as defined in the database.
@@ -573,205 +879,6 @@
             Gets or sets <see cref="T:openPDCManager.UI.DataModels.Device"/> alternate command channel.
             </summary>
         </member>
-        <member name="T:openPDCManager.UI.DataModels.DeviceMeasurementData">
-            <summary>
-            Represents a device measurement data object as defined in the database.
-            </summary>
-        </member>
-        <member name="M:openPDCManager.UI.DataModels.DeviceMeasurementData.Load(TVA.Data.AdoDataConnection,System.Guid)">
-            <summary>
-            Retrieves a collection of <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>
-            </summary>
-            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to database</param>
-            <param name="nodeID">Current node ID</param>
-            <returns><see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> of <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/></returns>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.ID">
-            <summary>
-            Gets or sets the ID of the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.Acronym">
-            <summary>
-            Gets or sets the acronym of the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.Name">
-            <summary>
-            Gets or sets the name of the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.CompanyName">
-            <summary>
-            Gets or sets the company name of the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.IsExpanded">
-            <summary>
-            Gets or sets whether the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/> is expanded.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.StatusColor">
-            <summary>
-            Gets or sets the status color of the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.Enabled">
-            <summary>
-            Gets or sets whether the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/> is enabled.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.DeviceList">
-            <summary>
-            Gets or sets a list of DeviceInfo objects for the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>
-            </summary>
-        </member>
-        <member name="T:openPDCManager.UI.DataModels.DeviceInfo">
-            <summary>
-            Stores information on a device.
-            </summary>
-        </member>
-        <member name="T:openPDCManager.UI.DataModels.MeasurementInfo">
-            <summary>
-            Stores information about a measurement
-            </summary>
-        </member>
-        <member name="T:openPDCManager.UI.DataModels.DeviceMeasurementDataForBinding">
-            <summary>
-            Class to bind device measurement data to view.
-            </summary>
-        </member>
-        <member name="T:openPDCManager.UI.DataModels.InputWizardDevice">
-            <summary>
-            Represents a record from IConfigurationFrame.
-            </summary>
-        </member>
-        <member name="M:openPDCManager.UI.DataModels.InputWizardDevice.Load(TVA.Data.AdoDataConnection)">
-            <summary>
-            Retrieves <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> type collection of <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/>.
-            </summary>
-            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <returns>Collection of <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/>.</returns>
-        </member>
-        <member name="M:openPDCManager.UI.DataModels.InputWizardDevice.Save(TVA.Data.AdoDataConnection,openPDCManager.UI.DataModels.InputWizardDevice)">
-            <summary>
-            Saves <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> information in to database.
-            </summary>
-            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="inputWizardDevice">Information about <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/>.</param>
-            <returns>string, indicating success for UI display.</returns>
-        </member>
-        <member name="M:openPDCManager.UI.DataModels.InputWizardDevice.GetLookupList(TVA.Data.AdoDataConnection,System.Boolean)">
-            <summary>
-            Gets a <see cref="T:System.Collections.Generic.Dictionary`2"/> style list of <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> information.
-            </summary>
-            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="isOptional">Indicates if selection on UI is optional for this collection.</param>
-            <returns><see cref="T:System.Collections.Generic.Dictionary`2"/> type collection.</returns>
-        </member>
-        <member name="M:openPDCManager.UI.DataModels.InputWizardDevice.Delete(TVA.Data.AdoDataConnection,System.Int32)">
-            <summary>
-            Deletes specified record from database.
-            </summary>
-            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="deviceID">ID of the record to be deleted.</param>
-            <returns>String, for display use, indicating success.</returns>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.Acronym">
-            <summary>
-            Gets or sets acronym of the <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/>.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.Name">
-            <summary>
-            Gets or sets name of the <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/>.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.Longitude">
-            <summary>
-             Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> Longitude.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.Latitude">
-            <summary>
-            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> Latitude.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.VendorDeviceID">
-            <summary>
-            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> vendor device id.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.AccessID">
-            <summary>
-            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> access id.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.ParentAccessID">
-            <summary>
-            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> parent access id.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.Include">
-            <summary>
-            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> include flag.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.DigitalCount">
-            <summary>
-            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> digital count.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.AnalogCount">
-            <summary>
-            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> analog count.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.AddDigitals">
-            <summary>
-            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> add digitals flag.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.AddAnalogs">
-            <summary>
-            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> add analog flag.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.Existing">
-            <summary>
-            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> existing flag.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevice.PhasorList">
-            <summary>
-            Gets or sets <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> phasor list.
-            </summary>
-        </member>
-        <member name="T:openPDCManager.UI.DataModels.InputWizardDevicePhasor">
-            <summary>
-            Represents phasor information for <see cref="T:openPDCManager.UI.DataModels.InputWizardDevice"/> from IConfigurationFrame.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevicePhasor.Label">
-            <summary>
-            Gets or sets the <see cref="T:openPDCManager.UI.DataModels.InputWizardDevicePhasor"/> Label.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevicePhasor.Type">
-            <summary>
-            Gets or sets the <see cref="T:openPDCManager.UI.DataModels.InputWizardDevicePhasor"/> Type.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevicePhasor.Phase">
-            <summary>
-            Gets or sets the Phase of the current <see cref="T:openPDCManager.UI.DataModels.InputWizardDevicePhasor"/>.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.InputWizardDevicePhasor.Include">
-            <summary>
-            Gets or sets boolean flag indicating if <see cref="T:openPDCManager.UI.DataModels.InputWizardDevicePhasor"/> needs to be saved into database.
-            </summary>
-        </member>
         <member name="T:openPDCManager.UI.DataModels.Phasor">
             <summary>
             Represents a record of <see cref="T:openPDCManager.UI.DataModels.Phasor"/> information as defined in the database.
@@ -873,78 +980,72 @@
             Gets or sets who the current <see cref="T:openPDCManager.UI.DataModels.Phasor"/> was updated by.
             </summary>
         </member>
-        <member name="T:openPDCManager.UI.DataModels.Statistic">
+        <member name="T:openPDCManager.UI.DataModels.DeviceMeasurementData">
             <summary>
-            Represents a record of <see cref="T:openPDCManager.UI.DataModels.Statistic"/> information as defined in the database.
+            Represents a device measurement data object as defined in the database.
             </summary>
         </member>
-        <member name="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement">
+        <member name="M:openPDCManager.UI.DataModels.DeviceMeasurementData.Load(TVA.Data.AdoDataConnection,System.Guid)">
             <summary>
-            Represents a time-tagged measurement for real-time statistics.
+            Retrieves a collection of <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>
             </summary>
-        </member>
-        <member name="M:openPDCManager.UI.DataModels.TimeTaggedMeasurement.GetStatisticMeasurements(System.String,System.String)">
-            <summary>
-            Retrieves a dictionary of <see cref="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement"/> objects
-            </summary>
-            <param name="statisticDataUrl">URL that points to the service</param>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to database</param>
             <param name="nodeID">Current node ID</param>
-            <returns>Dictionary of <see cref="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement"/> objects</returns>
+            <returns><see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> of <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/></returns>
         </member>
-        <member name="M:openPDCManager.UI.DataModels.TimeTaggedMeasurement.GetStatisticInfoList(TVA.Data.AdoDataConnection,System.Guid)">
+        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.ID">
             <summary>
-            Gets the statistic info list used by statistic load functions.
-            </summary>
-            <param name="database">The database connection used to retrieve the statistic info list.</param>
-            <param name="nodeID">The ID of the node to which the statistics are associated.</param>
-            <returns>A list containing <see cref="T:openPDCManager.UI.DataModels.DetailStatisticInfo"/> objects that were retrieved from the database.</returns>
-        </member>
-        <member name="M:openPDCManager.UI.DataModels.TimeTaggedMeasurement.GetStatisticMeasurementData(TVA.Data.AdoDataConnection,System.Guid)">
-            <summary>
-            
-            </summary>
-            <param name="connection"></param>
-            <param name="nodeID"></param>
-            <returns></returns>
-        </member>
-        <member name="P:openPDCManager.UI.DataModels.TimeTaggedMeasurement.TimeTag">
-            <summary>
-            Gets or sets the current <see cref="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement"/>'s time tag.
+            Gets or sets the ID of the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>.
             </summary>
         </member>
-        <member name="P:openPDCManager.UI.DataModels.TimeTaggedMeasurement.CurrentValue">
+        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.Acronym">
             <summary>
-            Gets or sets the current value of the current <see cref="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement"/>
+            Gets or sets the acronym of the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>.
             </summary>
         </member>
-        <member name="P:openPDCManager.UI.DataModels.TimeTaggedMeasurement.Quality">
+        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.Name">
             <summary>
-            Gets or sets the quality of the current <see cref="T:openPDCManager.UI.DataModels.TimeTaggedMeasurement"/>
+            Gets or sets the name of the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>.
             </summary>
         </member>
-        <member name="T:openPDCManager.UI.DataModels.StatisticMeasurementData">
+        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.CompanyName">
             <summary>
-            Represents a statistic measurement data object.
+            Gets or sets the company name of the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>.
             </summary>
         </member>
-        <member name="T:openPDCManager.UI.DataModels.StreamInfo">
+        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.IsExpanded">
             <summary>
-            Represents a stream info object.
+            Gets or sets whether the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/> is expanded.
             </summary>
         </member>
-        <member name="T:openPDCManager.UI.DataModels.DeviceStatistic">
+        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.StatusColor">
             <summary>
-            Class to hold device statistic info.
+            Gets or sets the status color of the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>.
             </summary>
         </member>
-        <member name="T:openPDCManager.UI.DataModels.DetailStatisticInfo">
+        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.Enabled">
             <summary>
-            Class to hold detail statistic info.
+            Gets or sets whether the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/> is enabled.
             </summary>
         </member>
-        <member name="T:openPDCManager.UI.DataModels.StatisticMeasurementDataForBinding">
+        <member name="P:openPDCManager.UI.DataModels.DeviceMeasurementData.DeviceList">
             <summary>
-            Class to bind statistic measurement data to view.
+            Gets or sets a list of DeviceInfo objects for the current <see cref="T:openPDCManager.UI.DataModels.DeviceMeasurementData"/>
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.DataModels.DeviceInfo">
+            <summary>
+            Stores information on a device.
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.DataModels.MeasurementInfo">
+            <summary>
+            Stores information about a measurement
+            </summary>
+        </member>
+        <member name="T:openPDCManager.UI.DataModels.DeviceMeasurementDataForBinding">
+            <summary>
+            Class to bind device measurement data to view.
             </summary>
         </member>
     </members>
