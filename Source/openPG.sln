@@ -144,6 +144,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "D3", "D3", "{32FFE65B-1193-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "openPGManager", "Applications\openPGManager\openPGManager.csproj", "{CCF1DF65-C4DA-41CE-9332-0293D33934C5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "x86", "x86", "{EC798DA3-F75A-49A3-9761-2BC023EDCB0E}"
+	ProjectSection(SolutionItems) = preProject
+		Dependencies\SQLite\x86\System.Data.SQLite.dll = Dependencies\SQLite\x86\System.Data.SQLite.dll
+		Dependencies\SQLite\x86\System.Data.SQLite.Linq.dll = Dependencies\SQLite\x86\System.Data.SQLite.Linq.dll
+		Dependencies\SQLite\x86\System.Data.SQLite.Linq.xml = Dependencies\SQLite\x86\System.Data.SQLite.Linq.xml
+		Dependencies\SQLite\x86\System.Data.SQLite.xml = Dependencies\SQLite\x86\System.Data.SQLite.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 10
@@ -289,6 +297,7 @@ Global
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F} = {D5E46AB8-FE9C-44EE-8BF6-85828422D537}
 		{94F36768-E9A0-4783-BB0F-8C2C1771352E} = {3B319B01-4C55-4CD3-86A5-1298E91D9138}
 		{134819C5-C1BB-4ED1-BE23-49AB5FB33744} = {3B319B01-4C55-4CD3-86A5-1298E91D9138}
+		{EC798DA3-F75A-49A3-9761-2BC023EDCB0E} = {FCF4FAEF-8AA9-4403-A060-D1CB7DA2145B}
 		{32FFE65B-1193-4647-A5E6-67504EE51B31} = {F87710C5-D8D3-4070-A2EB-73A14FDAE208}
 	EndGlobalSection
 EndGlobal
