@@ -241,8 +241,8 @@ CREATE TRIGGER CalculatedMeasurement_AuditUpdate AFTER UPDATE ON CalculatedMeasu
             INSERT INTO AuditLog SET TableName = 'CalculatedMeasurement', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'AllowPreemptivePublishing', OriginalValue = OLD.AllowPreemptivePublishing, NewValue = NEW.AllowPreemptivePublishing, UpdatedBy = NEW.UpdatedBy;
         END IF;
     
-        IF OLD.PerformTimestampReasonabilityCheck != NEW.PerformTimestampReasonabilityCheck THEN
-            INSERT INTO AuditLog SET TableName = 'CalculatedMeasurement', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'PerformTimestampReasonabilityCheck', OriginalValue = OLD.PerformTimestampReasonabilityCheck, NewValue = NEW.PerformTimestampReasonabilityCheck, UpdatedBy = NEW.UpdatedBy;
+        IF OLD.PerformTimeReasonabilityCheck != NEW.PerformTimeReasonabilityCheck THEN
+            INSERT INTO AuditLog SET TableName = 'CalculatedMeasurement', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'PerformTimeReasonabilityCheck', OriginalValue = OLD.PerformTimeReasonabilityCheck, NewValue = NEW.PerformTimeReasonabilityCheck, UpdatedBy = NEW.UpdatedBy;
         END IF;
     
         IF OLD.DownsamplingMethod != NEW.DownsamplingMethod THEN
@@ -296,7 +296,7 @@ CREATE TRIGGER CalculatedMeasurement_AuditDelete AFTER DELETE ON CalculatedMeasu
         INSERT INTO AuditLog SET TableName = 'CalculatedMeasurement', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'IgnoreBadTimestamps', OriginalValue = OLD.IgnoreBadTimestamps, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
         INSERT INTO AuditLog SET TableName = 'CalculatedMeasurement', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'TimeResolution', OriginalValue = OLD.TimeResolution, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
         INSERT INTO AuditLog SET TableName = 'CalculatedMeasurement', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'AllowPreemptivePublishing', OriginalValue = OLD.AllowPreemptivePublishing, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
-        INSERT INTO AuditLog SET TableName = 'CalculatedMeasurement', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'PerformTimestampReasonabilityCheck', OriginalValue = OLD.PerformTimestampReasonabilityCheck, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
+        INSERT INTO AuditLog SET TableName = 'CalculatedMeasurement', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'PerformTimeReasonabilityCheck', OriginalValue = OLD.PerformTimeReasonabilityCheck, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
         INSERT INTO AuditLog SET TableName = 'CalculatedMeasurement', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'DownsamplingMethod', OriginalValue = OLD.DownsamplingMethod, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
         INSERT INTO AuditLog SET TableName = 'CalculatedMeasurement', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'LoadOrder', OriginalValue = OLD.LoadOrder, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
         INSERT INTO AuditLog SET TableName = 'CalculatedMeasurement', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'Enabled', OriginalValue = OLD.Enabled, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
@@ -583,6 +583,10 @@ CREATE TRIGGER Device_AuditUpdate AFTER UPDATE ON Device
         IF OLD.Name != NEW.Name THEN
             INSERT INTO AuditLog SET TableName = 'Device', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'Name', OriginalValue = OLD.Name, NewValue = NEW.Name, UpdatedBy = NEW.UpdatedBy;
         END IF;
+		
+		IF OLD.OriginalSource != NEW.OriginalSource THEN
+			INSERT INTO AuditLog SET TableName = 'Device', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'OriginalSource', OriginalValue = OLD.OriginalSource, NewValue = NEW.OriginalSource, UpdatedBy = NEW.UpdatedBy;
+		END IF;
     
         IF OLD.IsConcentrator != NEW.IsConcentrator THEN
             INSERT INTO AuditLog SET TableName = 'Device', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'IsConcentrator', OriginalValue = OLD.IsConcentrator, NewValue = NEW.IsConcentrator, UpdatedBy = NEW.UpdatedBy;
@@ -1188,8 +1192,8 @@ CREATE TRIGGER OutputStream_AuditUpdate AFTER UPDATE ON OutputStream
             INSERT INTO AuditLog SET TableName = 'OutputStream', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'AllowPreemptivePublishing', OriginalValue = OLD.AllowPreemptivePublishing, NewValue = NEW.AllowPreemptivePublishing, UpdatedBy = NEW.UpdatedBy;
         END IF;
     
-        IF OLD.PerformTimestampReasonabilityCheck != NEW.PerformTimestampReasonabilityCheck THEN
-            INSERT INTO AuditLog SET TableName = 'OutputStream', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'PerformTimestampReasonabilityCheck', OriginalValue = OLD.PerformTimestampReasonabilityCheck, NewValue = NEW.PerformTimestampReasonabilityCheck, UpdatedBy = NEW.UpdatedBy;
+        IF OLD.PerformTimeReasonabilityCheck != NEW.PerformTimeReasonabilityCheck THEN
+            INSERT INTO AuditLog SET TableName = 'OutputStream', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'PerformTimeReasonabilityCheck', OriginalValue = OLD.PerformTimeReasonabilityCheck, NewValue = NEW.PerformTimeReasonabilityCheck, UpdatedBy = NEW.UpdatedBy;
         END IF;
     
         IF OLD.DownsamplingMethod != NEW.DownsamplingMethod THEN
@@ -1266,7 +1270,7 @@ CREATE TRIGGER OutputStream_AuditDelete AFTER DELETE ON OutputStream
         INSERT INTO AuditLog SET TableName = 'OutputStream', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'IgnoreBadTimestamps', OriginalValue = OLD.IgnoreBadTimestamps, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
         INSERT INTO AuditLog SET TableName = 'OutputStream', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'TimeResolution', OriginalValue = OLD.TimeResolution, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
         INSERT INTO AuditLog SET TableName = 'OutputStream', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'AllowPreemptivePublishing', OriginalValue = OLD.AllowPreemptivePublishing, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
-        INSERT INTO AuditLog SET TableName = 'OutputStream', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'PerformTimestampReasonabilityCheck', OriginalValue = OLD.PerformTimestampReasonabilityCheck, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
+        INSERT INTO AuditLog SET TableName = 'OutputStream', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'PerformTimeReasonabilityCheck', OriginalValue = OLD.PerformTimeReasonabilityCheck, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
         INSERT INTO AuditLog SET TableName = 'OutputStream', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'DownsamplingMethod', OriginalValue = OLD.DownsamplingMethod, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
         INSERT INTO AuditLog SET TableName = 'OutputStream', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'DataFormat', OriginalValue = OLD.DataFormat, NewValue = NULL, Deleted = '1', UpdatedBy = @context;
         INSERT INTO AuditLog SET TableName = 'OutputStream', PrimaryKeyColumn = 'ID', PrimaryKeyValue = OLD.ID, ColumnName = 'CoordinateFormat', OriginalValue = OLD.CoordinateFormat, NewValue = NULL, Deleted = '1', UpdatedBy = @context;

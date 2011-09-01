@@ -175,6 +175,7 @@ CREATE TABLE Device(
 	UniqueID NCHAR(36) NULL,
 	Acronym VARCHAR(200) NOT NULL,
 	Name VARCHAR(200) NULL,
+	OriginalSource VARCHAR(200) NULL,
 	IsConcentrator BOOLEAN NOT NULL DEFAULT 0,
 	CompanyID INTEGER NULL,
 	HistorianID INTEGER NULL,
@@ -422,7 +423,7 @@ CREATE TABLE CalculatedMeasurement(
 	IgnoreBadTimeStamps BOOLEAN NOT NULL DEFAULT 0,
 	TimeResolution INTEGER NOT NULL DEFAULT 10000,
 	AllowPreemptivePublishing BOOLEAN NOT NULL DEFAULT 1,
-	PerformTimestampReasonabilityCheck BOOLEAN NOT NULL DEFAULT 1,
+	PerformTimeReasonabilityCheck BOOLEAN NOT NULL DEFAULT 1,
 	DownsamplingMethod VARCHAR(15) NOT NULL DEFAULT 'LastReceived',
 	LoadOrder INTEGER NOT NULL DEFAULT 0,
 	Enabled BOOLEAN NOT NULL DEFAULT 0,
@@ -506,7 +507,7 @@ CREATE TABLE OutputStream(
 	IgnoreBadTimeStamps BOOLEAN NOT NULL DEFAULT 0,
 	TimeResolution INTEGER NOT NULL DEFAULT 330000,
 	AllowPreemptivePublishing BOOLEAN NOT NULL DEFAULT 1,
-	PerformTimestampReasonabilityCheck BOOLEAN NOT NULL DEFAULT 1,
+	PerformTimeReasonabilityCheck BOOLEAN NOT NULL DEFAULT 1,
 	DownsamplingMethod VARCHAR(15) NOT NULL DEFAULT 'LastReceived',
 	DataFormat VARCHAR(15) NOT NULL DEFAULT 'FloatingPoint',
 	CoordinateFormat VARCHAR(15) NOT NULL DEFAULT 'Polar',
@@ -800,7 +801,7 @@ SELECT OutputStream.NodeID, Runtime.ID, OutputStream.Acronym AS AdapterName,
  ('currentScalingValue=' || OutputStream.CurrentScalingValue) || ';' ||
  ('voltageScalingValue=' || OutputStream.VoltageScalingValue) || ';' ||
  ('analogScalingValue=' || OutputStream.AnalogScalingValue) || ';' ||
- ('performTimestampReasonabilityCheck=' || OutputStream.PerformTimestampReasonabilityCheck) || ';' ||
+ ('performTimestampReasonabilityCheck=' || OutputStream.PerformTimeReasonabilityCheck) || ';' ||
  ('digitalMaskValue=' || OutputStream.DigitalMaskValue) AS ConnectionString
 FROM OutputStream LEFT OUTER JOIN
  Runtime ON OutputStream.ID = Runtime.SourceID AND Runtime.SourceTable = 'OutputStream'
@@ -831,7 +832,7 @@ SELECT CalculatedMeasurement.NodeID, Runtime.ID, CalculatedMeasurement.Acronym A
  ('ignoreBadTimestamps=' || CalculatedMeasurement.IgnoreBadTimeStamps) || ';' ||
  ('timeResolution=' || CalculatedMeasurement.TimeResolution) || ';' ||
  ('allowPreemptivePublishing=' || CalculatedMeasurement.AllowPreemptivePublishing) || ';' ||
- ('performTimestampReasonabilityCheck=' || CalculatedMeasurement.PerformTimestampReasonabilityCheck) || ';' ||
+ ('performTimestampReasonabilityCheck=' || CalculatedMeasurement.PerformTimeReasonabilityCheck) || ';' ||
  ('downsamplingMethod=' || CalculatedMeasurement.DownsamplingMethod) || ';' ||
  ('useLocalClockAsRealTime=' || CalculatedMeasurement.UseLocalClockAsRealTime) AS ConnectionString
 FROM CalculatedMeasurement LEFT OUTER JOIN
@@ -950,7 +951,7 @@ AS
 SELECT CM.NodeID, CM.ID, CM.Acronym, COALESCE(CM.Name, '') AS Name, CM.AssemblyName, CM.TypeName, COALESCE(CM.ConnectionString, '') AS ConnectionString,
 		COALESCE(CM.ConfigSection, '') AS ConfigSection, COALESCE(CM.InputMeasurements, '') AS InputMeasurements, COALESCE(CM.OutputMeasurements, '') AS OutputMeasurements,
 		CM.MinimumMeasurementsToUse, CM.FramesPerSecond, CM.LagTime, CM.LeadTime, CM.UseLocalClockAsRealTime, CM.AllowSortsByArrival, CM.LoadOrder, CM.Enabled,
-		N.Name AS NodeName, CM.IgnoreBadTimeStamps, CM.TimeResolution, CM.AllowPreemptivePublishing, COALESCE(CM.DownsamplingMethod, '') AS DownsamplingMethod, CM.PerformTimestampReasonabilityCheck
+		N.Name AS NodeName, CM.IgnoreBadTimeStamps, CM.TimeResolution, CM.AllowPreemptivePublishing, COALESCE(CM.DownsamplingMethod, '') AS DownsamplingMethod, CM.PerformTimeReasonabilityCheck
 FROM CalculatedMeasurement CM, Node N
 WHERE CM.NodeID = N.ID;
 
@@ -1053,7 +1054,7 @@ SELECT     OS.NodeID, OS.ID, OS.Acronym, COALESCE(OS.Name, '') AS Name, OS.Type,
                       OS.AutoStartDataChannel, OS.NominalFrequency, OS.FramesPerSecond, OS.LagTime, OS.LeadTime, OS.UseLocalClockAsRealTime, 
                       OS.AllowSortsByArrival, OS.LoadOrder, OS.Enabled, N.Name AS NodeName, OS.DigitalMaskValue, OS.AnalogScalingValue, 
                       OS.VoltageScalingValue, OS.CurrentScalingValue, OS.CoordinateFormat, OS.DataFormat, OS.DownsamplingMethod, 
-                      OS.AllowPreemptivePublishing, OS.TimeResolution, OS.IgnoreBadTimeStamps, OS.PerformTimestampReasonabilityCheck
+                      OS.AllowPreemptivePublishing, OS.TimeResolution, OS.IgnoreBadTimeStamps, OS.PerformTimeReasonabilityCheck
 FROM         OutputStream AS OS INNER JOIN Node AS N ON OS.NodeID = N.ID;
                       
 CREATE VIEW OutputStreamMeasurementDetail AS
@@ -1086,12 +1087,12 @@ SELECT     MeasurementDetail.CompanyID, MeasurementDetail.CompanyAcronym, Measur
 FROM MeasurementDetail 
 WHERE MeasurementDetail.SignalAcronym = 'STAT';
 
-CREATE VIEW ApplicationRoleSecurityGroupDetail AS 
+CREATE VIEW AppRoleSecurityGroupDetail AS 
 SELECT ApplicationRoleSecurityGroup.ApplicationRoleID AS ApplicationRoleID,ApplicationRoleSecurityGroup.SecurityGroupID AS SecurityGroupID,ApplicationRole.Name AS ApplicationRoleName,ApplicationRole.Description AS ApplicationRoleDescription,SecurityGroup.Name AS SecurityGroupName,SecurityGroup.Description AS SecurityGroupDescription 
 FROM ((ApplicationRoleSecurityGroup JOIN ApplicationRole ON((ApplicationRoleSecurityGroup.ApplicationRoleID = ApplicationRole.ID))) 
 	JOIN SecurityGroup ON((ApplicationRoleSecurityGroup.SecurityGroupID = SecurityGroup.ID)));
 
-CREATE VIEW ApplicationRoleUserAccountDetail AS 
+CREATE VIEW AppRoleUserAccountDetail AS 
 SELECT ApplicationRoleUserAccount.ApplicationRoleID AS ApplicationRoleID,ApplicationRoleUserAccount.UserAccountID AS UserAccountID,UserAccount.Name AS UserName,UserAccount.FirstName AS FirstName,UserAccount.LastName AS LastName,UserAccount.Email AS Email,ApplicationRole.Name AS ApplicationRoleName,ApplicationRole.Description AS ApplicationRoleDescription 
 FROM ((ApplicationRoleUserAccount JOIN ApplicationRole ON((ApplicationRoleUserAccount.ApplicationRoleID = ApplicationRole.ID))) JOIN UserAccount ON((ApplicationRoleUserAccount.UserAccountID = UserAccount.ID)));
 
@@ -1104,12 +1105,12 @@ SELECT SubscriberMeasurement.NodeID AS NodeID, SubscriberMeasurement.SubscriberI
 SubscriberMeasurement.SignalID AS SignalID, SubscriberMeasurement.Allowed AS Allowed, Measurement.PointID AS PointID, Measurement.PointTag AS PointTag, Measurement.SignalReference AS SignalReference
 FROM ((SubscriberMeasurement JOIN Subscriber ON (SubscriberMeasurement.SubscriberID = Subscriber.ID)) JOIN Measurement ON (SubscriberMeasurement.SignalID = Measurement.SignalID));
 
-CREATE VIEW SubscriberMeasurementGroupDetail AS 
+CREATE VIEW SubscriberMeasGroupDetail AS 
 SELECT SubscriberMeasurementGroup.NodeID AS NodeID, SubscriberMeasurementGroup.SubscriberID AS SubscriberID, Subscriber.Acronym AS SubscriberAcronym, COALESCE(Subscriber.Name, '') AS SubscriberName, 
 SubscriberMeasurementGroup.MeasurementGroupID AS MeasurementGroupID, SubscriberMeasurementGroup.Allowed AS Allowed, MeasurementGroup.Name AS MeasurementGroupName
 FROM ((SubscriberMeasurementGroup JOIN Subscriber ON (SubscriberMeasurementGroup.SubscriberID = Subscriber.ID)) JOIN MeasurementGroup ON (SubscriberMeasurementGroup.MeasurementGroupID = MeasurementGroup.ID));
 
-CREATE VIEW MeasurementGroupMeasurementDetail AS 
+CREATE VIEW MeasurementGroupMeasDetail AS 
 SELECT MeasurementGroupMeasurement.MeasurementGroupID AS MeasurementGroupID, MeasurementGroup.Name AS MeasurementGroupName,
 MeasurementGroupMeasurement.SignalID AS SignalID, Measurement.PointID AS PointID, Measurement.PointTag AS PointTag, Measurement.SignalReference AS SignalReference
 FROM ((MeasurementGroupMeasurement JOIN MeasurementGroup ON (MeasurementGroupMeasurement.MeasurementGroupID = MeasurementGroup.ID)) JOIN Measurement ON (MeasurementGroupMeasurement.SignalID = Measurement.SignalID));
