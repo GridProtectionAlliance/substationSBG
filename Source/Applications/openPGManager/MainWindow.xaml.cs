@@ -170,6 +170,18 @@ namespace openPGManager
             });
         }
 
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (FrameContent.CanGoBack)
+                FrameContent.GoBack();
+        }
+
+        private void ButtonForward_Click(object sender, RoutedEventArgs e)
+        {
+            if (FrameContent.CanGoForward)
+                FrameContent.GoForward();
+        }
+
         #endregion
     }
 }
