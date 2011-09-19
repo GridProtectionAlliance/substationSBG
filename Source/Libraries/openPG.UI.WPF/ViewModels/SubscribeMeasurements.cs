@@ -27,7 +27,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using openPDCManager.UI.DataModels;
+using openPDC.UI.DataModels;
 using TimeSeriesFramework.UI;
 using TimeSeriesFramework.UI.Commands;
 using TimeSeriesFramework.UI.DataModels;
@@ -35,7 +35,7 @@ using TVA.Data;
 
 namespace openPG.UI.ViewModels
 {
-    internal class SubscribeMeasurements : PagedViewModelBase<openPDCManager.UI.DataModels.Device, int>
+    internal class SubscribeMeasurements : PagedViewModelBase<openPDC.UI.DataModels.Device, int>
     {
         #region [ Members ]
 
@@ -253,7 +253,7 @@ namespace openPG.UI.ViewModels
         public override void Load()
         {
             SubscribedMeasurements = Measurement.GetSubscribedMeasurements(null);
-            DeviceList = openPDCManager.UI.DataModels.Device.GetLookupList(null, "Measurement", true);
+            DeviceList = openPDC.UI.DataModels.Device.GetLookupList(null, "Measurement", true);
             CurrentDevice = DeviceList.First();
         }
 

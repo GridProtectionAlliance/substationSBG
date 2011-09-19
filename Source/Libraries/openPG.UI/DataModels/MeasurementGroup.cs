@@ -242,7 +242,7 @@ namespace openPG.UI.DataModels
                 createdConnection = CreateConnection(ref database);
 
                 ObservableCollection<MeasurementGroup> measurementGroupList = new ObservableCollection<MeasurementGroup>();
-                DataTable measurementGroupTable = database.Connection.RetrieveData(database.AdapterType, "SELECT NodeID, ID, Name, Description FROM MeasurementGroup WHERE NodeID = @nodeID ORDER BY Name", DefaultTimeout, database.CurrentNodeID());
+                DataTable measurementGroupTable = database.Connection.RetrieveData(database.AdapterType, database.ParameterizedQueryString("SELECT NodeID, ID, Name, Description FROM MeasurementGroup WHERE NodeID = {0} ORDER BY Name", "nodeID"), DefaultTimeout, database.CurrentNodeID());
 
                 foreach (DataRow row in measurementGroupTable.Rows)
                 {
@@ -286,8 +286,8 @@ namespace openPG.UI.DataModels
                 if (isOptional)
                     MeasurementGroupList.Add(0, "Select MeasurementGroup");
 
-                DataTable MeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, "SELECT ID, Name FROM MeasurementGroup WHERE NodeID = @nodeID " +
-                    "ORDER BY SourceIndex", DefaultTimeout, database.CurrentNodeID());
+                string query = database.ParameterizedQueryString("SELECT ID, Name FROM MeasurementGroup WHERE NodeID = {0} ORDER BY SourceIndex", "nodeID");
+                DataTable MeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, database.CurrentNodeID());
 
                 foreach (DataRow row in MeasurementGroupTable.Rows)
                     MeasurementGroupList[row.ConvertField<int>("ID")] = row.Field<string>("Name");
@@ -316,7 +316,7 @@ namespace openPG.UI.DataModels
                 createdConnection = CreateConnection(ref database);
 
                 Dictionary<Guid, string> currentMeasurements = new Dictionary<Guid, string>();
-                DataTable currentMeasurementTable = database.Connection.RetrieveData(database.AdapterType, "SELECT * FROM MeasurementGroupMeasurementDetail WHERE MeasurementGroupID = @measurementGroupID ORDER BY PointID",
+                DataTable currentMeasurementTable = database.Connection.RetrieveData(database.AdapterType, database.ParameterizedQueryString("SELECT * FROM MeasurementGroupMeasurementDetail WHERE MeasurementGroupID = {0} ORDER BY PointID", "measurementGroupID"),
                     DefaultTimeout, measurementGroupId);
 
                 foreach (DataRow row in currentMeasurementTable.Rows)
@@ -352,13 +352,15 @@ namespace openPG.UI.DataModels
         public static string AddMeasurements(AdoDataConnection database, int measurementGroupID, List<Guid> measurementsToBeAdded)
         {
             bool createdConnection = false;
+            string query;
+
             try
             {
                 createdConnection = CreateConnection(ref database);
                 foreach (Guid id in measurementsToBeAdded)
                 {
-                    database.Connection.ExecuteNonQuery("INSERT INTO MeasurementGroupMeasurement (NodeID, MeasurementGroupID, SignalID) VALUES (@nodeID, @measurementGroupID, @signalID)", DefaultTimeout,
-                       database.CurrentNodeID(), measurementGroupID, database.Guid(id));
+                    query = database.ParameterizedQueryString("INSERT INTO MeasurementGroupMeasurement (NodeID, MeasurementGroupID, SignalID) VALUES ({0}, {1}, {2})", "nodeID", "measurementGroupID", "signalID");
+                    database.Connection.ExecuteNonQuery(query, DefaultTimeout, database.CurrentNodeID(), measurementGroupID, database.Guid(id));
                 }
 
                 return "Measurements added to group successfully";
@@ -380,13 +382,15 @@ namespace openPG.UI.DataModels
         public static string RemoveMeasurements(AdoDataConnection database, int measurementGroupID, List<Guid> measurementsToBeRemoved)
         {
             bool createdConnection = false;
+            string query;
+
             try
             {
                 createdConnection = CreateConnection(ref database);
                 foreach (Guid id in measurementsToBeRemoved)
                 {
-                    database.Connection.ExecuteNonQuery("DELETE FROM MeasurementGroupMeasurement WHERE MeasurementGroupID = @measurementGroupID AND SignalID = @signalID", DefaultTimeout,
-                        measurementGroupID, database.Guid(id));
+                    query = database.ParameterizedQueryString("DELETE FROM MeasurementGroupMeasurement WHERE MeasurementGroupID = {0} AND SignalID = {1}", "measurementGroupID", "signalID");
+                    database.Connection.ExecuteNonQuery(query, DefaultTimeout, measurementGroupID, database.Guid(id));
                 }
 
                 return "Measurements deleted from group successfully";
@@ -407,19 +411,28 @@ namespace openPG.UI.DataModels
         public static string Save(AdoDataConnection database, MeasurementGroup measurementGroup)
         {
             bool createdConnection = false;
+            string query;
 
             try
             {
                 createdConnection = CreateConnection(ref database);
 
                 if (measurementGroup.ID == 0)
-                    database.Connection.ExecuteNonQuery("INSERT INTO MeasurementGroup (NodeID, Name, Description, UpdatedBy, UpdatedOn, CreatedBy, CreatedOn) " +
-                        "VALUES (@nodeID, @name, @description, @updatedBy, @updatedOn, @createdBy, @createdOn)", DefaultTimeout, database.CurrentNodeID(),
-                        measurementGroup.Name, measurementGroup.Description.ToNotNull(), CommonFunctions.CurrentUser, database.UtcNow(), CommonFunctions.CurrentUser, database.UtcNow());
+                {
+                    query = database.ParameterizedQueryString("INSERT INTO MeasurementGroup (NodeID, Name, Description, UpdatedBy, UpdatedOn, CreatedBy, CreatedOn) " +
+                        "VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6})", "nodeID", "name", "description", "updatedBy", "updatedOn", "createdBy", "createdOn");
+
+                    database.Connection.ExecuteNonQuery(query, DefaultTimeout, database.CurrentNodeID(), measurementGroup.Name, measurementGroup.Description.ToNotNull(),
+                        CommonFunctions.CurrentUser, database.UtcNow(), CommonFunctions.CurrentUser, database.UtcNow());
+                }
                 else
-                    database.Connection.ExecuteNonQuery("UPDATE MeasurementGroup SET NodeID = @nodeID, Name = @name, Description = @description, " +
-                        "UpdatedBy = @updatedBy, UpdatedOn = @updatedOn WHERE ID = @id", DefaultTimeout, database.CurrentNodeID(), measurementGroup.Name,
+                {
+                    query = database.ParameterizedQueryString("UPDATE MeasurementGroup SET NodeID = {0}, Name = {1}, Description = {2}, " +
+                        "UpdatedBy = {3}, UpdatedOn = {4} WHERE ID = {5}", "nodeID", "name", "description", "updatedBy", "updatedOn", "id");
+
+                    database.Connection.ExecuteNonQuery(query, DefaultTimeout, database.CurrentNodeID(), measurementGroup.Name,
                         measurementGroup.Description.ToNotNull(), CommonFunctions.CurrentUser, database.UtcNow(), measurementGroup.ID);
+                }
 
                 return "Measurement group information saved successfully";
             }
@@ -451,7 +464,7 @@ namespace openPG.UI.DataModels
                 // Setup current user context for any delete triggers
                 CommonFunctions.SetCurrentUserContext(database);
 
-                database.Connection.ExecuteNonQuery("DELETE FROM MeasurementGroup WHERE ID = @measurementGroupID", DefaultTimeout, measurementGroupID);
+                database.Connection.ExecuteNonQuery(database.ParameterizedQueryString("DELETE FROM MeasurementGroup WHERE ID = {0}", "measurementGroupID"), DefaultTimeout, measurementGroupID);
 
                 return "Measurement group deleted successfully";
             }

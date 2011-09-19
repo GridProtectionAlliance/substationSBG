@@ -4,7 +4,7 @@
   <MenuDataItem Icon="" MenuText="Local Properties" Description="My openPG Node Info" Roles="*" UserControlAssembly="" UserControlPath="">
     <SubMenuItems>
       <MenuDataItem Icon="" MenuText="openPG Nodes" Description="Manage Local Nodes" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.NodeUserControl" />
-      <MenuDataItem Icon="" MenuText="Measurements" Description="Manage Measurements" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.PhasorMeasurementUserControl"/>
+      <MenuDataItem Icon="" MenuText="Measurements" Description="Manage Measurements" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.PhasorMeasurementUserControl"/>
       <MenuDataItem Icon="" MenuText="Historians" Description="Manage Historians" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.HistorianUserControl" />
       <MenuDataItem Icon="" MenuText="Companies" Description="Manage Companies" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.CompanyUserControl" />
       <MenuDataItem Icon="" MenuText="Vendors" Description="Manage Vendors" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.VendorUserControl" />
@@ -28,12 +28,12 @@
   </MenuDataItem>
   <MenuDataItem Icon="" MenuText="Inputs" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
     <SubMenuItems>
-      <MenuDataItem Icon="" MenuText="Browse" Description="Browse Devices" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.DeviceListUserControl" />
-      <MenuDataItem Icon="" MenuText="Add New" Description="Manage Device Configuration" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.DeviceUserControl" />
-      <MenuDataItem Icon="" MenuText="Input Wizard" Description="Input Device Configuration Wizard" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.InputWizardUserControl" />
+      <MenuDataItem Icon="" MenuText="Browse" Description="Browse Devices" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.DeviceListUserControl" />
+      <MenuDataItem Icon="" MenuText="Add New" Description="Manage Device Configuration" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.DeviceUserControl" />
+      <MenuDataItem Icon="" MenuText="Input Wizard" Description="Input Device Configuration Wizard" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.InputWizardUserControl" />
       <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath=""/>
-      <MenuDataItem Icon="" MenuText="Real-Time Statistics" Description="Real-Time Statistics" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.RealTimeStatisticsUserControl"/>
-      <MenuDataItem Icon="" MenuText="Real-Time Measurements" Description="Real-Time Measurements" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.DeviceMeasurementsUserControl"/>
+      <MenuDataItem Icon="" MenuText="Real-Time Statistics" Description="Real-Time Statistics" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.RealTimeStatisticsUserControl"/>
+      <MenuDataItem Icon="" MenuText="Real-Time Measurements" Description="Real-Time Measurements" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.DeviceMeasurementsUserControl"/>
     </SubMenuItems>
   </MenuDataItem>
   <MenuDataItem Icon="" MenuText="Outputs" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
@@ -45,7 +45,7 @@
   <MenuDataItem Icon="" MenuText="Monitoring" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
     <SubMenuItems>
       <MenuDataItem Icon="" MenuText="Remote System Console" Description="Remote System Console" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.MonitoringUserControl" />
-      <MenuDataItem Icon="" MenuText="Input Status &amp; Monitoring" Description="Input Status Monitor" Roles="*" UserControlAssembly="openPDCManager.UI.WPF.dll" UserControlPath="openPDCManager.UI.UserControls.InputStatusUserControl"/>
+      <MenuDataItem Icon="" MenuText="Input Status &amp; Monitoring" Description="Input Status Monitor" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.InputStatusUserControl"/>
     </SubMenuItems>
   </MenuDataItem>
   <MenuDataItem Icon="" MenuText="Adapters" Description="" Roles="*" UserControlAssembly="" UserControlPath="">

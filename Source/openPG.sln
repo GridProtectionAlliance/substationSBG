@@ -107,10 +107,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "openPG.UI.WPF", "Libraries\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "openPDC", "openPDC", "{F132223E-3142-4F1E-B0AF-CE14F4CA0AD2}"
 	ProjectSection(SolutionItems) = preProject
-		Dependencies\openPDC\openPDCManager.UI.dll = Dependencies\openPDC\openPDCManager.UI.dll
-		Dependencies\openPDC\openPDCManager.UI.WPF.dll = Dependencies\openPDC\openPDCManager.UI.WPF.dll
-		Dependencies\openPDC\openPDCManager.UI.WPF.XML = Dependencies\openPDC\openPDCManager.UI.WPF.XML
-		Dependencies\openPDC\openPDCManager.UI.XML = Dependencies\openPDC\openPDCManager.UI.XML
+		Dependencies\openPDC\openPDC.UI.dll = Dependencies\openPDC\openPDC.UI.dll
+		Dependencies\openPDC\openPDC.UI.WPF.dll = Dependencies\openPDC\openPDC.UI.WPF.dll
+		Dependencies\openPDC\openPDC.UI.WPF.xml = Dependencies\openPDC\openPDC.UI.WPF.xml
+		Dependencies\openPDC\openPDC.UI.xml = Dependencies\openPDC\openPDC.UI.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLite", "SQLite", "{BE55A303-AE5A-41D7-8F32-A327C66F5F64}"

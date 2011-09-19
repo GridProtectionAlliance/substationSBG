@@ -389,9 +389,12 @@ namespace openPG.UI.DataModels
 
                 ObservableCollection<Subscriber> subscriberList = new ObservableCollection<Subscriber>();
                 DataTable subscriberTable;
+                string query;
 
-                subscriberTable = database.Connection.RetrieveData(database.AdapterType, "SELECT ID, NodeID, Acronym, Name, SharedSecret, AuthKey, ValidIPAddresses, " +
-                    "Enabled FROM Subscriber WHERE NodeID = @nodeID ORDER BY Name", DefaultTimeout, database.CurrentNodeID());
+                query = database.ParameterizedQueryString("SELECT ID, NodeID, Acronym, Name, SharedSecret, AuthKey, ValidIPAddresses, " +
+                    "Enabled FROM Subscriber WHERE NodeID = {0} ORDER BY Name", "nodeID");
+
+                subscriberTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, database.CurrentNodeID());
 
                 foreach (DataRow row in subscriberTable.Rows)
                 {
@@ -438,9 +441,8 @@ namespace openPG.UI.DataModels
                 createdConnection = CreateConnection(ref database);
 
                 Dictionary<Guid, string> allowedMeasurements = new Dictionary<Guid, string>();
-                DataTable allowedMeasurementTable = database.Connection.RetrieveData(database.AdapterType,
-                    "SELECT SignalID, PointTag FROM SubscriberMeasurementDetail WHERE SubscriberID = @subscriberID AND Allowed = @allowed ORDER BY PointTag",
-                    DefaultTimeout, subscriberID, true);
+                string query = database.ParameterizedQueryString("SELECT SignalID, PointTag FROM SubscriberMeasurementDetail WHERE SubscriberID = {0} AND Allowed = {1} ORDER BY PointTag", "subscriberID", "allowed");
+                DataTable allowedMeasurementTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, subscriberID, database.Bool(true));
 
                 foreach (DataRow row in allowedMeasurementTable.Rows)
                     allowedMeasurements[database.Guid(row, "SignalID")] = row.Field<string>("PointTag");
@@ -469,9 +471,8 @@ namespace openPG.UI.DataModels
                 createdConnection = CreateConnection(ref database);
 
                 Dictionary<Guid, string> deniedMeasurements = new Dictionary<Guid, string>();
-                DataTable deniedMeasurementTable = database.Connection.RetrieveData(database.AdapterType,
-                    "SELECT SignalID, PointTag FROM SubscriberMeasurementDetail WHERE SubscriberID = @subscriberID AND Allowed = @allowed ORDER BY PointTag",
-                    DefaultTimeout, subscriberID, false);
+                string query = database.ParameterizedQueryString("SELECT SignalID, PointTag FROM SubscriberMeasurementDetail WHERE SubscriberID = {0} AND Allowed = {1} ORDER BY PointTag", "subscriberID", "allowed");
+                DataTable deniedMeasurementTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, subscriberID, database.Bool(false));
 
                 foreach (DataRow row in deniedMeasurementTable.Rows)
                     deniedMeasurements[database.Guid(row, "SignalID")] = row.Field<string>("PointTag");
@@ -511,9 +512,8 @@ namespace openPG.UI.DataModels
                 createdConnection = CreateConnection(ref database);
 
                 Dictionary<int, string> allowedMeasurementGroups = new Dictionary<int, string>();
-                DataTable allowedMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType,
-                    "SELECT MeasurementGroupID, MeasurementGroupName FROM SubscriberMeasurementGroupDetail WHERE SubscriberID = @subscriberID AND Allowed = @allowed ORDER BY MeasurementGroupName",
-                    DefaultTimeout, subscriberID, true);
+                string query = database.ParameterizedQueryString("SELECT MeasurementGroupID, MeasurementGroupName FROM SubscriberMeasurementGroupDetail WHERE SubscriberID = {0} AND Allowed = {1} ORDER BY MeasurementGroupName", "subscriberID", "allowed");
+                DataTable allowedMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, subscriberID, database.Bool(true));
 
                 foreach (DataRow row in allowedMeasurementGroupTable.Rows)
                     allowedMeasurementGroups[row.ConvertField<int>("MeasurementGroupID")] = row.Field<string>("MeasurementGroupName");
@@ -542,9 +542,8 @@ namespace openPG.UI.DataModels
                 createdConnection = CreateConnection(ref database);
 
                 Dictionary<int, string> deniedMeasurementGroups = new Dictionary<int, string>();
-                DataTable deniedMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType,
-                    "SELECT MeasurementGroupID, MeasurementGroupName FROM SubscriberMeasurementGroupDetail WHERE SubscriberID = @subscriberID AND Allowed = @allowed ORDER BY MeasurementGroupName",
-                    DefaultTimeout, subscriberID, false);
+                string query = database.ParameterizedQueryString("SELECT MeasurementGroupID, MeasurementGroupName FROM SubscriberMeasurementGroupDetail WHERE SubscriberID = {0} AND Allowed = {1} ORDER BY MeasurementGroupName", "subscriberID", "allowed");
+                DataTable deniedMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, subscriberID, database.Bool(false));
 
                 foreach (DataRow row in deniedMeasurementGroupTable.Rows)
                     deniedMeasurementGroups[row.ConvertField<int>("MeasurementGroupID")] = row.Field<string>("MeasurementGroupName");
@@ -573,10 +572,9 @@ namespace openPG.UI.DataModels
                 createdConnection = CreateConnection(ref database);
 
                 Dictionary<int, string> availableMeasurementGroups = new Dictionary<int, string>();
-                DataTable availableMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType,
-                    "SELECT ID, Name FROM MeasurementGroup WHERE " +
-                    "ID NOT IN (SELECT MeasurementGroupID FROM SubscriberMeasurementGroup WHERE SubscriberID = @subscriberID) ORDER BY Name",
-                    DefaultTimeout, subscriberID);
+                string query = database.ParameterizedQueryString("SELECT ID, Name FROM MeasurementGroup WHERE " +
+                    "ID NOT IN (SELECT MeasurementGroupID FROM SubscriberMeasurementGroup WHERE SubscriberID = {0}) ORDER BY Name", "subscriberID");
+                DataTable availableMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, subscriberID);
 
                 foreach (DataRow row in availableMeasurementGroupTable.Rows)
                     availableMeasurementGroups[row.ConvertField<int>("ID")] = row.Field<string>("Name");
@@ -601,6 +599,7 @@ namespace openPG.UI.DataModels
         public static string AddMeasurements(AdoDataConnection database, Guid subscriberID, List<Guid> measurementsToBeAdded, bool allowed)
         {
             bool createdConnection = false;
+            string query;
 
             try
             {
@@ -608,9 +607,12 @@ namespace openPG.UI.DataModels
 
                 foreach (Guid id in measurementsToBeAdded)
                 {
-                    database.Connection.ExecuteNonQuery("INSERT INTO SubscriberMeasurement (NodeID, SubscriberID, SignalID, Allowed, UpdatedOn, UpdatedBy, CreatedOn, CreatedBy) VALUES " +
-                        "(@nodeID, @subscriberID, @signalID, @allowed, @updatedOn, @updatedBy, @createdOn, @createdBy)", DefaultTimeout, database.CurrentNodeID(),
-                        database.Guid(subscriberID), database.Guid(id), allowed, database.UtcNow(), CommonFunctions.CurrentUser, database.UtcNow(), CommonFunctions.CurrentUser);
+                    query = database.ParameterizedQueryString("INSERT INTO SubscriberMeasurement (NodeID, SubscriberID, SignalID, Allowed, UpdatedOn, UpdatedBy, " +
+                        "CreatedOn, CreatedBy) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})", "nodeID", "subscriberID", "signalID", "allowed", "updatedOn",
+                        "updatedBy", "createdOn", "createdBy");
+
+                    database.Connection.ExecuteNonQuery(query, DefaultTimeout, database.CurrentNodeID(), database.Guid(subscriberID), database.Guid(id),
+                        database.Bool(allowed), database.UtcNow(), CommonFunctions.CurrentUser, database.UtcNow(), CommonFunctions.CurrentUser);
                 }
 
                 if (allowed)
@@ -635,6 +637,7 @@ namespace openPG.UI.DataModels
         public static string RemoveMeasurements(AdoDataConnection database, Guid subscriberID, List<Guid> measurementsToBeRemoved)
         {
             bool createdConnection = false;
+            string query;
 
             try
             {
@@ -642,8 +645,8 @@ namespace openPG.UI.DataModels
 
                 foreach (Guid id in measurementsToBeRemoved)
                 {
-                    database.Connection.ExecuteNonQuery("DELETE FROM SubscriberMeasurement WHERE SubscriberID = @subscriberID AND SignalID = @signalID", DefaultTimeout,
-                        database.Guid(subscriberID), database.Guid(id));
+                    query = database.ParameterizedQueryString("DELETE FROM SubscriberMeasurement WHERE SubscriberID = {0} AND SignalID = {1}", "subscriberID", "signalID");
+                    database.Connection.ExecuteNonQuery(query, DefaultTimeout, database.Guid(subscriberID), database.Guid(id));
                 }
 
                 return "Selected measuremnets removed successfully";
@@ -666,6 +669,7 @@ namespace openPG.UI.DataModels
         public static string AddMeasurementGroups(AdoDataConnection database, Guid subscriberID, List<int> measurementGroupsToBeAdded, bool allowed)
         {
             bool createdConnection = false;
+            string query;
 
             try
             {
@@ -673,9 +677,12 @@ namespace openPG.UI.DataModels
 
                 foreach (int id in measurementGroupsToBeAdded)
                 {
-                    database.Connection.ExecuteNonQuery("INSERT INTO SubscriberMeasurementGroup (NodeID, SubscriberID, MeasurementGroupID, Allowed, UpdatedOn, UpdatedBy, CreatedOn, CreatedBy) VALUES " +
-                        "(@nodeID, @subscriberID, @measurementGroupID, @allowed, @updatedOn, @updatedBy, @createdOn, @createdBy)", DefaultTimeout, database.CurrentNodeID(),
-                        database.Guid(subscriberID), id, allowed, database.UtcNow(), CommonFunctions.CurrentUser, database.UtcNow(), CommonFunctions.CurrentUser);
+                    query = database.ParameterizedQueryString("INSERT INTO SubscriberMeasurementGroup (NodeID, SubscriberID, MeasurementGroupID, Allowed, UpdatedOn, " +
+                        "UpdatedBy, CreatedOn, CreatedBy) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})", "nodeID", "subscriberID", "measurementGroupID",
+                        "allowed", "updatedOn", "updatedBy", "createdOn", "createdBy");
+
+                    database.Connection.ExecuteNonQuery(query, DefaultTimeout, database.CurrentNodeID(), database.Guid(subscriberID), id, database.Bool(allowed),
+                        database.UtcNow(), CommonFunctions.CurrentUser, database.UtcNow(), CommonFunctions.CurrentUser);
                 }
 
                 if (allowed)
@@ -700,6 +707,7 @@ namespace openPG.UI.DataModels
         public static string RemoveMeasurementGroups(AdoDataConnection database, Guid subscriberID, List<int> measurementGroupsToBeRemoved)
         {
             bool createdConnection = false;
+            string query;
 
             try
             {
@@ -707,8 +715,8 @@ namespace openPG.UI.DataModels
 
                 foreach (int id in measurementGroupsToBeRemoved)
                 {
-                    database.Connection.ExecuteNonQuery("DELETE FROM SubscriberMeasurementGroup WHERE SubscriberID = @subscriberID AND MeasurementGroupID = @measurementGroupID", DefaultTimeout,
-                        database.Guid(subscriberID), id);
+                    query = database.ParameterizedQueryString("DELETE FROM SubscriberMeasurementGroup WHERE SubscriberID = {0} AND MeasurementGroupID = {1}", "subscriberID", "measurementGroupID");
+                    database.Connection.ExecuteNonQuery(query, DefaultTimeout, database.Guid(subscriberID), id);
                 }
 
                 return "Measuremnet groups removed from allowed measurement groups list for subscriber successfully";
@@ -739,8 +747,8 @@ namespace openPG.UI.DataModels
                 if (isOptional)
                     subscriberList.Add(Guid.Empty, "Select Subscriber");
 
-                DataTable subscriberTable = database.Connection.RetrieveData(database.AdapterType, "SELECT ID, Acronym FROM Subscriber WHERE Enabled = @enabled " +
-                "AND NodeID = @nodeID ORDER BY Name", DefaultTimeout, true, database.CurrentNodeID());
+                string query = database.ParameterizedQueryString("SELECT ID, Acronym FROM Subscriber WHERE Enabled = {0} AND NodeID = {1} ORDER BY Name", "enabled", "nodeID");
+                DataTable subscriberTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, database.Bool(true), database.CurrentNodeID());
 
                 foreach (DataRow row in subscriberTable.Rows)
                 {
@@ -765,20 +773,33 @@ namespace openPG.UI.DataModels
         public static string Save(AdoDataConnection database, Subscriber subscriber)
         {
             bool createdConnection = false;
+            string query;
 
             try
             {
                 createdConnection = CreateConnection(ref database);
 
                 if (subscriber.ID == Guid.Empty || subscriber.ID == null)
-                    database.Connection.ExecuteNonQuery("INSERT INTO Subscriber (NodeID, Acronym, Name, SharedSecret, AuthKey, ValidIPAddresses, Enabled, UpdatedBy, UpdatedOn, CreatedBy, CreatedOn) VALUES (@nodeID, @acronym, " +
-                "@name, @sharedSecret, @authKey, @validIpAddresses, @enabled, @updatedBy, @updatedOn, @createdBy, @createdOn)", DefaultTimeout,
-                (subscriber.NodeID == null || subscriber.NodeID == Guid.Empty) ? database.CurrentNodeID() : database.Guid(subscriber.NodeID), subscriber.Acronym, subscriber.Name.ToNotNull(),
-                subscriber.SharedSecret, subscriber.AuthKey, subscriber.ValidIPAddresses, subscriber.Enabled, CommonFunctions.CurrentUser, database.UtcNow(), CommonFunctions.CurrentUser, database.UtcNow());
+                {
+                    query = database.ParameterizedQueryString("INSERT INTO Subscriber (NodeID, Acronym, Name, SharedSecret, AuthKey, ValidIPAddresses, Enabled, " +
+                        "UpdatedBy, UpdatedOn, CreatedBy, CreatedOn) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10})", "nodeID", "acronym", "name",
+                        "sharedSecret", "authKey", "validIPAddresses", "enabled", "updatedBy", "updatedOn", "createdBy", "createdOn");
+
+                    database.Connection.ExecuteNonQuery(query, DefaultTimeout,
+                        (subscriber.NodeID == null || subscriber.NodeID == Guid.Empty) ? database.CurrentNodeID() : database.Guid(subscriber.NodeID), subscriber.Acronym,
+                        subscriber.Name.ToNotNull(), subscriber.SharedSecret, subscriber.AuthKey, subscriber.ValidIPAddresses, database.Bool(subscriber.Enabled),
+                        CommonFunctions.CurrentUser, database.UtcNow(), CommonFunctions.CurrentUser, database.UtcNow());
+                }
                 else
-                    database.Connection.ExecuteNonQuery("UPDATE Subscriber SET NodeID = @nodeID, Acronym = @acronym, Name = @name, SharedSecret = @sharedSecret, AuthKey = @authKey, ValidIPAddresses = @validIpAddresses, " +
-                        "Enabled = @enabled, UpdatedBy = @updatedBy, UpdatedOn = @updatedOn WHERE ID = @id", DefaultTimeout, database.Guid(subscriber.NodeID), subscriber.Acronym, subscriber.Name.ToNotNull(),
-                        subscriber.SharedSecret, subscriber.AuthKey, subscriber.ValidIPAddresses, subscriber.Enabled, CommonFunctions.CurrentUser, database.UtcNow(), database.Guid(subscriber.ID));
+                {
+                    query = database.ParameterizedQueryString("UPDATE Subscriber SET NodeID = {0}, Acronym = {1}, Name = {2}, SharedSecret = {3}, AuthKey = {4}, " +
+                        "ValidIPAddresses = {5}, Enabled = {6}, UpdatedBy = {7}, UpdatedOn = {8} WHERE ID = {9}", "nodeID", "acronym", "name", "sharedSecret", "authKey",
+                        "validIPAddresses", "enabled", "updatedBy", "updatedOn", "id");
+
+                    database.Connection.ExecuteNonQuery(query, DefaultTimeout, database.Guid(subscriber.NodeID), subscriber.Acronym, subscriber.Name.ToNotNull(),
+                        subscriber.SharedSecret, subscriber.AuthKey, subscriber.ValidIPAddresses, database.Bool(subscriber.Enabled), CommonFunctions.CurrentUser,
+                        database.UtcNow(), database.Guid(subscriber.ID));
+                }
 
                 return "Subscriber information saved successfully";
             }
@@ -806,7 +827,7 @@ namespace openPG.UI.DataModels
                 // Setup current user context for any delete triggers
                 CommonFunctions.SetCurrentUserContext(database);
 
-                database.Connection.ExecuteNonQuery("DELETE FROM Subscriber WHERE ID = @id", DefaultTimeout, database.Guid(id));
+                database.Connection.ExecuteNonQuery(database.ParameterizedQueryString("DELETE FROM Subscriber WHERE ID = {0}", "id"), DefaultTimeout, database.Guid(id));
 
                 return "Subscriber deleted successfully";
             }

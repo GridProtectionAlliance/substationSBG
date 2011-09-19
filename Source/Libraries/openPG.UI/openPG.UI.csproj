@@ -71,8 +71,8 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="openPDCManager.UI">
-      <HintPath>..\..\Dependencies\openPDC\openPDCManager.UI.dll</HintPath>
+    <Reference Include="openPDC.UI">
+      <HintPath>..\..\Dependencies\openPDC\openPDC.UI.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

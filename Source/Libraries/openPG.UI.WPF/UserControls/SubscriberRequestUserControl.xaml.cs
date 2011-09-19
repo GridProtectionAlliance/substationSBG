@@ -71,7 +71,8 @@ namespace openPG.UI.UserControls
             AdoDataConnection database = new AdoDataConnection(CommonFunctions.DefaultSettingsCategory);
             try
             {
-                DataRow row = database.Connection.RetrieveRow(database.AdapterType, "SELECT Company.Acronym, Company.Name FROM Company, Node WHERE Company.ID = Node.CompanyID AND Node.ID = @id", database.CurrentNodeID());
+                string query = database.ParameterizedQueryString("SELECT Company.Acronym, Company.Name FROM Company, Node WHERE Company.ID = Node.CompanyID AND Node.ID = {0}", "id");
+                DataRow row = database.Connection.RetrieveRow(database.AdapterType, query, database.CurrentNodeID());
 
                 m_acronymField.Text = row.Field<string>("Acronym");
                 m_nameField.Text = row.Field<string>("Name");

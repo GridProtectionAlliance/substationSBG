@@ -73,11 +73,11 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="openPDCManager.UI">
-      <HintPath>..\..\Dependencies\openPDC\openPDCManager.UI.dll</HintPath>
+    <Reference Include="openPDC.UI, Version=1.5.51.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\openPDC\openPDC.UI.dll</HintPath>
     </Reference>
-    <Reference Include="openPDCManager.UI.WPF">
-      <HintPath>..\..\Dependencies\openPDC\openPDCManager.UI.WPF.dll</HintPath>
+    <Reference Include="openPDC.UI.WPF">
+      <HintPath>..\..\Dependencies\openPDC\openPDC.UI.WPF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
