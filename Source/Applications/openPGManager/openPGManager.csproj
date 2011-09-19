@@ -73,7 +73,7 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="openPDC.UI, Version=1.5.51.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="openPDC.UI">
       <HintPath>..\..\Dependencies\openPDC\openPDC.UI.dll</HintPath>
     </Reference>
     <Reference Include="openPDC.UI.WPF">
