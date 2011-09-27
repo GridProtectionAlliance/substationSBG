@@ -271,6 +271,13 @@
             <param name="source">Source of exception</param>
             <param name="ex">Exception to be logged</param>
         </member>
+        <member name="M:TimeSeriesFramework.UI.CommonFunctions.LoadUserControl(System.Object,System.String)">
+            <summary>
+            Loads provided user control into the frame control inside main window.
+            </summary>
+            <param name="userControl">User control to be loaded.</param>
+            <param name="title">Title of the user control to be loaded.</param>
+        </member>
         <member name="T:TimeSeriesFramework.UI.Converters.DictionaryToKeyValuePairConverter">
             <summary>
             Represents an <see cref="T:System.Windows.Data.IValueConverter"/> class, which takes <see cref="T:System.Collections.Generic.Dictionary`2"/> collection and returns <see cref="T:System.Collections.Generic.KeyValuePair`2"/>    
@@ -2127,6 +2134,12 @@
             </summary>
             <param name="key">Name of the isolated storage to read from.</param>
             <returns>Object from the isolated storage.</returns>
+        </member>
+        <member name="M:TimeSeriesFramework.UI.IsolatedStorageManager.InitializeIsolatedStorage(System.Boolean)">
+            <summary>
+            Initializes or resets existing values in <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile"/> to default values.
+            </summary>
+            <param name="overWriteExisting">Boolean flag indicating if existing values should be reset to default value.</param>
         </member>
         <member name="T:TimeSeriesFramework.UI.PanAndZoom">
             <summary>
