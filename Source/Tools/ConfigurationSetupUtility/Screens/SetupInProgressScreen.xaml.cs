@@ -789,7 +789,7 @@ namespace ConfigurationSetupUtility.Screens
                     if (m_state["databaseType"].ToString() == "sql server")
                         command.CommandText = string.Format("SELECT COUNT(*) FROM sys.databases WHERE name = '{0}'", databaseName);
                     else if (m_state["databaseType"].ToString() == "oracle")
-                        command.CommandText = string.Format("SELECT COUNT(*) FROM all_users WHERE USERNAME = 'openPG'");
+                        command.CommandText = string.Format("SELECT COUNT(*) FROM all_users WHERE USERNAME = '{0}'", databaseName.ToUpper());
                     else
                         command.CommandText = string.Format("SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '{0}'", databaseName);
 
