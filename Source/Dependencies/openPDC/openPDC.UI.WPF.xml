@@ -373,10 +373,6 @@
             </summary>
         </member>
         <member name="M:openPDC.UI.UserControls.InputStatusMonitorUserControl.InputStatusMonitorUserControl_Loaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles loaded event.
-            </summary>
-            <param name="sender">Source of the event.</param>
             <param name="e">Event arguments.</param>
         </member>
         <member name="M:openPDC.UI.UserControls.InputStatusMonitorUserControl.InitializeComponent">
@@ -425,6 +421,39 @@
             <param name="e">Event arguments.</param>
         </member>
         <member name="M:openPDC.UI.UserControls.InputWizardUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.OutputStreamAddDeviceUserControl">
+            <summary>
+            Interaction logic for OutputStreamAddDeviceUserControl.xaml
+            </summary>
+            <summary>
+            OutputStreamAddDeviceUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamAddDeviceUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.OutputStreamCurrentDeviceUserControl">
+            <summary>
+            Interaction logic for OutputStreamCurrentDeviceUserControl.xaml
+            </summary>
+            <summary>
+            OutputStreamCurrentDeviceUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamCurrentDeviceUserControl.#ctor(System.Int32,System.String)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamCurrentDeviceUserControl"/>.
+            <param name="outputStreamID">ID of the output stream to filter data.</param>
+            <param name="outputStreamAcronym">Acronym of the output stream for display purpose.</param>
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamCurrentDeviceUserControl.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
@@ -604,6 +633,24 @@
             <param name="e">Arguments of the event.</param>
         </member>
         <member name="M:openPDC.UI.UserControls.PhasorUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.RealTimeMeasurementUserControl">
+            <summary>
+            Interaction logic for RealTimeMeasurementUserControl.xaml
+            </summary>
+            <summary>
+            RealTimeMeasurementUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.RealTimeMeasurementUserControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:openPDC.UI.UserControls.RealTimeMeasurementUserControl"/>.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.RealTimeMeasurementUserControl.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
@@ -1078,6 +1125,7 @@
             <summary>
             Creates an instance of <see cref="T:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs"/> class.
             </summary>
+            <param name="outputStreamDeviceID"> ID of the out put stream device to filter data</param>
             <param name="itemsPerPage">Integer value to determine number of items per page.</param>
             <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
         </member>
@@ -1147,6 +1195,7 @@
             <summary>
             Creates an instance of <see cref="T:openPDC.UI.ViewModels.OutputStreamDevicePhasors"/> class.
             </summary>
+            <param name="outputStreamDeviceID">ID of the output stream device to filter data.</param>
             <param name="itemsPerPage">Integer value to determine number of items per page.</param>
             <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
         </member>
@@ -1200,6 +1249,16 @@
             Loads output stream devices.
             </summary>
         </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDevices.Clear">
+            <summary>
+            Creates new instance of <see cref="T:openPDC.UI.DataModels.OutputStreamDevice"/> and assigns it to CurrentItem.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDevices.Delete">
+            <summary>
+            Deletes <see cref="T:openPDC.UI.DataModels.OutputStreamDevice"/>.
+            </summary>
+        </member>
         <member name="M:openPDC.UI.ViewModels.OutputStreamDevices.GetCurrentItemKey">
             <summary>
             Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
@@ -1235,6 +1294,21 @@
         <member name="P:openPDC.UI.ViewModels.OutputStreamDevices.CoordinateFormatLookupList">
             <summary>
             Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> CoordinateDataformat collection of type defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDevices.PhasorCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> object to go to Phasors screen.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDevices.AnalogCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> object to go to Analogs screen.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDevices.DigitalCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> object to go to Digitals screen.
             </summary>
         </member>
         <member name="P:openPDC.UI.ViewModels.OutputStreamDevices.IsNewRecord">
@@ -1468,6 +1542,11 @@
         <member name="P:openPDC.UI.ViewModels.RealTimeStreams.Expanded">
             <summary>
             Gets or sets a boolean flag <see cref="T:openPDC.UI.ViewModels.RealTimeStreams"/> expanded flag.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.RestartConnectionCycle">
+            <summary>
+            Gets or sets a boolean flag indicating if connection to backend windows service needs to be reestablished upon disconnection.
             </summary>
         </member>
         <member name="P:openPDC.UI.ViewModels.RealTimeStreams.LastRefresh">
