@@ -153,6 +153,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "x86", "x86", "{EC798DA3-F75
 		Dependencies\SQLite\x86\System.Data.SQLite.xml = Dependencies\SQLite\x86\System.Data.SQLite.xml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Oracle", "Oracle", "{AFC8E495-1897-4DC7-9C1A-0F81CE079B53}"
+	ProjectSection(SolutionItems) = preProject
+		Data\Oracle\AuditLog.sql = Data\Oracle\AuditLog.sql
+		Data\Oracle\InitialDataSet.sql = Data\Oracle\InitialDataSet.sql
+		Data\Oracle\openPG.sql = Data\Oracle\openPG.sql
+		Data\Oracle\SampleDataSet.sql = Data\Oracle\SampleDataSet.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 10
@@ -287,6 +295,7 @@ Global
 		{3DDEA712-A92F-4252-AA36-EC3D20EE70CB} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
 		{C1140554-1896-43B3-A109-26B601B38A7E} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
 		{BE55A303-AE5A-41D7-8F32-A327C66F5F64} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
+		{AFC8E495-1897-4DC7-9C1A-0F81CE079B53} = {300F8C7D-35CC-4CFA-A97A-82824E4E59BA}
 		{7497D95C-1F53-42E5-9678-FC20062B46AF} = {1DBBCC7B-37F1-43D2-B00A-786874D6E7C4}
 		{047CE9C4-48F2-4333-B5D9-C22063322F28} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
 		{F109961B-329B-4114-87AA-CE0B8F08F32B} = {F1E4A6D5-E5A1-48EC-B2E7-C20AADCF94E1}
