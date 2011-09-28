@@ -77,7 +77,7 @@
             SaveEnabled="{tsfBinding:DataOperation Path=(Validation.HasError)}" HorizontalAlignment="Right" />
 
         <Grid DataContext="{tsfBinding:Column Path=CurrentItem}" 
-                Visibility="{Binding Path=DataContext.CanDelete, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                Visibility="{Binding Path=DataContext.CanDelete, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel}, Converter={StaticResource ObjectToVisibilityConverter}}">
                     
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
