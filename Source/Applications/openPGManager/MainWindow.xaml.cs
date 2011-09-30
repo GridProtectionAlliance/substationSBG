@@ -33,13 +33,14 @@ using TimeSeriesFramework.UI;
 using TimeSeriesFramework.UI.DataModels;
 using TVA.IO;
 using TVA.Reflection;
+using TVA.Windows;
 
 namespace openPGManager
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : SecureWindow
     {
         #region [ Members ]
 
@@ -51,6 +52,9 @@ namespace openPGManager
 
         #region [ Properties ]
 
+        /// <summary>
+        /// Gets <see cref="ObservableCollection{T}"/> type collection of <see cref="MenuDataItem"/>.
+        /// </summary>
         public ObservableCollection<MenuDataItem> MenuDataItems
         {
             get
@@ -116,6 +120,7 @@ namespace openPGManager
         void MainWindow_Unloaded(object sender, RoutedEventArgs e)
         {
             CommonFunctions.SetRetryServiceConnection(false);
+            Application.Current.Shutdown();
         }
 
         /// <summary>
