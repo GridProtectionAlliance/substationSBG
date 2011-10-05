@@ -1483,6 +1483,15 @@
             <param name="OutputStreamMeasurementID">ID of the record to be deleted.</param>
             <returns>String, for display use, indicating success.</returns>
         </member>
+        <member name="M:openPDC.UI.DataModels.OutputStreamMeasurement.AddMeasurements(TVA.Data.AdoDataConnection,System.Int32,System.Collections.ObjectModel.ObservableCollection{TimeSeriesFramework.UI.DataModels.Measurement})">
+            <summary>
+            Creates and saves new <see cref="T:openPDC.UI.DataModels.OutputStreamMeasurement"/> into the database.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="outputStreamID">ID of the output stream.</param>
+            <param name="measurements">Collection of measurements to be added.</param>
+            <returns>String, for display use, indicating success.</returns>
+        </member>
         <member name="P:openPDC.UI.DataModels.OutputStreamMeasurement.NodeID">
             <summary>
             Gets or sets the current <see cref="T:openPDC.UI.DataModels.OutputStreamMeasurement"/>'s NodeID.
@@ -1738,6 +1747,11 @@
             Gets or sets Acronym of the <see cref="T:openPDC.UI.DataModels.RealTimeDevice"/>.
             </summary>
         </member>
+        <member name="P:openPDC.UI.DataModels.RealTimeDevice.Name">
+            <summary>
+            Gets or sets Name of the <see cref="T:openPDC.UI.DataModels.RealTimeDevice"/>
+            </summary>
+        </member>
         <member name="P:openPDC.UI.DataModels.RealTimeDevice.ProtocolName">
             <summary>
             Gets or sets ProtocolName of the <see cref="T:openPDC.UI.DataModels.RealTimeDevice"/>.
@@ -1858,6 +1872,230 @@
             Gets or sets Foreground for <see cref="T:openPDC.UI.DataModels.RealTimeMeasurement"/> to display on the screen.
             </summary>
         </member>
+        <member name="T:openPDC.UI.DataModels.RealTimeStatistic">
+            <summary>
+            Represents collection of statistics for the configured devices.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.DataModels.RealTimeStatistic.Load(TVA.Data.AdoDataConnection)">
+            <summary>
+            Creates <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> type collection of <see cref="T:openPDC.UI.DataModels.RealTimeStatistic"/>.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <returns>Collection of <see cref="T:openPDC.UI.DataModels.RealTimeStatistic"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.DataModels.RealTimeStatistic.GetStatisticMeasurements(TVA.Data.AdoDataConnection)">
+            <summary>
+            Gets statistic measurements from the database for current node.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <returns>Collection of <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>.</returns>
+        </member>
+        <member name="F:openPDC.UI.DataModels.RealTimeStatistic.MaxPointID">
+            <summary>
+            Defines maximum value of statistic measurement's point id defined in the database.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.DataModels.RealTimeStatistic.MinPointID">
+            <summary>
+            Defines minimum value of statistic measurement's point id defined in the database.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.DataModels.RealTimeStatistic.StatisticMeasurements">
+            <summary>
+            Defines a collection of <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>s defined in the database.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.DataModels.RealTimeStatistic.InputStreamStatistics">
+            <summary>
+            Defines a collection of <see cref="T:openPDC.UI.DataModels.StreamStatistic"/> defined in the database.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.DataModels.RealTimeStatistic.OutputStreamStatistics">
+            <summary>
+            Defines a collection of <see cref="T:openPDC.UI.DataModels.StreamStatistic"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.RealTimeStatistic.SourceType">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.RealTimeStatistic"/>'s SourceType.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.RealTimeStatistic.Expanded">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.RealTimeStatistic"/>'s SourceType.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.RealTimeStatistic.StreamStatisticList">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.RealTimeStatistic"/>'s SourceType.
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.DataModels.StreamStatistic">
+            <summary>
+            Represents a connection (either to a PDC or a device) with a list of associated devices and statistical measurements.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StreamStatistic.ID">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.StreamStatistic"/>'s ID.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StreamStatistic.Acronym">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.StreamStatistic"/>'s Acronym.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StreamStatistic.Name">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.StreamStatistic"/>'s Name.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StreamStatistic.StatusColor">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StreamStatistic"/>'s Foreground.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StreamStatistic.DeviceStatisticList">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.StreamStatistic"/>'s DeviceStatisticList.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StreamStatistic.StatisticMeasurementList">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.StreamStatistic"/>'s StatisticMeasurementList.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StreamStatistic.Expanded">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.StreamStatistic"/>'s Expanded flag.
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.DataModels.PdcDeviceStatistic">
+            <summary>
+            Represents a device with a list of statistical measurement associated with it.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.PdcDeviceStatistic.DeviceID">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.PdcDeviceStatistic"/>'s ID.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.PdcDeviceStatistic.ParentID">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.PdcDeviceStatistic"/>'s ParentID.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.PdcDeviceStatistic.DeviceAcronym">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.PdcDeviceStatistic"/>'s Acronym.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.PdcDeviceStatistic.DeviceName">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.PdcDeviceStatistic"/>'s Name.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.PdcDeviceStatistic.StatisticMeasurementList">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.PdcDeviceStatistic"/>'s StatisticMeasurementList.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.PdcDeviceStatistic.Expanded">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.PdcDeviceStatistic"/>'s Expanded flag.
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.DataModels.StatisticMeasurement">
+            <summary>
+            Represents a measurement record with all related statistic information.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.DeviceID">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s DeviceID.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.PointID">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s PointID.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.ID">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s ID.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.PointTag">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s PointTag.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.SignalReference">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s SignalReference.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.Source">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s Source.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.StatisticName">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s StatisticName.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.StatisticDescription">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s StatisticDescription.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.DataType">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s DataType.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.DisplayFormat">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s DisplayFormat.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.ConnectedState">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s ConnectedState.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.LoadOrder">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s LoadOrder.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.TimeTag">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s TimeTag.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.Value">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s Value.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.Quality">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s Quality.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.Foreground">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s Foreground.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.Expanded">
+            <summary>
+            Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s Expanded flag.
+            </summary>
+        </member>
         <member name="T:openPDC.UI.DataModels.Statistic">
             <summary>
             Represents a record of <see cref="T:openPDC.UI.DataModels.Statistic"/> information as defined in the database.
@@ -1868,7 +2106,7 @@
             Loads <see cref="T:openPDC.UI.DataModels.Statistic"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <returns>Collection of <see cref="T:openPDC.UI.DataModels.Statistic"/>.</returns>
+            <returns>Collection of <see cref="T:openPDC.UI.DataModels.Statistic"/>.</returns>        
         </member>
         <member name="M:openPDC.UI.DataModels.Statistic.GetLookupList(TVA.Data.AdoDataConnection,System.Boolean)">
             <summary>

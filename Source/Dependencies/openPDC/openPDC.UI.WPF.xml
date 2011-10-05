@@ -373,6 +373,10 @@
             </summary>
         </member>
         <member name="M:openPDC.UI.UserControls.InputStatusMonitorUserControl.InputStatusMonitorUserControl_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles loaded event.
+            </summary>
+            <param name="sender">Source of the event.</param>
             <param name="e">Event arguments.</param>
         </member>
         <member name="M:openPDC.UI.UserControls.InputStatusMonitorUserControl.InitializeComponent">
@@ -669,6 +673,24 @@
             </summary>
         </member>
         <member name="M:openPDC.UI.UserControls.RealTimeStatisticsUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.RealTimeStatisticUserControl">
+            <summary>
+            Interaction logic for RealTimeStatisticUserControl.xaml
+            </summary>
+            <summary>
+            RealTimeStatisticUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.RealTimeStatisticUserControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:openPDC.UI.UserControls.RealTimeStatisticUserControl"/>.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.RealTimeStatisticUserControl.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
@@ -1325,6 +1347,7 @@
             <summary>
             Creates an instance of <see cref="T:openPDC.UI.ViewModels.OutputStreamMeasurements"/> class.
             </summary>
+            <param name="outputStreamID">ID of the output strea to filter data.</param>
             <param name="itemsPerPage">Integer value to determine number of items per page.</param>
             <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
         </member>
@@ -1353,6 +1376,11 @@
         <member name="P:openPDC.UI.ViewModels.OutputStreamMeasurements.IsNewRecord">
             <summary>
             Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamMeasurements.CanSave">
+            <summary>
+            Determines if current information can be saved by user.
             </summary>
         </member>
         <member name="P:openPDCManager.UI.ViewModels.OutputStreams.UpdateConfigurationCommand">
@@ -1512,6 +1540,23 @@
             Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of type defined in the database.
             </summary>
         </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStatistics.GetCurrentItemKey">
+            <summary>
+            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStatistics.GetCurrentItemName">
+            <summary>
+            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStatistics.IsNewRecord">
+            <summary>
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
         <member name="T:openPDC.UI.ViewModels.RealTimeStreams">
             <summary>
             Class to hold bindable <see cref="T:openPDC.UI.DataModels.RealTimeStream"/> collection and current selection information for UI.
@@ -1534,6 +1579,11 @@
             Overrides Load() method from the base class to add aditional functionalities.
             </summary>
         </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStreams.UnsubscribeUnsynchronizedData">
+            <summary>
+            Unsubscribes data from the service.
+            </summary>
+        </member>
         <member name="P:openPDC.UI.ViewModels.RealTimeStreams.IsNewRecord">
             <summary>
             Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
@@ -1552,6 +1602,11 @@
         <member name="P:openPDC.UI.ViewModels.RealTimeStreams.LastRefresh">
             <summary>
             Gets or sets a last refresh time to display on UI.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.StatisticMeasurements">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.ViewModels.RealTimeStreams"/> StatisticMeasurements.
             </summary>
         </member>
     </members>
