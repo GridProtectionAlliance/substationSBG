@@ -42,7 +42,7 @@
             
             <!--Second Row-->
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Acronym"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Name="m_acronymField"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="m_acronymField" CharacterCasing="Upper"/>
             <TextBlock Grid.Row="1" Grid.Column="2" Text="Name"/>
             <TextBox Grid.Row="1" Grid.Column="3" Name="m_nameField"/>
 

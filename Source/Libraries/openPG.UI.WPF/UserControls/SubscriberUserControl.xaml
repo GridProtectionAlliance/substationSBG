@@ -49,7 +49,7 @@
                       SelectedItem="{tsfBinding:Column Path=NodeID, Converter={StaticResource DictionaryToKeyValuePairConverter}, ConverterParameter={StaticResource NodeLookupList}}"/>
             <!--Second Row-->
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Acronym"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{tsfBinding:Column Path=Acronym}" Name="m_acronymField"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{tsfBinding:Column Path=Acronym}" Name="m_acronymField" CharacterCasing="Upper"/>
             <TextBlock Grid.Row="1" Grid.Column="2" Text="Name"/>
             <TextBox Grid.Row="1" Grid.Column="3" Text="{tsfBinding:Column Path=Name}" Name="m_nameField"/>
             
@@ -87,5 +87,9 @@
                 <sdk:DataGridTextColumn Header="Enabled" Width="*" Binding="{tsfBinding:Column Path=Enabled}"/>
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
+
+        <uc:DataPagerUserControl CurrentPageNumber="{Binding CurrentPageNumber}" PageCount="{Binding PageCount}"
+                                FirstCommand="{Binding FirstCommand}" PreviousCommand="{Binding PreviousCommand}"
+                                NextCommand="{Binding NextCommand}" LastCommand="{Binding LastCommand}" VerticalAlignment="Bottom"/>
     </StackPanel>
 </UserControl>

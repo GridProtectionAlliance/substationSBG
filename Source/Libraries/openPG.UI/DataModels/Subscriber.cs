@@ -31,8 +31,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using TimeSeriesFramework.UI;
-using TVA.Data;
 using TimeSeriesFramework.UI.DataModels;
+using TVA.Data;
 
 namespace openPG.UI.DataModels
 {
@@ -512,7 +512,7 @@ namespace openPG.UI.DataModels
                 createdConnection = CreateConnection(ref database);
 
                 Dictionary<int, string> allowedMeasurementGroups = new Dictionary<int, string>();
-                string query = database.ParameterizedQueryString("SELECT MeasurementGroupID, MeasurementGroupName FROM SubscriberMeasurementGroupDetail WHERE SubscriberID = {0} AND Allowed = {1} ORDER BY MeasurementGroupName", "subscriberID", "allowed");
+                string query = database.ParameterizedQueryString("SELECT MeasurementGroupID, MeasurementGroupName FROM SubscriberMeasGroupDetail WHERE SubscriberID = {0} AND Allowed = {1} ORDER BY MeasurementGroupName", "subscriberID", "allowed");
                 DataTable allowedMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, subscriberID, database.Bool(true));
 
                 foreach (DataRow row in allowedMeasurementGroupTable.Rows)
@@ -542,7 +542,7 @@ namespace openPG.UI.DataModels
                 createdConnection = CreateConnection(ref database);
 
                 Dictionary<int, string> deniedMeasurementGroups = new Dictionary<int, string>();
-                string query = database.ParameterizedQueryString("SELECT MeasurementGroupID, MeasurementGroupName FROM SubscriberMeasurementGroupDetail WHERE SubscriberID = {0} AND Allowed = {1} ORDER BY MeasurementGroupName", "subscriberID", "allowed");
+                string query = database.ParameterizedQueryString("SELECT MeasurementGroupID, MeasurementGroupName FROM SubscriberMeasGroupDetail WHERE SubscriberID = {0} AND Allowed = {1} ORDER BY MeasurementGroupName", "subscriberID", "allowed");
                 DataTable deniedMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, subscriberID, database.Bool(false));
 
                 foreach (DataRow row in deniedMeasurementGroupTable.Rows)
