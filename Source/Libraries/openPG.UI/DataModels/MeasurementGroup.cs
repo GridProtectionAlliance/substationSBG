@@ -316,7 +316,7 @@ namespace openPG.UI.DataModels
                 createdConnection = CreateConnection(ref database);
 
                 Dictionary<Guid, string> currentMeasurements = new Dictionary<Guid, string>();
-                DataTable currentMeasurementTable = database.Connection.RetrieveData(database.AdapterType, database.ParameterizedQueryString("SELECT * FROM MeasurementGroupMeasurementDetail WHERE MeasurementGroupID = {0} ORDER BY PointID", "measurementGroupID"),
+                DataTable currentMeasurementTable = database.Connection.RetrieveData(database.AdapterType, database.ParameterizedQueryString("SELECT * FROM MeasurementGroupMeasDetail WHERE MeasurementGroupID = {0} ORDER BY PointID", "measurementGroupID"),
                     DefaultTimeout, measurementGroupId);
 
                 foreach (DataRow row in currentMeasurementTable.Rows)
