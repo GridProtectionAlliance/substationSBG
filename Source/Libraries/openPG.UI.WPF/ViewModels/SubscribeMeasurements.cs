@@ -54,15 +54,15 @@ namespace openPG.UI.ViewModels
         /// <summary>
         /// Method signature for a function which handles MeasurementsSubscribed event.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Source of an event.</param>
+        /// <param name="e">Event arguments.</param>
         public delegate void OnSubscriptionChanged(object sender, RoutedEventArgs e);
 
         /// <summary>
         /// Method signature for a function which handles CurrentDeviceChanged event.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Source of an event.</param>
+        /// <param name="e">Event arguments.</param>
         public delegate void OnCurrentDeviceChanged(object sender, RoutedEventArgs e);
 
         // Event

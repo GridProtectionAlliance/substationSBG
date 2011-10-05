@@ -42,7 +42,6 @@ namespace openPGManager
         private ErrorLogger m_errorLogger;
         private Func<string> m_defaultErrorText;
         private string m_title;
-        private IPrincipal m_currentPrincipal;
 
         #endregion
 
