@@ -4,6 +4,19 @@
         <name>openPDC.UI.WPF</name>
     </assembly>
     <members>
+        <member name="T:openPDC.UI.VersionConfigToNamespaceAssemblyObjectBinder">
+            <summary>
+            Class to override default type binding when parsing *.PmuConnection file.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.VersionConfigToNamespaceAssemblyObjectBinder.BindToType(System.String,System.String)">
+            <summary>
+            Controls the binding of a serialized object to type.
+            </summary>
+            <param name="assemblyName">Specifies the <see cref="T:System.Reflection.Assembly"/> name of the serialized object.</param>
+            <param name="typeName">Specified the <see cref="T:System.Type"/> name of the serialized object.</param>
+            <returns></returns>
+        </member>
         <member name="T:openPDC.UI.UserControls.InputWizardUserControl">
             <summary>
             Interaction logic for InputWizardUserControl.xaml

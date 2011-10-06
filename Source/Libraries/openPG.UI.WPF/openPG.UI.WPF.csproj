@@ -71,7 +71,7 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="openPDC.UI, Version=1.5.66.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="openPDC.UI, Version=1.5.67.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Dependencies\openPDC\openPDC.UI.dll</HintPath>
     </Reference>
     <Reference Include="openPDC.UI.WPF">
