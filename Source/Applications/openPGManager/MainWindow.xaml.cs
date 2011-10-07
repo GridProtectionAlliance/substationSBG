@@ -33,6 +33,7 @@ using TimeSeriesFramework.UI;
 using TimeSeriesFramework.UI.DataModels;
 using TVA.IO;
 using TVA.Reflection;
+using System.Diagnostics;
 
 namespace openPGManager
 {
@@ -71,6 +72,13 @@ namespace openPGManager
         /// </summary>
         public MainWindow()
         {
+#if DEBUG
+            const string hostService = "openPG";
+
+            if (Process.GetProcessesByName(hostService).Length == 0)
+                Process.Start(hostService + ".exe");
+#endif
+
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(MainWindow_Loaded);
             this.Unloaded += new RoutedEventHandler(MainWindow_Unloaded);
