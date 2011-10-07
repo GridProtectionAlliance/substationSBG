@@ -22,8 +22,8 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <TextBlock Text="Available Measurements" FontSize="{StaticResource SmallTextSize}" FontWeight="Bold"/>
             <TextBox x:Name="TextBoxSearch" Width="125"/>
-            <Button Content="Search" Command="{Binding Path=SearchCommand}" CommandParameter="{Binding ElementName=TextBoxSearch, Path=Text}" ToolTip="Search measurements"/>
-            <Button Content="Show All" Command="{Binding Path=ShowAllCommand}" ToolTip="Show all measurements"/>
+            <Button Content="Search" Command="{Binding Path=SearchCommand}" CommandParameter="{Binding ElementName=TextBoxSearch, Path=Text}" ToolTip="Search measurements" Margin="2"/> 
+            <Button Content="Show All" Command="{Binding Path=ShowAllCommand}" ToolTip="Show all measurements" Margin="2"/>
         </StackPanel>
 
         <sdk:DataGrid ItemsSource="{Binding CurrentPage}" Height="Auto">

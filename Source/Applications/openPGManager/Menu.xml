@@ -36,7 +36,7 @@
   <MenuDataItem Icon="" MenuText="Outputs" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
     <SubMenuItems>
       <!--<MenuDataItem Icon="" MenuText="Manage Outputs" Description="Manage Output Adapters" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.CustomOutputAdapterUserControl" />-->
-      <MenuDataItem Icon="" MenuText="Output Streams" Description="Manage Output Streams" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.OutputStreamUserControl" />
+      <MenuDataItem Icon="" MenuText="IEEE C37.118 Mirroring" Description="Manage IEEE C37.118 Output Stream Mirroring" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.OutputStreamUserControl" />
     </SubMenuItems>
   </MenuDataItem>
   

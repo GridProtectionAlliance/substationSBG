@@ -25,6 +25,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using openPG.UI.DataModels;
 using TimeSeriesFramework.UI;
 using TimeSeriesFramework.UI.Commands;
 using TimeSeriesFramework.UI.DataModels;
@@ -142,7 +143,7 @@ namespace openPG.UI.ViewModels
                 if (m_internalOnly)
                     m_measurements = Measurement.Load(null, m_deviceID, true);
                 else
-                    m_measurements = openPG.UI.DataModels.MeasurementGroup.GetPossibleMeasurements(null, 0);
+                    m_measurements = MeasurementGroup.GetPossibleMeasurements(null, 0);
 
                 ItemsSource = m_measurements;
             }
