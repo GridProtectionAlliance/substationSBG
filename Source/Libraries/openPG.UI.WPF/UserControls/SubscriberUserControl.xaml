@@ -54,15 +54,15 @@
             <TextBox Grid.Row="1" Grid.Column="3" Text="{tsfBinding:Column Path=Name}" Name="m_nameField"/>
             
             <!--Third Row-->
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Shared Secret"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Pre-shared Key"/>
             <TextBox Grid.Row="2" Grid.Column="1" Text="{tsfBinding:Column Path=SharedSecret}" Name="m_sharedSecretField"/>
-            <TextBlock Grid.Row="2" Grid.Column="2" Text="Authentication ID"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="Identity Certificate"/>
             <TextBox Grid.Row="2" Grid.Column="3" Text="{tsfBinding:Column Path=AuthKey}" Name="m_authenticationID"/>
             
             <!--Fourth Row-->
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Key"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Key 1"/>
             <TextBox Grid.Row="3" Grid.Column="1" Height="50" TextWrapping="Wrap" Name="m_keyField"/>
-            <TextBlock Grid.Row="3" Grid.Column="2" Text="IV"/>
+            <TextBlock Grid.Row="3" Grid.Column="2" Text="Key 2"/>
             <TextBox Grid.Row="3" Grid.Column="3" Height="50" TextWrapping="Wrap" Name="m_ivField"/>
             
             <!--Fifth Row-->
@@ -70,7 +70,7 @@
             <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Width="480" Text="{tsfBinding:Column Path=ValidIPAddresses}" Name="m_validIpAddressesField"/>
             
             <!--Sixth Row-->
-            <CheckBox Grid.Row="5" Grid.Column="3" Content="Enabled" IsChecked="{tsfBinding:Column Path=Enabled}" />
+            <CheckBox Grid.Row="5" Grid.Column="3" Content="Enable PG Connection" IsChecked="{tsfBinding:Column Path=Enabled}" />
             
             <!--Seventh Row-->
             <Button Grid.Row="6" Grid.Column="0" Content="Import" Click="Button_Click"/>
