@@ -36,7 +36,7 @@ using TVA.Data;
 
 namespace openPG.UI.ViewModels
 {
-    internal class SubscribeMeasurements : PagedViewModelBase<openPDC.UI.DataModels.Device, int>
+    internal class SubscribeMeasurements : PagedViewModelBase<Device, int>
     {
         #region [ Members ]
 
