@@ -671,6 +671,11 @@
             Gets or sets Selected flag for <see cref="T:openPDC.UI.DataModels.RealTimeMeasurement"/>.
             </summary>
         </member>
+        <member name="P:openPDC.UI.DataModels.RealTimeMeasurement.Selectable">
+            <summary>
+            Gets or sets a flag if <see cref="T:openPDC.UI.DataModels.RealTimeMeasurement"/> can be selected on UI or not.
+            </summary>
+        </member>
         <member name="P:openPDC.UI.DataModels.RealTimeMeasurement.TimeTag">
             <summary>
             Gets or sets TimeTag for <see cref="T:openPDC.UI.DataModels.RealTimeMeasurement"/> data.
