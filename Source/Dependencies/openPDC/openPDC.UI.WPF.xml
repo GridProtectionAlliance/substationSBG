@@ -17,35 +17,72 @@
             <param name="typeName">Specified the <see cref="T:System.Type"/> name of the serialized object.</param>
             <returns></returns>
         </member>
-        <member name="T:openPDC.UI.UserControls.PhasorUserControl">
+        <member name="T:openPDC.UI.UserControls.InputWizardUserControl">
             <summary>
-            Interaction logic for PhasorUserControl.xaml
+            Interaction logic for InputWizardUserControl.xaml
             </summary>
             <summary>
-            PhasorUserControl
+            InputWizardUserControl
             </summary>
         </member>
-        <member name="M:openPDC.UI.UserControls.PhasorUserControl.#ctor(System.Int32)">
+        <member name="M:openPDC.UI.UserControls.InputWizardUserControl.#ctor">
             <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.PhasorUserControl"/> class.
-            <param name="deviceID">ID of the device to filter data.</param>
-            </summary>        
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.InputWizardUserControl"/> class.
+            </summary>
         </member>
-        <member name="M:openPDC.UI.UserControls.PhasorUserControl.PhasorUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:openPDC.UI.UserControls.InputWizardUserControl.CheckBoxAll_Checked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Hanldes checked event on the select all check box.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDC.UI.UserControls.InputWizardUserControl.CheckBoxAll_Unchecked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles unchecked event on the select all check box.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDC.UI.UserControls.InputWizardUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.PhasorMeasurementUserControl">
+            <summary>
+            Interaction logic for PhasorMeasurementUserControl.xaml
+            </summary>
+            <summary>
+            PhasorMeasurementUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.PhasorMeasurementUserControl.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.PhasorMeasurementUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.PhasorMeasurementUserControl.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.PhasorMeasurementUserControl"/> class.
+            </summary>
+            <param name="deviceID">ID of the device to filter measurements.</param>
+        </member>
+        <member name="M:openPDC.UI.UserControls.PhasorMeasurementUserControl.PhasorMeasurementUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Handles unloaded event.
             </summary>
             <param name="sender">Source of the event.</param>
             <param name="e">Arguments of the event.</param>
         </member>
-        <member name="M:openPDC.UI.UserControls.PhasorUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+        <member name="M:openPDC.UI.UserControls.PhasorMeasurementUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
             <summary>
             Handles key down event on the datagrid object.
             </summary>
             <param name="sender">Source of the event.</param>
             <param name="e">Arguments of the event.</param>
         </member>
-        <member name="M:openPDC.UI.UserControls.PhasorUserControl.InitializeComponent">
+        <member name="M:openPDC.UI.UserControls.PhasorMeasurementUserControl.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
@@ -221,6 +258,708 @@
             <remarks>
             Use this to generate string to setup alternate command channel.
             </remarks>
+        </member>
+        <member name="T:openPDC.UI.UserControls.OutputStreamDeviceUserControl">
+            <summary>
+            Interaction logic for OutputStreamDeviceUserControl.xaml
+            </summary>
+            <summary>
+            OutputStreamDeviceUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceUserControl.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamDeviceUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.OutputStreamCurrentDeviceUserControl">
+            <summary>
+            Interaction logic for OutputStreamCurrentDeviceUserControl.xaml
+            </summary>
+            <summary>
+            OutputStreamCurrentDeviceUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamCurrentDeviceUserControl.#ctor(System.Int32,System.String)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamCurrentDeviceUserControl"/>.
+            <param name="outputStreamID">ID of the output stream to filter data.</param>
+            <param name="outputStreamAcronym">Acronym of the output stream for display purpose.</param>
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamCurrentDeviceUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.RealTimeMeasurementUserControl">
+            <summary>
+            Interaction logic for RealTimeMeasurementUserControl.xaml
+            </summary>
+            <summary>
+            RealTimeMeasurementUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.RealTimeMeasurementUserControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:openPDC.UI.UserControls.RealTimeMeasurementUserControl"/>.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.RealTimeMeasurementUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.PhasorUserControl">
+            <summary>
+            Interaction logic for PhasorUserControl.xaml
+            </summary>
+            <summary>
+            PhasorUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.PhasorUserControl.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.PhasorUserControl"/> class.
+            <param name="deviceID">ID of the device to filter data.</param>
+            </summary>        
+        </member>
+        <member name="M:openPDC.UI.UserControls.PhasorUserControl.PhasorUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles unloaded event.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Arguments of the event.</param>
+        </member>
+        <member name="M:openPDC.UI.UserControls.PhasorUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Handles key down event on the datagrid object.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Arguments of the event.</param>
+        </member>
+        <member name="M:openPDC.UI.UserControls.PhasorUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.InputStatusMonitorUserControl">
+            <summary>
+            Interaction logic for InputStatusMonitorUserControl.xaml
+            </summary>
+            <summary>
+            InputStatusMonitorUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.InputStatusMonitorUserControl.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.InputStatusMonitorUserControl"/>.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.InputStatusMonitorUserControl.InputStatusMonitorUserControl_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles loaded event.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDC.UI.UserControls.InputStatusMonitorUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.OutputStreamMeasurementUserControl">
+            <summary>
+            Interaction logic for OutputStreamMeasurementUserControl.xaml
+            </summary>
+            <summary>
+            OutputStreamMeasurementUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamMeasurementUserControl.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamMeasurementUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamMeasurementUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.OutputStreamDeviceDigitalUserControl">
+            <summary>
+            Interaction logic for OutputStreamDeviceDigitalUserControl.xaml
+            </summary>
+            <summary>
+            OutputStreamDeviceDigitalUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceDigitalUserControl.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamDeviceDigitalUserControl"/>
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceDigitalUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs">
+            <summary>
+            Class to hold bindable <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceAnalog"/> collection and selected OutputStreamDeviceAnalog for UI.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs"/> class.
+            </summary>
+            <param name="outputStreamDeviceID"> ID of the out put stream device to filter data</param>
+            <param name="itemsPerPage">Integer value to determine number of items per page.</param>
+            <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.GetCurrentItemKey">
+            <summary>
+            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.GetCurrentItemName">
+            <summary>
+            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.Load">
+            <summary>
+            Load output stream device phasors.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.IsNewRecord">
+            <summary>
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.TypeLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> Type collection of type defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.OutputStreamDeviceID">
+            <summary>
+            Gets or set output stream device id.
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.OutputStreamDeviceAnalogUserControl">
+            <summary>
+            Interaction logic for OutputStreamDeviceAnalogUserControl.xaml
+            </summary>
+            <summary>
+            OutputStreamDeviceAnalogUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceAnalogUserControl.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamDeviceAnalogUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceAnalogUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.ViewModels.OutputStreamMeasurements">
+            <summary>
+            Class to hold bindable<see cref="T:openPDC.UI.DataModels.OutputStreamMeasurement"/> colletion and select OutputStreamMeasurement for UI.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamMeasurements.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.ViewModels.OutputStreamMeasurements"/> class.
+            </summary>
+            <param name="outputStreamID">ID of the output strea to filter data.</param>
+            <param name="itemsPerPage">Integer value to determine number of items per page.</param>
+            <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamMeasurements.GetCurrentItemKey">
+            <summary>
+            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamMeasurements.GetCurrentItemName">
+            <summary>
+            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamMeasurements.Load">
+            <summary>
+            Loads output Stream Id to filter data.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamMeasurements.OutputStreamID">
+            <summary>
+            Gets or sets Output Stream ID.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamMeasurements.IsNewRecord">
+            <summary>
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamMeasurements.CanSave">
+            <summary>
+            Determines if current information can be saved by user.
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.Modal.ConfigurationCreator">
+            <summary>
+            Interaction logic for ConfigurationCreator.xaml
+            </summary>
+            <summary>
+            ConfigurationCreator
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.Modal.ConfigurationCreator.#ctor">
+            <summary>
+            Creates a new <see cref="T:openPDC.UI.Modal.ConfigurationCreator"/>.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.Modal.ConfigurationCreator.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.Modal.ConfigurationCreator.ConfigurationFrame">
+            <summary>
+            Gets or sets the manually tweaked configuration frame.
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.ViewModels.OutputStreamDeviceDigitals">
+            <summary>
+            Class to hold bindable <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceDigital"/> collection and selected OutputStreamDeviceDigital for UI.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceDigitals.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.ViewModels.OutputStreamDeviceDigitals"/> class.
+            </summary>
+            <param name="outputStreamDeviceID">ID of the output stream device.</param>
+            <param name="itemsPerPage">Integer value to determine number of items per page.</param>
+            <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceDigitals.GetCurrentItemKey">
+            <summary>
+            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceDigitals.GetCurrentItemName">
+            <summary>
+            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceDigitals.Load">
+            <summary>
+            Load output stream device phasors.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDeviceDigitals.IsNewRecord">
+            <summary>
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDeviceDigitals.OutputStreamDeviceID">
+            <summary>
+            Gets or set outputstream device id.
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.RealTimeStatisticUserControl">
+            <summary>
+            Interaction logic for RealTimeStatisticUserControl.xaml
+            </summary>
+            <summary>
+            RealTimeStatisticUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.RealTimeStatisticUserControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:openPDC.UI.UserControls.RealTimeStatisticUserControl"/>.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.RealTimeStatisticUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.ViewModels.RealTimeStreams">
+            <summary>
+            Class to hold bindable <see cref="T:openPDC.UI.DataModels.RealTimeStream"/> collection and current selection information for UI.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStreams.GetCurrentItemKey">
+            <summary>
+            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStreams.GetCurrentItemName">
+            <summary>
+            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStreams.Load">
+            <summary>
+            Overrides Load() method from the base class to add aditional functionalities.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStreams.UnsubscribeUnsynchronizedData">
+            <summary>
+            Unsubscribes data from the service.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.IsNewRecord">
+            <summary>
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.Expanded">
+            <summary>
+            Gets or sets a boolean flag <see cref="T:openPDC.UI.ViewModels.RealTimeStreams"/> expanded flag.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.RestartConnectionCycle">
+            <summary>
+            Gets or sets a boolean flag indicating if connection to backend windows service needs to be reestablished upon disconnection.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.LastRefresh">
+            <summary>
+            Gets or sets a last refresh time to display on UI.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.StatisticMeasurements">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.ViewModels.RealTimeStreams"/> StatisticMeasurements.
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.DeviceUserControl">
+            <summary>
+            Interaction logic for DeviceUserControl.xaml
+            </summary>
+            <summary>
+            DeviceUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.DeviceUserControl.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.DeviceUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.DeviceUserControl.#ctor(openPDC.UI.DataModels.Device)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.DeviceUserControl"/> class.
+            </summary>
+            <param name="device"><see cref="T:openPDC.UI.DataModels.Device"/> to be edited.</param>
+        </member>
+        <member name="M:openPDC.UI.UserControls.DeviceUserControl.DeviceUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handles unload event of the <see cref="T:openPDC.UI.UserControls.DeviceUserControl"/>.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Arguments for the event.</param>
+        </member>
+        <member name="M:openPDC.UI.UserControls.DeviceUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.ConnectionSettings">
+            <summary>
+            Represents connection information defined in PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.ConnectionSettings.PhasorProtocol">
+            <summary>
+            Defines <see cref="F:openPDC.UI.ConnectionSettings.PhasorProtocol"/> from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.ConnectionSettings.TransportProtocol">
+            <summary>
+            Defines <see cref="F:openPDC.UI.ConnectionSettings.TransportProtocol"/> from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.ConnectionSettings.ConnectionString">
+            <summary>
+            Defines connection string from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.ConnectionSettings.PmuID">
+            <summary>
+            Defines ID of the source from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.ConnectionSettings.FrameRate">
+            <summary>
+            Defines frame rate from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.ConnectionSettings.AutoRepeatPlayback">
+            <summary>
+            Defines boolean flag if data needs to be repeated again and again.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.ConnectionSettings.ByteEncodingDisplayFormat">
+            <summary>
+            Defines byte encoding format from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.ConnectionSettings.ConnectionParameters">
+            <summary>
+            Defines additional connection information such as alternate command channel from PmuConnection file.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.ConnectionSettings.ConfigurationFileName">
+            <summary>
+            Defines name of the configuration file.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.ConnectionSettings.RefreshConfigurationFileOnChange">
+            <summary>
+            Defines boolean flag to refresh configuration file on change.
+            </summary>
+        </member>
+        <member name="F:openPDC.UI.ConnectionSettings.ParseWordCountFromByte">
+            <summary>
+            Defines boolean flag indicating if parse word count from byte.
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.ViewModels.PhasorMeasurements">
+            <summary>
+            Class to hold bindable <see cref="T:TimeSeriesFramework.UI.DataModels.Measurement"/> collection.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.PhasorMeasurements.Clear">
+            <summary>
+            Creates a new instance of <see cref="T:TimeSeriesFramework.UI.DataModels.Measurement"/> and assigns it to CurrentItem.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.PhasorMeasurements.Load">
+            <summary>
+            Loads collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Measurement"/> defined in the database.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.PhasorMeasurements.m_currentItem_PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Handles PropertyChanged event on CurrentItem. If DeviceID is changed then get the associated phasors list.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.PhasorMeasurements.DeviceLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of devices defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.PhasorMeasurements.PhasorLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of phasors defined in the database.
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.OutputStreamDevicePhasorUserControl">
+            <summary>
+            Interaction logic for OutputStreamDevicePhasorUserControl.xaml
+            </summary>
+            <summary>
+            OutputStreamDevicePhasorUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamDevicePhasorUserControl.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamDevicePhasorUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.OutputStreamDevicePhasorUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.ViewModels.Phasors">
+            <summary>
+            Class to hold bindable <see cref="T:openPDC.UI.DataModels.Phasor"/> collection and current selection information for UI.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.Phasors.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.ViewModels.Phasors"/> class.
+            </summary>
+            <param name="deviceID">ID of teh device to fileter phasors.</param>
+            <param name="itemsPerPage">Integer value to determine number of items per page.</param>
+            <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.Phasors.GetCurrentItemKey">
+            <summary>
+            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.Phasors.GetCurrentItemName">
+            <summary>
+            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.Phasors.Load">
+            <summary>
+            Loads collection of <see cref="T:openPDC.UI.DataModels.Phasor"/> defined in the database for a <see cref="T:openPDC.UI.DataModels.Device"/>.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.Phasors.Clear">
+            <summary>
+            Creates a new instance of <see cref="T:openPDC.UI.DataModels.Phasor"/> and assigns it to CurrentItem.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.Phasors.IsNewRecord">
+            <summary>
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.Phasors.PhaseLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of phase defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.Phasors.TypeLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of type defined in the database.
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.CalculatedMeasurementUserControl">
+            <summary>
+            Interaction logic for CalculatedMeasurementUserControl.xaml
+            </summary>
+            <summary>
+            CalculatedMeasurementUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.CalculatedMeasurementUserControl.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.CalculatedMeasurementUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.CalculatedMeasurementUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStatistics.GetCurrentItemKey">
+            <summary>
+            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStatistics.GetCurrentItemName">
+            <summary>
+            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStatistics.IsNewRecord">
+            <summary>
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.UpdateConfigurationCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> object for update operation.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.CopyCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> object for copy operation.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.InitializeCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> object for Initialize operation.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.BuildCommandChannelCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> object to pop open connection string builder for command channel configuration.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.BuildDataChannelCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> object to pop open connection string builder for data channel configuration.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.DeviceCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> to go to Devices configuration.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.MeasurementCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> to go to Measurements configuration.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.WizardCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> to launch device wizard.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.NodeLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Node"/> defined in the database.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.TypeLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> types.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.DownSamplingMethodLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> down sampling methods.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.DataFormatLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> data formats.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.CoordinateFormatLookupList">
+            <summary>
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> coordinate formats.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.IsNewRecord">
+            <summary>
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.RuntimeID">
+            <summary>
+            Gets or sets <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> RuntimeID.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.MirrorMode">
+            <summary>
+            Gets a boolean flag indicating if this screen is loaded for IEEE C37.118 mirroring.
+            </summary>
+        </member>
+        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.MirroringSourceLookupList">
+            <summary>
+            Gets or sets list of devices to use for mirroring.
+            </summary>
         </member>
         <member name="T:openPDC.UI.ViewModels.Devices">
             <summary>
@@ -398,278 +1137,6 @@
             Gets <see cref="T:System.Windows.Input.ICommand"/> to show all measurements.
             </summary>
         </member>
-        <member name="T:openPDC.UI.UserControls.OutputStreamDevicePhasorUserControl">
-            <summary>
-            Interaction logic for OutputStreamDevicePhasorUserControl.xaml
-            </summary>
-            <summary>
-            OutputStreamDevicePhasorUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamDevicePhasorUserControl.#ctor(System.Int32)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamDevicePhasorUserControl"/> class.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamDevicePhasorUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.UserControls.OutputStreamCurrentDeviceUserControl">
-            <summary>
-            Interaction logic for OutputStreamCurrentDeviceUserControl.xaml
-            </summary>
-            <summary>
-            OutputStreamCurrentDeviceUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamCurrentDeviceUserControl.#ctor(System.Int32,System.String)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamCurrentDeviceUserControl"/>.
-            <param name="outputStreamID">ID of the output stream to filter data.</param>
-            <param name="outputStreamAcronym">Acronym of the output stream for display purpose.</param>
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamCurrentDeviceUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.UserControls.CalculatedMeasurementUserControl">
-            <summary>
-            Interaction logic for CalculatedMeasurementUserControl.xaml
-            </summary>
-            <summary>
-            CalculatedMeasurementUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.CalculatedMeasurementUserControl.#ctor">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.CalculatedMeasurementUserControl"/> class.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.CalculatedMeasurementUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.ViewModels.OutputStreamMeasurements">
-            <summary>
-            Class to hold bindable<see cref="T:openPDC.UI.DataModels.OutputStreamMeasurement"/> colletion and select OutputStreamMeasurement for UI.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamMeasurements.#ctor(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.ViewModels.OutputStreamMeasurements"/> class.
-            </summary>
-            <param name="outputStreamID">ID of the output strea to filter data.</param>
-            <param name="itemsPerPage">Integer value to determine number of items per page.</param>
-            <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamMeasurements.GetCurrentItemKey">
-            <summary>
-            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamMeasurements.GetCurrentItemName">
-            <summary>
-            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamMeasurements.Load">
-            <summary>
-            Loads output Stream Id to filter data.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.OutputStreamMeasurements.OutputStreamID">
-            <summary>
-            Gets or sets Output Stream ID.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.OutputStreamMeasurements.IsNewRecord">
-            <summary>
-            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.OutputStreamMeasurements.CanSave">
-            <summary>
-            Determines if current information can be saved by user.
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.UserControls.OutputStreamDeviceDigitalUserControl">
-            <summary>
-            Interaction logic for OutputStreamDeviceDigitalUserControl.xaml
-            </summary>
-            <summary>
-            OutputStreamDeviceDigitalUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceDigitalUserControl.#ctor(System.Int32)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamDeviceDigitalUserControl"/>
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceDigitalUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.UpdateConfigurationCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> object for update operation.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.CopyCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> object for copy operation.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.InitializeCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> object for Initialize operation.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.BuildCommandChannelCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> object to pop open connection string builder for command channel configuration.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.BuildDataChannelCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> object to pop open connection string builder for data channel configuration.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.DeviceCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> to go to Devices configuration.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.MeasurementCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> to go to Measurements configuration.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.WizardCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> to launch device wizard.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.NodeLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Node"/> defined in the database.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.TypeLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> types.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.DownSamplingMethodLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> down sampling methods.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.DataFormatLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> data formats.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.CoordinateFormatLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> coordinate formats.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.IsNewRecord">
-            <summary>
-            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.RuntimeID">
-            <summary>
-            Gets or sets <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> RuntimeID.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.MirrorMode">
-            <summary>
-            Gets a boolean flag indicating if this screen is loaded for IEEE C37.118 mirroring.
-            </summary>
-        </member>
-        <member name="P:openPDCManager.UI.ViewModels.OutputStreams.MirroringSourceLookupList">
-            <summary>
-            Gets or sets list of devices to use for mirroring.
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.ViewModels.OutputStreamDevicePhasors">
-            <summary>
-             Class to hold bindable <see cref="T:openPDC.UI.ViewModels.OutputStreamDevicePhasors"/> collection and selected OutputStreamDevicePhasor for UI.
-             </summary>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamDevicePhasors.#ctor(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.ViewModels.OutputStreamDevicePhasors"/> class.
-            </summary>
-            <param name="outputStreamDeviceID">ID of the output stream device to filter data.</param>
-            <param name="itemsPerPage">Integer value to determine number of items per page.</param>
-            <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamDevicePhasors.GetCurrentItemKey">
-            <summary>
-            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamDevicePhasors.GetCurrentItemName">
-            <summary>
-            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamDevicePhasors.Load">
-            <summary>
-            Load output stream device phasors.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.OutputStreamDevicePhasors.IsNewRecord">
-            <summary>
-            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.OutputStreamDevicePhasors.PhaseLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> Phase collection of type defined in the database.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.OutputStreamDevicePhasors.TypeLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> Type collection of type defined in the database.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.OutputStreamDevicePhasors.OutputStreamDeviceID">
-            <summary>
-            Gets or sets output stream device id.
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.UserControls.OutputStreamUserControl">
-            <summary>
-            Interaction logic for OutputStreamUserControl.xaml
-            </summary>
-            <summary>
-            OutputStreamUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamUserControl.#ctor">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamUserControl"/>.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="T:openPDC.UI.ViewModels.OutputStreamDevices">
             <summary>
             Class to hold bindable <see cref="T:openPDC.UI.DataModels.OutputStreamDevice"/> collection and selected OutputStreamDevice for UI.
@@ -760,148 +1227,54 @@
             Gets a boolean flag indicating if this screen is loaded for IEEE C37.118 mirroring.
             </summary>
         </member>
-        <member name="T:openPDC.UI.UserControls.InputWizardUserControl">
+        <member name="T:openPDC.UI.ViewModels.OutputStreamDevicePhasors">
             <summary>
-            Interaction logic for InputWizardUserControl.xaml
+             Class to hold bindable <see cref="T:openPDC.UI.ViewModels.OutputStreamDevicePhasors"/> collection and selected OutputStreamDevicePhasor for UI.
+             </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDevicePhasors.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.ViewModels.OutputStreamDevicePhasors"/> class.
             </summary>
+            <param name="outputStreamDeviceID">ID of the output stream device to filter data.</param>
+            <param name="itemsPerPage">Integer value to determine number of items per page.</param>
+            <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDevicePhasors.GetCurrentItemKey">
             <summary>
-            InputWizardUserControl
+            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDevicePhasors.GetCurrentItemName">
+            <summary>
+            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
+            </summary>
+            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDevicePhasors.Load">
+            <summary>
+            Load output stream device phasors.
             </summary>
         </member>
-        <member name="M:openPDC.UI.UserControls.InputWizardUserControl.#ctor">
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDevicePhasors.IsNewRecord">
             <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.InputWizardUserControl"/> class.
+            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
             </summary>
         </member>
-        <member name="M:openPDC.UI.UserControls.InputWizardUserControl.CheckBoxAll_Checked(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDevicePhasors.PhaseLookupList">
             <summary>
-            Hanldes checked event on the select all check box.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Event arguments.</param>
-        </member>
-        <member name="M:openPDC.UI.UserControls.InputWizardUserControl.CheckBoxAll_Unchecked(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles unchecked event on the select all check box.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Event arguments.</param>
-        </member>
-        <member name="M:openPDC.UI.UserControls.InputWizardUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> Phase collection of type defined in the database.
             </summary>
         </member>
-        <member name="T:openPDC.UI.UserControls.PhasorMeasurementUserControl">
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDevicePhasors.TypeLookupList">
             <summary>
-            Interaction logic for PhasorMeasurementUserControl.xaml
-            </summary>
-            <summary>
-            PhasorMeasurementUserControl
+            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> Type collection of type defined in the database.
             </summary>
         </member>
-        <member name="M:openPDC.UI.UserControls.PhasorMeasurementUserControl.#ctor">
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDevicePhasors.OutputStreamDeviceID">
             <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.PhasorMeasurementUserControl"/> class.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.PhasorMeasurementUserControl.#ctor(System.Int32)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.PhasorMeasurementUserControl"/> class.
-            </summary>
-            <param name="deviceID">ID of the device to filter measurements.</param>
-        </member>
-        <member name="M:openPDC.UI.UserControls.PhasorMeasurementUserControl.PhasorMeasurementUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles unloaded event.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Arguments of the event.</param>
-        </member>
-        <member name="M:openPDC.UI.UserControls.PhasorMeasurementUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
-            <summary>
-            Handles key down event on the datagrid object.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Arguments of the event.</param>
-        </member>
-        <member name="M:openPDC.UI.UserControls.PhasorMeasurementUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.UserControls.DeviceUserControl">
-            <summary>
-            Interaction logic for DeviceUserControl.xaml
-            </summary>
-            <summary>
-            DeviceUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.DeviceUserControl.#ctor">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.DeviceUserControl"/> class.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.DeviceUserControl.#ctor(openPDC.UI.DataModels.Device)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.DeviceUserControl"/> class.
-            </summary>
-            <param name="device"><see cref="T:openPDC.UI.DataModels.Device"/> to be edited.</param>
-        </member>
-        <member name="M:openPDC.UI.UserControls.DeviceUserControl.DeviceUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles unload event of the <see cref="T:openPDC.UI.UserControls.DeviceUserControl"/>.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Arguments for the event.</param>
-        </member>
-        <member name="M:openPDC.UI.UserControls.DeviceUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.UserControls.DeviceListUserControl">
-            <summary>
-            Interaction logic for DeviceListUserControl.xaml
-            </summary>
-            <summary>
-            DeviceListUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.DeviceListUserControl.#ctor">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.DeviceListUserControl"/> class.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.DeviceListUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
-            <summary>
-            Handles PreviewKeyDown event on the datagrid.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Arguments for the event.</param>
-        </member>
-        <member name="M:openPDC.UI.UserControls.DeviceListUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.UserControls.OutputStreamMeasurementUserControl">
-            <summary>
-            Interaction logic for OutputStreamMeasurementUserControl.xaml
-            </summary>
-            <summary>
-            OutputStreamMeasurementUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamMeasurementUserControl.#ctor(System.Int32)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamMeasurementUserControl"/> class.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamMeasurementUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
+            Gets or sets output stream device id.
             </summary>
         </member>
         <member name="M:openPDC.UI.ViewModels.CalculatedMeasurements.GetCurrentItemKey">
@@ -931,402 +1304,22 @@
             Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Node"/> defined in the database.
             </summary>
         </member>
-        <member name="T:openPDC.UI.ViewModels.PhasorMeasurements">
+        <member name="T:openPDC.UI.UserControls.OutputStreamUserControl">
             <summary>
-            Class to hold bindable <see cref="T:TimeSeriesFramework.UI.DataModels.Measurement"/> collection.
+            Interaction logic for OutputStreamUserControl.xaml
+            </summary>
+            <summary>
+            OutputStreamUserControl
             </summary>
         </member>
-        <member name="M:openPDC.UI.ViewModels.PhasorMeasurements.Clear">
+        <member name="M:openPDC.UI.UserControls.OutputStreamUserControl.#ctor">
             <summary>
-            Creates a new instance of <see cref="T:TimeSeriesFramework.UI.DataModels.Measurement"/> and assigns it to CurrentItem.
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamUserControl"/>.
             </summary>
         </member>
-        <member name="M:openPDC.UI.ViewModels.PhasorMeasurements.Load">
-            <summary>
-            Loads collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Measurement"/> defined in the database.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.PhasorMeasurements.m_currentItem_PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
-            <summary>
-            Handles PropertyChanged event on CurrentItem. If DeviceID is changed then get the associated phasors list.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Event arguments.</param>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.PhasorMeasurements.DeviceLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of devices defined in the database.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.PhasorMeasurements.PhasorLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of phasors defined in the database.
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.UserControls.OutputStreamDeviceUserControl">
-            <summary>
-            Interaction logic for OutputStreamDeviceUserControl.xaml
-            </summary>
-            <summary>
-            OutputStreamDeviceUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceUserControl.#ctor(System.Int32)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamDeviceUserControl"/> class.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceUserControl.InitializeComponent">
+        <member name="M:openPDC.UI.UserControls.OutputStreamUserControl.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.ViewModels.RealTimeStreams">
-            <summary>
-            Class to hold bindable <see cref="T:openPDC.UI.DataModels.RealTimeStream"/> collection and current selection information for UI.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.RealTimeStreams.GetCurrentItemKey">
-            <summary>
-            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.RealTimeStreams.GetCurrentItemName">
-            <summary>
-            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.RealTimeStreams.Load">
-            <summary>
-            Overrides Load() method from the base class to add aditional functionalities.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.RealTimeStreams.UnsubscribeUnsynchronizedData">
-            <summary>
-            Unsubscribes data from the service.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.IsNewRecord">
-            <summary>
-            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.Expanded">
-            <summary>
-            Gets or sets a boolean flag <see cref="T:openPDC.UI.ViewModels.RealTimeStreams"/> expanded flag.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.RestartConnectionCycle">
-            <summary>
-            Gets or sets a boolean flag indicating if connection to backend windows service needs to be reestablished upon disconnection.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.LastRefresh">
-            <summary>
-            Gets or sets a last refresh time to display on UI.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.StatisticMeasurements">
-            <summary>
-            Gets or sets <see cref="T:openPDC.UI.ViewModels.RealTimeStreams"/> StatisticMeasurements.
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.UserControls.InputStatusMonitorUserControl">
-            <summary>
-            Interaction logic for InputStatusMonitorUserControl.xaml
-            </summary>
-            <summary>
-            InputStatusMonitorUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.InputStatusMonitorUserControl.#ctor">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.InputStatusMonitorUserControl"/>.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.InputStatusMonitorUserControl.InputStatusMonitorUserControl_Loaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles loaded event.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Event arguments.</param>
-        </member>
-        <member name="M:openPDC.UI.UserControls.InputStatusMonitorUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs">
-            <summary>
-            Class to hold bindable <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceAnalog"/> collection and selected OutputStreamDeviceAnalog for UI.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.#ctor(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs"/> class.
-            </summary>
-            <param name="outputStreamDeviceID"> ID of the out put stream device to filter data</param>
-            <param name="itemsPerPage">Integer value to determine number of items per page.</param>
-            <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.GetCurrentItemKey">
-            <summary>
-            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.GetCurrentItemName">
-            <summary>
-            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.Load">
-            <summary>
-            Load output stream device phasors.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.IsNewRecord">
-            <summary>
-            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.TypeLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> Type collection of type defined in the database.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.OutputStreamDeviceAnalogs.OutputStreamDeviceID">
-            <summary>
-            Gets or set output stream device id.
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.UserControls.OutputStreamDeviceAnalogUserControl">
-            <summary>
-            Interaction logic for OutputStreamDeviceAnalogUserControl.xaml
-            </summary>
-            <summary>
-            OutputStreamDeviceAnalogUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceAnalogUserControl.#ctor(System.Int32)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamDeviceAnalogUserControl"/> class.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceAnalogUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.RealTimeStatistics.GetCurrentItemKey">
-            <summary>
-            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.RealTimeStatistics.GetCurrentItemName">
-            <summary>
-            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.RealTimeStatistics.IsNewRecord">
-            <summary>
-            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.UserControls.RealTimeStatisticUserControl">
-            <summary>
-            Interaction logic for RealTimeStatisticUserControl.xaml
-            </summary>
-            <summary>
-            RealTimeStatisticUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.RealTimeStatisticUserControl.#ctor">
-            <summary>
-            Creates a new instance of <see cref="T:openPDC.UI.UserControls.RealTimeStatisticUserControl"/>.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.RealTimeStatisticUserControl.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.Modal.ConfigurationCreator">
-            <summary>
-            Interaction logic for ConfigurationCreator.xaml
-            </summary>
-            <summary>
-            ConfigurationCreator
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.Modal.ConfigurationCreator.#ctor">
-            <summary>
-            Creates a new <see cref="T:openPDC.UI.Modal.ConfigurationCreator"/>.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.Modal.ConfigurationCreator.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.Modal.ConfigurationCreator.ConfigurationFrame">
-            <summary>
-            Gets or sets the manually tweaked configuration frame.
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.ConnectionSettings">
-            <summary>
-            Represents connection information defined in PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.PhasorProtocol">
-            <summary>
-            Defines <see cref="F:openPDC.UI.ConnectionSettings.PhasorProtocol"/> from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.TransportProtocol">
-            <summary>
-            Defines <see cref="F:openPDC.UI.ConnectionSettings.TransportProtocol"/> from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.ConnectionString">
-            <summary>
-            Defines connection string from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.PmuID">
-            <summary>
-            Defines ID of the source from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.FrameRate">
-            <summary>
-            Defines frame rate from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.AutoRepeatPlayback">
-            <summary>
-            Defines boolean flag if data needs to be repeated again and again.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.ByteEncodingDisplayFormat">
-            <summary>
-            Defines byte encoding format from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.ConnectionParameters">
-            <summary>
-            Defines additional connection information such as alternate command channel from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.ConfigurationFileName">
-            <summary>
-            Defines name of the configuration file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.RefreshConfigurationFileOnChange">
-            <summary>
-            Defines boolean flag to refresh configuration file on change.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.ParseWordCountFromByte">
-            <summary>
-            Defines boolean flag indicating if parse word count from byte.
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.ViewModels.Phasors">
-            <summary>
-            Class to hold bindable <see cref="T:openPDC.UI.DataModels.Phasor"/> collection and current selection information for UI.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.Phasors.#ctor(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.ViewModels.Phasors"/> class.
-            </summary>
-            <param name="deviceID">ID of teh device to fileter phasors.</param>
-            <param name="itemsPerPage">Integer value to determine number of items per page.</param>
-            <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.Phasors.GetCurrentItemKey">
-            <summary>
-            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.Phasors.GetCurrentItemName">
-            <summary>
-            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.Phasors.Load">
-            <summary>
-            Loads collection of <see cref="T:openPDC.UI.DataModels.Phasor"/> defined in the database for a <see cref="T:openPDC.UI.DataModels.Device"/>.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.Phasors.Clear">
-            <summary>
-            Creates a new instance of <see cref="T:openPDC.UI.DataModels.Phasor"/> and assigns it to CurrentItem.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.Phasors.IsNewRecord">
-            <summary>
-            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.Phasors.PhaseLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of phase defined in the database.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.Phasors.TypeLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of type defined in the database.
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.ViewModels.OutputStreamDeviceDigitals">
-            <summary>
-            Class to hold bindable <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceDigital"/> collection and selected OutputStreamDeviceDigital for UI.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceDigitals.#ctor(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Creates an instance of <see cref="T:openPDC.UI.ViewModels.OutputStreamDeviceDigitals"/> class.
-            </summary>
-            <param name="outputStreamDeviceID">ID of the output stream device.</param>
-            <param name="itemsPerPage">Integer value to determine number of items per page.</param>
-            <param name="autoSave">Boolean value to determine is user changes should be saved automatically.</param>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceDigitals.GetCurrentItemKey">
-            <summary>
-            Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceDigitals.GetCurrentItemName">
-            <summary>
-            Gets the string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
-            </summary>
-            <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
-        </member>
-        <member name="M:openPDC.UI.ViewModels.OutputStreamDeviceDigitals.Load">
-            <summary>
-            Load output stream device phasors.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.OutputStreamDeviceDigitals.IsNewRecord">
-            <summary>
-            Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.OutputStreamDeviceDigitals.OutputStreamDeviceID">
-            <summary>
-            Gets or set outputstream device id.
             </summary>
         </member>
         <member name="T:openPDC.UI.ViewModels.InputWizardDevices">
@@ -1604,20 +1597,27 @@
             Gets boolean flag indicating if configuration can be saved or not.
             </summary>
         </member>
-        <member name="T:openPDC.UI.UserControls.RealTimeMeasurementUserControl">
+        <member name="T:openPDC.UI.UserControls.DeviceListUserControl">
             <summary>
-            Interaction logic for RealTimeMeasurementUserControl.xaml
+            Interaction logic for DeviceListUserControl.xaml
             </summary>
             <summary>
-            RealTimeMeasurementUserControl
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.UserControls.RealTimeMeasurementUserControl.#ctor">
-            <summary>
-            Creates a new instance of <see cref="T:openPDC.UI.UserControls.RealTimeMeasurementUserControl"/>.
+            DeviceListUserControl
             </summary>
         </member>
-        <member name="M:openPDC.UI.UserControls.RealTimeMeasurementUserControl.InitializeComponent">
+        <member name="M:openPDC.UI.UserControls.DeviceListUserControl.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.DeviceListUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.DeviceListUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Handles PreviewKeyDown event on the datagrid.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Arguments for the event.</param>
+        </member>
+        <member name="M:openPDC.UI.UserControls.DeviceListUserControl.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
