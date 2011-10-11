@@ -381,6 +381,11 @@
             Raised when record has been deleted.
             </summary>
         </member>
+        <member name="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItemPropertyChanged">
+            <summary>
+            Gets or sets flag that determines if current item property has changed.
+            </summary>
+        </member>
         <member name="P:TimeSeriesFramework.UI.PagedViewModelBase`2.AutoSave">
             <summary>
             Gets or sets if user changes should be saved automatically.
