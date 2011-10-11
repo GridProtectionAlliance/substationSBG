@@ -30,7 +30,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
-using TimeSeriesFramework;
+using openPDC.UI.DataModels;
 using TimeSeriesFramework.UI;
 using TVA;
 using TVA.Collections;
@@ -44,7 +44,6 @@ namespace openPG.UI.UserControls
     /// </summary>
     public partial class SubscriberRequestUserControl : UserControl
     {
-
         #region [ Constructor ]
 
         /// <summary>
@@ -115,6 +114,36 @@ namespace openPG.UI.UserControls
         /// <param name="e">Arguments of the event</param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if ((bool)m_createAdapter.IsChecked)
+            {
+                Device device = Device.GetDevice(null, " WHERE Acronym = '" + m_acronymField.Text.Replace(" ", "") + "'");
+                bool continueSave = true;
+
+                if (device != null)
+                {
+                    if (MessageBox.Show(string.Format("Data subscription adapter \"{0}\" already exists. Do you want to update the existing adapter with the new keys?", device.Acronym), "Create Subscription Request", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        continueSave = true;
+                    else
+                        continueSave = false;
+                }
+
+                if (continueSave)
+                {
+                    if (device == null)
+                    {
+                        device = new Device();
+                        device.Enabled = false;
+                        device.IsConcentrator = true;
+                        device.ProtocolID = 8;
+                        device.ConnectionString = "port=9500; interface=0.0.0.0; compression=false; autoConnect=true; commandChannel={server=127.0.0.1:6170; interface=0.0.0.0}";
+                    }
+
+                    device.Acronym = m_acronymField.Text.Replace(" ", "");
+                    device.Name = m_nameField.Text;
+                    Device.Save(null, device);
+                }
+            }
+
             if (string.IsNullOrWhiteSpace(m_keyField.Text) && string.IsNullOrWhiteSpace(m_ivField.Text))
                 m_generateButton_Click(this, null);
 
@@ -144,8 +173,6 @@ namespace openPG.UI.UserControls
             {
                 e.Handled = true;
             }
-
-            
         }
 
         /// <summary>
