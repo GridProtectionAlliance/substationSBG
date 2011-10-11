@@ -274,6 +274,14 @@
             <param name="whereClause">query string to filter data.</param>
             <returns><see cref="T:openPDC.UI.DataModels.Device"/> information.</returns>
         </member>
+        <member name="M:openPDC.UI.DataModels.Device.GetDevices(TVA.Data.AdoDataConnection,System.String)">
+            <summary>
+            Retrieves <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> type list of <see cref="T:openPDC.UI.DataModels.Device"/> infomration from the database based on query string filter.
+            </summary>
+            <param name="database"></param>
+            <param name="whereClause"></param>
+            <returns></returns>
+        </member>
         <member name="M:openPDC.UI.DataModels.Device.NotifyService(openPDC.UI.DataModels.Device)">
             <summary>
             Sends required commands to backend service to notify that <see cref="T:openPDC.UI.DataModels.Device"/> configuration has changed.
@@ -287,6 +295,14 @@
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
             <param name="outputStreamID">ID of the output stream to filter out devices that already exist.</param>
             <returns>Collection of <see cref="T:openPDC.UI.DataModels.Device"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.DataModels.Device.GetDevicesForMirroringOutputStream(TVA.Data.AdoDataConnection,System.Boolean)">
+            <summary>
+            Retrieves a collection of devices where original source is not null for mirroring output stream.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="isOptional">Boolean flag indicating if selection is optional on the UI.</param>
+            <returns><see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of Devices.</returns>
         </member>
         <member name="P:openPDC.UI.DataModels.Device.NodeID">
             <summary>
@@ -317,6 +333,11 @@
             <summary>
             Gets or sets <see cref="T:openPDC.UI.DataModels.Device"/>  Name.
             </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.Device.OriginalSource">
+            <summary>
+            Gets <see cref="T:openPDC.UI.DataModels.Device"/> Original Source.
+            </summary>        
         </member>
         <member name="P:openPDC.UI.DataModels.Device.IsConcentrator">
             <summary>
@@ -662,7 +683,7 @@
             <param name="enabledOnly">Boolean flag indicating if only enabled <see cref="T:openPDCManager.UI.DataModels.OutputStream"/>s needed.</param>        
             <returns>Collection of <see cref="T:openPDCManager.UI.DataModels.OutputStream"/>.</returns>
         </member>
-        <member name="M:openPDCManager.UI.DataModels.OutputStream.Save(TVA.Data.AdoDataConnection,openPDCManager.UI.DataModels.OutputStream)">
+        <member name="M:openPDCManager.UI.DataModels.OutputStream.Save(TVA.Data.AdoDataConnection,openPDCManager.UI.DataModels.OutputStream,System.Boolean)">
             <summary>
             Saves <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> information to database.
             </summary>
@@ -891,6 +912,11 @@
             <summary>
             Gets or sets <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> UpdatedBy.
             </summary>
+        </member>
+        <member name="P:openPDCManager.UI.DataModels.OutputStream.MirroringSourceDevice">
+            <summary>
+            Gets or sets id of the device used for mirroring output stream.
+            </summary>  
         </member>
         <member name="T:openPDC.UI.DataModels.OutputStreamDevice">
             <summary>
