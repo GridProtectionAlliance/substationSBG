@@ -16,7 +16,7 @@
         xmlns:tsfconv="clr-namespace:TimeSeriesFramework.UI.Converters;assembly=TimeSeriesFramework.UI"
         xmlns:tsf="clr-namespace:TimeSeriesFramework.UI;assembly=TimeSeriesFramework.UI.WPF"
         Background="{StaticResource MainBackgroundBrush}"
-                     >
+        Icon="openPGManager.ico">
     
     <Window.Resources>
         <tsfconv:RoleBasedVisibilityConverter x:Key="roleBasedVisibilityConverter" />

@@ -72,6 +72,9 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>openPGManager.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="openPDC.UI">
       <HintPath>..\..\Dependencies\openPDC\openPDC.UI.dll</HintPath>
@@ -172,6 +175,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Resource Include="openPGManager.ico" />
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="openPGSplash.PNG" />
