@@ -904,6 +904,32 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:openPDC.UI.UserControls.HomeUserControl">
+            <summary>
+            Interaction logic for HomeUserControl.xaml
+            </summary>
+            <summary>
+            HomeUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.HomeUserControl.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.HomeUserControl"/>.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.HomeUserControl.GetMenuDataItem(System.Collections.ObjectModel.ObservableCollection{TimeSeriesFramework.UI.MenuDataItem},System.String,TimeSeriesFramework.UI.MenuDataItem@)">
+            <summary>
+            Recursively finds menu item to navigate to when a button is clicked on the UI.
+            </summary>
+            <param name="items">Collection of menu items.</param>
+            <param name="stringToMatch">Item to search for in menu items collection.</param>
+            <param name="item">Returns a menu item.</param>
+        </member>
+        <member name="M:openPDC.UI.UserControls.HomeUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="M:openPDC.UI.ViewModels.CalculatedMeasurements.GetCurrentItemKey">
             <summary>
             Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
