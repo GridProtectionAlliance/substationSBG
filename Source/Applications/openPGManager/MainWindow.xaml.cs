@@ -78,8 +78,8 @@ namespace openPGManager
 #if DEBUG
             const string hostService = "openPG";
 
-            if (Process.GetProcessesByName(hostService).Length == 0)
-                Process.Start(hostService + ".exe");
+            if (System.Diagnostics.Process.GetProcessesByName(hostService).Length == 0)
+                System.Diagnostics.Process.Start(hostService + ".exe");
 #endif
 
             InitializeComponent();
