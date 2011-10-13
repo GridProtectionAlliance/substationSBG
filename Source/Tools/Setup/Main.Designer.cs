@@ -134,7 +134,7 @@
             this.checkBoxConnectionTester.AutoSize = true;
             this.checkBoxConnectionTester.Location = new System.Drawing.Point(16, 78);
             this.checkBoxConnectionTester.Name = "checkBoxConnectionTester";
-            this.checkBoxConnectionTester.Size = new System.Drawing.Size(140, 17);
+            this.checkBoxConnectionTester.Size = new System.Drawing.Size(160, 20);
             this.checkBoxConnectionTester.TabIndex = 2;
             this.checkBoxConnectionTester.Text = "PMU Connection Tester";
             this.checkBoxConnectionTester.UseVisualStyleBackColor = true;
@@ -145,12 +145,12 @@
             this.radioButton64bit.AutoSize = true;
             this.radioButton64bit.Location = new System.Drawing.Point(16, 51);
             this.radioButton64bit.Name = "radioButton64bit";
-            this.radioButton64bit.Size = new System.Drawing.Size(167, 17);
+            this.radioButton64bit.Size = new System.Drawing.Size(188, 20);
             this.radioButton64bit.TabIndex = 1;
             this.radioButton64bit.TabStop = true;
             this.radioButton64bit.Text = "64-bit version of the openPG";
-            this.toolTip.SetToolTip(this.radioButton64bit, "The 64-bit version of the openPG is recommended for production deployments.\r\nThi" +
-        "s will require an available database such as SQL Server or MySQL.");
+            this.toolTip.SetToolTip(this.radioButton64bit, "The 64-bit version of the openPG is recommended for production deployments.\r\nThis" +
+        " will require an available database such as SQL Server or MySQL.");
             this.radioButton64bit.UseVisualStyleBackColor = true;
             // 
             // radioButton32bit
@@ -159,13 +159,13 @@
             this.radioButton32bit.Checked = true;
             this.radioButton32bit.Location = new System.Drawing.Point(16, 24);
             this.radioButton32bit.Name = "radioButton32bit";
-            this.radioButton32bit.Size = new System.Drawing.Size(167, 17);
+            this.radioButton32bit.Size = new System.Drawing.Size(188, 20);
             this.radioButton32bit.TabIndex = 0;
             this.radioButton32bit.TabStop = true;
             this.radioButton32bit.Text = "32-bit version of the openPG";
             this.toolTip.SetToolTip(this.radioButton32bit, "If you do not have a database server installed locally you can always\r\ninstall th" +
-        "e 32-bit version of the openPG and just use an Access database,\r\nno extra softw" +
-        "are required.");
+        "e 32-bit version of the openPG and just use an Access database,\r\nno extra softwa" +
+        "re required.");
             this.radioButton32bit.UseVisualStyleBackColor = true;
             // 
             // labelNotes
@@ -230,9 +230,9 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(140, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(228, 29);
+            this.label1.Size = new System.Drawing.Size(218, 29);
             this.label1.TabIndex = 3;
-            this.label1.Text = "openPG Alpha Setup";
+            this.label1.Text = "openPG Beta Setup";
             // 
             // Main
             // 
