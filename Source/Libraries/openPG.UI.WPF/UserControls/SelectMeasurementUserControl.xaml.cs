@@ -209,6 +209,11 @@ namespace openPG.UI.UserControls
             this.DataContext = m_dataContext;
         }
 
+        private void DataGrid_Sorting(object sender, DataGridSortingEventArgs e)
+        {
+            m_dataContext.SortData(e.Column.SortMemberPath);
+        }
+
         #endregion
     }
 }

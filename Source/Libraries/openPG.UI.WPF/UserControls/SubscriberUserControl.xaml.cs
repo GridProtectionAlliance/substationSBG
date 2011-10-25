@@ -45,6 +45,12 @@ namespace openPG.UI.UserControls
     /// </summary>
     public partial class SubscriberUserControl : UserControl
     {
+        #region [ Members ]
+
+        private Subscribers m_dataContext;
+
+        #endregion
+
         #region [ Constructors ]
 
         /// <summary>
@@ -55,7 +61,8 @@ namespace openPG.UI.UserControls
             InitializeComponent();
             this.Loaded += SubscriberUserControl_Loaded;
             this.Unloaded += SubscriberUserControl_Unloaded;
-            this.DataContext = new Subscribers(10);
+            m_dataContext = new Subscribers(10);
+            this.DataContext = m_dataContext;
         }
 
         #endregion
@@ -70,8 +77,8 @@ namespace openPG.UI.UserControls
         private void SubscriberUserControl_Loaded(object sender, RoutedEventArgs e)
         {
             // Attach to load/before save event so class can load/add crypto keys from/to local keyIV cache
-            (this.DataContext as Subscribers).PropertyChanged += SubscriberUserControl_PropertyChanged;
-            (this.DataContext as Subscribers).BeforeSave += SubscriberUserControl_BeforeSave;
+            m_dataContext.PropertyChanged += SubscriberUserControl_PropertyChanged;
+            m_dataContext.BeforeSave += SubscriberUserControl_BeforeSave;
             LoadCurrentKeyIV();
         }
 
@@ -82,9 +89,9 @@ namespace openPG.UI.UserControls
         /// <param name="e">Event arguments.</param>
         private void SubscriberUserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            (this.DataContext as Subscribers).ProcessPropertyChange();
-            (this.DataContext as Subscribers).BeforeSave -= SubscriberUserControl_BeforeSave;
-            (this.DataContext as Subscribers).PropertyChanged -= SubscriberUserControl_PropertyChanged;
+            m_dataContext.ProcessPropertyChange();
+            m_dataContext.BeforeSave -= SubscriberUserControl_BeforeSave;
+            m_dataContext.PropertyChanged -= SubscriberUserControl_PropertyChanged;
         }
 
         /// <summary>
@@ -172,7 +179,7 @@ namespace openPG.UI.UserControls
                     ValidIPAddresses = m_request.ValidIPAddresses
                 };
 
-                (this.DataContext as Subscribers).CurrentItem = subscriber;
+                m_dataContext.CurrentItem = subscriber;
                 m_keyField.Text = m_request.Key;
                 m_ivField.Text = m_request.IV;
             }
@@ -201,6 +208,11 @@ namespace openPG.UI.UserControls
                 m_keyField.Text = parts[0];
                 m_ivField.Text = parts[1];
             }
+        }
+
+        private void DataGrid_Sorting(object sender, DataGridSortingEventArgs e)
+        {
+            m_dataContext.SortData(e.Column.SortMemberPath);
         }
 
         #endregion

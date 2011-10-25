@@ -26,7 +26,7 @@
             <Button Content="Show All" Command="{Binding Path=ShowAllCommand}" ToolTip="Show all measurements" Margin="2"/>
         </StackPanel>
 
-        <sdk:DataGrid ItemsSource="{Binding CurrentPage}" Height="Auto">
+        <sdk:DataGrid ItemsSource="{Binding CurrentPage}" Height="Auto" Sorting="DataGrid_Sorting">
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Width="*">
                     <sdk:DataGridTemplateColumn.CellTemplate>
