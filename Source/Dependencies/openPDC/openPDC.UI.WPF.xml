@@ -275,17 +275,15 @@
             </summary>
             <param name="parameter">Parameter to use for the command provided by commandparameter from UI.</param>
         </member>
-        <member name="M:openPDC.UI.ViewModels.Devices.GoToMeasurements(System.Object)">
+        <member name="M:openPDC.UI.ViewModels.Devices.GoToMeasurements">
             <summary>
             Handles <see cref="P:openPDC.UI.ViewModels.Devices.MeasurementCommand"/>.
             </summary>
-            <param name="parameter">Parameter to use for the command provided by commandparameter from UI.</param>
         </member>
-        <member name="M:openPDC.UI.ViewModels.Devices.GoToPhasors(System.Object)">
+        <member name="M:openPDC.UI.ViewModels.Devices.GoToPhasors">
             <summary>
             Handles <see cref="P:openPDC.UI.ViewModels.Devices.PhasorCommand"/>.
-            </summary>
-            <param name="parameter">Parameter to use for the command provided by commandparameter from UI.</param>
+            </summary>        
         </member>
         <member name="M:openPDC.UI.ViewModels.Devices.Delete">
             <summary>
@@ -373,9 +371,19 @@
             Gets <see cref="T:System.Windows.Input.ICommand"/> for copy operation.
             </summary>
         </member>
+        <member name="P:openPDC.UI.ViewModels.Devices.UpdateConfigurationCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> for updating configuration.
+            </summary>
+        </member>
         <member name="P:openPDC.UI.ViewModels.Devices.PhasorCommand">
             <summary>
             Gets <see cref="T:System.Windows.Input.ICommand"/> to go to phasors configuration.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.Devices.CanGoToPhasorOrMeasurement">
+            <summary>
+            Gets a boolean flag indicating if Phasors and Measurements button are visible or not.
             </summary>
         </member>
         <member name="P:openPDC.UI.ViewModels.Devices.MeasurementCommand">
@@ -710,6 +718,11 @@
             </summary>
             <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
         </member>
+        <member name="M:openPDC.UI.ViewModels.OutputStreamDevices.GoToDeviceWizard">
+            <summary>
+            Handles <see cref="P:openPDC.UI.ViewModels.OutputStreamDevices.DeviceWizardCommand"/>.
+            </summary>        
+        </member>
         <member name="P:openPDC.UI.ViewModels.OutputStreamDevices.OutputStreamID">
             <summary>
             Gets or sets Output Stream ID.
@@ -738,6 +751,16 @@
         <member name="P:openPDC.UI.ViewModels.OutputStreamDevices.PhasorCommand">
             <summary>
             Gets <see cref="T:System.Windows.Input.ICommand"/> object to go to Phasors screen.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDevices.DeviceWizardCommand">
+            <summary>
+            Gets <see cref="T:System.Windows.Input.ICommand"/> object to go to Device Wizard screen.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.OutputStreamDevices.CanGoToDeviceWizard">
+            <summary>
+            Gets a boolean flag indicating if Phasors and Measurements button are visible or not.
             </summary>
         </member>
         <member name="P:openPDC.UI.ViewModels.OutputStreamDevices.AnalogCommand">

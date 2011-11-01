@@ -248,7 +248,7 @@
             <param name="device">Information about <see cref="T:openPDC.UI.DataModels.Device"/>.</param>        
             <returns>String, for display use, indicating success.</returns>
         </member>
-        <member name="M:openPDC.UI.DataModels.Device.SaveWithAnalogsDigitals(TVA.Data.AdoDataConnection,openPDC.UI.DataModels.Device,System.Int32,System.Int32)">
+        <member name="M:openPDC.UI.DataModels.Device.SaveWithAnalogsDigitals(TVA.Data.AdoDataConnection,openPDC.UI.DataModels.Device,System.Boolean,System.Int32,System.Int32)">
             <summary>
             Saves <see cref="T:openPDC.UI.DataModels.Device"/> information to database along with analogs and digital measurements if requested..
             </summary>
@@ -640,6 +640,11 @@
             Gets or sets <see cref="T:openPDC.UI.DataModels.InputWizardDevice"/> existing flag.
             </summary>
         </member>
+        <member name="P:openPDC.UI.DataModels.InputWizardDevice.StatusColor">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.InputWizardDevice"/> status color based on existing flag.
+            </summary>
+        </member>
         <member name="P:openPDC.UI.DataModels.InputWizardDevice.PhasorList">
             <summary>
             Gets or sets <see cref="T:openPDC.UI.DataModels.InputWizardDevice"/> phasor list.
@@ -706,32 +711,6 @@
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
             <param name="outputStreamID">ID of the record to be deleted.</param>
             <returns>String, for display use, indicating success.</returns>
-        </member>
-        <member name="M:openPDCManager.UI.DataModels.OutputStream.GetOutputStreamByAcronym(TVA.Data.AdoDataConnection,System.String)">
-            <summary>
-            Retrieves <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> information based on acronym provided.
-            </summary>
-            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="acronym"><see cref="T:openPDCManager.UI.DataModels.OutputStream"/> acronym to filter data.</param>
-            <returns><see cref="T:openPDCManager.UI.DataModels.OutputStream"/> information.</returns>
-        </member>
-        <member name="M:openPDCManager.UI.DataModels.OutputStream.GetOutputStreamStatistics(TVA.Data.AdoDataConnection,System.String)">
-            <summary>
-            Retrieves statistic measurements associated with output stream.
-            </summary>
-            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="outputStreamAcronym">Acronym of the output stream to filter data.</param>
-            <returns>Collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Measurement"/>.</returns>
-        </member>
-        <member name="M:openPDCManager.UI.DataModels.OutputStream.UpdateOutputStreamStatistics(TVA.Data.AdoDataConnection,System.String,System.String,System.String,System.String)">
-            <summary>
-            Updates statistic measurement meta data to reflect change in output stream.
-            </summary>
-            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="oldAcronym">Output stream original acronym.</param>
-            <param name="newAcronym">Output stream new acronym.</param>
-            <param name="oldName">Output stream old name.</param>
-            <param name="newName">Output stream new name.</param>        
         </member>
         <member name="P:openPDCManager.UI.DataModels.OutputStream.NodeID">
             <summary>
