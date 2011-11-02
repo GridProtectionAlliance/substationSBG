@@ -1035,6 +1035,13 @@
             Class to hold bindable <see cref="T:openPDC.UI.DataModels.RealTimeStream"/> collection and current selection information for UI.
             </summary>
         </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStreams.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.ViewModels.RealTimeStreams"/>.
+            </summary>
+            <param name="itemsPerPage"></param>
+            <param name="autoSave"></param>        
+        </member>
         <member name="M:openPDC.UI.ViewModels.RealTimeStreams.GetCurrentItemKey">
             <summary>
             Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
