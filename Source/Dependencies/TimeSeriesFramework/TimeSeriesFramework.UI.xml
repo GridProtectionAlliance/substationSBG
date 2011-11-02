@@ -2178,6 +2178,30 @@
             <param name="key">Name of the isolated storage to read from.</param>
             <returns>Object from the isolated storage.</returns>
         </member>
+        <member name="M:TimeSeriesFramework.UI.IsolatedStorageManager.InitializeStorageForInputStatusMonitor(System.Boolean)">
+            <summary>
+            Initializes or resets existing settings for input status and monitoring screen in <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile"/> to default values.
+            </summary>
+            <param name="overWriteExisting">Boolean flag indicating if existing values should be reset to default value.</param>
+        </member>
+        <member name="M:TimeSeriesFramework.UI.IsolatedStorageManager.InitializeStorageForRemoteConsole(System.Boolean)">
+            <summary>
+            Initializes or resets existing settings for remote console screen in <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile"/> to default values.
+            </summary>
+            <param name="overWriteExisting">Boolean flag indicating if existing values should be reset to default value.</param>
+        </member>
+        <member name="M:TimeSeriesFramework.UI.IsolatedStorageManager.InitializeStorageForStreamStatistics(System.Boolean)">
+            <summary>
+            Initializes or resets existing settings for stream statistics screen in <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile"/> to default values.
+            </summary>
+            <param name="overWriteExisting">Boolean flag indicating if existing values should be reset to default value.</param>
+        </member>
+        <member name="M:TimeSeriesFramework.UI.IsolatedStorageManager.InitializeStorageForRealTimeMeasurements(System.Boolean)">
+            <summary>
+            Initializes or resets existing settings for real-time measurements screen in <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile"/> to default values.
+            </summary>
+            <param name="overWriteExisting">Boolean flag indicating if existing values should be reset to default value.</param>
+        </member>
         <member name="M:TimeSeriesFramework.UI.IsolatedStorageManager.InitializeIsolatedStorage(System.Boolean)">
             <summary>
             Initializes or resets existing values in <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile"/> to default values.
