@@ -64,7 +64,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Allowed Measurements" FontSize="{StaticResource SmallTextSize}" HorizontalAlignment="Left" FontWeight="Bold"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Allowed Measurements" HorizontalAlignment="Left" FontWeight="Bold"/>
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Content="&gt;&gt;" Command="{Binding Path=DataContext.RemoveAllowedMeasurementCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel, AncestorLevel=2}}" 
                        CommandParameter="{Binding ElementName=ListBoxAllowedMeasurements, Path=SelectedItems}" ToolTip="Remove Allowed Measurements" Width="Auto" Margin="2"/>
@@ -73,7 +73,7 @@
             </StackPanel>
             <ListBox x:Name="ListBoxAllowedMeasurements" ItemsSource="{tsfBinding:Column Path=AllowedMeasurements}" Grid.Column="0" Grid.Row="1" DisplayMemberPath="Value"/>
 
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Denied Measurements" FontSize="{StaticResource SmallTextSize}" HorizontalAlignment="Left" FontWeight="Bold"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Denied Measurements" HorizontalAlignment="Left" FontWeight="Bold"/>
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Content="&gt;&gt;" Command="{Binding Path=DataContext.RemoveDeniedMeasurementCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel, AncestorLevel=2}}" 
                        CommandParameter="{Binding ElementName=ListBoxDeniedMeasurements, Path=SelectedItems}" ToolTip="Remove Denied Measurements" Width="Auto" Margin="2"/>
@@ -100,9 +100,9 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Allowed Measurement Groups" FontSize="{StaticResource SmallTextSize}" HorizontalAlignment="Left" FontWeight="Bold"/>
-            <TextBlock Grid.Column="2" Grid.Row="0" Text="Available Measurement Groups" FontSize="{StaticResource SmallTextSize}" HorizontalAlignment="Left" FontWeight="Bold"/>
-            <TextBlock Grid.Column="4" Grid.Row="0" Text="Denied Measurement Groups" FontSize="{StaticResource SmallTextSize}" HorizontalAlignment="Left" FontWeight="Bold"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Allowed Measurement Groups" HorizontalAlignment="Left" FontWeight="Bold"/>
+            <TextBlock Grid.Column="2" Grid.Row="0" Text="Available Measurement Groups" HorizontalAlignment="Left" FontWeight="Bold"/>
+            <TextBlock Grid.Column="4" Grid.Row="0" Text="Denied Measurement Groups" HorizontalAlignment="Left" FontWeight="Bold"/>
 
             <ListBox x:Name="ListBoxAllowedGroups" ItemsSource="{tsfBinding:Column Path=AllowedMeasurementGroups}" Grid.Row="1" Grid.Column="0" DisplayMemberPath="Value" />
             <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">

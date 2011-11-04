@@ -14,7 +14,7 @@
         Top="{Binding Source={x:Static self:Properties.Settings.Default}, Path=ApplicationTop, Mode=TwoWay}"
         ResourceAccessiblity="AlwaysIncluded"
         IncludedRoles="Administrator, Editor, Viewer"
-        Background="{StaticResource MainBackgroundBrush}">
+        Background="{StaticResource MainBackgroundBrush}" FontSize="{StaticResource SmallTextSize}">
     
     <Window.Resources>
         <tsfconv:RoleBasedVisibilityConverter x:Key="roleBasedVisibilityConverter" />

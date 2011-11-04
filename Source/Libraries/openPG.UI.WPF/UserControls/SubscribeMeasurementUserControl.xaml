@@ -57,7 +57,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Subscribed Measurements" FontSize="{StaticResource SmallTextSize}" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Subscribed Measurements" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top"/>
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Content="&gt;&gt;" Command="{Binding Path=DataContext.UnsubscribeMeasurementCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel, AncestorLevel=2}}" 
                        CommandParameter="{Binding ElementName=ListBoxSubscribedMeasurements, Path=SelectedItems}" ToolTip="Unsubscribe Measurements" Width="Auto" Margin="2"/>
