@@ -1687,9 +1687,24 @@
             Gets or sets collection of <see cref="T:openPDC.UI.DataModels.RealTimeMeasurement"/>s of the <see cref="T:openPDC.UI.DataModels.RealTimeDevice"/>.
             </summary>
         </member>
+        <member name="P:openPDC.UI.DataModels.RealTimeDevice.MaximumSignalReferenceWidth">
+            <summary>
+            Gets maximum with of signal reference column.
+            </summary>
+        </member>
         <member name="T:openPDC.UI.DataModels.RealTimeMeasurement">
             <summary>
             Represents a real-time stream of Measurement data.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.RealTimeMeasurement.Parent">
+            <summary>
+            Gets or sets parent <see cref="T:openPDC.UI.DataModels.RealTimeDevice"/>.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.DataModels.RealTimeMeasurement.MaximumSignalReferenceWidth">
+            <summary>
+            Gets maximum with of signal reference column.
             </summary>
         </member>
         <member name="P:openPDC.UI.DataModels.RealTimeMeasurement.DeviceID">

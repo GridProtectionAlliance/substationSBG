@@ -948,6 +948,18 @@
             <param name="stringToMatch">Item to search for in menu items collection.</param>
             <param name="item">Returns a menu item.</param>
         </member>
+        <member name="M:openPDC.UI.UserControls.HomeUserControl.Helper_ReceivedServiceResponse(System.Object,TVA.EventArgs{TVA.ServiceProcess.ServiceResponse})">
+            <summary>
+            Handles ReceivedServiceResponse event.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:openPDC.UI.UserControls.HomeUserControl.UnsubscribeUnsynchronizedData">
+            <summary>
+            Unsubscribes data from the service.
+            </summary>
+        </member>
         <member name="M:openPDC.UI.UserControls.HomeUserControl.InitializeComponent">
             <summary>
             InitializeComponent
@@ -1040,6 +1052,7 @@
             Creates an instance of <see cref="T:openPDC.UI.ViewModels.RealTimeStreams"/>.
             </summary>
             <param name="itemsPerPage"></param>
+            <param name="refreshInterval">Interval to refresh measurement in a tree.</param>
             <param name="autoSave"></param>        
         </member>
         <member name="M:openPDC.UI.ViewModels.RealTimeStreams.GetCurrentItemKey">
@@ -1063,6 +1076,13 @@
             <summary>
             Unsubscribes data from the service.
             </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStreams.Helper_ReceivedServiceResponse(System.Object,TVA.EventArgs{TVA.ServiceProcess.ServiceResponse})">
+            <summary>
+            Handles ReceivedServiceResponse event.
+            </summary>
+            <param name="sender">Source of the event.</param>
+            <param name="e">Event arguments.</param>
         </member>
         <member name="P:openPDC.UI.ViewModels.RealTimeStreams.IsNewRecord">
             <summary>
