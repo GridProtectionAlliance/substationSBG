@@ -111,14 +111,14 @@
         </member>
         <member name="M:TimeSeriesFramework.UI.CommonFunctions.RealTimeStatisticServiceUrl(TVA.Data.AdoDataConnection)">
             <summary>
-            Retrieves web service url to query real time statistics values.
+            Retrieves web service url to query real-time statistics values.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to database.</param>
             <returns>string, url to web service.</returns>
         </member>
         <member name="M:TimeSeriesFramework.UI.CommonFunctions.TimeSeriesDataServiceUrl(TVA.Data.AdoDataConnection)">
             <summary>
-            Retrieves web serivce url to query real time data.
+            Retrieves web serivce url to query real-time data.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to database.</param>
             <returns>string, url to web service.</returns>
@@ -1574,7 +1574,7 @@
         </member>
         <member name="P:TimeSeriesFramework.UI.DataModels.Node.RealTimeStatisticServiceUrl">
             <summary>
-            Gets or sets the current <see cref="T:TimeSeriesFramework.UI.DataModels.Node"/>'s Real Time Statistic Service URL.
+            Gets or sets the current <see cref="T:TimeSeriesFramework.UI.DataModels.Node"/>'s Real-time Statistic Service URL.
             </summary>
         </member>
         <member name="P:TimeSeriesFramework.UI.DataModels.Node.CompanyName">

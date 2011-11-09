@@ -4357,10 +4357,10 @@
         </member>
         <member name="P:TimeSeriesFramework.Adapters.FacileActionAdapterBase.UseLocalClockAsRealTime">
             <summary>
-            Gets or sets flag that determines whether or not to use the local clock time as real time.
+            Gets or sets flag that determines whether or not to use the local clock time as real-time.
             </summary>
             <remarks>
-            Use your local system clock as real time only if the time is locally GPS-synchronized,
+            Use your local system clock as real-time only if the time is locally GPS-synchronized,
             or if the measurement values being sorted were not measured relative to a GPS-synchronized clock.
             Turn this off if the class is intended to process historical data.
             </remarks>
