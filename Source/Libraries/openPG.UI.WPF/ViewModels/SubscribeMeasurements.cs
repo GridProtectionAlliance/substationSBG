@@ -253,9 +253,25 @@ namespace openPG.UI.ViewModels
 
         public override void Load()
         {
-            SubscribedMeasurements = Measurement.GetSubscribedMeasurements(null);
-            DeviceList = openPDC.UI.DataModels.Device.GetLookupList(null, "Measurement", true);
-            CurrentDevice = DeviceList.First();
+            try
+            {
+                SubscribedMeasurements = Measurement.GetSubscribedMeasurements(null);
+                DeviceList = openPDC.UI.DataModels.Device.GetLookupList(null, "Measurement", true);
+                CurrentDevice = DeviceList.First();
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null)
+                {
+                    Popup(ex.Message + Environment.NewLine + "Inner Exception: " + ex.InnerException.Message, "Load " + DataModelName + " Exception:", MessageBoxImage.Error);
+                    CommonFunctions.LogException(null, "Load " + DataModelName, ex.InnerException);
+                }
+                else
+                {
+                    Popup(ex.Message, "Load " + DataModelName + " Exception:", MessageBoxImage.Error);
+                    CommonFunctions.LogException(null, "Load " + DataModelName, ex);
+                }
+            }
         }
 
         public override void Save()
