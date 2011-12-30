@@ -58,15 +58,20 @@
             Gets or sets the publication interval for this <see cref="T:HistorianAdapters.LocalInputAdapter"/>.
             </summary>
         </member>
-        <member name="P:HistorianAdapters.LocalInputAdapter.RequestedOutputMeasurementKeys">
-            <summary>
-            Gets or sets output measurement keys that are requested by other adapters based on what adapter says it can provide.
-            </summary>
-        </member>
         <member name="P:HistorianAdapters.LocalInputAdapter.SupportsTemporalProcessing">
             <summary>
             Gets the flag indicating if this adapter supports temporal processing.
             </summary>
+        </member>
+        <member name="P:HistorianAdapters.LocalInputAdapter.ProcessingInterval">
+            <summary>
+            Gets or sets the desired processing interval, in milliseconds, for the adapter.
+            </summary>
+            <remarks>
+            With the exception of the values of -1 and 0, this value specifies the desired processing interval for data, i.e.,
+            basically a delay, or timer interval, overwhich to process data. A value of -1 means to use the default processing
+            interval while a value of 0 means to process data as fast as possible.
+            </remarks>
         </member>
         <member name="P:HistorianAdapters.LocalInputAdapter.UseAsyncConnect">
             <summary>
@@ -202,6 +207,16 @@
             </summary>
             <param name="measurements">Measurements to be archived.</param>
             <exception cref="T:System.InvalidOperationException">Local archive is closed.</exception>
+        </member>
+        <member name="M:HistorianAdapters.LocalOutputAdapter.ParameterizedQueryString(System.Type,System.String,System.String[])">
+            <summary>
+            Creates a parameterized query string for the underlying database type 
+            based on the given format string and the parameter names.
+            </summary>
+            <param name="adapterType">The adapter type used to determine the underlying database type.</param>
+            <param name="format">A composite format string.</param>
+            <param name="parameterNames">A string array that contains zero or more parameter names to format.</param>
+            <returns>A parameterized query string based on the given format and parameter names.</returns>
         </member>
         <member name="P:HistorianAdapters.LocalOutputAdapter.InstanceName">
             <summary>
