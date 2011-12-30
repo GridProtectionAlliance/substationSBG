@@ -796,6 +796,12 @@
             Creates an instance of <see cref="T:openPDC.UI.UserControls.InputWizardUserControl"/> class.
             </summary>
         </member>
+        <member name="M:openPDC.UI.UserControls.InputWizardUserControl.#ctor(openPDC.UI.DataModels.Device)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.UserControls.InputWizardUserControl"/> class for the specified <see cref="T:openPDC.UI.DataModels.Device"/>.
+            </summary>
+            <param name="device"></param>
+        </member>
         <member name="M:openPDC.UI.UserControls.InputWizardUserControl.CheckBoxAll_Checked(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             Hanldes checked event on the select all check box.
@@ -1083,6 +1089,21 @@
             </summary>
             <param name="sender">Source of the event.</param>
             <param name="e">Event arguments.</param>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.StartTime">
+            <summary>
+            Gets or sets start time for this <see cref="T:openPDC.UI.DataModels.RealTimeStream"/>.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.StopTime">
+            <summary>
+            Gets or sets stop for this <see cref="T:openPDC.UI.DataModels.RealTimeStream"/>.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStreams.TemporalSupportEnabled">
+            <summary>
+            Gets or sets flag that determines if temporal support is enabled.
+            </summary>
         </member>
         <member name="P:openPDC.UI.ViewModels.RealTimeStreams.IsNewRecord">
             <summary>
@@ -1439,9 +1460,9 @@
             Handles BrowseConfigurationFileCommand.
             </summary>        
         </member>
-        <member name="M:openPDC.UI.ViewModels.InputWizardDevices.ParseConfiguration">
+        <member name="M:openPDC.UI.ViewModels.InputWizardDevices.ParseConfiguration(System.Boolean)">
             <summary>
-            Parses IConfigurationFrame to retrieve devices and other configuration information.
+            Parses IConfigurationFrame to retrieve devices and other configuration information.        
             </summary>        
         </member>
         <member name="M:openPDC.UI.ViewModels.InputWizardDevices.SaveConfigurationFile">
@@ -1678,6 +1699,16 @@
         <member name="P:openPDC.UI.ViewModels.InputWizardDevices.CanSave">
             <summary>
             Gets boolean flag indicating if configuration can be saved or not.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.InputWizardDevices.CurrentDeviceRuntimeID">
+            <summary>
+            Gets or sets ID of the device in case where configuration is being updated.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.InputWizardDevices.DisconnectedCurrentDevice">
+            <summary>
+            Gets a flag indicating if current device was disconnected before requesting configuration.
             </summary>
         </member>
         <member name="T:openPDC.UI.UserControls.RealTimeMeasurementUserControl">
