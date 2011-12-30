@@ -401,6 +401,11 @@
             Raised when record has been deleted.
             </summary>
         </member>
+        <member name="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentSelectedIndex">
+            <summary>
+            Gets or sets current selected index on the UI data grid.
+            </summary>
+        </member>
         <member name="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItemPropertyChanged">
             <summary>
             Gets or sets flag that determines if current item property has changed.
