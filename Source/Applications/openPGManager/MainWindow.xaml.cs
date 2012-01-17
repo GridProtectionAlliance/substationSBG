@@ -34,6 +34,10 @@ using TimeSeriesFramework.UI;
 using TimeSeriesFramework.UI.DataModels;
 using TVA.IO;
 using TVA.Reflection;
+using System.Threading;
+using TVA.Security;
+using System.Diagnostics;
+using System.Net;
 
 namespace openPGManager
 {
@@ -75,18 +79,21 @@ namespace openPGManager
         /// </summary>
         public MainWindow()
         {
-#if DEBUG
-            const string hostService = "openPG";
+//#if DEBUG
+//            const string hostService = "openPG";
 
-            if (System.Diagnostics.Process.GetProcessesByName(hostService).Length == 0)
-                System.Diagnostics.Process.Start(hostService + ".exe");
-#endif
+//            if (System.Diagnostics.Process.GetProcessesByName(hostService).Length == 0)
+//                System.Diagnostics.Process.Start(hostService + ".exe");
+//#endif
 
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(MainWindow_Loaded);
             this.Closing += new System.ComponentModel.CancelEventHandler(MainWindow_Closing);
             Title = ((App)Application.Current).Title;
             TextBoxTitle.Text = AssemblyInfo.EntryAssembly.Title;
+
+            CommonFunctions.CurrentUser = Thread.CurrentPrincipal.Identity.Name;
+            CommonFunctions.CurrentPrincipal = Thread.CurrentPrincipal as SecurityPrincipal;
 
             if (!string.IsNullOrEmpty(CommonFunctions.CurrentUser))
                 Title += " Current User: " + CommonFunctions.CurrentUser;
@@ -106,12 +113,20 @@ namespace openPGManager
         {
             try
             {
+                Dispatcher.Invoke((Action)delegate()
+                {
+
                 KeyValuePair<Guid, string> currentNode = (KeyValuePair<Guid, string>)ComboboxNode.SelectedItem;
+
                 ComboboxNode.ItemsSource = Node.GetLookupList(null);
                 if (ComboboxNode.Items.Count > 0)
                 {
                     ComboboxNode.SelectedItem = currentNode;
+                    if (ComboboxNode.SelectedItem == null)
+                        ComboboxNode.SelectedItem = 0;
                 }
+
+                });
             }
             finally
             {
@@ -162,9 +177,11 @@ namespace openPGManager
         /// <param name="e">Event argument.</param>
         private void ComboboxNode_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            ((App)Application.Current).NodeID = ((KeyValuePair<Guid, string>)ComboboxNode.SelectedItem).Key;
+            if (ComboboxNode.SelectedItem != null)
+            {
+                ((App)Application.Current).NodeID = ((KeyValuePair<Guid, string>)ComboboxNode.SelectedItem).Key;
+            }
             m_menuDataItems[0].Command.Execute(null);
-
             ConnectToService();
         }
 
@@ -265,6 +282,7 @@ namespace openPGManager
             }
 
         }
+
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             if (FrameContent.CanGoBack)
@@ -288,6 +306,29 @@ namespace openPGManager
                     GroupBoxMain.Header = m_currentNode.Value;
             }
         }
+
+        private void ButtonLogo_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("http://www.gridprotectionalliance.org/");
+        }
+
+        private void ButtonHelp_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //Check for the Internet Connectivity.
+                Dns.GetHostEntry("openpdc.codeplex.com");
+
+                //Launch the help page avilable on web.
+                Process.Start("http://openpdc.codeplex.com/wikipage?title=Manager%20Configuration");
+            }
+            catch
+            {
+                // Launch the offline copy of the help page.
+                Process.Start("openPDCManagerHelp.mht");
+            }
+        }
+
 
         #endregion
     }

@@ -27,6 +27,13 @@
         <Canvas.RenderTransform>
             <ScaleTransform ScaleX="1" ScaleY="1"/>
         </Canvas.RenderTransform>
+        
+        <!--PopUP Here -->
+        <tsf:TsfPopup x:Name="PopupStatus" Topmost="False" Placement="Left" PlacementTarget="{Binding ElementName=ButtonHelp}" VerticalOffset="25">
+            <Border CornerRadius="5" BorderThickness="2" Background="White" BorderBrush="Blue">
+                <TextBlock x:Name="TextBlockResult" FontSize="{StaticResource LargeTextSize}" Height="Auto"/>
+            </Border>
+        </tsf:TsfPopup>
 
         <StackPanel Orientation="Vertical">
 
@@ -50,7 +57,13 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                    <Image Source="/TimeSeriesFramework.UI;component/images/GPALock.png" ToolTip="Grid Protection Alliance"/>
+                    <Button ToolTip="Grid Protection Alliance" Width="Auto" Padding="0" Click="ButtonLogo_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image Source="/TimeSeriesFramework.UI;component/images/GPALock.png" Height="29" Width="29"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                     <TextBlock x:Name="TextBoxTitle" Style="{StaticResource MainTitleStyle}" Margin="5,-10,0,0"/>
                 </StackPanel>
 
@@ -77,14 +90,29 @@
                 </StackPanel>
 
                 <Border Background="{StaticResource MenuBackgroundBrush}" BorderThickness="0" CornerRadius="5" VerticalAlignment="Top" 
-                    HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,5,0" Width="875" Height="32">
+                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,5,0" Width="875" Height="32">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                    
                     <Menu x:Name="MenuMain" ItemsSource="{Binding}" Style="{StaticResource MenuStyle}" ItemContainerStyleSelector="{StaticResource MenuItemStyleSelector}"
                       HorizontalAlignment="Center"/>
+
+                                <Button x:Name="ButtonHelp" ToolTip="Click for Help" Width="Auto" Padding="0" HorizontalAlignment="Right" Click="ButtonHelp_Click">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Image Source="/TimeSeriesFramework.UI;component/images/Help.png" Height="20" Width="20" />
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                    </Grid>
                 </Border>
 
             </Grid>
 
-            <TextBlock x:Name="TextBlockResult" Visibility="Collapsed" Foreground="#FFFFFFFF" FontWeight="Bold" VerticalAlignment="Center" Height="Auto" Margin="0,5,5,0" Padding="0"/>
+            <!--<TextBlock x:Name="TextBlockResult" Visibility="Collapsed" Foreground="#FFFFFFFF" FontWeight="Bold" VerticalAlignment="Center" Height="Auto" Margin="0,5,5,0" Padding="0"/>-->
 
             <GroupBox x:Name="GroupBoxMain" Margin="2,-5,2,2">
                 <Border Padding="2" BorderThickness="1" Background="{StaticResource MenuBackgroundBrush}" CornerRadius="5">
@@ -93,5 +121,7 @@
             </GroupBox>
 
         </StackPanel>
+        
     </Canvas>
+    
 </tsf:ResizableWindow>
