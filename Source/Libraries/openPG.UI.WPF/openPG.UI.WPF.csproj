@@ -71,6 +71,9 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamicDataDisplay">
+      <HintPath>..\..\Dependencies\Microsoft\D3\DynamicDataDisplay.dll</HintPath>
+    </Reference>
     <Reference Include="openPDC.UI">
       <HintPath>..\..\Dependencies\openPDC\openPDC.UI.dll</HintPath>
     </Reference>
@@ -80,6 +83,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
@@ -91,6 +95,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TimeSeriesFramework, Version=1.1.25.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\TimeSeriesFramework\TimeSeriesFramework.dll</HintPath>
+    </Reference>
     <Reference Include="TimeSeriesFramework.UI">
       <HintPath>..\..\Dependencies\TimeSeriesFramework\TimeSeriesFramework.UI.dll</HintPath>
     </Reference>
