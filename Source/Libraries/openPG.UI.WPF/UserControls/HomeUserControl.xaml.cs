@@ -64,9 +64,6 @@ namespace openPG.UI.UserControls
         private ObservableCollection<MenuDataItem> m_menuDataItems;
         private WindowsServiceClient m_windowsServiceClient = null;
         private DispatcherTimer m_refreshTimer;
-        //private ButtonRestart m_buttonRestart = null;
-        //private ButtonInputWizard m_buttonInputWizard = null;
-       
 
         // Subscription Fields
         private DataSubscriber m_unsynchronizedSubscriber;
@@ -93,9 +90,8 @@ namespace openPG.UI.UserControls
         public HomeUserControl()
         {
             InitializeComponent();
-            this.Loaded +=new RoutedEventHandler(HomeUserControl_Loaded);
+            this.Loaded += new RoutedEventHandler(HomeUserControl_Loaded);
             this.Unloaded += new RoutedEventHandler(HomeUserControl_Unloaded);
-
 
             // Load Menu
             XmlRootAttribute xmlRootAttribute = new XmlRootAttribute("MenuDataItems");
@@ -135,11 +131,11 @@ namespace openPG.UI.UserControls
 
         private void HomeUserControl_Loaded(object sender, RoutedEventArgs e)
         {
-           // if (!CommonFunctions.CurrentPrincipal.IsInRole("Administrator"))
-                //ButtonRestart.IsEnabled = false;
+            // if (!CommonFunctions.CurrentPrincipal.IsInRole("Administrator"))
+            //ButtonRestart.IsEnabled = false;
 
-           // if (!CommonFunctions.CurrentPrincipal.IsInRole("Administrator,Editor"))
-                //ButtonInputWizard.IsEnabled = false;
+            // if (!CommonFunctions.CurrentPrincipal.IsInRole("Administrator,Editor"))
+            //ButtonInputWizard.IsEnabled = false;
 
             m_windowsServiceClient = CommonFunctions.GetWindowsServiceClient();
 
@@ -602,6 +598,7 @@ namespace openPG.UI.UserControls
         }
 
         #endregion
+
         #endregion
     }
 }

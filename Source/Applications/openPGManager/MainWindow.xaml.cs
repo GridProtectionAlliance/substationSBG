@@ -24,6 +24,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Net;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -34,10 +37,7 @@ using TimeSeriesFramework.UI;
 using TimeSeriesFramework.UI.DataModels;
 using TVA.IO;
 using TVA.Reflection;
-using System.Threading;
 using TVA.Security;
-using System.Diagnostics;
-using System.Net;
 
 namespace openPGManager
 {
@@ -79,12 +79,12 @@ namespace openPGManager
         /// </summary>
         public MainWindow()
         {
-//#if DEBUG
-//            const string hostService = "openPG";
+            //#if DEBUG
+            //            const string hostService = "openPG";
 
-//            if (System.Diagnostics.Process.GetProcessesByName(hostService).Length == 0)
-//                System.Diagnostics.Process.Start(hostService + ".exe");
-//#endif
+            //            if (System.Diagnostics.Process.GetProcessesByName(hostService).Length == 0)
+            //                System.Diagnostics.Process.Start(hostService + ".exe");
+            //#endif
 
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(MainWindow_Loaded);
@@ -96,7 +96,7 @@ namespace openPGManager
             CommonFunctions.CurrentPrincipal = Thread.CurrentPrincipal as SecurityPrincipal;
 
             if (!string.IsNullOrEmpty(CommonFunctions.CurrentUser))
-                Title += " Current User: " + CommonFunctions.CurrentUser;
+                Title += " - " + CommonFunctions.CurrentUser;
 
             CommonFunctions.SetRetryServiceConnection(true);
             CommonFunctions.ServiceConntectionRefreshed += new EventHandler(CommonFunctions_ServiceConntectionRefreshed);
@@ -116,15 +116,25 @@ namespace openPGManager
                 Dispatcher.Invoke((Action)delegate()
                 {
 
-                KeyValuePair<Guid, string> currentNode = (KeyValuePair<Guid, string>)ComboboxNode.SelectedItem;
-
-                ComboboxNode.ItemsSource = Node.GetLookupList(null);
-                if (ComboboxNode.Items.Count > 0)
-                {
-                    ComboboxNode.SelectedItem = currentNode;
                     if (ComboboxNode.SelectedItem == null)
-                        ComboboxNode.SelectedItem = 0;
-                }
+                    {
+                        ComboboxNode.ItemsSource = Node.GetLookupList(null);
+                        if (ComboboxNode.Items.Count > 0)
+                            ComboboxNode.SelectedIndex = 0;
+                    }
+
+                    if (ComboboxNode.SelectedItem != null)
+                    {
+                        KeyValuePair<Guid, string> currentNode = (KeyValuePair<Guid, string>)ComboboxNode.SelectedItem;
+
+                        ComboboxNode.ItemsSource = Node.GetLookupList(null);
+                        if (ComboboxNode.Items.Count > 0)
+                        {
+                            ComboboxNode.SelectedItem = currentNode;
+                            if (ComboboxNode.SelectedItem == null)
+                                ComboboxNode.SelectedIndex = 0;
+                        }
+                    }
 
                 });
             }
@@ -156,6 +166,8 @@ namespace openPGManager
             ComboboxNode.ItemsSource = Node.GetLookupList(null);
             if (ComboboxNode.Items.Count > 0)
                 ComboboxNode.SelectedIndex = 0;
+
+            IsolatedStorageManager.InitializeIsolatedStorage(false);
         }
 
         /// <summary>
@@ -317,15 +329,15 @@ namespace openPGManager
             try
             {
                 //Check for the Internet Connectivity.
-                Dns.GetHostEntry("openpdc.codeplex.com");
+                Dns.GetHostEntry("openpg.codeplex.com");
 
                 //Launch the help page avilable on web.
-                Process.Start("http://openpdc.codeplex.com/wikipage?title=Manager%20Configuration");
+                Process.Start("http://openpg.codeplex.com/documentation");
             }
             catch
             {
                 // Launch the offline copy of the help page.
-                Process.Start("openPDCManagerHelp.mht");
+                Process.Start("openPGManagerHelp.mht");
             }
         }
 

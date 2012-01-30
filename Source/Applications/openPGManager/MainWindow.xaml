@@ -6,7 +6,9 @@
         xmlns:self="clr-namespace:openPGManager"
         MinHeight="600"
         MinWidth="800"
-        Title="MainWindow" 
+        Title="openPG Manager"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="CanResize"
         ForceLoginDisplay="{Binding Source={x:Static self:Properties.Settings.Default}, Path=ForceLoginDisplay, Mode=TwoWay}"
         Height="{Binding Source={x:Static self:Properties.Settings.Default}, Path=ApplicationHeight, Mode=TwoWay}"
         Width="{Binding Source={x:Static self:Properties.Settings.Default}, Path=ApplicationWidth, Mode=TwoWay}"
@@ -14,7 +16,7 @@
         Top="{Binding Source={x:Static self:Properties.Settings.Default}, Path=ApplicationTop, Mode=TwoWay}"
         ResourceAccessiblity="AlwaysIncluded"
         IncludedRoles="Administrator, Editor, Viewer"
-        Background="{StaticResource MainBackgroundBrush}" FontSize="{StaticResource SmallTextSize}">
+        Background="{StaticResource MainBackgroundBrush}" FontSize="{StaticResource SmallTextSize}" Icon="openPGManager.ico">
     
     <Window.Resources>
         <tsfconv:RoleBasedVisibilityConverter x:Key="roleBasedVisibilityConverter" />
@@ -98,7 +100,7 @@
                         </Grid.ColumnDefinitions>
                     
                     <Menu x:Name="MenuMain" ItemsSource="{Binding}" Style="{StaticResource MenuStyle}" ItemContainerStyleSelector="{StaticResource MenuItemStyleSelector}"
-                      HorizontalAlignment="Center"/>
+                      HorizontalAlignment="Left"/>
 
                                 <Button x:Name="ButtonHelp" ToolTip="Click for Help" Width="Auto" Padding="0" HorizontalAlignment="Right" Click="ButtonHelp_Click">
                                     <Button.Template>
