@@ -145,7 +145,8 @@ CREATE TABLE Node(
     CreatedBy VARCHAR(200) NOT NULL DEFAULT N'',
     UpdatedOn DATETIME NOT NULL DEFAULT N'0000-00-00 00:00:00',
     UpdatedBy VARCHAR(200) NOT NULL DEFAULT N'',
-    CONSTRAINT PK_Node PRIMARY KEY (ID ASC)
+    CONSTRAINT PK_Node PRIMARY KEY (ID ASC),
+    CONSTRAINT IX_NodeID_Name UNIQUE KEY (Name ASC)
 );
 
 CREATE TABLE DataOperation(
@@ -286,7 +287,7 @@ CREATE TABLE Measurement(
     HistorianID INT NULL,
     DeviceID INT NULL,
     PointTag VARCHAR(200) NOT NULL,
-    AlternateTag VARCHAR(200) NULL,
+    AlternateTag TEXT NULL,
     SignalTypeID INT NOT NULL,
     PhasorSourceIndex INT NULL,
     SignalReference VARCHAR(200) NOT NULL,
@@ -516,7 +517,8 @@ CREATE TABLE OutputStream(
     CreatedBy VARCHAR(200) NOT NULL DEFAULT N'',
     UpdatedOn DATETIME NOT NULL DEFAULT N'0000-00-00 00:00:00',
     UpdatedBy VARCHAR(200) NOT NULL DEFAULT N'',
-    CONSTRAINT PK_OutputStream PRIMARY KEY (ID ASC)
+    CONSTRAINT PK_OutputStream PRIMARY KEY (ID ASC),
+    CONSTRAINT IX_OutputStream_NodeID_Acronym UNIQUE KEY (NodeID ASC, Acronym ASC)
 );
 
 CREATE TABLE CustomOutputAdapter(
@@ -539,7 +541,6 @@ CREATE TABLE AccessLog (
     ID INT(11) NOT NULL AUTO_INCREMENT,
     UserName VARCHAR(200) NOT NULL,
     AccessGranted TINYINT NOT NULL,
-    Comment TEXT,
     CreatedOn DATETIME NOT NULL DEFAULT N'0000-00-00 00:00:00',
     CONSTRAINT PK_AccessLog PRIMARY KEY (ID ASC)
 );
@@ -667,7 +668,7 @@ CREATE TABLE MeasurementGroupMeasurement (
     CONSTRAINT PK_MeasurementGroupMeasurement PRIMARY KEY (NodeID ASC, MeasurementGroupID ASC, SignalID ASC)
 );
 
-ALTER TABLE Subscriber ADD CONSTRAINT FK_Subscriber_Node FOREIGN KEY(NodeID) REFERENCES Node (ID);
+ALTER TABLE Subscriber ADD CONSTRAINT FK_Subscriber_Node FOREIGN KEY(NodeID) REFERENCES node (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE SubscriberMeasurement ADD CONSTRAINT FK_SubscriberMeasurement_Node FOREIGN KEY(NodeID) REFERENCES Node (ID);
 
@@ -681,7 +682,7 @@ ALTER TABLE SubscriberMeasurementGroup ADD CONSTRAINT FK_SubscriberMeasurementGr
 
 ALTER TABLE SubscriberMeasurementGroup ADD CONSTRAINT FK_SubscriberMeasurementGroup_MeasurementGroup FOREIGN KEY(MeasurementGroupID) REFERENCES MeasurementGroup (ID);
 
-ALTER TABLE MeasurementGroup ADD CONSTRAINT FK_MeasurementGroup_Node FOREIGN KEY(NodeID) REFERENCES Node (ID);
+ALTER TABLE MeasurementGroup ADD CONSTRAINT FK_MeasurementGroup_Node FOREIGN KEY(NodeID) REFERENCES node (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE MeasurementGroupMeasurement ADD CONSTRAINT FK_MeasurementGroupMeasurement_Node FOREIGN KEY(NodeID) REFERENCES Node (ID);
 
@@ -693,7 +694,7 @@ ALTER TABLE MeasurementGroupMeasurement ADD CONSTRAINT FK_MeasurementGroupMeasur
 
 ALTER TABLE Node ADD CONSTRAINT FK_Node_Company FOREIGN KEY(CompanyID) REFERENCES Company (ID);
 
-ALTER TABLE DataOperation ADD CONSTRAINT FK_DataOperation_Node FOREIGN KEY(NodeID) REFERENCES Node (ID);
+ALTER TABLE DataOperation ADD CONSTRAINT FK_DataOperation_Node FOREIGN KEY(NodeID) REFERENCES node (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE OtherDevice ADD CONSTRAINT FK_OtherDevice_Company FOREIGN KEY(CompanyID) REFERENCES Company (ID);
 
@@ -704,8 +705,6 @@ ALTER TABLE OtherDevice ADD CONSTRAINT FK_OtherDevice_VendorDevice FOREIGN KEY(V
 ALTER TABLE Device ADD CONSTRAINT FK_Device_Company FOREIGN KEY(CompanyID) REFERENCES Company (ID);
 
 ALTER TABLE Device ADD CONSTRAINT FK_Device_Device FOREIGN KEY(ParentID) REFERENCES Device (ID);
-
-ALTER TABLE Device ADD CONSTRAINT FK_Device_Historian FOREIGN KEY(HistorianID) REFERENCES Historian (ID);
 
 ALTER TABLE Device ADD CONSTRAINT FK_Device_Interconnection FOREIGN KEY(InterconnectionID) REFERENCES Interconnection (ID);
 
@@ -731,11 +730,9 @@ ALTER TABLE OutputStreamDeviceAnalog ADD CONSTRAINT FK_OutputStreamDeviceAnalog_
 
 ALTER TABLE Measurement ADD CONSTRAINT FK_Measurement_Device FOREIGN KEY(DeviceID) REFERENCES Device (ID) ON DELETE CASCADE;
 
-ALTER TABLE Measurement ADD CONSTRAINT FK_Measurement_Historian FOREIGN KEY(HistorianID) REFERENCES Historian (ID);
-
 ALTER TABLE Measurement ADD CONSTRAINT FK_Measurement_SignalType FOREIGN KEY(SignalTypeID) REFERENCES SignalType (ID);
 
-ALTER TABLE ImportedMeasurement ADD CONSTRAINT FK_ImportedMeasurement_Node FOREIGN KEY(NodeID) REFERENCES Node (ID);
+ALTER TABLE ImportedMeasurement ADD CONSTRAINT FK_ImportedMeasurement_Node FOREIGN KEY(NodeID) REFERENCES node (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE OutputStreamMeasurement ADD CONSTRAINT FK_OutputStreamMeasurement_Historian FOREIGN KEY(HistorianID) REFERENCES Historian (ID);
 
@@ -753,17 +750,17 @@ ALTER TABLE Phasor ADD CONSTRAINT FK_Phasor_Device FOREIGN KEY(DeviceID) REFEREN
 
 ALTER TABLE Phasor ADD CONSTRAINT FK_Phasor_Phasor FOREIGN KEY(DestinationPhasorID) REFERENCES Phasor (ID);
 
-ALTER TABLE CalculatedMeasurement ADD CONSTRAINT FK_CalculatedMeasurement_Node FOREIGN KEY(NodeID) REFERENCES Node (ID);
+ALTER TABLE CalculatedMeasurement ADD CONSTRAINT FK_CalculatedMeasurement_Node FOREIGN KEY(NodeID) REFERENCES node (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE CustomActionAdapter ADD CONSTRAINT FK_CustomActionAdapter_Node FOREIGN KEY(NodeID) REFERENCES Node (ID);
+ALTER TABLE CustomActionAdapter ADD CONSTRAINT FK_CustomActionAdapter_Node FOREIGN KEY(NodeID) REFERENCES node (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE Historian ADD CONSTRAINT FK_Historian_Node FOREIGN KEY(NodeID) REFERENCES Node (ID);
+ALTER TABLE Historian ADD CONSTRAINT FK_Historian_Node FOREIGN KEY(NodeID) REFERENCES node (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE CustomInputAdapter ADD CONSTRAINT FK_CustomInputAdapter_Node FOREIGN KEY(NodeID) REFERENCES Node (ID);
+ALTER TABLE CustomInputAdapter ADD CONSTRAINT FK_CustomInputAdapter_Node FOREIGN KEY(NodeID) REFERENCES node (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE OutputStream ADD CONSTRAINT FK_OutputStream_Node FOREIGN KEY(NodeID) REFERENCES Node (ID);
+ALTER TABLE OutputStream ADD CONSTRAINT FK_OutputStream_Node FOREIGN KEY(NodeID) REFERENCES node (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE CustomOutputAdapter ADD CONSTRAINT FK_CustomOutputAdapter_Node FOREIGN KEY(NodeID) REFERENCES Node (ID);
+ALTER TABLE CustomOutputAdapter ADD CONSTRAINT FK_CustomOutputAdapter_Node FOREIGN KEY(NodeID) REFERENCES node (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE ApplicationRoleSecurityGroup ADD CONSTRAINT FK_applicationrolesecuritygroup_applicationrole FOREIGN KEY (ApplicationRoleID) REFERENCES applicationrole (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -817,7 +814,8 @@ SELECT Device.NodeID, Runtime.ID, Device.Acronym AS AdapterName, Protocol.Assemb
     CONCAT(N'allowUseOfCachedConfiguration=', CAST(Device.AllowUseOfCachedConfiguration AS CHAR)),
     CONCAT(N'autoStartDataParsingSequence=', CAST(Device.AutoStartDataParsingSequence AS CHAR)),
     CONCAT(N'skipDisableRealTimeData=', CAST(Device.SkipDisableRealTimeData AS CHAR)),
-    CONCAT(N'measurementReportingInterval=', CAST(Device.MeasurementReportingInterval AS CHAR))) AS ConnectionString
+    CONCAT(N'measurementReportingInterval=', CAST(Device.MeasurementReportingInterval AS CHAR)),
+    CONCAT(N'connectOnDemand=', CAST(Device.ConnectOnDemand AS CHAR))) AS ConnectionString
 FROM Device LEFT OUTER JOIN
     Protocol ON Device.ProtocolID = Protocol.ID LEFT OUTER JOIN
     Runtime ON Device.ID = Runtime.SourceID AND Runtime.SourceTable = N'Device'
@@ -907,7 +905,7 @@ CREATE VIEW RuntimeCalculatedMeasurement
 AS
 SELECT CalculatedMeasurement.NodeID, Runtime.ID, CalculatedMeasurement.Acronym AS AdapterName, 
     TRIM(CalculatedMeasurement.AssemblyName) AS AssemblyName, TRIM(CalculatedMeasurement.TypeName) AS TypeName,
-    CONCAT_WS(';', CalculatedMeasurement.ConnectionString, IF(ConfigSection IS NULL, N'', CONCAT(N'configurationSection=', ConfigSection)),
+    CONCAT_WS(';', IF (CalculatedMeasurement.ConnectionString IS NULL, N'', CalculatedMeasurement.ConnectionString), IF(ConfigSection IS NULL, N'', CONCAT(N'configurationSection=', ConfigSection)),
     CONCAT(N'minimumMeasurementsToUse=', CAST(CalculatedMeasurement.MinimumMeasurementsToUse AS CHAR)),
     CONCAT(N'framesPerSecond=', CAST(CalculatedMeasurement.FramesPerSecond AS CHAR)),
     CONCAT(N'lagTime=', CAST(CalculatedMeasurement.LagTime AS CHAR)),
@@ -927,7 +925,7 @@ ORDER BY CalculatedMeasurement.LoadOrder;
 
 CREATE VIEW ActiveMeasurement
 AS
-SELECT COALESCE(Historian.NodeID, Device.NodeID) AS NodeID, COALESCE(Device.NodeID, Historian.NodeID) AS SourceNodeID, CONCAT_WS(':', COALESCE(Historian.Acronym, Device.Acronym, '__'), 
+SELECT Node.ID AS NodeID, COALESCE(Device.NodeID, Historian.NodeID) AS SourceNodeID, CONCAT_WS(':', COALESCE(Historian.Acronym, Device.Acronym, '__'), 
     CAST(Measurement.PointID AS CHAR)) AS ID, Measurement.SignalID, Measurement.PointTag, Measurement.AlternateTag, Measurement.SignalReference, Measurement.Internal, Measurement.Subscribed,
     Device.Acronym AS Device, CASE WHEN Device.IsConcentrator = 0 AND Device.ParentID IS NOT NULL THEN RuntimeP.ID ELSE Runtime.ID END AS DeviceID, COALESCE(Device.FramesPerSecond, 30) AS FramesPerSecond, 
     Protocol.Acronym AS Protocol, Protocol.Type AS ProtocolType, SignalType.Acronym AS SignalType, Phasor.ID AS PhasorID, Phasor.Type AS PhasorType, Phasor.Phase, Measurement.Adder, 
@@ -942,6 +940,7 @@ FROM Company RIGHT OUTER JOIN
     Historian ON Measurement.HistorianID = Historian.ID LEFT OUTER JOIN
     Runtime ON Device.ID = Runtime.SourceID AND Runtime.SourceTable = N'Device' LEFT OUTER JOIN
     Runtime AS RuntimeP ON RuntimeP.SourceID = Device.ParentID AND RuntimeP.SourceTable = N'Device'
+	CROSS JOIN Node
 WHERE (Device.Enabled <> 0 OR Device.Enabled IS NULL) AND (Measurement.Enabled <> 0)
 UNION ALL
 SELECT NodeID, SourceNodeID, CONCAT_WS(':', Source, CAST(PointID AS CHAR)) AS ID, SignalID, PointTag,
@@ -954,7 +953,8 @@ WHERE ImportedMeasurement.Enabled <> 0;
 CREATE VIEW RuntimeStatistic
 AS
 SELECT Node.ID AS NodeID, Statistic.ID AS ID, Statistic.Source, Statistic.SignalIndex, Statistic.Name, Statistic.Description,
-    Statistic.AssemblyName, Statistic.TypeName, Statistic.MethodName, Statistic.Arguments, Statistic.Enabled
+    Statistic.AssemblyName, Statistic.TypeName, Statistic.MethodName, Statistic.Arguments, Statistic.IsConnectedState, Statistic.DataType, 
+                      Statistic.DisplayFormat, Statistic.Enabled
 FROM Statistic, Node;
 
 CREATE VIEW IaonOutputAdapter
