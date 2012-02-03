@@ -33,50 +33,69 @@
         </Grid.ColumnDefinitions>
 
         <GroupBox Header="Quick Links" Grid.Row="0" Grid.Column="0" >
-            <StackPanel Orientation="Vertical">
-                <Button Style="{StaticResource HomeButtonStyle}" Tag="Create Authentication Request" Click="CommonClickHandler" Height="35" VerticalAlignment="Top" >
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Subscription" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
-                        <TextBlock Text="PG Authorization Request" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource HomeButtonStyle}" Tag="Measurement Subscription" Click="CommonClickHandler" Height="35"  VerticalAlignment="Top">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Subscription" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
-                        <TextBlock Text="Measurement Requests" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource HomeButtonStyle}" Tag="Authorize Subscribers" Click="CommonClickHandler" Height="35" VerticalAlignment="Top" >
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Publication" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
-                        <TextBlock Text="Subscribing PGs" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource HomeButtonStyle}" Tag="Measurement Groups" Click="CommonClickHandler" Height="35" VerticalAlignment="Top" >
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Publication" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
-                        <TextBlock Text="Measurement Groups" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource HomeButtonStyle}" Tag="Subscriber Measurement Access" Click="CommonClickHandler" Height="35" VerticalAlignment="Top" >
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Publication" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
-                        <TextBlock Text="Authorized Measurements" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource HomeButtonStyle}" Tag="Browse" Click="CommonClickHandler" Height="35" VerticalAlignment="Top">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Local openPG" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
-                        <TextBlock Text="Browse Inputs" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource HomeButtonStyle}" Tag="Security" Click="CommonClickHandler" Height="36" VerticalAlignment="Top" >
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Local openPG" HorizontalAlignment="Center" Margin="0" FontWeight="Normal"/>
-                        <TextBlock Text="Manage Security" HorizontalAlignment="Center" Margin="0" FontWeight="Bold"/>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>         
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                                
+                <Border Background="#FF66FF66" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center">                        
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90"/>
+                        </TextBlock.LayoutTransform>
+                        Subscription<LineBreak/>Functions
+                    </TextBlock>
+                </Border>
+
+                <Border Background="#FF9999FF" Grid.Column="0" Grid.Row="2" Grid.RowSpan="3">
+                    <TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">                    
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90"/>
+                        </TextBlock.LayoutTransform>
+                        Publication<LineBreak/>Functions
+                    </TextBlock>
+                </Border>
+
+                <Border Background="#FFFFFF00" Grid.Column="0" Grid.Row="5" Grid.RowSpan="2">
+                    <TextBlock HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">                        
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90"/>
+                        </TextBlock.LayoutTransform>
+                        Local<LineBreak/>Properties
+                    </TextBlock>
+                </Border>
+
+                <Button Content="PG Authorization Request" Grid.Row="0" Grid.Column="1" Tag="Create Authentication Request" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+                <Button Content="Measurement Requests" Grid.Row="1" Grid.Column="1" Tag="Measurement Subscription" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+
+                <Button Content="Subscribing PGs" Grid.Row="2" Grid.Column="1" Tag="Authorize Subscribers" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+                <Button Content="Measurement Groups" Grid.Row="3" Grid.Column="1" Tag="Measurement Groups" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+                <Button Content="Authorized Measurements" Grid.Row="4" Grid.Column="1" Tag="Subscriber Measurement Access" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+
+                <Button Content="Browse Inputs" Grid.Row="5" Grid.Column="1" Tag="Browse" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+                <Button Content="Manage Security" Grid.Row="6" Grid.Column="1" Tag="Security" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+            </Grid>
+            
+            
+            <!--<StackPanel Orientation="Vertical">
+                
+                
+                
+                
+                
+                
+            </StackPanel>-->
         </GroupBox>      
         
         <Grid Grid.Row="0" Grid.Column="1">
