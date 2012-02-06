@@ -114,64 +114,73 @@ namespace openPG.UI.UserControls
         /// <param name="e">Arguments of the event</param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)m_createAdapter.IsChecked)
+            if (!string.IsNullOrEmpty(m_acronymField.Text.Replace(" ", "")))
             {
-                Device device = Device.GetDevice(null, " WHERE Acronym = '" + m_acronymField.Text.Replace(" ", "") + "'");
-                bool continueSave = true;
 
-                if (device != null)
+                if ((bool)m_createAdapter.IsChecked)
                 {
-                    if (MessageBox.Show(string.Format("Data subscription adapter \"{0}\" already exists. Do you want to update the existing adapter with the new keys?", device.Acronym), "Create Subscription Request", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                        continueSave = true;
-                    else
-                        continueSave = false;
-                }
+                    Device device = Device.GetDevice(null, " WHERE Acronym = '" + m_acronymField.Text.Replace(" ", "") + "'");
+                    bool continueSave = true;
 
-                if (continueSave)
-                {
-                    if (device == null)
+                    if (device != null)
                     {
-                        device = new Device();
-                        device.Enabled = false;
-                        device.IsConcentrator = true;
-                        device.ProtocolID = 8;
-                        device.ConnectionString = "port=9500; interface=0.0.0.0; compression=false; autoConnect=true; commandChannel={server=127.0.0.1:6170; interface=0.0.0.0}";
+                        if (MessageBox.Show(string.Format("Data subscription adapter \"{0}\" already exists. Do you want to update the existing adapter with the new keys?", device.Acronym), "Create Subscription Request", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                            continueSave = true;
+                        else
+                            continueSave = false;
                     }
 
-                    device.Acronym = m_acronymField.Text.Replace(" ", "");
-                    device.Name = m_nameField.Text;
-                    Device.Save(null, device);
+                    if (continueSave)
+                    {
+                        if (device == null)
+                        {
+                            device = new Device();
+                            device.Enabled = false;
+                            device.IsConcentrator = true;
+                            device.ProtocolID = 8;
+                            device.ConnectionString = "port=9500; interface=0.0.0.0; compression=false; autoConnect=true; commandChannel={server=127.0.0.1:6170; interface=0.0.0.0}";
+                        }
+
+                        device.Acronym = m_acronymField.Text.Replace(" ", "");
+                        device.Name = m_nameField.Text;
+                        Device.Save(null, device);
+                    }
                 }
-            }
 
-            if (string.IsNullOrWhiteSpace(m_keyField.Text) && string.IsNullOrWhiteSpace(m_ivField.Text))
-                m_generateButton_Click(this, null);
+                if (string.IsNullOrWhiteSpace(m_keyField.Text) && string.IsNullOrWhiteSpace(m_ivField.Text))
+                    m_generateButton_Click(this, null);
 
-            string filename = "";
+                string filename = "";
 
-            System.Windows.Forms.SaveFileDialog saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+                System.Windows.Forms.SaveFileDialog saveFileDialog = new System.Windows.Forms.SaveFileDialog();
 
-            saveFileDialog.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
-            saveFileDialog.DefaultExt = ".xml";
-            System.Windows.Forms.DialogResult res = saveFileDialog.ShowDialog();
-            if (res != System.Windows.Forms.DialogResult.Cancel)
-            {
-                filename = saveFileDialog.FileName;
-                AuthenticationRequest request = new AuthenticationRequest();
+                saveFileDialog.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
+                saveFileDialog.DefaultExt = ".xml";
+                System.Windows.Forms.DialogResult res = saveFileDialog.ShowDialog();
+                if (res != System.Windows.Forms.DialogResult.Cancel)
+                {
+                    filename = saveFileDialog.FileName;
+                    AuthenticationRequest request = new AuthenticationRequest();
 
-                request.Acronym = m_acronymField.Text;
-                request.Name = m_nameField.Text;
-                request.SharedSecret = m_sharedSecretField.Text;
-                request.AuthenticationID = m_authenticationIDField.Text;
-                request.Key = m_keyField.Text;
-                request.IV = m_ivField.Text;
-                request.ValidIPAddresses = m_validIpAddressesField.Text;
+                    request.Acronym = m_acronymField.Text;
+                    request.Name = m_nameField.Text;
+                    request.SharedSecret = m_sharedSecretField.Text;
+                    request.AuthenticationID = m_authenticationIDField.Text;
+                    request.Key = m_keyField.Text;
+                    request.IV = m_ivField.Text;
+                    request.ValidIPAddresses = m_validIpAddressesField.Text;
 
-                File.WriteAllBytes(filename, Serialization.Serialize(request, TVA.SerializationFormat.Xml));
+                    File.WriteAllBytes(filename, Serialization.Serialize(request, TVA.SerializationFormat.Xml));
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
             else
             {
-                e.Handled = true;
+                MessageBox.Show("Acronym is a required field. Please provide value.");
+                m_acronymField.Focus();
             }
         }
 
