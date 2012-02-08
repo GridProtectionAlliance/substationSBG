@@ -161,6 +161,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Oracle", "Oracle", "{AFC8E4
 		Data\Oracle\SampleDataSet.sql = Data\Oracle\SampleDataSet.sql
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{09C79162-276C-4F8A-BA20-40483821CBD8}"
+	ProjectSection(SolutionItems) = preProject
+		Dependencies\Microsoft\WPF\System.Windows.Controls.DataVisualization.Toolkit.dll = Dependencies\Microsoft\WPF\System.Windows.Controls.DataVisualization.Toolkit.dll
+		Dependencies\Microsoft\WPF\System.Windows.Controls.Input.Toolkit.dll = Dependencies\Microsoft\WPF\System.Windows.Controls.Input.Toolkit.dll
+		Dependencies\Microsoft\WPF\System.Windows.Controls.Layout.Toolkit.dll = Dependencies\Microsoft\WPF\System.Windows.Controls.Layout.Toolkit.dll
+		Dependencies\Microsoft\WPF\WPFToolkit.dll = Dependencies\Microsoft\WPF\WPFToolkit.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 10
@@ -309,5 +317,6 @@ Global
 		{134819C5-C1BB-4ED1-BE23-49AB5FB33744} = {3B319B01-4C55-4CD3-86A5-1298E91D9138}
 		{EC798DA3-F75A-49A3-9761-2BC023EDCB0E} = {FCF4FAEF-8AA9-4403-A060-D1CB7DA2145B}
 		{32FFE65B-1193-4647-A5E6-67504EE51B31} = {F87710C5-D8D3-4070-A2EB-73A14FDAE208}
+		{09C79162-276C-4F8A-BA20-40483821CBD8} = {F87710C5-D8D3-4070-A2EB-73A14FDAE208}
 	EndGlobalSection
 EndGlobal
