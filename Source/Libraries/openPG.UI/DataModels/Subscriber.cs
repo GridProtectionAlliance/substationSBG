@@ -801,6 +801,15 @@ namespace openPG.UI.DataModels
                         database.UtcNow(), database.Guid(subscriber.ID));
                 }
 
+                try
+                {
+                    CommonFunctions.SendCommandToService("Initialize");
+                }
+                catch (Exception ex)
+                {
+                    return "Subscriber information saved successfully. Failed to send Initialize command to backend service." + Environment.NewLine + ex.Message;
+                }
+
                 return "Subscriber information saved successfully";
             }
             finally

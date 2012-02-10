@@ -138,7 +138,8 @@ namespace openPG.UI.UserControls
                             device.Enabled = false;
                             device.IsConcentrator = true;
                             device.ProtocolID = 8;
-                            device.ConnectionString = "port=9500; interface=0.0.0.0; compression=false; autoConnect=true; commandChannel={server=127.0.0.1:6170; interface=0.0.0.0}";
+                            device.ConnectionString = "port=9500; interface=0.0.0.0; compression=false; autoConnect=true; requireAuthentication=true; sharedSecret=" + m_sharedSecretField.Text +
+                                ";authenticationID={" + m_authenticationIDField.Text + "}; commandChannel={server=127.0.0.1:6171; interface=0.0.0.0}";
                         }
 
                         device.Acronym = m_acronymField.Text.Replace(" ", "");
