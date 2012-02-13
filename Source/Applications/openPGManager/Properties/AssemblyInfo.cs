@@ -2,15 +2,20 @@
 using System.Runtime.InteropServices;
 using System.Windows;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
+// Informational attributes.
+[assembly: AssemblyCompany("Grid Protection Alliance")]
+[assembly: AssemblyCopyright("Copyright © 2012.  All Rights Reserved.")]
+[assembly: AssemblyProduct("openPG")]
+
+// Assembly manifest attributes.
+#if DEBUG
+[assembly: AssemblyConfiguration("Debug Build")]
+#else
+[assembly: AssemblyConfiguration("Release Build")]
+#endif
+[assembly: AssemblyDescription("Configuration management application for the open Phasor Gateway.")]
 [assembly: AssemblyTitle("openPG Manager")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("openPGManager")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
+
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

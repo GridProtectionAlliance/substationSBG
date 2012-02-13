@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 // Informational attributes.
 [assembly: AssemblyCompany("Grid Protection Alliance")]
-[assembly: AssemblyCopyright("Copyright © 2011.  All Rights Reserved.")]
+[assembly: AssemblyCopyright("Copyright © 2012.  All Rights Reserved.")]
 [assembly: AssemblyProduct("openPG")]
 
 // Assembly manifest attributes.
