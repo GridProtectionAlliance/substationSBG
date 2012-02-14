@@ -29,6 +29,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -36,6 +38,7 @@ using openPG.UI.DataModels;
 using openPG.UI.ViewModels;
 using TimeSeriesFramework.UI;
 using TVA;
+using TVA.Data;
 using TVA.Security.Cryptography;
 
 namespace openPG.UI.UserControls
@@ -80,6 +83,30 @@ namespace openPG.UI.UserControls
             m_dataContext.PropertyChanged += SubscriberUserControl_PropertyChanged;
             m_dataContext.BeforeSave += SubscriberUserControl_BeforeSave;
             LoadCurrentKeyIV();
+
+            try
+            {
+                using (AdoDataConnection database = new AdoDataConnection(CommonFunctions.DefaultSettingsCategory))
+                {
+                    Dictionary<string, string> settings = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+                    settings = database.ServiceConnectionString().ParseKeyValuePairs();
+                    IPAddress[] hostIPs = null;
+                    if (settings.ContainsKey("server"))
+                        hostIPs = Dns.GetHostAddresses(settings["server"].Split(':')[0]);
+
+                    IEnumerable<IPAddress> localIPs = Dns.GetHostAddresses("localhost").Concat(Dns.GetHostAddresses(Dns.GetHostName()));
+
+                    // Check to see if entered host name corresponds to a local IP address
+                    if (hostIPs == null)
+                        MessageBox.Show("Failed to find service host address. Secure key exchange may not succeed." + Environment.NewLine + "Please make sure to run manager application with administrative privileges on the server where service is hosted.", "Authorize Subcriber", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    else if (!hostIPs.Any(ip => localIPs.Contains(ip)))
+                        MessageBox.Show("Secure key exchange may not succeed." + Environment.NewLine + "Please make sure to run manager application with administrative privileges on the server where service is hosted.", "Authorize Subscriber", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Please make sure to run manager application with administrative privileges on the server where service is hosted.", "Authorize Subscriber", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         /// <summary>
@@ -222,6 +249,6 @@ namespace openPG.UI.UserControls
         }
 
         #endregion
- 
+
     }
 }

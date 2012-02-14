@@ -105,6 +105,27 @@ namespace openPG.UI.UserControls
                 if (database != null)
                     database.Dispose();
             }
+
+            try
+            {
+                Dictionary<string, string> settings = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+                settings = database.ServiceConnectionString().ParseKeyValuePairs();
+                IPAddress[] hostIPs = null;
+                if (settings.ContainsKey("server"))
+                    hostIPs = Dns.GetHostAddresses(settings["server"].Split(':')[0]);
+
+                IEnumerable<IPAddress> localIPs = Dns.GetHostAddresses("localhost").Concat(Dns.GetHostAddresses(Dns.GetHostName()));
+
+                // Check to see if entered host name corresponds to a local IP address
+                if (hostIPs == null)
+                    MessageBox.Show("Failed to find service host address. Secure key exchange may not succeed." + Environment.NewLine + "Please make sure to run manager application with administrative privileges on the server where service is hosted.", "Subscription Request", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else if (!hostIPs.Any(ip => localIPs.Contains(ip)))
+                    MessageBox.Show("Secure key exchange may not succeed." + Environment.NewLine + "Please make sure to run manager application with administrative privileges on the server where service is hosted.", "Subscription Request", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch
+            {
+                MessageBox.Show("Please make sure to run manager application with administrative privileges on the server where service is hosted.", "Subscription Request", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         /// <summary>
