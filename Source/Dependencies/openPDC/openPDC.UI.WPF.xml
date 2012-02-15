@@ -252,6 +252,11 @@
             Creates a new instance of <see cref="T:TimeSeriesFramework.UI.DataModels.Historian"/> and assigns it to CurrentItem.
             </summary>
         </member>
+        <member name="M:openPDC.UI.ViewModels.Devices.Initialize">
+            <summary>
+            Initialization to be done before the initial call to <see cref="M:openPDC.UI.ViewModels.Devices.Load"/>.
+            </summary>
+        </member>
         <member name="M:openPDC.UI.ViewModels.Devices.Load">
             <summary>
             Loads collection of <see cref="T:openPDC.UI.DataModels.Device"/> information stored in the database.
@@ -986,6 +991,11 @@
         <member name="M:openPDC.UI.ViewModels.CalculatedMeasurements.Clear">
             <summary>
             Creates a new instance of <see cref="T:openPDC.UI.DataModels.CalculatedMeasurement"/> and assigns it to CurrentItem.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.CalculatedMeasurements.Initialize">
+            <summary>
+            Initialization to be done before the initial call to <see cref="M:TimeSeriesFramework.UI.PagedViewModelBase`2.Load"/>.
             </summary>
         </member>
         <member name="P:openPDC.UI.ViewModels.CalculatedMeasurements.IsNewRecord">
