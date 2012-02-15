@@ -72,7 +72,7 @@ namespace openPG.UI.UserControls
         /// <summary>
         /// <see cref="DependencyProperty"/> to determine if only records with Internal flag set to true are displayed.
         /// </summary>
-        public static readonly DependencyProperty InternalOnlyProperty = DependencyProperty.Register("InternalOnly", typeof(bool),
+        public static readonly DependencyProperty FilterByInternalProperty = DependencyProperty.Register("FilterByInternal", typeof(bool),
             typeof(SelectMeasurementUserControl), new UIPropertyMetadata(false));
 
         /// <summary>
@@ -93,15 +93,15 @@ namespace openPG.UI.UserControls
         /// <summary>
         /// Gets or set falg to determine if only measurements with Internal flag set true are returned.
         /// </summary>
-        public bool InternalOnly
+        public bool FilterByInternal
         {
             get
             {
-                return (bool)GetValue(InternalOnlyProperty);
+                return (bool)GetValue(FilterByInternalProperty);
             }
             set
             {
-                SetValue(InternalOnlyProperty, value);
+                SetValue(FilterByInternalProperty, value);
             }
         }
 
@@ -140,6 +140,11 @@ namespace openPG.UI.UserControls
         /// <param name="e"></param>
         private void SelectMeasurementUserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            if (FilterByInternal)
+                CheckboxDisplayInternal.Visibility = Visibility.Visible;
+            else
+                CheckboxDisplayInternal.Visibility = Visibility.Collapsed;
+
             if (!DesignerProperties.GetIsInDesignMode(this))
                 Refresh();
         }
@@ -198,7 +203,7 @@ namespace openPG.UI.UserControls
         /// <param name="deviceID">ID of the device to filter data.</param>
         public void Refresh(int deviceID = 0)
         {
-            m_dataContext = new SelectMeasurements(ItemsPerPage, true, InternalOnly, deviceID);
+            m_dataContext = new SelectMeasurements(ItemsPerPage, true, FilterByInternal, deviceID, (bool)CheckboxDisplayInternal.IsChecked);
             m_itemsSource = m_dataContext.ItemsSource;
 
             foreach (Measurement measurement in m_itemsSource)

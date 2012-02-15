@@ -45,7 +45,8 @@ namespace openPG.UI.ViewModels
         private ObservableCollection<Measurement> m_measurements;
         private RelayCommand m_searchCommand;
         private RelayCommand m_showAllCommand;
-        private bool m_internalOnly;
+        private bool m_filterByInternal;
+        private bool m_includeInternal;
         private int m_deviceID;
 
         #endregion
@@ -100,13 +101,14 @@ namespace openPG.UI.ViewModels
         /// </summary>
         /// <param name="itemsPerPage">Number of items to display on a page.</param>
         /// <param name="autosave">Boolean indicator to save data automatically.</param>
-        /// <param name="internalOnly">Boolean indicator to determine if only measurements with internal flag set to true needs to be displayed.</param>
+        /// <param name="filterByInternal">Boolean indicator to determine if only measurements with internal flag set to true needs to be displayed.</param>
         /// <param name="deviceID">ID of the device to filter data.</param>
-        public SelectMeasurements(int itemsPerPage, bool autosave = true, bool internalOnly = false, int deviceID = 0)
+        public SelectMeasurements(int itemsPerPage, bool autosave = true, bool filterByInternal = false, int deviceID = 0, bool includeInternal = false)
             : base(0, autosave)     // Set ItemsPerPage to zero to avoid load() in the base class.
         {
             ItemsPerPage = itemsPerPage;
-            m_internalOnly = internalOnly;
+            m_filterByInternal = filterByInternal;
+            m_includeInternal = includeInternal;
             m_deviceID = deviceID;
             Load();
         }
@@ -141,8 +143,8 @@ namespace openPG.UI.ViewModels
             Mouse.OverrideCursor = Cursors.Wait;
             try
             {
-                if (m_internalOnly)
-                    m_measurements = Measurement.Load(null, m_deviceID, true);
+                if (m_filterByInternal)
+                    m_measurements = Measurement.Load(null, m_deviceID, true, m_includeInternal);
                 else
                     m_measurements = MeasurementGroup.GetPossibleMeasurements(null, 0);
 

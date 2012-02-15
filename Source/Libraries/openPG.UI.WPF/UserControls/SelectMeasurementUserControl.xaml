@@ -18,9 +18,10 @@
     </UserControl.Resources>
     
     <StackPanel Orientation="Vertical">
-        
+
+        <TextBlock Text="Available Measurements" FontWeight="Bold" TextAlignment="Left" HorizontalAlignment="Left"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <TextBlock Text="Available Measurements" FontWeight="Bold"/>
+            <CheckBox x:Name="CheckboxDisplayInternal" Content="Display Internal" Width="135"/>
             <TextBox x:Name="TextBoxSearch" Width="125"/>
             <Button Content="Search" Command="{Binding Path=SearchCommand}" CommandParameter="{Binding ElementName=TextBoxSearch, Path=Text}" ToolTip="Search measurements" Margin="2"/> 
             <Button Content="Show All" Command="{Binding Path=ShowAllCommand}" ToolTip="Show all measurements" Margin="2"/>
