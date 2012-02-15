@@ -38,6 +38,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using TVA;
 using TVA.Configuration;
+using TVA.Data;
 using TVA.Identity;
 using TVA.IO;
 
@@ -209,6 +210,9 @@ namespace ConfigurationSetupUtility.Screens
                             }
                         }
 
+                        // Always make sure time series startup operations are defined in the database.
+                        ValidateTimeSeriesStartupOperations();
+
                         // Always make sure that all three needed roles are available for each defined node(s) in the database.
                         ValidateSecurityRoles();
 
@@ -317,11 +321,105 @@ namespace ConfigurationSetupUtility.Screens
             m_managerStartCheckBox.IsEnabled = managerInstalled;
         }
 
+        private void ValidateTimeSeriesStartupOperations()
+        {
+            const string countQuery = "SELECT COUNT(*) FROM DataOperation WHERE MethodName = 'PerformTimeSeriesStartupOperations'";
+            const string insertQuery = "INSERT INTO DataOperation(Description, AssemblyName, TypeName, MethodName, Arguments, LoadOrder, Enabled) VALUES('Time Series Startup Operations', 'TimeSeriesFramework.dll', 'TimeSeriesFramework.TimeSeriesStartupOperations', 'PerformTimeSeriesStartupOperations', '', 0, 1)";
+
+            IDbConnection connection = null;
+            int timeSeriesStartupOperationsCount;
+
+            try
+            {
+                connection = OpenNewConnection();
+                timeSeriesStartupOperationsCount = Convert.ToInt32(connection.ExecuteScalar(countQuery));
+
+                if (timeSeriesStartupOperationsCount == 0)
+                    connection.ExecuteNonQuery(insertQuery);
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Dispose();
+            }
+        }
+
         private void ValidateSecurityRoles()
         {
             // For each Node in new database make sure all roles exist
             IDataReader nodeReader = null;
             IDbConnection connection = null;
+            try
+            {
+                connection = OpenNewConnection();
+
+                if (connection != null)
+                {
+                    Dictionary<string, string> settings = connection.ConnectionString.ParseKeyValuePairs();
+                    string connectionSetting;
+                    IDbCommand nodeCommand;
+
+                    nodeCommand = connection.CreateCommand();
+                    nodeCommand.CommandText = "SELECT ID FROM Node";
+                    nodeReader = nodeCommand.ExecuteReader();
+
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(nodeReader);
+
+                    if (nodeReader != null) nodeReader.Close();
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        string nodeID = row["ID"].ToNonNullString();
+
+                        if (settings.TryGetValue("Provider", out connectionSetting))
+                        {
+                            // Check if provider is for Access since it uses braces as Guid delimeters
+                            if (connectionSetting.StartsWith("Microsoft.Jet.OLEDB", StringComparison.OrdinalIgnoreCase))
+                                nodeID = "{" + nodeID + "}";
+                            else
+                                nodeID = "'" + nodeID + "'";
+                        }
+                        else
+                            nodeID = "'" + nodeID + "'";
+
+                        IDbCommand command = connection.CreateCommand();
+
+                        command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Administrator'", nodeID);
+                        if (Convert.ToInt32(command.ExecuteScalar()) == 0)
+                            AddRolesForNode(connection, nodeID, "Administrator");
+                        else    // Verify an admin user exists for the node and attached to administrator role.
+                            VerifyAdminUser(connection, nodeID);
+
+                        command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Editor'", nodeID);
+                        if (Convert.ToInt32(command.ExecuteScalar()) == 0)
+                            AddRolesForNode(connection, nodeID, "Editor");
+
+                        command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Viewer'", nodeID);
+                        if (Convert.ToInt32(command.ExecuteScalar()) == 0)
+                            AddRolesForNode(connection, nodeID, "Viewer");
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to Validate Application Roles for Node(s)" + Environment.NewLine + ex.Message);
+            }
+            finally
+            {
+                if (nodeReader != null)
+                    nodeReader.Close();
+
+                if (connection != null)
+                    connection.Dispose();
+            }
+        }
+
+        private IDbConnection OpenNewConnection()
+        {
+            IDbConnection connection = null;
+
             try
             {
                 string databaseType = m_state["databaseType"].ToString();
@@ -402,64 +500,19 @@ namespace ConfigurationSetupUtility.Screens
                     connection = (IDbConnection)Activator.CreateInstance(connectionType);
                     connection.ConnectionString = connectionString;
                     connection.Open();
-
-                    IDbCommand nodeCommand;
-
-                    nodeCommand = connection.CreateCommand();
-                    nodeCommand.CommandText = "SELECT ID FROM Node";
-                    nodeReader = nodeCommand.ExecuteReader();
-
-                    DataTable dataTable = new DataTable();
-                    dataTable.Load(nodeReader);
-
-                    if (nodeReader != null) nodeReader.Close();
-
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        string nodeID = row["ID"].ToNonNullString();
-
-                        if (settings.TryGetValue("Provider", out connectionSetting))
-                        {
-                            // Check if provider is for Access since it uses braces as Guid delimeters
-                            if (connectionSetting.StartsWith("Microsoft.Jet.OLEDB", StringComparison.OrdinalIgnoreCase))
-                                nodeID = "{" + nodeID + "}";
-                            else
-                                nodeID = "'" + nodeID + "'";
-                        }
-                        else
-                            nodeID = "'" + nodeID + "'";
-
-                        IDbCommand command = connection.CreateCommand();
-
-                        command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Administrator'", nodeID);
-                        if (Convert.ToInt32(command.ExecuteScalar()) == 0)
-                            AddRolesForNode(connection, nodeID, "Administrator");
-                        else    // Verify an admin user exists for the node and attached to administrator role.
-                            VerifyAdminUser(connection, nodeID);
-
-                        command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Editor'", nodeID);
-                        if (Convert.ToInt32(command.ExecuteScalar()) == 0)
-                            AddRolesForNode(connection, nodeID, "Editor");
-
-                        command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Viewer'", nodeID);
-                        if (Convert.ToInt32(command.ExecuteScalar()) == 0)
-                            AddRolesForNode(connection, nodeID, "Viewer");
-                    }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to Validate Application Roles for Node(s)" + Environment.NewLine + ex.Message);
-            }
-            finally
-            {
-                if (nodeReader != null)
-                    nodeReader.Close();
+                MessageBox.Show("Failed to open new database connection: " + ex.Message, "Configuration Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 if (connection != null)
                     connection.Dispose();
+
+                connection = null;
             }
+
+            return connection;
         }
 
         /// <summary>
