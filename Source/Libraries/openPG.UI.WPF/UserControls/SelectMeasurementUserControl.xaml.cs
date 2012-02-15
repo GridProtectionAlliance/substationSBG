@@ -219,6 +219,17 @@ namespace openPG.UI.UserControls
             m_dataContext.SortData(e.Column.SortMemberPath);
         }
 
+        private void CheckboxDisplayInternal_Checked(object sender, RoutedEventArgs e)
+        {
+            Refresh();
+        }
+
+        private void CheckboxDisplayInternal_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Refresh();
+        }
+
         #endregion
+
     }
 }
