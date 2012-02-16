@@ -75,7 +75,7 @@
                 
             </ListBox>
 
-            <myuc:SelectMeasurementUserControl x:Name="UserControlSelectMeasurements" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" ItemsPerPage="17" FilterByInternal="True" Width="455" Height="580" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <myuc:SelectMeasurementUserControl x:Name="UserControlSelectMeasurements" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" ItemsPerPage="17" FilterByInternal="True" Width="455" Height="615" VerticalAlignment="Top" HorizontalAlignment="Right"/>
         </Grid>
 
     </StackPanel>
