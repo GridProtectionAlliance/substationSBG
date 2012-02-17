@@ -51,6 +51,8 @@ namespace openPG.UI.UserControls
         #region [ Members ]
 
         private Subscribers m_dataContext;
+        private string m_key;
+        private string m_iv;
 
         #endregion
 
@@ -142,7 +144,7 @@ namespace openPG.UI.UserControls
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(m_sharedSecretField.Text) || string.IsNullOrWhiteSpace(m_keyField.Text) || string.IsNullOrWhiteSpace(m_ivField.Text))
+                if (string.IsNullOrWhiteSpace(m_sharedSecretField.Text) || string.IsNullOrWhiteSpace(m_key) || string.IsNullOrWhiteSpace(m_iv))
                 {
                     MessageBox.Show("Failed to import key and initialization vectors for associated shared secret - these fields cannot be blank.", "Crypto Key Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     e.Cancel = true;
@@ -150,7 +152,7 @@ namespace openPG.UI.UserControls
                 else
                 {
                     // Import key and initialization vector for subscriber into local crypto cache
-                    Cipher.ImportKeyIV(m_sharedSecretField.Text.Trim(), 256, m_keyField.Text.Trim() + "|" + m_ivField.Text.Trim());
+                    Cipher.ImportKeyIV(m_sharedSecretField.Text.Trim(), 256, m_key.Trim() + "|" + m_iv.Trim());
                 }
             }
             catch (Exception ex)
@@ -207,8 +209,8 @@ namespace openPG.UI.UserControls
                 };
 
                 m_dataContext.CurrentItem = subscriber;
-                m_keyField.Text = m_request.Key;
-                m_ivField.Text = m_request.IV;
+                m_key = m_request.Key;
+                m_iv = m_request.IV;
             }
             else
             {
@@ -224,16 +226,16 @@ namespace openPG.UI.UserControls
             // After record has been loaded, load existing key and IV from crypto cache
             if (string.IsNullOrWhiteSpace(m_sharedSecretField.Text))
             {
-                m_keyField.Text = "";
-                m_ivField.Text = "";
+                m_key = "";
+                m_iv = "";
             }
             else
             {
                 string keyIV = Cipher.ExportKeyIV(m_sharedSecretField.Text, 256);
                 string[] parts = keyIV.Split('|');
 
-                m_keyField.Text = parts[0];
-                m_ivField.Text = parts[1];
+                m_key = parts[0];
+                m_iv = parts[1];
             }
         }
 

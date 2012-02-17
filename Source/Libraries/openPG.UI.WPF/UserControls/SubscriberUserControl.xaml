@@ -59,12 +59,6 @@
             <TextBlock Grid.Row="2" Grid.Column="2" Text="Identity Certificate"/>
             <TextBox Grid.Row="2" Grid.Column="3" Text="{tsfBinding:Column Path=AuthKey}" Name="m_authenticationID"/>
             
-            <!--Fourth Row-->
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Key 1"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Height="50" TextWrapping="Wrap" Name="m_keyField"/>
-            <TextBlock Grid.Row="3" Grid.Column="2" Text="Key 2"/>
-            <TextBox Grid.Row="3" Grid.Column="3" Height="50" TextWrapping="Wrap" Name="m_ivField"/>
-            
             <!--Fifth Row-->
             <TextBlock Grid.Row="4" Grid.Column="0" Text="Valid IP Addresses"/>
             <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Width="480" Text="{tsfBinding:Column Path=ValidIPAddresses}" Name="m_validIpAddressesField"/>

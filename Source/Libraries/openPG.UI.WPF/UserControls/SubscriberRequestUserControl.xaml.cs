@@ -30,6 +30,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml.Linq;
 using openPDC.UI.DataModels;
 using TimeSeriesFramework.UI;
 using TVA;
@@ -135,64 +136,98 @@ namespace openPG.UI.UserControls
         /// <param name="e">Arguments of the event</param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                ExportAuthorizationRequest(sender, e);
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null)
+                {
+                    Popup(ex.Message + Environment.NewLine + "Inner Exception: " + ex.InnerException.Message, "Subscription Request Exception:", MessageBoxImage.Error);
+                    CommonFunctions.LogException(null, "Subscription Request", ex.InnerException);
+                }
+                else
+                {
+                    Popup(ex.Message, "Subscription Request Exception:", MessageBoxImage.Error);
+                    CommonFunctions.LogException(null, "Subscription Request", ex);
+                }
+            }
+        }
+
+        // Export the authorization request.
+        private void ExportAuthorizationRequest(object sender, RoutedEventArgs e)
+        {
+            const string messageFormat = "Data subscription adapter \"{0}\" already exists. Do you want to update the existing adapter with the new keys?";
+            const string messageCaption = "Create Subscription Request";
+
+            Device device = null;
+            bool saveDevice;
+            MessageBoxResult messageBoxResult;
+
+            System.Windows.Forms.SaveFileDialog saveFileDialog;
+            System.Windows.Forms.DialogResult dialogResult;
+
+            string requestAcronym;
+            string requestName;
+            string[] keyIV;
+
             if (!string.IsNullOrEmpty(m_acronymField.Text.Replace(" ", "")))
             {
+                // Determine if the user wants to save the associated device
+                saveDevice = m_createAdapter.IsChecked.HasValue && m_createAdapter.IsChecked.Value;
 
-                if ((bool)m_createAdapter.IsChecked)
+                if (saveDevice)
                 {
-                    Device device = Device.GetDevice(null, " WHERE Acronym = '" + m_acronymField.Text.Replace(" ", "") + "'");
-                    bool continueSave = true;
+                    // Check if the device already exists
+                    device = Device.GetDevice(null, " WHERE Acronym = '" + m_acronymField.Text.Replace(" ", "") + "'");
 
                     if (device != null)
                     {
-                        if (MessageBox.Show(string.Format("Data subscription adapter \"{0}\" already exists. Do you want to update the existing adapter with the new keys?", device.Acronym), "Create Subscription Request", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                            continueSave = true;
-                        else
-                            continueSave = false;
-                    }
-
-                    if (continueSave)
-                    {
-                        if (device == null)
-                        {
-                            device = new Device();
-                            device.Enabled = false;
-                            device.IsConcentrator = true;
-                            device.ProtocolID = 8;
-                            device.ConnectionString = "port=9500; interface=0.0.0.0; compression=false; autoConnect=true; requireAuthentication=true; sharedSecret=" + m_sharedSecretField.Text +
-                                ";authenticationID={" + m_authenticationIDField.Text + "}; commandChannel={server=127.0.0.1:6171; interface=0.0.0.0}";
-                        }
-
-                        device.Acronym = m_acronymField.Text.Replace(" ", "");
-                        device.Name = m_nameField.Text;
-                        Device.Save(null, device);
+                        // Prompt the user if device already exists
+                        messageBoxResult = MessageBox.Show(string.Format(messageFormat, device.Acronym), messageCaption, MessageBoxButton.YesNo);
+                        saveDevice = messageBoxResult == MessageBoxResult.Yes;
                     }
                 }
 
-                if (string.IsNullOrWhiteSpace(m_keyField.Text) && string.IsNullOrWhiteSpace(m_ivField.Text))
-                    m_generateButton_Click(this, null);
-
-                string filename = "";
-
-                System.Windows.Forms.SaveFileDialog saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-
+                saveFileDialog = new System.Windows.Forms.SaveFileDialog();
                 saveFileDialog.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
                 saveFileDialog.DefaultExt = ".xml";
-                System.Windows.Forms.DialogResult res = saveFileDialog.ShowDialog();
-                if (res != System.Windows.Forms.DialogResult.Cancel)
+                dialogResult = saveFileDialog.ShowDialog();
+
+                if (dialogResult != System.Windows.Forms.DialogResult.Cancel)
                 {
-                    filename = saveFileDialog.FileName;
                     AuthenticationRequest request = new AuthenticationRequest();
 
-                    request.Acronym = m_acronymField.Text;
-                    request.Name = m_nameField.Text;
+                    // Get the name and acronym to go into the authentication request
+                    if (TryGetCompanyAcronym(out requestAcronym))
+                    {
+                        requestName = string.Format("{0} subscription authorization", requestAcronym);
+                    }
+                    else
+                    {
+                        requestAcronym = m_acronymField.Text;
+                        requestName = "Subscription authorization";
+                    }
+
+                    // Get key and IV to go into the authentication request
+                    keyIV = Cipher.ExportKeyIV(m_sharedSecretField.Text, 256).Split('|');
+
+                    // Set up the request
+                    request.Acronym = requestAcronym;
+                    request.Name = requestName;
                     request.SharedSecret = m_sharedSecretField.Text;
                     request.AuthenticationID = m_authenticationIDField.Text;
-                    request.Key = m_keyField.Text;
-                    request.IV = m_ivField.Text;
+                    request.Key = keyIV[0];
+                    request.IV = keyIV[1];
                     request.ValidIPAddresses = m_validIpAddressesField.Text;
 
-                    File.WriteAllBytes(filename, Serialization.Serialize(request, TVA.SerializationFormat.Xml));
+                    // Create the request
+                    File.WriteAllBytes(saveFileDialog.FileName, Serialization.Serialize(request, TVA.SerializationFormat.Xml));
+
+                    // Save the associated device
+                    if (saveDevice)
+                        SaveDevice(device);
                 }
                 else
                 {
@@ -206,17 +241,87 @@ namespace openPG.UI.UserControls
             }
         }
 
-        /// <summary>
-        /// Click Event for Generate button.
-        /// </summary>
-        /// <param name="sender">Source of the event.</param>
-        /// <param name="e">Arguments of the event.</param>
-        private void m_generateButton_Click(object sender, RoutedEventArgs e)
+        // Associate the given device with the
+        // authorization request and save it.
+        private void SaveDevice(Device device)
         {
-            string keyIV = Cipher.ExportKeyIV(m_sharedSecretField.Text, 256);
-            string[] parts = keyIV.Split('|');
-            m_keyField.Text = parts[0];
-            m_ivField.Text = parts[1];
+            if (device == null)
+            {
+                device = new Device();
+                device.Enabled = false;
+                device.IsConcentrator = true;
+                device.ProtocolID = GetGatewayProtocolID();
+                device.ConnectionString = "interface=0.0.0.0; compression=false; autoConnect=true; requireAuthentication=true; sharedSecret=" + m_sharedSecretField.Text +
+                    "; localport=6175; transportprotocol=udp; authenticationID={" + m_authenticationIDField.Text + "}; commandChannel={server=127.0.0.1:6171; interface=0.0.0.0}";
+            }
+
+            device.Acronym = m_acronymField.Text.Replace(" ", "");
+            device.Name = m_nameField.Text;
+            Device.Save(null, device);
+        }
+
+        // Get the Gateway Transport protocol ID by querying the database.
+        private int? GetGatewayProtocolID()
+        {
+            const string query = "SELECT ID FROM Protocol WHERE Acronym = 'GatewayTransport'";
+            AdoDataConnection database = null;
+            object queryResult;
+
+            try
+            {
+                database = new AdoDataConnection(CommonFunctions.DefaultSettingsCategory);
+                queryResult = database.Connection.ExecuteScalar(query);
+                return (queryResult != null) ? Convert.ToInt32(queryResult) : 8;
+            }
+            finally
+            {
+                if ((object)database != null)
+                    database.Dispose();
+            }
+        }
+
+        // Attempt to get the company acronym stored in the openPG configuration file.
+        private bool TryGetCompanyAcronym(out string acronym)
+        {
+            FileStream configStream = null;
+            StreamReader configStreamReader = null;
+            XElement configRoot;
+            XElement systemSettings;
+
+            try
+            {
+                // Set up XML searching
+                configStream = File.Open("openPG.exe.config", FileMode.Open);
+                configStreamReader = new StreamReader(configStream);
+                configRoot = XElement.Parse(configStreamReader.ReadToEnd());
+
+                // Find company name and company acronym
+                systemSettings = configRoot.Element("categorizedSettings").Element("systemSettings");
+                acronym = systemSettings.Elements().Single(e => e.Attribute("name").Value == "CompanyAcronym").Attribute("value").Value;
+
+                // Indicate success
+                return true;
+            }
+            catch
+            {
+                // Company info retrieval failed
+                acronym = null;
+                return false;
+            }
+            finally
+            {
+                if (configStreamReader != null)
+                    configStreamReader.Dispose();
+
+                if (configStream != null)
+                    configStream.Dispose();
+            }
+        }
+
+        // Display popup message for the user
+        private void Popup(string message, string caption, MessageBoxImage image)
+        {
+            MessageBox.Show(Application.Current.MainWindow, message, caption, MessageBoxButton.OK, image);
         }
 
         #endregion
