@@ -222,13 +222,14 @@
             <param name="parentID">ID of the parent device to filter data.</param>
             <returns>Collection of <see cref="T:openPDC.UI.DataModels.Device"/>.</returns>
         </member>
-        <member name="M:openPDC.UI.DataModels.Device.GetLookupList(TVA.Data.AdoDataConnection,openPDC.UI.DataModels.DeviceType,System.Boolean)">
+        <member name="M:openPDC.UI.DataModels.Device.GetLookupList(TVA.Data.AdoDataConnection,openPDC.UI.DataModels.DeviceType,System.Boolean,System.Boolean)">
             <summary>
             Gets a <see cref="T:System.Collections.Generic.Dictionary`2"/> style list of <see cref="T:openPDC.UI.DataModels.Device"/> information.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>        
             <param name="deviceType"><see cref="T:openPDC.UI.DataModels.DeviceType"/> to filter data.</param>
-            <param name="isOptional">Indicates if selection on UI is optional for this collection.</param>        
+            <param name="isOptional">Indicates if selection on UI is optional for this collection.</param>    
+            <param name="showAll">boolean flag indicates if all the devices should be returned irrespective of node.</param>
             <returns><see cref="T:System.Collections.Generic.Dictionary`2"/> containing ID and Name of devices defined in the database.</returns>
         </member>
         <member name="M:openPDC.UI.DataModels.Device.GetLookupList(TVA.Data.AdoDataConnection,System.String,System.Boolean)">
