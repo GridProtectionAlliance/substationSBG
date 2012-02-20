@@ -28,6 +28,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -39,6 +40,7 @@ using openPG.UI.ViewModels;
 using TimeSeriesFramework.UI;
 using TVA;
 using TVA.Data;
+using TVA.IO;
 using TVA.Security.Cryptography;
 
 namespace openPG.UI.UserControls
@@ -151,8 +153,17 @@ namespace openPG.UI.UserControls
                 }
                 else
                 {
-                    // Import key and initialization vector for subscriber into local crypto cache
-                    Cipher.ImportKeyIV(m_sharedSecretField.Text.Trim(), 256, m_key.Trim() + "|" + m_iv.Trim());
+                    // Import key and initialization vector for subscriber into common crypto cache
+                    if (ImportCipherKey(m_sharedSecretField.Text.Trim(), 256, m_key.Trim() + "|" + m_iv.Trim()))
+                    {
+                        ReloadServiceCryptoCache();
+                        Cipher.ReloadCache();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to import key and initialization vectors for associated shared secret.", "Crypto Key Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -160,6 +171,55 @@ namespace openPG.UI.UserControls
                 MessageBox.Show("Failed to import key and initialization vectors for associated shared secret due to exception: " + ex.Message, "Crypto Key Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 e.Cancel = true;
             }
+        }
+
+        // Imports the given cipher key to the common key cache.
+        private bool ImportCipherKey(string password, int keySize, string keyIVText)
+        {
+            ProcessStartInfo configCrypterInfo = new ProcessStartInfo();
+            Process configCrypter;
+
+            configCrypterInfo.FileName = FilePath.GetAbsolutePath("ConfigCrypter.exe");
+            configCrypterInfo.Arguments = string.Format("-password {0} -keySize {1} -keyIVText {2}", password, keySize, keyIVText);
+            configCrypterInfo.CreateNoWindow = true;
+
+            configCrypter = Process.Start(configCrypterInfo);
+            configCrypter.WaitForExit();
+
+            return configCrypter.ExitCode == 0;
+        }
+
+        // Send service command to reload crypto cache.
+        private void ReloadServiceCryptoCache()
+        {
+            try
+            {
+                CommonFunctions.SendCommandToService("ReloadCryptoCache");
+            }
+            catch (Exception ex)
+            {
+                string message = "Unable to notify service about updated crypto cache:" + Environment.NewLine;
+
+                if (ex.InnerException != null)
+                {
+                    message += ex.Message + Environment.NewLine;
+                    message += "Inner Exception: " + ex.InnerException.Message;
+                    Popup(message, "Subscription Request Exception:", MessageBoxImage.Information);
+                    CommonFunctions.LogException(null, "Subscription Request", ex.InnerException);
+                }
+                else
+                {
+                    message += ex.Message;
+                    Popup(message, "Subscription Request Exception:", MessageBoxImage.Information);
+                    CommonFunctions.LogException(null, "Subscription Request", ex);
+                }
+            }
+        }
+
+        // Display popup message for the user
+        private void Popup(string message, string caption, MessageBoxImage image)
+        {
+            MessageBox.Show(Application.Current.MainWindow, message, caption, MessageBoxButton.OK, image);
         }
 
         /// <summary>

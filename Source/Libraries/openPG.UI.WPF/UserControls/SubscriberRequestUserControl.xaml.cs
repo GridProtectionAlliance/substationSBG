@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -36,6 +37,7 @@ using TimeSeriesFramework.UI;
 using TVA;
 using TVA.Collections;
 using TVA.Data;
+using TVA.IO;
 using TVA.Security.Cryptography;
 
 namespace openPG.UI.UserControls
@@ -158,12 +160,10 @@ namespace openPG.UI.UserControls
         // Export the authorization request.
         private void ExportAuthorizationRequest(object sender, RoutedEventArgs e)
         {
-            const string messageFormat = "Data subscription adapter \"{0}\" already exists. Do you want to update the existing adapter with the new keys?";
-            const string messageCaption = "Create Subscription Request";
+            const string messageFormat = "Data subscription adapter \"{0}\" already exists. Unable to create subscription request.";
 
             Device device = null;
             bool saveDevice;
-            MessageBoxResult messageBoxResult;
 
             System.Windows.Forms.SaveFileDialog saveFileDialog;
             System.Windows.Forms.DialogResult dialogResult;
@@ -180,13 +180,13 @@ namespace openPG.UI.UserControls
                 if (saveDevice)
                 {
                     // Check if the device already exists
-                    device = Device.GetDevice(null, " WHERE Acronym = '" + m_acronymField.Text.Replace(" ", "") + "'");
+                    device = GetDeviceByAcronym(m_acronymField.Text.Replace(" ", ""));
 
                     if (device != null)
                     {
-                        // Prompt the user if device already exists
-                        messageBoxResult = MessageBox.Show(string.Format(messageFormat, device.Acronym), messageCaption, MessageBoxButton.YesNo);
-                        saveDevice = messageBoxResult == MessageBoxResult.Yes;
+                        m_acronymField.Focus();
+                        m_acronymField.SelectAll();
+                        throw new Exception(string.Format(messageFormat, device.Acronym));
                     }
                 }
 
@@ -199,7 +199,7 @@ namespace openPG.UI.UserControls
                 {
                     AuthenticationRequest request = new AuthenticationRequest();
 
-                    // Get the name and acronym to go into the authentication request
+                    // Get the name and acronym that go into the authentication request
                     if (TryGetCompanyAcronym(out requestAcronym))
                     {
                         requestName = string.Format("{0} subscription authorization", requestAcronym);
@@ -210,7 +210,13 @@ namespace openPG.UI.UserControls
                         requestName = "Subscription authorization";
                     }
 
-                    // Get key and IV to go into the authentication request
+                    // Export cipher key to common crypto cache
+                    if (!ExportCipherKey(m_sharedSecretField.Text, 256))
+                        throw new Exception("Failed to export cipher keys from common key cache.");
+                    
+                    // Reload local crypto cache and get key and IV
+                    // that go into the authentication request
+                    Cipher.ReloadCache();
                     keyIV = Cipher.ExportKeyIV(m_sharedSecretField.Text, 256).Split('|');
 
                     // Set up the request
@@ -224,6 +230,9 @@ namespace openPG.UI.UserControls
 
                     // Create the request
                     File.WriteAllBytes(saveFileDialog.FileName, Serialization.Serialize(request, TVA.SerializationFormat.Xml));
+
+                    // Send ReloadCryptoCache to service
+                    ReloadServiceCryptoCache();
 
                     // Save the associated device
                     if (saveDevice)
@@ -241,37 +250,17 @@ namespace openPG.UI.UserControls
             }
         }
 
-        // Associate the given device with the
-        // authorization request and save it.
-        private void SaveDevice(Device device)
+        // Gets the device from the database with the given acronym for the currently selected node.
+        private Device GetDeviceByAcronym(string acronym)
         {
-            if (device == null)
-            {
-                device = new Device();
-                device.Enabled = false;
-                device.IsConcentrator = true;
-                device.ProtocolID = GetGatewayProtocolID();
-                device.ConnectionString = "interface=0.0.0.0; compression=false; autoConnect=true; requireAuthentication=true; sharedSecret=" + m_sharedSecretField.Text +
-                    "; localport=6175; transportprotocol=udp; authenticationID={" + m_authenticationIDField.Text + "}; commandChannel={server=127.0.0.1:6171; interface=0.0.0.0}";
-            }
-
-            device.Acronym = m_acronymField.Text.Replace(" ", "");
-            device.Name = m_nameField.Text;
-            Device.Save(null, device);
-        }
-
-        // Get the Gateway Transport protocol ID by querying the database.
-        private int? GetGatewayProtocolID()
-        {
-            const string query = "SELECT ID FROM Protocol WHERE Acronym = 'GatewayTransport'";
             AdoDataConnection database = null;
-            object queryResult;
+            string nodeID;
 
             try
             {
                 database = new AdoDataConnection(CommonFunctions.DefaultSettingsCategory);
-                queryResult = database.Connection.ExecuteScalar(query);
-                return (queryResult != null) ? Convert.ToInt32(queryResult) : 8;
+                nodeID = CommonFunctions.CurrentNodeID(database).ToString();
+                return Device.GetDevice(database, string.Format(" WHERE NodeID = '{0}' AND Acronym = '{1}'", nodeID, acronym));
             }
             finally
             {
@@ -315,6 +304,88 @@ namespace openPG.UI.UserControls
 
                 if (configStream != null)
                     configStream.Dispose();
+            }
+        }
+
+        // Exports the given cipher key from the common key cache.
+        private bool ExportCipherKey(string password, int keySize)
+        {
+            ProcessStartInfo configCrypterInfo = new ProcessStartInfo();
+            Process configCrypter;
+
+            configCrypterInfo.FileName = FilePath.GetAbsolutePath("ConfigCrypter.exe");
+            configCrypterInfo.Arguments = string.Format("-password {0} -keySize {1}", password, keySize);
+            configCrypterInfo.CreateNoWindow = true;
+
+            configCrypter = Process.Start(configCrypterInfo);
+            configCrypter.WaitForExit();
+
+            return configCrypter.ExitCode == 0;
+        }
+
+        // Send service command to reload crypto cache.
+        private void ReloadServiceCryptoCache()
+        {
+            try
+            {
+                CommonFunctions.SendCommandToService("ReloadCryptoCache");
+            }
+            catch (Exception ex)
+            {
+                string message = "Unable to notify service about updated crypto cache:" + Environment.NewLine;
+
+                if (ex.InnerException != null)
+                {
+                    message += ex.Message + Environment.NewLine;
+                    message += "Inner Exception: " + ex.InnerException.Message;
+                    Popup(message, "Subscription Request Exception:", MessageBoxImage.Information);
+                    CommonFunctions.LogException(null, "Subscription Request", ex.InnerException);
+                }
+                else
+                {
+                    message += ex.Message;
+                    Popup(message, "Subscription Request Exception:", MessageBoxImage.Information);
+                    CommonFunctions.LogException(null, "Subscription Request", ex);
+                }
+            }
+        }
+
+        // Associate the given device with the
+        // authorization request and save it.
+        private void SaveDevice(Device device)
+        {
+            if (device == null)
+            {
+                device = new Device();
+                device.Enabled = false;
+                device.IsConcentrator = true;
+                device.ProtocolID = GetGatewayProtocolID();
+                device.ConnectionString = "interface=0.0.0.0; compression=false; autoConnect=true; requireAuthentication=true; sharedSecret=" + m_sharedSecretField.Text +
+                    "; localport=6175; transportprotocol=udp; authenticationID={" + m_authenticationIDField.Text + "}; commandChannel={server=127.0.0.1:6171; interface=0.0.0.0}";
+            }
+
+            device.Acronym = m_acronymField.Text.Replace(" ", "");
+            device.Name = m_nameField.Text;
+            Device.Save(null, device);
+        }
+
+        // Get the Gateway Transport protocol ID by querying the database.
+        private int? GetGatewayProtocolID()
+        {
+            const string query = "SELECT ID FROM Protocol WHERE Acronym = 'GatewayTransport'";
+            AdoDataConnection database = null;
+            object queryResult;
+
+            try
+            {
+                database = new AdoDataConnection(CommonFunctions.DefaultSettingsCategory);
+                queryResult = database.Connection.ExecuteScalar(query);
+                return (queryResult != null) ? Convert.ToInt32(queryResult) : 8;
+            }
+            finally
+            {
+                if ((object)database != null)
+                    database.Dispose();
             }
         }
 
