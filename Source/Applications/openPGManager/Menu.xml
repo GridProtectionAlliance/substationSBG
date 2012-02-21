@@ -47,6 +47,7 @@
       <MenuDataItem Icon="" MenuText="Graph Measurements" Description="Graph Real-Time Measurements" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.InputStatusMonitorUserControl"/>
       <MenuDataItem Icon="" MenuText="Device Measurements" Description="Real-Time Device Measurements" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.RealTimeMeasurementUserControl"/>
       <MenuDataItem Icon="" MenuText="Stream Statistics" Description="Real-Time Stream Statistics" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.RealTimeStatisticUserControl"/>
+      <MenuDataItem Icon="" MenuText="Alarm Status" Description="Alarm Status" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.AlarmStatusUserControl"/>
     </SubMenuItems>
   </MenuDataItem>
   <MenuDataItem Icon="" MenuText="Adapters" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
