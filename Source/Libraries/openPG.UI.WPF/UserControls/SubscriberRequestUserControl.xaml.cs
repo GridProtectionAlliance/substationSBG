@@ -272,6 +272,7 @@ namespace openPG.UI.UserControls
         // Attempt to get the company acronym stored in the openPG configuration file.
         private bool TryGetCompanyAcronym(out string acronym)
         {
+            string configFileName;
             FileStream configStream = null;
             StreamReader configStreamReader = null;
             XElement configRoot;
@@ -280,7 +281,8 @@ namespace openPG.UI.UserControls
             try
             {
                 // Set up XML searching
-                configStream = File.Open("openPG.exe.config", FileMode.Open);
+                configFileName = FilePath.GetAbsolutePath("openPG.exe.config");
+                configStream = File.Open(configFileName, FileMode.Open);
                 configStreamReader = new StreamReader(configStream);
                 configRoot = XElement.Parse(configStreamReader.ReadToEnd());
 
