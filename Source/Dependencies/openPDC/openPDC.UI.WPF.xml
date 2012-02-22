@@ -766,6 +766,11 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="P:openPDC.UI.Modal.ConnectionStringBuilder.PgConnection">
+            <summary>
+            Gets or sets a flag indicating if the connection is to Phasor Gateway.
+            </summary>
+        </member>
         <member name="P:openPDC.UI.Modal.ConnectionStringBuilder.ConnectionString">
             <summary>
             Gets or sets connection string from the parameters defined on the UI.
