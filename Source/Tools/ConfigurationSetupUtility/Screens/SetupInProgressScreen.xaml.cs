@@ -1215,19 +1215,10 @@ namespace ConfigurationSetupUtility.Screens
             if (!sampleDataScript && !m_defaultNodeAdded)
             {
                 string databaseType = m_state["databaseType"].ToString();
-                string nodeIdQueryString;
 
                 IDbCommand nodeCommand = connection.CreateCommand();
                 nodeCommand.CommandText = "INSERT INTO Node(Name, CompanyID, Description, Settings, MenuType, MenuData, Master, LoadOrder, Enabled) " +
                     "VALUES('Default', NULL, 'Default node', 'TimeSeriesDataServiceUrl=http://localhost:6154/historian;RemoteStatusServerConnectionString={server=localhost:8505};datapublisherport=6170;RealTimeStatisticServiceUrl=http://localhost:6054/historian', 'File', 'Menu.xml', 1, 0, 1)";
-                nodeCommand.ExecuteNonQuery();
-
-                if (databaseType == "access")
-                    nodeIdQueryString = "{D1EBFFBB-D318-463F-9822-394FD0E968B0}";
-                else
-                    nodeIdQueryString = "'D1EBFFBB-D318-463F-9822-394FD0E968B0'";
-
-                nodeCommand.CommandText = "UPDATE Node SET ID = " + nodeIdQueryString + " WHERE Name = 'Default'";
                 nodeCommand.ExecuteNonQuery();
 
                 m_defaultNodeAdded = true;
