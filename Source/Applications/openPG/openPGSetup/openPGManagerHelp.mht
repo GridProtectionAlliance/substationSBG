@@ -1,0 +1,221 @@
+From: "Saved by Windows Internet Explorer 9"
+Subject: openPG FAQ's
+Date: Fri, 24 Feb 2012 15:30:23 -0500
+MIME-Version: 1.0
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file://C:\Users\mthakkar\AppData\Local\Temp\Temp1_openPGFAQs (1).zip\openPGFAQs.html
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>openPG FAQ's</TITLE>
+<META content=3D"text/html; charset=3Dwindows-1252" =
+http-equiv=3DContent-Type>
+<STYLE type=3Dtext/css>OL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: =
+0px; PADDING-TOP: 0px
+}
+P {
+	MARGIN: 0px
+}
+.c0 {
+	PADDING-LEFT: 0pt; DIRECTION: ltr; MARGIN-LEFT: 36pt
+}
+.c3 {
+	PADDING-BOTTOM: 72pt; BACKGROUND-COLOR: #ffffff; PADDING-LEFT: 72pt; =
+PADDING-RIGHT: 72pt; MAX-WIDTH: 468pt; PADDING-TOP: 72pt
+}
+.c2 {
+	PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: decimal; MARGIN: 0px; =
+PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.c4 {
+	COLOR: #1155cc; TEXT-DECORATION: underline
+}
+.c7 {
+	COLOR: ; TEXT-DECORATION:=20
+}
+.c6 {
+	HEIGHT: 12pt
+}
+.c8 {
+	MARGIN-LEFT: 18pt
+}
+.c1 {
+	DIRECTION: ltr
+}
+.c5 {
+	HEIGHT: 11pt
+}
+.title {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 6pt; LINE-HEIGHT: 1.15; FONT-FAMILY: =
+Arial; COLOR: #000000; FONT-SIZE: 36pt; FONT-WEIGHT: bold; PADDING-TOP: =
+24pt
+}
+.subtitle {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 4pt; LINE-HEIGHT: 1.15; FONT-STYLE: =
+italic; FONT-FAMILY: Georgia; COLOR: #666666; FONT-SIZE: 24pt; =
+PADDING-TOP: 18pt
+}
+BODY {
+	FONT-FAMILY: Arial; COLOR: #000000; FONT-SIZE: 11pt
+}
+H1 {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 0pt; LINE-HEIGHT: 1.15; FONT-FAMILY: =
+Arial; COLOR: #000000; FONT-SIZE: 12pt; FONT-WEIGHT: bold; PADDING-TOP: =
+0pt
+}
+H2 {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 4pt; LINE-HEIGHT: 1.15; FONT-FAMILY: =
+Arial; COLOR: #000000; FONT-SIZE: 14pt; FONT-WEIGHT: bold; PADDING-TOP: =
+18pt
+}
+H3 {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 4pt; LINE-HEIGHT: 1.15; FONT-FAMILY: =
+Arial; COLOR: #666666; FONT-SIZE: 12pt; FONT-WEIGHT: bold; PADDING-TOP: =
+14pt
+}
+H4 {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 2pt; LINE-HEIGHT: 1.15; FONT-STYLE: =
+italic; FONT-FAMILY: Arial; COLOR: #666666; FONT-SIZE: 11pt; =
+PADDING-TOP: 12pt
+}
+H5 {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 2pt; LINE-HEIGHT: 1.15; FONT-FAMILY: =
+Arial; COLOR: #666666; FONT-SIZE: 10pt; FONT-WEIGHT: bold; PADDING-TOP: =
+11pt
+}
+H6 {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 2pt; LINE-HEIGHT: 1.15; FONT-STYLE: =
+italic; FONT-FAMILY: Arial; COLOR: #666666; FONT-SIZE: 10pt; =
+PADDING-TOP: 10pt
+}
+</STYLE>
+
+<META name=3DGENERATOR content=3D"MSHTML 9.00.8112.16441"></HEAD>
+<BODY class=3Dc3>
+<P class=3D"c1 title"><A name=3Dh.9tr8abrkjb96></A><SPAN>openPG =
+How-to</SPAN></P>
+<P class=3D"c1 c5"><SPAN></SPAN></P>
+<P class=3D"c1 c8"><SPAN class=3Dc4><A class=3Dc7=20
+href=3D"file:///C:/Users/mthakkar/AppData/Local/Temp/Temp1_openPGFAQs%20(=
+1).zip/openPGFAQs.html#h.jksnij6bpo58">Connecting=20
+openPG/openPDC with a Gateway-style connection</A></SPAN></P>
+<P class=3D"c8 c1"><SPAN class=3Dc4><A class=3Dc7=20
+href=3D"file:///C:/Users/mthakkar/AppData/Local/Temp/Temp1_openPGFAQs%20(=
+1).zip/openPGFAQs.html#h.ffvncwh5arx">Setting=20
+up an openPG Publisher/Subscriber</A></SPAN></P>
+<P class=3D"c1 c5"><SPAN></SPAN></P>
+<P class=3D"c1 c5"><SPAN></SPAN></P>
+<H1 class=3Dc1><A name=3Dh.jksnij6bpo58></A><SPAN>Connecting =
+openPG/openPDC with a=20
+Gateway-style connection</SPAN></H1>
+<H1 class=3D"c6 c1"><A name=3Dh.ywu3uuecvzug></A></H1>
+<OL class=3Dc2>
+  <LI class=3Dc0><SPAN>Navigate to Inputs -&gt; Add New in openPG, or =
+Devices=20
+  -&gt; Add New in openPDC</SPAN>
+  <LI class=3Dc0><SPAN>Enter the acronym you'd like this device to =
+have</SPAN>
+  <LI class=3Dc0><SPAN>Under 'Protocol', select 'Gateway =
+Transport'</SPAN>
+  <LI class=3Dc0><SPAN>With the connection string, click the '+', select =
+the UDP=20
+  tab, and select what local port you wish to use =
+(</SPAN><SPAN>typically=20
+  8700</SPAN><SPAN>)</SPAN>
+  <LI class=3Dc0><SPAN>In the Connection String, add =
+'autoconnect=3Dtrue;'</SPAN>
+  <LI class=3Dc0><SPAN>(If using the same database as openPDC) Add=20
+  'synchronizeMetaData=3Dfalse;' to connection string</SPAN>
+  <LI class=3Dc0><SPAN>In the Alternate Command Channel, type=20
+  'server=3Dlocalhost:6165;' (Replace 'localhost' with the host IP if =
+not on the=20
+  same system</SPAN><SPAN>)</SPAN>
+  <LI class=3Dc0><SPAN>Ensure 'Concentrator' and 'Enabled' checkboxes =
+are=20
+  checked</SPAN>
+  <LI class=3Dc0><SPAN>Click 'Save'</SPAN>
+  <LI class=3Dc0><SPAN>To view the measurements, you=92ll need to =
+subscribe to them.=20
+  Under =91Subscription=92, select =91Measurement Subscription=92. Then, =
+check the=20
+  measurements you wish to subscribe to, and click =91&lt;&lt;=92 to add =
+
+  them.</SPAN></LI></OL>
+<H1 class=3D"c1 c6"><A name=3Dh.k4cyl5bm3rtx></A></H1>
+<H1 class=3D"c6 c1"><A name=3Dh.4xx0s16851m0></A></H1>
+<H1 class=3Dc1><A name=3Dh.ffvncwh5arx></A><SPAN>Setting up an openPG=20
+Publisher/Subscriber</SPAN></H1>
+<P class=3D"c1 c5"><SPAN></SPAN></P>
+<P class=3Dc1><SPAN>Publisher:</SPAN></P>
+<P class=3D"c1 c5"><SPAN></SPAN></P>
+<OL class=3Dc2>
+  <LI class=3Dc0><SPAN>Install openPG</SPAN>
+  <LI class=3Dc0><SPAN>Connect to data stream (sample data, or other =
+data=20
+  source)</SPAN>
+  <LI class=3Dc0><SPAN>Verify that openPG Manager is connected to =
+correct openPG=20
+  service</SPAN>
+  <LI class=3Dc0><SPAN>Observe data trending in Graph =
+Measurements</SPAN></LI></OL>
+<P class=3D"c1 c5"><SPAN></SPAN></P>
+<P class=3Dc1><SPAN>Subscriber:</SPAN></P>
+<P class=3D"c1 c5"><SPAN></SPAN></P>
+<OL class=3Dc2>
+  <LI class=3Dc0><SPAN>Install openPG</SPAN>
+  <LI class=3Dc0><SPAN>Verify that openPG Manager is connected to =
+correct openPG=20
+  service</SPAN>
+  <LI class=3Dc0><SPAN>Under =91Subscription=92, select =91Create =
+Authentication=20
+  Request=92</SPAN>
+  <LI class=3Dc0><SPAN>Enter an Acronym and a Name</SPAN>
+  <LI class=3Dc0><SPAN>Verify that the Valid IP Addresses listed match =
+the system=20
+  that the openPG service is installed on</SPAN>
+  <LI class=3Dc0><SPAN>Export the authentication request, and transfer =
+to a=20
+  location the publisher can access</SPAN></LI></OL>
+<P class=3D"c1 c5"><SPAN></SPAN></P>
+<P class=3Dc1><SPAN>Publisher:</SPAN></P>
+<P class=3D"c1 c5"><SPAN></SPAN></P>
+<OL class=3Dc2>
+  <LI class=3Dc0><SPAN>Under =91Publication=92, select =91Authorise =
+Subscribers=92</SPAN>
+  <LI class=3Dc0><SPAN>Click =91Import=92, and select the authentication =
+request from=20
+  the subscriber</SPAN>
+  <LI class=3Dc0><SPAN>Verify that the data presented matches what is=20
+  expected</SPAN>
+  <LI class=3Dc0><SPAN>Check =91Enable PG Connection=92, and click =
+save</SPAN>
+  <LI class=3Dc0><SPAN>Under =91Publication=92, select =91Subscriber =
+measurement=20
+  access=92</SPAN>
+  <LI class=3Dc0><SPAN>Select the correct Subscriber from the dropdown =
+list</SPAN>
+  <LI class=3Dc0><SPAN>Authorise what measurements you want to=20
+share</SPAN></LI></OL>
+<P class=3Dc1><SPAN>Subscriber:</SPAN></P>
+<P class=3D"c1 c5"><SPAN></SPAN></P>
+<OL class=3Dc2>
+  <LI class=3Dc0><SPAN>Select =91Inputs=92 -&gt; =91Browse=92</SPAN>
+  <LI class=3Dc0><SPAN>Select the acronym for the authentication =
+request</SPAN>
+  <LI class=3Dc0><SPAN>In the =91Alternate Command Channel=92, change =
+the IP address=20
+  to the IP address of the publisher</SPAN>
+  <LI class=3Dc0><SPAN>Check =91Enabled=92, then click =91Save=92</SPAN>
+  <LI class=3Dc0><SPAN>Under =91Subscription=92, select =91Measurement=20
+  Subscription=92</SPAN>
+  <LI class=3Dc0><SPAN>Under =91Available Measurements=92, check the =
+measurements you=20
+  wish to subscribe to</SPAN>
+  <LI class=3Dc0><SPAN>Click =91&lt;&lt;=92 to subscribe to these =
+measurements</SPAN>
+  <LI class=3Dc0><SPAN>Verify the data is streaming under =
+=91Monitoring=92, =91Graph=20
+  Measurements=92</SPAN></LI></OL></BODY></HTML>

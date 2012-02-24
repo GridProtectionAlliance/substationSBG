@@ -332,18 +332,31 @@ namespace openPGManager
 
         private void ButtonHelp_Click(object sender, RoutedEventArgs e)
         {
+            bool useLocalHelp = false;
             try
             {
                 //Check for the Internet Connectivity.
                 Dns.GetHostEntry("openpg.codeplex.com");
 
                 //Launch the help page avilable on web.
-                Process.Start("http://openpg.codeplex.com/documentation");
+                Process.Start("http://openpg.codeplex.com/wikipage?title=openPG%20How-To&referringTitle=Documentation");
             }
             catch
             {
-                // Launch the offline copy of the help page.
-                Process.Start("openPGManagerHelp.mht");
+                useLocalHelp = true;
+            }
+
+            if (useLocalHelp)
+            {
+                try
+                {
+                    // Launch the offline copy of the help page.
+                    Process.Start("openPGManagerHelp.mht");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to launch local help file." + Environment.NewLine + ex.Message, "openPG Manager Help", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
