@@ -45,7 +45,6 @@
             this.labelVersion = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabPageInstallOptions.SuspendLayout();
             this.groupBoxInstallationOptions.SuspendLayout();
@@ -134,7 +133,7 @@
             this.checkBoxConnectionTester.AutoSize = true;
             this.checkBoxConnectionTester.Location = new System.Drawing.Point(16, 78);
             this.checkBoxConnectionTester.Name = "checkBoxConnectionTester";
-            this.checkBoxConnectionTester.Size = new System.Drawing.Size(160, 20);
+            this.checkBoxConnectionTester.Size = new System.Drawing.Size(140, 17);
             this.checkBoxConnectionTester.TabIndex = 2;
             this.checkBoxConnectionTester.Text = "PMU Connection Tester";
             this.checkBoxConnectionTester.UseVisualStyleBackColor = true;
@@ -145,7 +144,7 @@
             this.radioButton64bit.AutoSize = true;
             this.radioButton64bit.Location = new System.Drawing.Point(16, 51);
             this.radioButton64bit.Name = "radioButton64bit";
-            this.radioButton64bit.Size = new System.Drawing.Size(188, 20);
+            this.radioButton64bit.Size = new System.Drawing.Size(160, 17);
             this.radioButton64bit.TabIndex = 1;
             this.radioButton64bit.TabStop = true;
             this.radioButton64bit.Text = "64-bit version of the openPG";
@@ -159,7 +158,7 @@
             this.radioButton32bit.Checked = true;
             this.radioButton32bit.Location = new System.Drawing.Point(16, 24);
             this.radioButton32bit.Name = "radioButton32bit";
-            this.radioButton32bit.Size = new System.Drawing.Size(188, 20);
+            this.radioButton32bit.Size = new System.Drawing.Size(160, 17);
             this.radioButton32bit.TabIndex = 0;
             this.radioButton32bit.TabStop = true;
             this.radioButton32bit.Text = "32-bit version of the openPG";
@@ -216,23 +215,14 @@
             // pictureBoxLogo
             // 
             this.pictureBoxLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBoxLogo.Image = global::Setup.Properties.Resources.WelcomeScreen;
             this.pictureBoxLogo.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(501, 70);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(501, 72);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxLogo.TabIndex = 1;
             this.pictureBoxLogo.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(140, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 29);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "openPG Beta Setup";
             // 
             // Main
             // 
@@ -240,7 +230,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(501, 380);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.labelVersion);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.pictureBoxLogo);
@@ -281,7 +270,6 @@
         private System.Windows.Forms.TabPage tabPageReleaseNotes;
         private System.Windows.Forms.RichTextBox richTextBoxReleaseNotes;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.Label label1;
     }
 }
 
