@@ -442,7 +442,7 @@ namespace openPG.UI.DataModels
 
                 Dictionary<Guid, string> allowedMeasurements = new Dictionary<Guid, string>();
                 string query = database.ParameterizedQueryString("SELECT SignalID, PointTag FROM SubscriberMeasurementDetail WHERE SubscriberID = {0} AND Allowed = {1} ORDER BY PointTag", "subscriberID", "allowed");
-                DataTable allowedMeasurementTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, subscriberID, database.Bool(true));
+                DataTable allowedMeasurementTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, database.Guid(subscriberID), database.Bool(true));
 
                 foreach (DataRow row in allowedMeasurementTable.Rows)
                     allowedMeasurements[database.Guid(row, "SignalID")] = row.Field<string>("PointTag");
@@ -472,7 +472,7 @@ namespace openPG.UI.DataModels
 
                 Dictionary<Guid, string> deniedMeasurements = new Dictionary<Guid, string>();
                 string query = database.ParameterizedQueryString("SELECT SignalID, PointTag FROM SubscriberMeasurementDetail WHERE SubscriberID = {0} AND Allowed = {1} ORDER BY PointTag", "subscriberID", "allowed");
-                DataTable deniedMeasurementTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, subscriberID, database.Bool(false));
+                DataTable deniedMeasurementTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, database.Guid(subscriberID), database.Bool(false));
 
                 foreach (DataRow row in deniedMeasurementTable.Rows)
                     deniedMeasurements[database.Guid(row, "SignalID")] = row.Field<string>("PointTag");
@@ -513,7 +513,7 @@ namespace openPG.UI.DataModels
 
                 Dictionary<int, string> allowedMeasurementGroups = new Dictionary<int, string>();
                 string query = database.ParameterizedQueryString("SELECT MeasurementGroupID, MeasurementGroupName FROM SubscriberMeasGroupDetail WHERE SubscriberID = {0} AND Allowed = {1} ORDER BY MeasurementGroupName", "subscriberID", "allowed");
-                DataTable allowedMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, subscriberID, database.Bool(true));
+                DataTable allowedMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, database.Guid(subscriberID), database.Bool(true));
 
                 foreach (DataRow row in allowedMeasurementGroupTable.Rows)
                     allowedMeasurementGroups[row.ConvertField<int>("MeasurementGroupID")] = row.Field<string>("MeasurementGroupName");
@@ -543,7 +543,7 @@ namespace openPG.UI.DataModels
 
                 Dictionary<int, string> deniedMeasurementGroups = new Dictionary<int, string>();
                 string query = database.ParameterizedQueryString("SELECT MeasurementGroupID, MeasurementGroupName FROM SubscriberMeasGroupDetail WHERE SubscriberID = {0} AND Allowed = {1} ORDER BY MeasurementGroupName", "subscriberID", "allowed");
-                DataTable deniedMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, subscriberID, database.Bool(false));
+                DataTable deniedMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, database.Guid(subscriberID), database.Bool(false));
 
                 foreach (DataRow row in deniedMeasurementGroupTable.Rows)
                     deniedMeasurementGroups[row.ConvertField<int>("MeasurementGroupID")] = row.Field<string>("MeasurementGroupName");
@@ -574,7 +574,7 @@ namespace openPG.UI.DataModels
                 Dictionary<int, string> availableMeasurementGroups = new Dictionary<int, string>();
                 string query = database.ParameterizedQueryString("SELECT ID, Name FROM MeasurementGroup WHERE " +
                     "ID NOT IN (SELECT MeasurementGroupID FROM SubscriberMeasurementGroup WHERE SubscriberID = {0}) ORDER BY Name", "subscriberID");
-                DataTable availableMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, subscriberID);
+                DataTable availableMeasurementGroupTable = database.Connection.RetrieveData(database.AdapterType, query, DefaultTimeout, database.Guid(subscriberID));
 
                 foreach (DataRow row in availableMeasurementGroupTable.Rows)
                     availableMeasurementGroups[row.ConvertField<int>("ID")] = row.Field<string>("Name");
