@@ -45,6 +45,7 @@ using System.Windows.Documents;
 using System.Xml;
 using Microsoft.Win32;
 using TVA;
+using TVA.Data;
 using TVA.IO;
 using TVA.Security.Cryptography;
 
@@ -269,7 +270,10 @@ namespace ConfigurationSetupUtility.Screens
                         SetUpInitialHistorian(connectionString, dataProviderString);
 
                     if (!migrate)
+                    {
+                        SetUpStatisticsHistorian(connectionString, dataProviderString);
                         SetupAdminUserCredentials(connectionString, dataProviderString);
+                    }
                 }
 
                 // Modify the openPG configuration file.
@@ -383,7 +387,10 @@ namespace ConfigurationSetupUtility.Screens
                         }
 
                         if (!migrate)
+                        {
+                            SetUpStatisticsHistorian(mySqlSetup.ConnectionString, dataProviderString);
                             SetupAdminUserCredentials(mySqlSetup.ConnectionString, dataProviderString);
+                        }
                     }
                     else
                     {
@@ -527,7 +534,10 @@ namespace ConfigurationSetupUtility.Screens
                         }
 
                         if (!migrate)
+                        {
+                            SetUpStatisticsHistorian(sqlServerSetup.ConnectionString, dataProviderString);
                             SetupAdminUserCredentials(sqlServerSetup.ConnectionString, dataProviderString);
+                        }
                     }
                     else
                     {
@@ -664,7 +674,10 @@ namespace ConfigurationSetupUtility.Screens
                             SetUpInitialHistorian(oracleSetup.ConnectionString, dataProviderString);
 
                         if (!migrate)
+                        {
+                            SetUpStatisticsHistorian(oracleSetup.ConnectionString, dataProviderString);
                             SetupAdminUserCredentials(oracleSetup.ConnectionString, dataProviderString);
+                        }
                     }
                     else
                     {
@@ -730,7 +743,10 @@ namespace ConfigurationSetupUtility.Screens
                         SetUpInitialHistorian(connectionString, dataProviderString);
 
                     if (!migrate)
+                    {
+                        SetUpStatisticsHistorian(connectionString, dataProviderString);
                         SetupAdminUserCredentials(connectionString, dataProviderString);
+                    }
                 }
 
                 // Modify the openPG configuration file.
@@ -980,6 +996,84 @@ namespace ConfigurationSetupUtility.Screens
 
                 // Report success to the user.
                 AppendStatusMessage("Successfully set up initial historian.");
+                AppendStatusMessage(string.Empty);
+                UpdateProgressBar(95);
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Dispose();
+            }
+        }
+
+        // Sets up the statistics historian in new configurations.
+        private void SetUpStatisticsHistorian(string connectionString, string dataProviderString)
+        {
+            bool initialDataScript = Convert.ToBoolean(m_state["initialDataScript"]);
+            bool sampleDataScript = initialDataScript && Convert.ToBoolean(m_state["sampleDataScript"]);
+
+            Dictionary<string, string> settings = connectionString.ParseKeyValuePairs();
+            Dictionary<string, string> dataProviderSettings = dataProviderString.ParseKeyValuePairs();
+            string assemblyName = dataProviderSettings["AssemblyName"];
+            string connectionTypeName = dataProviderSettings["ConnectionType"];
+            string connectionSetting;
+
+            Assembly assembly = Assembly.Load(new AssemblyName(assemblyName));
+            Type connectionType = assembly.GetType(connectionTypeName);
+            IDbConnection connection = null;
+
+            try
+            {
+                string nodeIdQueryString = null;
+                int statHistorianCount;
+
+                AppendStatusMessage("Attempting to set up the statistics historian...");
+
+                if (settings.TryGetValue("Provider", out connectionSetting))
+                {
+                    // Check if provider is for Access to make sure the path is fully qualified.
+                    if (connectionSetting.StartsWith("Microsoft.Jet.OLEDB", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (settings.TryGetValue("Data Source", out connectionSetting))
+                        {
+                            settings["Data Source"] = FilePath.GetAbsolutePath(connectionSetting);
+                            connectionString = settings.JoinKeyValuePairs();
+                        }
+                    }
+                }
+
+                connection = (IDbConnection)Activator.CreateInstance(connectionType);
+                connection.ConnectionString = connectionString;
+                connection.Open();
+
+                // Set up default node.
+                bool defaultNodeCreatedHere = false;
+                bool existing = Convert.ToBoolean(m_state["existing"]);
+                bool migrate = existing && Convert.ToBoolean(m_state["updateConfiguration"]);
+
+                if (!migrate)
+                    defaultNodeCreatedHere = ManageDefaultNode(connection, sampleDataScript, m_defaultNodeAdded);
+
+                if (settings.TryGetValue("Provider", out connectionSetting))
+                {
+                    // Check if provider is for Access since it uses braces as Guid delimeters
+                    if (connectionSetting.StartsWith("Microsoft.Jet.OLEDB", StringComparison.OrdinalIgnoreCase))
+                        nodeIdQueryString = "{" + m_state["selectedNodeId"].ToString() + "}";
+                }
+                if (string.IsNullOrWhiteSpace(nodeIdQueryString))
+                    nodeIdQueryString = "'" + m_state["selectedNodeId"].ToString() + "'";
+
+                if (defaultNodeCreatedHere)
+                    AddRolesForNode(connection, nodeIdQueryString);
+
+                // Set up statistics historian.
+                statHistorianCount = Convert.ToInt32(connection.ExecuteScalar(string.Format("SELECT COUNT(*) FROM Historian WHERE Acronym = 'STAT' AND NodeID = {0}", nodeIdQueryString)));
+
+                if (statHistorianCount == 0)
+                    connection.ExecuteNonQuery(string.Format("INSERT INTO Historian(NodeID, Acronym, Name, AssemblyName, TypeName, ConnectionString, IsLocal, Description, LoadOrder, Enabled) VALUES({0}, 'STAT', 'Statistics Archive', 'HistorianAdapters.dll', 'HistorianAdapters.LocalOutputAdapter', '', 1, 'Local historian used to archive system statistics', 9999, 1)", nodeIdQueryString));
+
+                // Report success to the user.
+                AppendStatusMessage("Successfully set up statistics historian.");
                 AppendStatusMessage(string.Empty);
                 UpdateProgressBar(95);
             }
