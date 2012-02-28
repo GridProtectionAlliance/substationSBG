@@ -192,9 +192,6 @@ namespace ConfigurationSetupUtility.Screens
                 else
                     m_newDatabaseWarning.Visibility = existingVisibility;
 
-                // Access database will not work in 64-bit installations
-                m_accessDatabaseRadioButton.Visibility = Convert.ToBoolean(m_state["64bit"]) ? Visibility.Collapsed : Visibility.Visible;
-
                 if (!m_state.ContainsKey("databaseType"))
                     m_state.Add("databaseType", "sql server");
 
