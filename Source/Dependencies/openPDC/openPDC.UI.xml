@@ -1868,6 +1868,11 @@
             Defines a collection of <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>s defined in the database.
             </summary>
         </member>
+        <member name="F:openPDC.UI.DataModels.RealTimeStatistic.SystemStatistics">
+            <summary>
+            Defines a collection of <see cref="T:openPDC.UI.DataModels.StreamStatistic"/> defined in the database.
+            </summary>
+        </member>
         <member name="F:openPDC.UI.DataModels.RealTimeStatistic.InputStreamStatistics">
             <summary>
             Defines a collection of <see cref="T:openPDC.UI.DataModels.StreamStatistic"/> defined in the database.
