@@ -299,7 +299,7 @@ namespace openPG.UI.ViewModels
                     {
                         if (measurement.Selected)
                         {
-                            measurement.Internal = false;
+                            //measurement.Internal = false;
                             measurement.Subscribed = true;
 
                             Measurement.Save(database, measurement);
