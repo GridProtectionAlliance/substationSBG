@@ -352,7 +352,7 @@ namespace openPG.UI.ViewModels
                 {
                     foreach (Measurement measurement in measurementsToBeRemoved)
                     {
-                        measurement.Internal = false;
+                        //measurement.Internal = false;
                         measurement.Subscribed = false;
 
                         Measurement.Save(database, measurement);
