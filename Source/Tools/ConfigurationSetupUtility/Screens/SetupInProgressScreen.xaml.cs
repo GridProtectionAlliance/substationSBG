@@ -519,7 +519,25 @@ namespace ConfigurationSetupUtility.Screens
                                 return;
                             }
 
+                            if (!sqlServerSetup.ExecuteStatement("CREATE ROLE [openPGManagerRole] AUTHORIZATION [dbo]"))
+                            {
+                                OnSetupFailed();
+                                return;
+                            }
+
                             if (!sqlServerSetup.ExecuteStatement(string.Format("EXEC sp_addrolemember N'openPGManagerRole', N'{0}'", user)))
+                            {
+                                OnSetupFailed();
+                                return;
+                            }
+
+                            if (!sqlServerSetup.ExecuteStatement(string.Format("EXEC sp_addrolemember N'db_datareader', N'openPGManagerRole'", user)))
+                            {
+                                OnSetupFailed();
+                                return;
+                            }
+
+                            if (!sqlServerSetup.ExecuteStatement(string.Format("EXEC sp_addrolemember N'db_datawriter', N'openPGManagerRole'", user)))
                             {
                                 OnSetupFailed();
                                 return;
