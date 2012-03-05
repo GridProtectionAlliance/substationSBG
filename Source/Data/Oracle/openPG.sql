@@ -23,6 +23,7 @@
 -- The following statements are used to create a tablespace, user, and schema.
 -- Be sure to change the password.
 -- CREATE TABLESPACE openPG_TS DATAFILE 'openPG.dbf' SIZE 20M AUTOEXTEND ON;
+-- CREATE TABLESPACE OPG_INDEX DATAFILE 'opg_index.dbf' SIZE 20M AUTOEXTEND ON;
 -- CREATE USER openPG IDENTIFIED BY MyPassword DEFAULT TABLESPACE openPG_TS;
 -- GRANT UNLIMITED TABLESPACE TO openPG;
 -- GRANT CREATE SESSION TO openPG;
