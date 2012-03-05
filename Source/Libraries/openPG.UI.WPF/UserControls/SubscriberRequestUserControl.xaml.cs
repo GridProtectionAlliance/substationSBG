@@ -282,7 +282,7 @@ namespace openPG.UI.UserControls
             {
                 // Set up XML searching
                 configFileName = FilePath.GetAbsolutePath("openPG.exe.config");
-                configStream = File.Open(configFileName, FileMode.Open);
+                configStream = File.Open(configFileName, FileMode.Open, FileAccess.Read);
                 configStreamReader = new StreamReader(configStream);
                 configRoot = XElement.Parse(configStreamReader.ReadToEnd());
 
