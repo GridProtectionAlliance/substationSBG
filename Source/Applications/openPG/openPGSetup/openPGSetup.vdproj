@@ -93,12 +93,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2D53BDA40C5C405B9D1E4E5FD26A8874"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_2F7638F94598433AB0BBAC1CDF890AF3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -148,13 +142,13 @@
         "Entry"
         {
         "MsmKey" = "8:_39158C45276C993F38C2627631E90877"
-        "OwnerKey" = "8:_C687BDA89F0216789A64A36F62721537"
+        "OwnerKey" = "8:_225099BBC1C09ED956FF7F8C061F8246"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_39158C45276C993F38C2627631E90877"
-        "OwnerKey" = "8:_225099BBC1C09ED956FF7F8C061F8246"
+        "OwnerKey" = "8:_C687BDA89F0216789A64A36F62721537"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -189,12 +183,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3D7DFA7D25094DE9BEADD502F88B96D8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_3DC94B6381C24D38880B8C3F36AB0069"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -215,12 +203,6 @@
         {
         "MsmKey" = "8:_44705A3741AC506D56254DEF7D9AFE89"
         "OwnerKey" = "8:_6C9357CA0BF5D29DFFA70DE9A565EB9C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_44705A3741AC506D56254DEF7D9AFE89"
-        "OwnerKey" = "8:_51DD84ADC40ED26CD1E8568C910A0118"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -256,6 +238,12 @@
         "Entry"
         {
         "MsmKey" = "8:_44705A3741AC506D56254DEF7D9AFE89"
+        "OwnerKey" = "8:_51DD84ADC40ED26CD1E8568C910A0118"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_44705A3741AC506D56254DEF7D9AFE89"
         "OwnerKey" = "8:_B4B57AB1F1684CAA8B406ACF86747A9A"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -273,13 +261,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_485622ADAC7C4DB2ACB51C7DF2F0B443"
+        "MsmKey" = "8:_46AA10AAF6524060836E9F47521BD9C4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_4E74E1A286174C99A7F1A0019B9B67CB"
+        "MsmKey" = "8:_485622ADAC7C4DB2ACB51C7DF2F0B443"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -424,12 +412,6 @@
         "Entry"
         {
         "MsmKey" = "8:_7BDF87B76492514CA0E045D56B917CEC"
-        "OwnerKey" = "8:_D03D95AB17DBC7AF197AF2DDD43480DE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7BDF87B76492514CA0E045D56B917CEC"
         "OwnerKey" = "8:_DCDB6F0E76EA4245A60C76A4E5C78B5D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -437,6 +419,12 @@
         {
         "MsmKey" = "8:_7BDF87B76492514CA0E045D56B917CEC"
         "OwnerKey" = "8:_4E7E61C68F7D447DA585C9536EC6239F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7BDF87B76492514CA0E045D56B917CEC"
+        "OwnerKey" = "8:_D03D95AB17DBC7AF197AF2DDD43480DE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -501,18 +489,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_98922A2C346F4EB1A5193A3C85728621"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_989534436FD128E85125CC276DBF556E"
-        "OwnerKey" = "8:_52450D68B88B400F9DF7E0CD9293A25B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_9A4C0BCD26E24BC284F2316466FD13EC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -539,36 +515,6 @@
         {
         "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
         "OwnerKey" = "8:_DEF8D2FF28B05591D375C53B5303F461"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
-        "OwnerKey" = "8:_C687BDA89F0216789A64A36F62721537"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
-        "OwnerKey" = "8:_225099BBC1C09ED956FF7F8C061F8246"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
-        "OwnerKey" = "8:_51DD84ADC40ED26CD1E8568C910A0118"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
-        "OwnerKey" = "8:_0FB2EEC539AE588DDD99884EC6CC2B39"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
-        "OwnerKey" = "8:_D03D95AB17DBC7AF197AF2DDD43480DE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -646,6 +592,18 @@
         "Entry"
         {
         "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
+        "OwnerKey" = "8:_225099BBC1C09ED956FF7F8C061F8246"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
+        "OwnerKey" = "8:_C687BDA89F0216789A64A36F62721537"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
         "OwnerKey" = "8:_CE96D4793FD54139920130381A089C93"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -677,6 +635,24 @@
         {
         "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
         "OwnerKey" = "8:_39158C45276C993F38C2627631E90877"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
+        "OwnerKey" = "8:_51DD84ADC40ED26CD1E8568C910A0118"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
+        "OwnerKey" = "8:_0FB2EEC539AE588DDD99884EC6CC2B39"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AE3942BACCDA719E04D7DF16790FD2E7"
+        "OwnerKey" = "8:_D03D95AB17DBC7AF197AF2DDD43480DE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -760,7 +736,7 @@
         "Entry"
         {
         "MsmKey" = "8:_B44ECC249EE0F54B6B3C6831D443EC71"
-        "OwnerKey" = "8:_98922A2C346F4EB1A5193A3C85728621"
+        "OwnerKey" = "8:_D998F5D9FDD4428387AD838717566668"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -773,24 +749,6 @@
         {
         "MsmKey" = "8:_B7158591670D917728EFCF7D26F129A5"
         "OwnerKey" = "8:_60E412BDCF1B4E2FB0D4C13D254724D5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B7158591670D917728EFCF7D26F129A5"
-        "OwnerKey" = "8:_C687BDA89F0216789A64A36F62721537"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B7158591670D917728EFCF7D26F129A5"
-        "OwnerKey" = "8:_0FB2EEC539AE588DDD99884EC6CC2B39"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B7158591670D917728EFCF7D26F129A5"
-        "OwnerKey" = "8:_D03D95AB17DBC7AF197AF2DDD43480DE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -850,6 +808,12 @@
         "Entry"
         {
         "MsmKey" = "8:_B7158591670D917728EFCF7D26F129A5"
+        "OwnerKey" = "8:_C687BDA89F0216789A64A36F62721537"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B7158591670D917728EFCF7D26F129A5"
         "OwnerKey" = "8:_CE96D4793FD54139920130381A089C93"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -863,6 +827,18 @@
         {
         "MsmKey" = "8:_B7158591670D917728EFCF7D26F129A5"
         "OwnerKey" = "8:_B013B780BB3A0ADAF2787E2E08DF3012"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B7158591670D917728EFCF7D26F129A5"
+        "OwnerKey" = "8:_0FB2EEC539AE588DDD99884EC6CC2B39"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B7158591670D917728EFCF7D26F129A5"
+        "OwnerKey" = "8:_D03D95AB17DBC7AF197AF2DDD43480DE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -952,12 +928,6 @@
         "Entry"
         {
         "MsmKey" = "8:_D491412F5D195CE4350BF26FFBCBDEFC"
-        "OwnerKey" = "8:_0FB2EEC539AE588DDD99884EC6CC2B39"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D491412F5D195CE4350BF26FFBCBDEFC"
         "OwnerKey" = "8:_F5B29BC8130C446AAC623A2CD163C728"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -971,6 +941,12 @@
         {
         "MsmKey" = "8:_D491412F5D195CE4350BF26FFBCBDEFC"
         "OwnerKey" = "8:_B013B780BB3A0ADAF2787E2E08DF3012"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D491412F5D195CE4350BF26FFBCBDEFC"
+        "OwnerKey" = "8:_0FB2EEC539AE588DDD99884EC6CC2B39"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -993,6 +969,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D998F5D9FDD4428387AD838717566668"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_DCDB6F0E76EA4245A60C76A4E5C78B5D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1006,24 +988,6 @@
         "Entry"
         {
         "MsmKey" = "8:_DEF8D2FF28B05591D375C53B5303F461"
-        "OwnerKey" = "8:_C687BDA89F0216789A64A36F62721537"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DEF8D2FF28B05591D375C53B5303F461"
-        "OwnerKey" = "8:_0FB2EEC539AE588DDD99884EC6CC2B39"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DEF8D2FF28B05591D375C53B5303F461"
-        "OwnerKey" = "8:_D03D95AB17DBC7AF197AF2DDD43480DE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DEF8D2FF28B05591D375C53B5303F461"
         "OwnerKey" = "8:_F5B29BC8130C446AAC623A2CD163C728"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1031,6 +995,12 @@
         {
         "MsmKey" = "8:_DEF8D2FF28B05591D375C53B5303F461"
         "OwnerKey" = "8:_4E7E61C68F7D447DA585C9536EC6239F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DEF8D2FF28B05591D375C53B5303F461"
+        "OwnerKey" = "8:_C687BDA89F0216789A64A36F62721537"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1055,6 +1025,18 @@
         {
         "MsmKey" = "8:_DEF8D2FF28B05591D375C53B5303F461"
         "OwnerKey" = "8:_39158C45276C993F38C2627631E90877"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DEF8D2FF28B05591D375C53B5303F461"
+        "OwnerKey" = "8:_0FB2EEC539AE588DDD99884EC6CC2B39"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DEF8D2FF28B05591D375C53B5303F461"
+        "OwnerKey" = "8:_D03D95AB17DBC7AF197AF2DDD43480DE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1186,19 +1168,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_51DD84ADC40ED26CD1E8568C910A0118"
+        "OwnerKey" = "8:_D998F5D9FDD4428387AD838717566668"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0FB2EEC539AE588DDD99884EC6CC2B39"
+        "OwnerKey" = "8:_B44ECC249EE0F54B6B3C6831D443EC71"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D03D95AB17DBC7AF197AF2DDD43480DE"
+        "OwnerKey" = "8:_46AA10AAF6524060836E9F47521BD9C4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1246,18 +1228,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_98922A2C346F4EB1A5193A3C85728621"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B44ECC249EE0F54B6B3C6831D443EC71"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_97EFA239ED454295ACEF7AC12F46A00D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1283,12 +1253,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_4E7E61C68F7D447DA585C9536EC6239F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3D7DFA7D25094DE9BEADD502F88B96D8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1390,6 +1354,24 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_51DD84ADC40ED26CD1E8568C910A0118"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0FB2EEC539AE588DDD99884EC6CC2B39"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D03D95AB17DBC7AF197AF2DDD43480DE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B1272B83157E457151D25CC55C49B5B6"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1469,12 +1451,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_52450D68B88B400F9DF7E0CD9293A25B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_989534436FD128E85125CC276DBF556E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1704,7 +1680,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ConfigCrypter, Version=4.0.3.46, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:ConfigCrypter, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_09BD410FC3ED4D1F93C5A9CF9D3958C1"
@@ -1735,7 +1711,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.PhasorProtocols, Version=1.5.13.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.PhasorProtocols, Version=1.5.30.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_0FB2EEC539AE588DDD99884EC6CC2B39"
@@ -1766,7 +1742,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:openPDC.UI, Version=1.5.13.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:openPDC.UI, Version=1.5.30.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_1D81E932286B04FE1F8C8FA5947CD998"
@@ -1817,7 +1793,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:openPG.UI, Version=0.9.38.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:openPG.UI, Version=1.0.6.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_225099BBC1C09ED956FF7F8C061F8246"
@@ -1848,7 +1824,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WavInputAdapter, Version=1.1.33.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WavInputAdapter, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_23BAB7278FD9455682CD75680B730DDC"
@@ -1879,7 +1855,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TimeSeriesFramework.UI.WPF, Version=1.1.33.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TimeSeriesFramework.UI.WPF, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_27672C97CF06C0C53CBBCC28C3640DAC"
@@ -1904,26 +1880,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2D53BDA40C5C405B9D1E4E5FD26A8874"
-            {
-            "SourcePath" = "8:..\\..\\..\\Dependencies\\SQLite\\sqlite3.dll"
-            "TargetName" = "8:sqlite3.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_3D8DC2E666AC49D783022A69149A97A0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2F7638F94598433AB0BBAC1CDF890AF3"
@@ -1981,7 +1937,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MongoAdapters, Version=1.1.33.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:MongoAdapters, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_327C552A81AB4B138349AECB2E57A4AD"
@@ -2032,7 +1988,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.PhasorProtocols, Version=1.5.13.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.PhasorProtocols, Version=1.5.30.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_3786C065FFF38B9A73B765C0047081B9"
@@ -2094,7 +2050,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TimeSeriesFramework.UI, Version=1.1.33.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TimeSeriesFramework.UI, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_39158C45276C993F38C2627631E90877"
@@ -2125,7 +2081,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MySqlAdapters, Version=1.1.33.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:MySqlAdapters, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_3A9E7CA8F1BC4279B9E986DA02362C63"
@@ -2135,37 +2091,6 @@
                     }
                 }
             "SourcePath" = "8:..\\..\\..\\Dependencies\\TimeSeriesFramework\\MySqlAdapters.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_3D8DC2E666AC49D783022A69149A97A0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3D7DFA7D25094DE9BEADD502F88B96D8"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Data.SQLite, Version=1.0.74.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_3D7DFA7D25094DE9BEADD502F88B96D8"
-                    {
-                    "Name" = "8:System.Data.SQLite.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\..\\..\\Dependencies\\SQLite\\x86\\System.Data.SQLite.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3D8DC2E666AC49D783022A69149A97A0"
@@ -2207,7 +2132,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.Windows, Version=4.0.3.46, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.Windows, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_435C6BB7E48B8F36F64F5A8BF4D4236A"
@@ -2238,7 +2163,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.Security, Version=4.0.3.46, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.Security, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_44705A3741AC506D56254DEF7D9AFE89"
@@ -2265,6 +2190,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_46AA10AAF6524060836E9F47521BD9C4"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Data.SQLite, Version=1.0.79.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_46AA10AAF6524060836E9F47521BD9C4"
+                    {
+                    "Name" = "8:System.Data.SQLite.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\..\\..\\Dependencies\\SQLite\\x86\\System.Data.SQLite.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_3D8DC2E666AC49D783022A69149A97A0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_485622ADAC7C4DB2ACB51C7DF2F0B443"
             {
             "SourcePath" = "8:..\\..\\..\\Data\\SQL Server\\InitialDataSet.sql"
@@ -2285,31 +2241,11 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4E74E1A286174C99A7F1A0019B9B67CB"
-            {
-            "SourcePath" = "8:..\\..\\..\\Dependencies\\SQLite\\x86\\SQLite.Interop.dll"
-            "TargetName" = "8:SQLite.Interop.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_3D8DC2E666AC49D783022A69149A97A0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4E7E61C68F7D447DA585C9536EC6239F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:HistorianAdapters, Version=1.5.13.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:HistorianAdapters, Version=1.5.30.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_4E7E61C68F7D447DA585C9536EC6239F"
@@ -2340,7 +2276,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.ServiceModel, Version=4.0.3.46, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.ServiceModel, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_51DD84ADC40ED26CD1E8568C910A0118"
@@ -2391,7 +2327,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ConfigEditor, Version=4.0.3.46, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:ConfigEditor, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_552F50A5B5C44893AC519D17292BFF9C"
@@ -2564,7 +2500,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.ServiceProcess, Version=4.0.3.46, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.ServiceProcess, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_6C9357CA0BF5D29DFFA70DE9A565EB9C"
@@ -2595,7 +2531,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.ServiceModel, Version=4.0.3.46, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.ServiceModel, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_7BDF87B76492514CA0E045D56B917CEC"
@@ -2697,7 +2633,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CsvAdapters, Version=1.1.33.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CsvAdapters, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_92DBD2BA0CDC4CBFACFC18C2F75E2351"
@@ -2748,7 +2684,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AdoAdapters, Version=1.1.33.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:AdoAdapters, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_97EFA239ED454295ACEF7AC12F46A00D"
@@ -2758,37 +2694,6 @@
                     }
                 }
             "SourcePath" = "8:..\\..\\..\\Dependencies\\TimeSeriesFramework\\AdoAdapters.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_3D8DC2E666AC49D783022A69149A97A0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_98922A2C346F4EB1A5193A3C85728621"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Data.SQLite.Linq, Version=1.0.74.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_98922A2C346F4EB1A5193A3C85728621"
-                    {
-                    "Name" = "8:System.Data.SQLite.Linq.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\..\\..\\Dependencies\\SQLite\\x86\\System.Data.SQLite.Linq.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3D8DC2E666AC49D783022A69149A97A0"
@@ -2912,7 +2817,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.Core, Version=4.0.3.46, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.Core, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_AE3942BACCDA719E04D7DF16790FD2E7"
@@ -2943,7 +2848,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:openPDC.UI.WPF, Version=1.5.13.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:openPDC.UI.WPF, Version=1.5.30.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_B013B780BB3A0ADAF2787E2E08DF3012"
@@ -3025,7 +2930,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Data.SQLite, Version=1.0.74.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:System.Data.SQLite, Version=1.0.79.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_B44ECC249EE0F54B6B3C6831D443EC71"
@@ -3056,7 +2961,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TimeSeriesFramework, Version=1.1.33.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TimeSeriesFramework, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_B7158591670D917728EFCF7D26F129A5"
@@ -3107,7 +3012,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:openPG.UI.WPF, Version=0.9.38.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:openPG.UI.WPF, Version=1.0.6.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_C687BDA89F0216789A64A36F62721537"
@@ -3209,7 +3114,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.Historian, Version=1.1.130.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.Historian, Version=1.1.136.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_D03D95AB17DBC7AF197AF2DDD43480DE"
@@ -3300,7 +3205,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.Historian, Version=1.1.130.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.Historian, Version=1.1.136.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_D491412F5D195CE4350BF26FFBCBDEFC"
@@ -3351,7 +3256,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.ServiceBus, Version=4.0.3.46, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.ServiceBus, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_D89DAB7724AB3446301010552CFF6BD7"
@@ -3378,11 +3283,42 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D998F5D9FDD4428387AD838717566668"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Data.SQLite.Linq, Version=1.0.79.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_D998F5D9FDD4428387AD838717566668"
+                    {
+                    "Name" = "8:System.Data.SQLite.Linq.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\..\\..\\Dependencies\\SQLite\\x86\\System.Data.SQLite.Linq.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_3D8DC2E666AC49D783022A69149A97A0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DCDB6F0E76EA4245A60C76A4E5C78B5D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DataQualityMonitoring, Version=1.1.33.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:DataQualityMonitoring, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_DCDB6F0E76EA4245A60C76A4E5C78B5D"
@@ -3413,7 +3349,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.Communication, Version=4.0.3.46, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.Communication, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_DEF8D2FF28B05591D375C53B5303F461"
@@ -3526,7 +3462,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TestingAdapters, Version=1.1.33.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TestingAdapters, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_F06B8F2D24C64C3692F70D94D3E9DFFA"
@@ -3577,7 +3513,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:HistorianPlaybackUtility, Version=1.1.130.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:HistorianPlaybackUtility, Version=1.1.136.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_F5B29BC8130C446AAC623A2CD163C728"
