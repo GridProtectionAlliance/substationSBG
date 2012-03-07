@@ -32,6 +32,7 @@ using openPDC.UI.DataModels;
 using TimeSeriesFramework.UI;
 using TimeSeriesFramework.UI.Commands;
 using TimeSeriesFramework.UI.DataModels;
+using TVA;
 using TVA.Data;
 
 namespace openPG.UI.ViewModels
@@ -48,6 +49,7 @@ namespace openPG.UI.ViewModels
         private KeyValuePair<int, string> m_currentDevice;
         private int m_currentDeviceID;
         private ObservableCollection<Measurement> m_measurementsToBeSubscribed;
+        private AuthorizedMeasurementsQuery m_authorizationQuery;
 
         // Delegates
 
@@ -78,6 +80,7 @@ namespace openPG.UI.ViewModels
         public event OnCurrentDeviceChanged CurrentDeviceChanged;
 
         #endregion
+
 
         #region [ Properties ]
 
@@ -131,7 +134,7 @@ namespace openPG.UI.ViewModels
             set
             {
                 m_subscribedMeasurements = value;
-                ThreadPool.QueueUserWorkItem(GetAuthorizedMeasurements);
+                m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
                 OnPropertyChanged("SubscribedMeasurements");
             }
         }
@@ -227,12 +230,16 @@ namespace openPG.UI.ViewModels
         public SubscribeMeasurements(int itemsPerPage, bool autoSave = true)
             : base(0, autoSave)
         {
+            m_authorizationQuery = new AuthorizedMeasurementsQuery();
+            m_authorizationQuery.AuthorizedMeasurements += m_authorizationQuery_AuthorizedMeasurements;
+
             Load();
         }
 
         #endregion
 
         #region [ Methods ]
+
 
         /// <summary>
         /// Gets the primary key value of the <see cref="PagedViewModelBase{T1, T2}.CurrentItem"/>.
@@ -273,6 +280,20 @@ namespace openPG.UI.ViewModels
                     CommonFunctions.LogException(null, "Load " + DataModelName, ex);
                 }
             }
+        }
+
+        /// <summary>
+        /// Handles unloading of the subscriber measurement view model.
+        /// </summary>
+        public void Unload()
+        {
+            if ((object)m_authorizationQuery != null)
+            {
+                m_authorizationQuery.AuthorizedMeasurements -= m_authorizationQuery_AuthorizedMeasurements;
+                m_authorizationQuery.Dispose();
+            }
+
+            m_authorizationQuery = null;
         }
 
         public override void Save()
@@ -400,33 +421,12 @@ namespace openPG.UI.ViewModels
             }
         }
 
-        private void GetAuthorizedMeasurements(object state)
+        private void m_authorizationQuery_AuthorizedMeasurements(object sender, EventArgs<Guid[]> e)
         {
-            AuthorizedMeasurementsQuery authQuery = null;
-            try
-            {
-                authQuery = new AuthorizedMeasurementsQuery();
-                authQuery.AuthorizedMeasurements += new EventHandler<TVA.EventArgs<Guid[]>>(authQuery_AuthorizedMeasurements);
-            }
-            finally
-            {
-                if (authQuery != null)
-                {
-                    authQuery.AuthorizedMeasurements -= new EventHandler<TVA.EventArgs<Guid[]>>(authQuery_AuthorizedMeasurements);
-                    authQuery.Dispose();
-                }
-            }
-        }
+            List<Guid> authorizedMeasurements = new List<Guid>(e.Argument);
+            authorizedMeasurements.Sort();
 
-        private void authQuery_AuthorizedMeasurements(object sender, TVA.EventArgs<Guid[]> e)
-        {
-            Guid[] authorizedMeasurements = e.Argument;
-
-            foreach (Measurement measurement in m_subscribedMeasurements)
-            {
-                if (authorizedMeasurements.Contains(measurement.SignalID))
-                    measurement.Selected = true;
-            }
+            m_subscribedMeasurements.AsParallel().ForAll(measurement => measurement.Selected = (authorizedMeasurements.BinarySearch(measurement.SignalID) >= 0));
 
             OnPropertyChanged("SubscribedMeasurements");
         }

@@ -50,6 +50,7 @@ namespace openPG.UI.UserControls
             m_dataContext.CurrentDeviceChanged += new SubscribeMeasurements.OnCurrentDeviceChanged(m_dataContext_CurrentDeviceChanged);
             StackPanelSubscribeMeasurements.DataContext = m_dataContext;
             this.Loaded += new System.Windows.RoutedEventHandler(SubscribeMeasurementUserControl_Loaded);
+            this.Unloaded += new System.Windows.RoutedEventHandler(SubscribeMeasurementUserControl_Unloaded);
         }
 
         #endregion
@@ -59,6 +60,11 @@ namespace openPG.UI.UserControls
         private void SubscribeMeasurementUserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             UserControlSelectMeasurements.SourceCollectionChanged += new SelectMeasurementUserControl.OnSourceCollectionChanged(UserControlSelectMeasurements_SourceCollectionChanged);
+        }
+
+        private void SubscribeMeasurementUserControl_Unloaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            m_dataContext.Unload();
         }
 
         private void UserControlSelectMeasurements_SourceCollectionChanged(object sender, System.Windows.RoutedEventArgs e)
