@@ -131,6 +131,7 @@ namespace openPG.UI.ViewModels
             set
             {
                 m_subscribedMeasurements = value;
+                ThreadPool.QueueUserWorkItem(GetAuthorizedMeasurements);
                 OnPropertyChanged("SubscribedMeasurements");
             }
         }
@@ -397,6 +398,37 @@ namespace openPG.UI.ViewModels
                 Device device = Device.GetDevice(null, "WHERE ID = " + id);
                 Device.NotifyService(device);
             }
+        }
+
+        private void GetAuthorizedMeasurements(object state)
+        {
+            AuthorizedMeasurementsQuery authQuery = null;
+            try
+            {
+                authQuery = new AuthorizedMeasurementsQuery();
+                authQuery.AuthorizedMeasurements += new EventHandler<TVA.EventArgs<Guid[]>>(authQuery_AuthorizedMeasurements);
+            }
+            finally
+            {
+                if (authQuery != null)
+                {
+                    authQuery.AuthorizedMeasurements -= new EventHandler<TVA.EventArgs<Guid[]>>(authQuery_AuthorizedMeasurements);
+                    authQuery.Dispose();
+                }
+            }
+        }
+
+        private void authQuery_AuthorizedMeasurements(object sender, TVA.EventArgs<Guid[]> e)
+        {
+            Guid[] authorizedMeasurements = e.Argument;
+
+            foreach (Measurement measurement in m_subscribedMeasurements)
+            {
+                if (authorizedMeasurements.Contains(measurement.SignalID))
+                    measurement.Selected = true;
+            }
+
+            OnPropertyChanged("SubscribedMeasurements");
         }
 
         #endregion

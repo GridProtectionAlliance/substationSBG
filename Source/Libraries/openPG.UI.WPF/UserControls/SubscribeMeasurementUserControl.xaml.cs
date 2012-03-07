@@ -68,6 +68,7 @@ namespace openPG.UI.UserControls
 
         private void m_dataContext_CurrentDeviceChanged(object sender, System.Windows.RoutedEventArgs e)
         {
+            UserControlSelectMeasurements.CurrentDeviceID = m_dataContext.CurrentDeviceID;
             UserControlSelectMeasurements.Refresh(m_dataContext.CurrentDeviceID);
         }
 

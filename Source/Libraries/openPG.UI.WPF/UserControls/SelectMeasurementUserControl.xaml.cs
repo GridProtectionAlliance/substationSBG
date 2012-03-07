@@ -56,6 +56,7 @@ namespace openPG.UI.UserControls
         // Fields
         private SelectMeasurements m_dataContext;
         private ObservableCollection<Measurement> m_itemsSource;
+        private int m_currentDeviceID = 0;
 
         #endregion
 
@@ -113,6 +114,21 @@ namespace openPG.UI.UserControls
             get
             {
                 return m_dataContext.ItemsSource;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets current device selected on the parent screen for filtering purpose.
+        /// </summary>
+        public int CurrentDeviceID
+        {
+            get
+            {
+                return m_currentDeviceID;
+            }
+            set
+            {
+                m_currentDeviceID = value;
             }
         }
 
@@ -221,12 +237,12 @@ namespace openPG.UI.UserControls
 
         private void CheckboxDisplayInternal_Checked(object sender, RoutedEventArgs e)
         {
-            Refresh();
+            Refresh(m_currentDeviceID);
         }
 
         private void CheckboxDisplayInternal_Unchecked(object sender, RoutedEventArgs e)
         {
-            Refresh();
+            Refresh(m_currentDeviceID);
         }
 
         #endregion
