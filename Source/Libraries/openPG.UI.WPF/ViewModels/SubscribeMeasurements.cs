@@ -232,8 +232,13 @@ namespace openPG.UI.ViewModels
         {
             m_authorizationQuery = new AuthorizedMeasurementsQuery();
             m_authorizationQuery.AuthorizedMeasurements += m_authorizationQuery_AuthorizedMeasurements;
-
+            m_authorizationQuery.ProcessException += m_authorizationQuery_ProcessException;
             Load();
+        }
+
+        private void m_authorizationQuery_ProcessException(object sender, EventArgs<Exception> e)
+        {
+
         }
 
         #endregion
@@ -337,10 +342,11 @@ namespace openPG.UI.ViewModels
                     if (SubscriptionChanged != null)
                         SubscriptionChanged(this, null);
 
-                    SubscribedMeasurements = Measurement.GetSubscribedMeasurements(database);
-
                     if (deviceIDsForMeasurementsToBeAdded.Count > 0)
                         InitializeDeviceConnection(deviceIDsForMeasurementsToBeAdded);
+
+                    SubscribedMeasurements = Measurement.GetSubscribedMeasurements(database);
+
                 }
                 catch (Exception ex)
                 {
@@ -389,10 +395,10 @@ namespace openPG.UI.ViewModels
                     if (SubscriptionChanged != null)
                         SubscriptionChanged(this, null);
 
-                    SubscribedMeasurements = Measurement.GetSubscribedMeasurements(database);
-
                     if (deviceIDsForMeasurementsToBeAdded.Count > 0)
                         InitializeDeviceConnection(deviceIDsForMeasurementsToBeAdded);
+
+                    SubscribedMeasurements = Measurement.GetSubscribedMeasurements(database);
                 }
                 catch (Exception ex)
                 {
