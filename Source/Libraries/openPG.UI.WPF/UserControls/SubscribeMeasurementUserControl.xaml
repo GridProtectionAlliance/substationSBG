@@ -76,19 +76,19 @@
             </ListBox>-->
 
             <sdk:DataGrid x:Name="DataGridSubscribedMeasurements" ItemsSource="{tsfBinding:Column Path=DataContext.SubscribedMeasurements, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel, AncestorLevel=1}}" 
-                          Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Height="625" Width="325" VerticalScrollBarVisibility="Auto">
-                <sdk:DataGrid.Columns>                    
-                    <sdk:DataGridTemplateColumn Header="Point Tag" Width="3*" IsReadOnly="True">
+                          Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Height="590" Width="325" VerticalScrollBarVisibility="Auto">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTemplateColumn Header="" Width="*" IsReadOnly="True">
                         <sdk:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Path=PointTag}" ToolTip="{Binding Description}" HorizontalAlignment="Left"/>
+                                <Ellipse Width="12" Height="12" VerticalAlignment="Center" Fill="{StaticResource GreenRadialGradientBrush}" Visibility="{Binding Path=Selected, Converter={StaticResource ObjectToVisibilityConverter}}" ToolTip="Authorized"/>
                             </DataTemplate>
                         </sdk:DataGridTemplateColumn.CellTemplate>
                     </sdk:DataGridTemplateColumn>
-                    <sdk:DataGridTemplateColumn Header="Authorized" Width="2*" IsReadOnly="True">
+                    <sdk:DataGridTemplateColumn Header="Point Tag" Width="8*" IsReadOnly="True">
                         <sdk:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Ellipse Width="12" Height="12" VerticalAlignment="Center" Fill="{StaticResource GreenRadialGradientBrush}" Visibility="{Binding Path=Selected, Converter={StaticResource ObjectToVisibilityConverter}}"/>
+                                <TextBlock Text="{Binding Path=PointTag}" ToolTip="{Binding Description}" HorizontalAlignment="Left"/>
                             </DataTemplate>
                         </sdk:DataGridTemplateColumn.CellTemplate>
                     </sdk:DataGridTemplateColumn>
