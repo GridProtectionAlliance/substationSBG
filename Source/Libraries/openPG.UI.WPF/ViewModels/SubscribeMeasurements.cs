@@ -135,7 +135,7 @@ namespace openPG.UI.ViewModels
             set
             {
                 m_subscribedMeasurements = value;
-                m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
+                //m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
                 OnPropertyChanged("SubscribedMeasurements");
             }
         }
@@ -234,7 +234,7 @@ namespace openPG.UI.ViewModels
             m_authorizationQuery = new AuthorizedMeasurementsQuery();
             m_authorizationQuery.AuthorizedMeasurements += m_authorizationQuery_AuthorizedMeasurements;
             m_refreshTimer = new DispatcherTimer();
-            m_refreshTimer.Interval = TimeSpan.FromSeconds(10);
+            m_refreshTimer.Interval = TimeSpan.FromSeconds(5);
             m_refreshTimer.Tick += new EventHandler(m_refreshTimer_Tick);
             Load();
         }

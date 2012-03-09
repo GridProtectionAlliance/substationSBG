@@ -26,7 +26,9 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using openPG.UI.ViewModels;
+using TimeSeriesFramework.UI;
 using TimeSeriesFramework.UI.DataModels;
+using TVA;
 
 namespace openPG.UI.UserControls
 {
@@ -156,10 +158,18 @@ namespace openPG.UI.UserControls
         /// <param name="e"></param>
         private void SelectMeasurementUserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            if (IsolatedStorageManager.ReadFromIsolatedStorage("DisplayInternal") == null)
+                IsolatedStorageManager.WriteToIsolatedStorage("DisplayInternal", false);
+
             if (FilterByInternal)
+            {
                 CheckboxDisplayInternal.Visibility = Visibility.Visible;
+                CheckboxDisplayInternal.IsChecked = IsolatedStorageManager.ReadFromIsolatedStorage("DisplayInternal").ToString().ParseBoolean();
+            }
             else
+            {
                 CheckboxDisplayInternal.Visibility = Visibility.Collapsed;
+            }
 
             if (!DesignerProperties.GetIsInDesignMode(this))
                 Refresh();
@@ -238,11 +248,13 @@ namespace openPG.UI.UserControls
         private void CheckboxDisplayInternal_Checked(object sender, RoutedEventArgs e)
         {
             Refresh(m_currentDeviceID);
+            IsolatedStorageManager.WriteToIsolatedStorage("DisplayInternal", true);
         }
 
         private void CheckboxDisplayInternal_Unchecked(object sender, RoutedEventArgs e)
         {
             Refresh(m_currentDeviceID);
+            IsolatedStorageManager.WriteToIsolatedStorage("DisplayInternal", false);
         }
 
         #endregion
