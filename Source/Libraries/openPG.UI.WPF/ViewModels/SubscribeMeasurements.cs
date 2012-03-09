@@ -130,12 +130,18 @@ namespace openPG.UI.ViewModels
         {
             get
             {
-                return m_subscribedMeasurements;
+                lock (m_subscribedMeasurements)
+                {
+                    // Return a copy of the measurements since we can't request consumer to lock the collection
+                    return new ObservableCollection<Measurement>(m_subscribedMeasurements);
+                }
             }
             set
             {
-                m_subscribedMeasurements = value;
-                //m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
+                lock (m_subscribedMeasurements)
+                {
+                    m_subscribedMeasurements = value;
+                }
                 OnPropertyChanged("SubscribedMeasurements");
             }
         }
@@ -243,11 +249,6 @@ namespace openPG.UI.ViewModels
 
         #region [ Methods ]
 
-        private void m_refreshTimer_Tick(object sender, EventArgs e)
-        {
-            m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
-        }
-
         /// <summary>
         /// Gets the primary key value of the <see cref="PagedViewModelBase{T1, T2}.CurrentItem"/>.
         /// </summary>
@@ -273,6 +274,10 @@ namespace openPG.UI.ViewModels
                 SubscribedMeasurements = Measurement.GetSubscribedMeasurements(null);
                 DeviceList = openPDC.UI.DataModels.Device.GetLookupList(null, "Measurement", true);
                 CurrentDevice = DeviceList.First();
+                lock (m_subscribedMeasurements)
+                {
+
+                }
                 m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
                 m_refreshTimer.Start();
             }
@@ -448,12 +453,26 @@ namespace openPG.UI.ViewModels
             List<Guid> authorizedMeasurements = new List<Guid>(e.Argument);
             authorizedMeasurements.Sort();
 
-            m_subscribedMeasurements.AsParallel().ForAll(measurement => measurement.Selected = (authorizedMeasurements.BinarySearch(measurement.SignalID) >= 0));
+            lock (m_subscribedMeasurements)
+            {
+                foreach (Measurement measurement in m_subscribedMeasurements)
+                {
+                    measurement.Selected = (authorizedMeasurements.BinarySearch(measurement.SignalID) >= 0);
+                }
+            }
 
             OnPropertyChanged("SubscribedMeasurements");
         }
 
-        #endregion
+        // We continually refresh authorization status since this can change at any time...
+        private void m_refreshTimer_Tick(object sender, EventArgs e)
+        {
+            lock (m_subscribedMeasurements)
+            {
+                m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
+            }
+        }
 
+        #endregion
     }
 }
