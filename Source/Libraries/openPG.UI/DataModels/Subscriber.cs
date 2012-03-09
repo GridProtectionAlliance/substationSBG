@@ -616,9 +616,9 @@ namespace openPG.UI.DataModels
                 }
 
                 if (allowed)
-                    return "Measuremnets added to allowed measurements list for subscriber successfully";
+                    return "Measurements added to allowed measurements list for subscriber successfully";
                 else
-                    return "Measuremnets added to denied measurements list for subscriber successfully";
+                    return "Measurements added to denied measurements list for subscriber successfully";
             }
             finally
             {
@@ -649,7 +649,7 @@ namespace openPG.UI.DataModels
                     database.Connection.ExecuteNonQuery(query, DefaultTimeout, database.Guid(subscriberID), database.Guid(id));
                 }
 
-                return "Selected measuremnets removed successfully";
+                return "Selected measurements removed successfully";
             }
             finally
             {
@@ -686,9 +686,9 @@ namespace openPG.UI.DataModels
                 }
 
                 if (allowed)
-                    return "Measuremnet groups added to allowed measurement groups list for subscriber successfully";
+                    return "Measurement groups added to allowed measurement groups list for subscriber successfully";
                 else
-                    return "Measuremnet groups added to denied measurement groups list for subscriber successfully";
+                    return "Measurement groups added to denied measurement groups list for subscriber successfully";
             }
             finally
             {
@@ -719,7 +719,7 @@ namespace openPG.UI.DataModels
                     database.Connection.ExecuteNonQuery(query, DefaultTimeout, database.Guid(subscriberID), id);
                 }
 
-                return "Measuremnet groups removed from allowed measurement groups list for subscriber successfully";
+                return "Measurement groups removed from allowed measurement groups list for subscriber successfully";
             }
             finally
             {
@@ -786,7 +786,7 @@ namespace openPG.UI.DataModels
                         "sharedSecret", "authKey", "validIPAddresses", "enabled", "updatedBy", "updatedOn", "createdBy", "createdOn");
 
                     database.Connection.ExecuteNonQuery(query, DefaultTimeout,
-                        (subscriber.NodeID == null || subscriber.NodeID == Guid.Empty) ? database.CurrentNodeID() : database.Guid(subscriber.NodeID), subscriber.Acronym,
+                        database.CurrentNodeID(), subscriber.Acronym,
                         subscriber.Name.ToNotNull(), subscriber.SharedSecret, subscriber.AuthKey, subscriber.ValidIPAddresses, database.Bool(subscriber.Enabled),
                         CommonFunctions.CurrentUser, database.UtcNow(), CommonFunctions.CurrentUser, database.UtcNow());
                 }

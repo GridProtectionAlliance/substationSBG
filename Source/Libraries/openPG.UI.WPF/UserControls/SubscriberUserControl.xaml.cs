@@ -260,7 +260,7 @@ namespace openPG.UI.UserControls
 
                 Subscriber subscriber = new Subscriber()
                 {
-                    NodeID = ((KeyValuePair<Guid, string>)ComboboxNode.SelectedItem).Key,
+                    //NodeID = ((KeyValuePair<Guid, string>)ComboboxNode.SelectedItem).Key,
                     Acronym = m_request.Acronym.ToUpper(),
                     Name = m_request.Name,
                     SharedSecret = m_request.SharedSecret,
