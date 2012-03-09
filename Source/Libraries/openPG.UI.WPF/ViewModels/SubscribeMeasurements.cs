@@ -273,6 +273,7 @@ namespace openPG.UI.ViewModels
                 SubscribedMeasurements = Measurement.GetSubscribedMeasurements(null);
                 DeviceList = openPDC.UI.DataModels.Device.GetLookupList(null, "Measurement", true);
                 CurrentDevice = DeviceList.First();
+                m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
                 m_refreshTimer.Start();
             }
             catch (Exception ex)
