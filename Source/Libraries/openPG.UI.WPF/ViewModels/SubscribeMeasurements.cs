@@ -28,6 +28,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using openPDC.UI.DataModels;
 using TimeSeriesFramework.UI;
 using TimeSeriesFramework.UI.Commands;
@@ -50,6 +51,7 @@ namespace openPG.UI.ViewModels
         private int m_currentDeviceID;
         private ObservableCollection<Measurement> m_measurementsToBeSubscribed;
         private AuthorizedMeasurementsQuery m_authorizationQuery;
+        private DispatcherTimer m_refreshTimer;
 
         // Delegates
 
@@ -80,7 +82,6 @@ namespace openPG.UI.ViewModels
         public event OnCurrentDeviceChanged CurrentDeviceChanged;
 
         #endregion
-
 
         #region [ Properties ]
 
@@ -232,19 +233,20 @@ namespace openPG.UI.ViewModels
         {
             m_authorizationQuery = new AuthorizedMeasurementsQuery();
             m_authorizationQuery.AuthorizedMeasurements += m_authorizationQuery_AuthorizedMeasurements;
-            m_authorizationQuery.ProcessException += m_authorizationQuery_ProcessException;
+            m_refreshTimer = new DispatcherTimer();
+            m_refreshTimer.Interval = TimeSpan.FromSeconds(10);
+            m_refreshTimer.Tick += new EventHandler(m_refreshTimer_Tick);
             Load();
-        }
-
-        private void m_authorizationQuery_ProcessException(object sender, EventArgs<Exception> e)
-        {
-
         }
 
         #endregion
 
         #region [ Methods ]
 
+        private void m_refreshTimer_Tick(object sender, EventArgs e)
+        {
+            m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
+        }
 
         /// <summary>
         /// Gets the primary key value of the <see cref="PagedViewModelBase{T1, T2}.CurrentItem"/>.
@@ -271,6 +273,7 @@ namespace openPG.UI.ViewModels
                 SubscribedMeasurements = Measurement.GetSubscribedMeasurements(null);
                 DeviceList = openPDC.UI.DataModels.Device.GetLookupList(null, "Measurement", true);
                 CurrentDevice = DeviceList.First();
+                m_refreshTimer.Start();
             }
             catch (Exception ex)
             {
@@ -299,6 +302,18 @@ namespace openPG.UI.ViewModels
             }
 
             m_authorizationQuery = null;
+
+            if (m_refreshTimer != null)
+            {
+                try
+                {
+                    m_refreshTimer.Stop();
+                }
+                finally
+                {
+                    m_refreshTimer = null;
+                }
+            }
         }
 
         public override void Save()
