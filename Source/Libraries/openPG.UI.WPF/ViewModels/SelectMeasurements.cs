@@ -103,6 +103,7 @@ namespace openPG.UI.ViewModels
         /// <param name="autosave">Boolean indicator to save data automatically.</param>
         /// <param name="filterByInternal">Boolean indicator to determine if only measurements with internal flag set to true needs to be displayed.</param>
         /// <param name="deviceID">ID of the device to filter data.</param>
+        /// <param name="includeInternal">Flag to determine if internal measurements should be included.</param>
         public SelectMeasurements(int itemsPerPage, bool autosave = true, bool filterByInternal = false, int deviceID = 0, bool includeInternal = false)
             : base(0, autosave)     // Set ItemsPerPage to zero to avoid load() in the base class.
         {

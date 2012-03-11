@@ -276,9 +276,8 @@ namespace openPG.UI.ViewModels
                 CurrentDevice = DeviceList.First();
                 lock (m_subscribedMeasurements)
                 {
-
+                    m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
                 }
-                m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
                 m_refreshTimer.Start();
             }
             catch (Exception ex)
