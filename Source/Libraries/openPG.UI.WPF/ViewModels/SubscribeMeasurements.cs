@@ -45,6 +45,7 @@ namespace openPG.UI.ViewModels
         // Fields
         private Dictionary<int, string> m_deviceList;
         private ObservableCollection<Measurement> m_subscribedMeasurements;
+        private object m_subscribedMeasurementsLock;
         private RelayCommand m_subscribeMeasurementCommand;
         private RelayCommand m_unsubscribeMeasurementCommand;
         private KeyValuePair<int, string> m_currentDevice;
@@ -130,7 +131,7 @@ namespace openPG.UI.ViewModels
         {
             get
             {
-                lock (m_subscribedMeasurements)
+                lock (m_subscribedMeasurementsLock)
                 {
                     // Return a copy of the measurements since we can't request consumer to lock the collection
                     return new ObservableCollection<Measurement>(m_subscribedMeasurements);
@@ -138,7 +139,7 @@ namespace openPG.UI.ViewModels
             }
             set
             {
-                lock (m_subscribedMeasurements)
+                lock (m_subscribedMeasurementsLock)
                 {
                     m_subscribedMeasurements = value;
                 }
@@ -237,6 +238,7 @@ namespace openPG.UI.ViewModels
         public SubscribeMeasurements(int itemsPerPage, bool autoSave = true)
             : base(0, autoSave)
         {
+            m_subscribedMeasurementsLock = new object();
             m_authorizationQuery = new AuthorizedMeasurementsQuery();
             m_authorizationQuery.AuthorizedMeasurements += m_authorizationQuery_AuthorizedMeasurements;
             m_refreshTimer = new DispatcherTimer();
@@ -274,7 +276,7 @@ namespace openPG.UI.ViewModels
                 SubscribedMeasurements = Measurement.GetSubscribedMeasurements(null);
                 DeviceList = openPDC.UI.DataModels.Device.GetLookupList(null, "Measurement", true);
                 CurrentDevice = DeviceList.First();
-                lock (m_subscribedMeasurements)
+                lock (m_subscribedMeasurementsLock)
                 {
                     m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
                 }
@@ -452,7 +454,7 @@ namespace openPG.UI.ViewModels
             List<Guid> authorizedMeasurements = new List<Guid>(e.Argument);
             authorizedMeasurements.Sort();
 
-            lock (m_subscribedMeasurements)
+            lock (m_subscribedMeasurementsLock)
             {
                 foreach (Measurement measurement in m_subscribedMeasurements)
                 {
@@ -466,7 +468,7 @@ namespace openPG.UI.ViewModels
         // We continually refresh authorization status since this can change at any time...
         private void m_refreshTimer_Tick(object sender, EventArgs e)
         {
-            lock (m_subscribedMeasurements)
+            lock (m_subscribedMeasurementsLock)
             {
                 m_authorizationQuery.RequestAuthorizationStatus(m_subscribedMeasurements.Select(measurement => measurement.SignalID));
             }
