@@ -37,18 +37,24 @@ ECHO Checking out DBs...
 ECHO.
 ECHO Updating DBs...
 DEL %dbfiles%
+
 sqlite3 %db1% < %script1%
+ECHO %db1%
+
 COPY %db1% %db2% > NUL
 sqlite3 %db2% < %script2%
+ECHO %db2%
+
 COPY %db2% %db3% > NUL
 sqlite3 %db3% < %script3%
+ECHO %db3%
 
 IF /I "%checkin%" == "Y" GOTO Checkin
 GOTO Finalize
 
 :Checkin
 ECHO.
-ECHO Checking in dependencies...
+ECHO Checking in DBs...
 %tfs% checkin %dbfiles% /noprompt /comment:"Updated SQLite databases."
 
 :Finalize
