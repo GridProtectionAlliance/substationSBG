@@ -130,6 +130,12 @@
         "Entry"
         {
         "MsmKey" = "8:_0A77B7BC9F4A9D54778067D3B73909CD"
+        "OwnerKey" = "8:_DC3695E9E6180C3A0AA9E9FEDEF68526"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0A77B7BC9F4A9D54778067D3B73909CD"
         "OwnerKey" = "8:_35F377FC40839FAE7F7719BA2478272D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -466,6 +472,12 @@
         "Entry"
         {
         "MsmKey" = "8:_5FD4DB0D5865402DAA968331D016A4AF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_63C32E11BC1E407A9742943F7BE09492"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -999,6 +1011,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_DC5C1815184640DC8BF84563F997F605"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_DCAAA3B8F29243F199700F64C0C29CDD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1132,13 +1150,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2A7E3E7C0D08427FAEAA68C01FB78EF0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_15A0CC83619357320C75DDC6B575336F"
+        "OwnerKey" = "8:_63C32E11BC1E407A9742943F7BE09492"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1247,6 +1259,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_3AB5D1E966C84B2A9168DC28E317B480"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2A7E3E7C0D08427FAEAA68C01FB78EF0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_15A0CC83619357320C75DDC6B575336F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1683,7 +1707,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.Windows, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.Windows, Version=4.0.3.51, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_05B0850510009DF938F2C99B87627807"
@@ -1714,7 +1738,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TimeSeriesFramework, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TimeSeriesFramework, Version=1.1.45.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_0A77B7BC9F4A9D54778067D3B73909CD"
@@ -1887,7 +1911,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.Core, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.Core, Version=4.0.3.51, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_264041ABA13B974EC5D639EA44A1A3B1"
@@ -1969,7 +1993,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.PhasorProtocols, Version=1.5.30.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.PhasorProtocols, Version=1.5.43.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_35F377FC40839FAE7F7719BA2478272D"
@@ -2000,7 +2024,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.ServiceBus, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.ServiceBus, Version=4.0.3.51, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_38A94DF95296A0609DC843563786025E"
@@ -2031,7 +2055,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ConfigEditor, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:ConfigEditor, Version=4.0.3.51, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_3AB5D1E966C84B2A9168DC28E317B480"
@@ -2062,7 +2086,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MongoAdapters, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:MongoAdapters, Version=1.1.45.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_4148A725A51F422A89D47BEF2CE9101F"
@@ -2222,11 +2246,42 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_63C32E11BC1E407A9742943F7BE09492"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DataMigrationUtility, Version=4.0.3.51, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_63C32E11BC1E407A9742943F7BE09492"
+                    {
+                    "Name" = "8:DataMigrationUtility.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:DataMigrationUtility.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_631D13B429EC407682E5BAD1058D6530"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_64A3B1E96EEF43F0BDCB40372425CECE"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:HistorianPlaybackUtility, Version=1.1.136.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:HistorianPlaybackUtility, Version=1.1.142.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_64A3B1E96EEF43F0BDCB40372425CECE"
@@ -2288,7 +2343,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:HistorianAdapters, Version=1.5.30.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:HistorianAdapters, Version=1.5.43.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_6AC745E3E98B4E84B27D425B1457E724"
@@ -2319,7 +2374,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:openPG.UI, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:openPG.UI, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_73838D215FF81C67FEE4E2FAE81E39A1"
@@ -2421,7 +2476,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:openPDC.UI.WPF, Version=1.5.30.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:openPDC.UI.WPF, Version=1.5.43.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_846831B04BECCFF4D386BD5EC7F39D4E"
@@ -2472,7 +2527,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.Communication, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.Communication, Version=4.0.3.51, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_87ABDBDFE683DD3002E1664CC5235D23"
@@ -2523,7 +2578,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.ServiceProcess, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.ServiceProcess, Version=4.0.3.51, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_955BA2FF248A00F40AED0407B78093E5"
@@ -2574,7 +2629,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.ServiceModel, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.ServiceModel, Version=4.0.3.51, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_9B73544EFE27050189AF1E33ED343CB4"
@@ -2625,7 +2680,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DataQualityMonitoring, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:DataQualityMonitoring, Version=1.1.45.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_A442C24B320447A09E754F02285A4A2C"
@@ -2696,7 +2751,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.PhasorProtocols, Version=1.5.30.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.PhasorProtocols, Version=1.5.43.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_A7FDAA2670C578DBAB6AAC2D594C1266"
@@ -2758,7 +2813,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ConfigCrypter, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:ConfigCrypter, Version=4.0.3.51, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_AE5E884D6157405C94D593A718FBB30C"
@@ -2789,7 +2844,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TestingAdapters, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TestingAdapters, Version=1.1.45.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_AE6275F23FA7438A940FAC1268E62D41"
@@ -2840,7 +2895,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.Historian, Version=1.1.136.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.Historian, Version=1.1.142.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_B2E045431025C37AE5334FDAF1C3D058"
@@ -2902,7 +2957,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.Historian, Version=1.1.136.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.Historian, Version=1.1.142.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_B4C876151E14CC9439F51D8600B4636C"
@@ -2993,7 +3048,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MySqlAdapters, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:MySqlAdapters, Version=1.1.45.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_C0307E2C035F405B9DEAC66D3B72184E"
@@ -3024,7 +3079,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WavInputAdapter, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WavInputAdapter, Version=1.1.45.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_C278770E16824FCB864784B210B89CB4"
@@ -3106,7 +3161,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AdoAdapters, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:AdoAdapters, Version=1.1.45.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_C998E7C699D0467C94BA87989768E66F"
@@ -3137,7 +3192,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TimeSeriesFramework.UI, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TimeSeriesFramework.UI, Version=1.1.45.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_CA5355B42A0F13AF89DE34EF72469B72"
@@ -3208,7 +3263,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:openPDC.UI, Version=1.5.30.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:openPDC.UI, Version=1.5.43.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_DC3695E9E6180C3A0AA9E9FEDEF68526"
@@ -3233,6 +3288,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DC5C1815184640DC8BF84563F997F605"
+            {
+            "SourcePath" = "8:DataMigrationUtility.exe.config"
+            "TargetName" = "8:DataMigrationUtility.exe.config"
+            "Tag" = "8:"
+            "Folder" = "8:_631D13B429EC407682E5BAD1058D6530"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DCAAA3B8F29243F199700F64C0C29CDD"
@@ -3270,7 +3345,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.Security, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.Security, Version=4.0.3.51, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_E175E905387A594EA36D59D0492F2621"
@@ -3301,7 +3376,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CsvAdapters, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CsvAdapters, Version=1.1.45.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_E79EADAB8F5C4E888A947277F9AA4071"
@@ -3363,7 +3438,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:openPG.UI.WPF, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:openPG.UI.WPF, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_ED088155BD971A151596032615A135A7"
@@ -3394,7 +3469,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TVA.ServiceModel, Version=4.0.3.50, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TVA.ServiceModel, Version=4.0.3.51, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_F2472816D96BF017CCF8F806520C48F1"
@@ -3445,7 +3520,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TimeSeriesFramework.UI.WPF, Version=1.1.39.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:TimeSeriesFramework.UI.WPF, Version=1.1.45.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_FC94AF25B940064C58E65EE35E578199"
@@ -4820,7 +4895,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_47C2D71C86A64226B09E8C8C2870980C"
             {
-            "SourcePath" = "8:..\\openPG\\obj\\Release\\openPG.exe"
+            "SourcePath" = "8:..\\openPG\\obj\\Debug\\openPG.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_631D13B429EC407682E5BAD1058D6530"
@@ -4877,7 +4952,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9C0C7B73108149798A0AA0FF3AF363F7"
             {
-            "SourcePath" = "8:..\\..\\..\\Tools\\ConfigurationSetupUtility\\obj\\Release\\ConfigurationSetupUtility.exe"
+            "SourcePath" = "8:..\\..\\..\\Tools\\ConfigurationSetupUtility\\obj\\Debug\\ConfigurationSetupUtility.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_631D13B429EC407682E5BAD1058D6530"
@@ -4933,7 +5008,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B71BCC2680BA4BD39E3C43162F975EA1"
             {
-            "SourcePath" = "8:..\\openPGConsole\\obj\\Release\\openPGConsole.exe"
+            "SourcePath" = "8:..\\openPGConsole\\obj\\Debug\\openPGConsole.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_631D13B429EC407682E5BAD1058D6530"
@@ -4961,7 +5036,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D728261705744EFC9386E536E9F6AFBE"
             {
-            "SourcePath" = "8:..\\..\\openPGManager\\obj\\Release\\openPGManager.exe"
+            "SourcePath" = "8:..\\..\\openPGManager\\obj\\Debug\\openPGManager.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_631D13B429EC407682E5BAD1058D6530"

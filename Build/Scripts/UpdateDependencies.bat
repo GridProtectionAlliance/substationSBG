@@ -39,6 +39,10 @@ ECHO Getting latest version...
 %tfs% get %target1% /version:T /force /recursive /noprompt
 %tfs% get %target2% /version:T /force /recursive /noprompt
 %tfs% get %target5% /version:T /force /recursive /noprompt
+%tfs% get "%sourcetools%ConfigCrypter.exe" /version:T /force /recursive /noprompt
+%tfs% get "%sourcetools%ConfigurationEditor.exe" /version:T /force /recursive /noprompt
+%tfs% get "%sourcetools%DataMigrationUtility.exe" /version:T /force /recursive /noprompt
+%tfs% get "%sourcetools%HistorianPlaybackUtility.exe" /version:T /force /recursive /noprompt
 
 ECHO.
 ECHO Checking out dependencies...
@@ -47,6 +51,7 @@ ECHO Checking out dependencies...
 %tfs% checkout %target5% /recursive /noprompt
 %tfs% checkout "%sourcetools%ConfigCrypter.exe" /noprompt
 %tfs% checkout "%sourcetools%ConfigurationEditor.exe" /noprompt
+%tfs% checkout "%sourcetools%DataMigrationUtility.exe" /noprompt
 %tfs% checkout "%sourcetools%HistorianPlaybackUtility.exe" /noprompt
 
 ECHO.
@@ -60,6 +65,7 @@ DEL target2\TVA.* /F /Q
 XCOPY %source1% %target1% /Y /U
 XCOPY "%frameworktools%ConfigCrypter\ConfigCrypter.exe" "%sourcetools%ConfigCrypter.exe" /Y
 XCOPY "%frameworktools%ConfigEditor\ConfigEditor.exe" "%sourcetools%ConfigurationEditor.exe" /Y
+XCOPY "%frameworktools%DataMigrationUtility\DataMigrationUtility.exe" "%sourcetools%DataMigrationUtility.exe" /Y
 XCOPY "%historiantools%HistorianPlaybackUtility\HistorianPlaybackUtility.exe" "%sourcetools%HistorianPlaybackUtility.exe" /Y
 
 :: ECHO.
@@ -77,6 +83,7 @@ ECHO Checking in dependencies...
 %tfs% checkin %target5% /noprompt /recursive /comment:"Updated openPDC dependencies."
 %tfs% checkin "%sourcetools%ConfigCrypter.exe" /noprompt /comment:"Updated code library tool: ConfigCrypter."
 %tfs% checkin "%sourcetools%ConfigurationEditor.exe" /noprompt /comment:"Updated code library tools: ConfigurationEditor."
+%tfs% checkin "%sourcetools%DataMigrationUtility.exe" /noprompt /comment:"Updated code library tools: DataMigrationUtility."
 %tfs% checkin "%sourcetools%HistorianPlaybackUtility.exe" /noprompt /comment:"Updated openHistorian tool: HistorianPlaybackUtility."
 
 :Finalize
