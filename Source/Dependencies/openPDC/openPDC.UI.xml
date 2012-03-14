@@ -1983,6 +1983,11 @@
             Represents a measurement record with all related statistic information.
             </summary>
         </member>
+        <member name="P:openPDC.UI.DataModels.StatisticMeasurement.SignalID">
+            <summary>
+            Gets or sets <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s SignalID.
+            </summary>
+        </member>
         <member name="P:openPDC.UI.DataModels.StatisticMeasurement.DeviceID">
             <summary>
             Gets or set <see cref="T:openPDC.UI.DataModels.StatisticMeasurement"/>'s DeviceID.

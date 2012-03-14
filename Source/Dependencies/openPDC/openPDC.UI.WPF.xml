@@ -664,6 +664,19 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStatistics.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Creates an instance of <see cref="T:openPDC.UI.ViewModels.RealTimeStatistics"/>.
+            </summary>
+            <param name="itemsPerPage">Number of items to be displayed on page.</param>
+            <param name="refreshInterval">Interval at which data will be refreshed.</param>
+            <param name="autoSave">Boolean flag indicating if changed records to be auto saved.</param>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStatistics.UnsubscribeUnsynchronizedData">
+            <summary>
+            Unsubscribes data from the service.
+            </summary>
+        </member>
         <member name="M:openPDC.UI.ViewModels.RealTimeStatistics.GetCurrentItemKey">
             <summary>
             Gets the primary key value of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.
@@ -676,9 +689,19 @@
             </summary>
             <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
         </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStatistics.RestartConnectionCycle">
+            <summary>
+            Gets or sets a boolean flag indicating if connection to backend windows service needs to be reestablished upon disconnection.
+            </summary>
+        </member>
         <member name="P:openPDC.UI.ViewModels.RealTimeStatistics.IsNewRecord">
             <summary>
             Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.RealTimeStatistics.LastRefresh">
+            <summary>
+            Gets or sets when data refreshed last time.
             </summary>
         </member>
         <member name="T:openPDC.UI.Modal.ConnectionStringBuilder">
