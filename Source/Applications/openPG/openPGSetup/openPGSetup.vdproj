@@ -3816,7 +3816,7 @@
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.12"
+        "ProductVersion" = "8:1.0.13"
         "Manufacturer" = "8:Grid Protection Alliance"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://openpg.codeplex.com/"
