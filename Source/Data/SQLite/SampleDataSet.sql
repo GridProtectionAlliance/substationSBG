@@ -1,5 +1,5 @@
 INSERT INTO Node(Name, CompanyID, Description, Settings, MenuType, MenuData, Master, LoadOrder, Enabled) 
-	VALUES('Default', NULL, 'Default node', 'RemoteStatusServerConnectionString={server=localhost:8505};datapublisherport=6170;RealTimeStatisticServiceUrl=http://localhost:6054/historian', 
+	VALUES('Default', NULL, 'Default node', 'RemoteStatusServerConnectionString={server=localhost:8505};datapublisherport=6170;RealTimeStatisticServiceUrl=http://localhost:6054/historian;AlarmServiceUrl=http://localhost:5019/alarmservices', 
 			'File', 'Menu.xml', 1, 0, 1);
 UPDATE Node SET ID='d1ebffbb-d318-463f-9822-394fd0e968b0' WHERE Name='Default';
 INSERT INTO Historian(NodeID, Acronym, Name, AssemblyName, TypeName, ConnectionString, IsLocal, Description, LoadOrder, Enabled) VALUES('d1ebffbb-d318-463f-9822-394fd0e968b0', 'DEVARCHIVE', 'Local Development Archive', 'HistorianAdapters.dll', 'HistorianAdapters.LocalOutputAdapter', '', 1, 'Local development archive', 0, 1);
