@@ -350,7 +350,7 @@ namespace ConfigurationSetupUtility.Screens
         private void ValidateNodeSettings()
         {
             const string settingsQuery = "SELECT Settings FROM Node WHERE ID = '{0}'";
-            const string updateQuery = "UPDATE Node SET Settings = @settings WHERE ID = '{0}'";
+            string updateQuery = "UPDATE Node SET Settings = @settings WHERE ID = '{0}'";
 
             object selectedNodeId;
             string nodeIDQueryString;
@@ -381,6 +381,9 @@ namespace ConfigurationSetupUtility.Screens
                     // If the AlarmServiceUrl does not exist in node settings, add it and then update the database record
                     if (!nodeSettings.TryGetValue("AlarmServiceUrl", out alarmServiceUrl))
                     {
+                        if (connection.GetType().Name == "OracleConnection")
+                            updateQuery = updateQuery.Replace('@', ':');
+
                         nodeSettings.Add("AlarmServiceUrl", "http://localhost:5019/alarmservices");
                         nodeSettingsConnectionString = nodeSettings.JoinKeyValuePairs();
                         connection.ExecuteNonQuery(string.Format(updateQuery, nodeIDQueryString), nodeSettingsConnectionString);
