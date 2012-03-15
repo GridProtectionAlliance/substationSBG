@@ -122,11 +122,9 @@ namespace openPGManager
             {
                 Dispatcher.Invoke((Action)delegate()
                 {
-                    Dictionary<Guid, string> nodesList = Node.GetLookupList(null);
-
                     if (ComboboxNode.SelectedItem == null)
                     {
-                        ComboboxNode.ItemsSource = nodesList;
+                        ComboboxNode.ItemsSource = Node.GetLookupList(null);
                         if (ComboboxNode.Items.Count > 0)
                             ComboboxNode.SelectedIndex = 0;
                     }
@@ -134,24 +132,13 @@ namespace openPGManager
                     if (ComboboxNode.SelectedItem != null)
                     {
                         KeyValuePair<Guid, string> currentNode = (KeyValuePair<Guid, string>)ComboboxNode.SelectedItem;
-                        if (!string.IsNullOrEmpty(m_defaultNodeID))
-                        {
-                            foreach (KeyValuePair<Guid, string> item in nodesList)
-                            {
-                                if (item.Key.ToString().ToLower() == m_defaultNodeID.ToLower())
-                                {
-                                    currentNode = item;
-                                    break;
-                                }
-                            }
 
-                            ComboboxNode.ItemsSource = nodesList;
-                            if (ComboboxNode.Items.Count > 0)
-                            {
-                                ComboboxNode.SelectedItem = currentNode;
-                                if (ComboboxNode.SelectedItem == null)
-                                    ComboboxNode.SelectedIndex = 0;
-                            }
+                        ComboboxNode.ItemsSource = Node.GetLookupList(null);
+                        if (ComboboxNode.Items.Count > 0)
+                        {
+                            ComboboxNode.SelectedItem = currentNode;
+                            if (ComboboxNode.SelectedItem == null)
+                                ComboboxNode.SelectedIndex = 0;
                         }
                     }
                 });
@@ -181,9 +168,24 @@ namespace openPGManager
             MenuMain.DataContext = m_menuDataItems;
 
             // Populate Node Dropdown
-            ComboboxNode.ItemsSource = Node.GetLookupList(null);
+            Dictionary<Guid, string> nodesList = Node.GetLookupList(null);
+            ComboboxNode.ItemsSource = nodesList;
             if (ComboboxNode.Items.Count > 0)
-                ComboboxNode.SelectedIndex = 0;
+            {
+                if (!string.IsNullOrEmpty(m_defaultNodeID) && nodesList.ContainsKey(new Guid(m_defaultNodeID)))
+                {
+                    foreach (KeyValuePair<Guid, string> item in nodesList)
+                    {
+                        if (item.Key.ToString().ToLower() == m_defaultNodeID.ToLower())
+                        {
+                            ComboboxNode.SelectedItem = item;
+                            break;
+                        }
+                    }
+                }
+                else
+                    ComboboxNode.SelectedIndex = 0;
+            }
 
             // Create alarm monitor as singleton
             m_alarmMonitor = new AlarmMonitor(true);
