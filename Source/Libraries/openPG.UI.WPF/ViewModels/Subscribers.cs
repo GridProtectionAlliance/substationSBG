@@ -298,6 +298,15 @@ namespace openPG.UI.ViewModels
 
                 CurrentItem.AllowedMeasurements = openPG.UI.DataModels.Subscriber.GetAllowedMeasurements(null, CurrentItem.ID);
                 CurrentItem.AvailableMeasurements = openPG.UI.DataModels.Subscriber.GetAvailableMeasurements(null, CurrentItem.ID);
+
+                try
+                {
+                    CommonFunctions.SendCommandToService("Initialize /a EXTERNAL!DATAPUBLISHER");
+                }
+                catch (Exception ex)
+                {
+                    CommonFunctions.LogException(null, "", ex);
+                }
             }
         }
 
@@ -322,6 +331,15 @@ namespace openPG.UI.ViewModels
                 DisplayStatusMessage(result);
 
                 CurrentItem.AllowedMeasurements = openPG.UI.DataModels.Subscriber.GetAllowedMeasurements(null, CurrentItem.ID);
+
+                try
+                {
+                    CommonFunctions.SendCommandToService("Initialize /a EXTERNAL!DATAPUBLISHER");
+                }
+                catch (Exception ex)
+                {
+                    CommonFunctions.LogException(null, "", ex);
+                }
             }
         }
 
@@ -360,6 +378,15 @@ namespace openPG.UI.ViewModels
 
                 CurrentItem.DeniedMeasurements = openPG.UI.DataModels.Subscriber.GetDeniedMeasurements(null, CurrentItem.ID);
                 CurrentItem.AvailableMeasurements = openPG.UI.DataModels.Subscriber.GetAvailableMeasurements(null, CurrentItem.ID);
+
+                try
+                {
+                    CommonFunctions.SendCommandToService("Initialize /a EXTERNAL!DATAPUBLISHER");
+                }
+                catch (Exception ex)
+                {
+                    CommonFunctions.LogException(null, "", ex);
+                }
             }
         }
 
@@ -384,6 +411,15 @@ namespace openPG.UI.ViewModels
                 DisplayStatusMessage(result);
 
                 CurrentItem.DeniedMeasurements = openPG.UI.DataModels.Subscriber.GetDeniedMeasurements(null, CurrentItem.ID);
+
+                try
+                {
+                    CommonFunctions.SendCommandToService("Initialize /a EXTERNAL!DATAPUBLISHER");
+                }
+                catch (Exception ex)
+                {
+                    CommonFunctions.LogException(null, "", ex);
+                }
             }
         }
 
@@ -409,6 +445,15 @@ namespace openPG.UI.ViewModels
 
                 CurrentItem.AllowedMeasurementGroups = openPG.UI.DataModels.Subscriber.GetAllowedMeasurementGroups(null, CurrentItem.ID);
                 CurrentItem.AvailableMeasurementGroups = openPG.UI.DataModels.Subscriber.GetAvailableMeasurementGroups(null, CurrentItem.ID);
+
+                try
+                {
+                    CommonFunctions.SendCommandToService("Initialize /a EXTERNAL!DATAPUBLISHER");
+                }
+                catch (Exception ex)
+                {
+                    CommonFunctions.LogException(null, "", ex);
+                }
             }
         }
 
@@ -434,6 +479,15 @@ namespace openPG.UI.ViewModels
 
                 CurrentItem.AllowedMeasurementGroups = openPG.UI.DataModels.Subscriber.GetAllowedMeasurementGroups(null, CurrentItem.ID);
                 CurrentItem.AvailableMeasurementGroups = openPG.UI.DataModels.Subscriber.GetAvailableMeasurementGroups(null, CurrentItem.ID);
+
+                try
+                {
+                    CommonFunctions.SendCommandToService("Initialize /a EXTERNAL!DATAPUBLISHER");
+                }
+                catch (Exception ex)
+                {
+                    CommonFunctions.LogException(null, "", ex);
+                }
             }
         }
 
@@ -459,6 +513,15 @@ namespace openPG.UI.ViewModels
 
                 CurrentItem.AvailableMeasurementGroups = openPG.UI.DataModels.Subscriber.GetAvailableMeasurementGroups(null, CurrentItem.ID);
                 CurrentItem.DeniedMeasurementGroups = openPG.UI.DataModels.Subscriber.GetDeniedMeasurementGroups(null, CurrentItem.ID);
+
+                try
+                {
+                    CommonFunctions.SendCommandToService("Initialize /a EXTERNAL!DATAPUBLISHER");
+                }
+                catch (Exception ex)
+                {
+                    CommonFunctions.LogException(null, "", ex);
+                }
             }
         }
 
@@ -484,6 +547,15 @@ namespace openPG.UI.ViewModels
 
                 CurrentItem.AvailableMeasurementGroups = openPG.UI.DataModels.Subscriber.GetAvailableMeasurementGroups(null, CurrentItem.ID);
                 CurrentItem.DeniedMeasurementGroups = openPG.UI.DataModels.Subscriber.GetDeniedMeasurementGroups(null, CurrentItem.ID);
+
+                try
+                {
+                    CommonFunctions.SendCommandToService("Initialize /a EXTERNAL!DATAPUBLISHER");
+                }
+                catch (Exception ex)
+                {
+                    CommonFunctions.LogException(null, "", ex);
+                }
             }
         }
 
