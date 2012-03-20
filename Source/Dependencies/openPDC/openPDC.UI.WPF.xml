@@ -1296,7 +1296,7 @@
             OutputStreamDeviceUserControl
             </summary>
         </member>
-        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceUserControl.#ctor(System.Int32)">
+        <member name="M:openPDC.UI.UserControls.OutputStreamDeviceUserControl.#ctor(System.Int32,System.Boolean)">
             <summary>
             Creates an instance of <see cref="T:openPDC.UI.UserControls.OutputStreamDeviceUserControl"/> class.
             </summary>
