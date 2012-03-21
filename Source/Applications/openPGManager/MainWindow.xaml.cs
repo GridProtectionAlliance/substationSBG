@@ -103,7 +103,8 @@ namespace openPGManager
 
             ConfigurationFile configFile = ConfigurationFile.Current;
             CategorizedSettingsElementCollection configSettings = configFile.Settings["systemSettings"];
-            m_defaultNodeID = configSettings["NodeID"].Value;
+            if (configSettings["NodeID"] != null)
+                m_defaultNodeID = configSettings["NodeID"].Value;
 
             CommonFunctions.SetRetryServiceConnection(true);
             CommonFunctions.ServiceConnectionRefreshed += CommonFunctions_ServiceConnectionRefreshed;
@@ -203,28 +204,19 @@ namespace openPGManager
         {
             try
             {
-                //if (MessageBox.Show("Are you sure you want to close?", "Important Question", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                //{
-                    Properties.Settings.Default.Save();
-                    CommonFunctions.SetRetryServiceConnection(false);
-                    m_alarmMonitor.Dispose();
-                    Application.Current.Shutdown();
-                }
-
-            //    else
-            //    {
-            //        e.Cancel = true;
-            //        C:\Projects\openPG\Main\Source\Tools\ConfigurationSetupUtility\Screens\UserAccountCredentialsSetupScreen.xaml;
-            //    }
-
-                
-            //}
-
-            catch (System.NullReferenceException )
+                Properties.Settings.Default.Save();
+                CommonFunctions.SetRetryServiceConnection(false);
+                m_alarmMonitor.Dispose();
+                Application.Current.Shutdown();
+            }
+            catch (System.NullReferenceException)
             {
-                    Application.Current.Shutdown();
-                    MessageBox.Show("Please Re-run the ConfigrationSetupUtility");
-        
+                Application.Current.Shutdown();
+                MessageBox.Show("Please Re-run the ConfigrationSetupUtility");
+            }
+            catch
+            {
+                // Do Nothing. Just let it shut down gracefully without crashing.
             }
         }
 
