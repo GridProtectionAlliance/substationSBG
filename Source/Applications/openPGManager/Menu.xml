@@ -6,9 +6,7 @@
       <MenuDataItem Icon="" MenuText="_Authorize Subscribers" Description="Manage Authorized Subscribers" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscriberUserControl"/>
       <MenuDataItem Icon="" MenuText="_Subscriber Measurement Access" Description="Manage Subscriber Measurement Access" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscriberMeasurementUserControl"/>
       <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath="" />
-      <MenuDataItem Icon="" MenuText="Measurement _Groups" Description="Manage Subscriber Measurement Groups" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.MeasurementGroupUserControl"/>
-      <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath="" />
-      <MenuDataItem Icon="" MenuText="Subscriber Status" Description="Subscriber Status" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscriberStatusUserControl"/>
+      <MenuDataItem Icon="" MenuText="Measurement _Groups" Description="Manage Subscriber Measurement Groups" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.MeasurementGroupUserControl"/>            
     </SubMenuItems>
   </MenuDataItem>
   <MenuDataItem Icon="" MenuText="_Subscription" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
@@ -36,6 +34,7 @@
       <MenuDataItem Icon="" MenuText="_Graph Measurements" Description="Graph Real-time Measurements" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.InputStatusMonitorUserControl"/>
       <MenuDataItem Icon="" MenuText="_Device Measurements" Description="Real-time Device Measurements" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.RealTimeMeasurementUserControl"/>
       <MenuDataItem Icon="" MenuText="_Stream Statistics" Description="Real-time Stream Statistics" Roles="*" UserControlAssembly="openPDC.UI.WPF.dll" UserControlPath="openPDC.UI.UserControls.RealTimeStatisticUserControl"/>
+      <MenuDataItem Icon="" MenuText="Subscriber Status" Description="Subscriber Status" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscriberStatusUserControl"/>
       <MenuDataItem Icon="" MenuText="_Alarm Status" Description="View Alarm Status" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.AlarmStatusUserControl"/>
       <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath="" />
       <MenuDataItem Icon="" MenuText="_Remote System Console" Description="Remote System Console" Roles="*" UserControlAssembly="TimeSeriesFramework.UI.WPF.dll" UserControlPath="TimeSeriesFramework.UI.UserControls.MonitoringUserControl" />
