@@ -29,6 +29,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using openPG.UI.DataModels;
 using TimeSeriesFramework.UI;
 using TimeSeriesFramework.UI.Commands;
@@ -53,6 +54,10 @@ namespace openPG.UI.ViewModels
         private RelayCommand m_removeAllowedMeasurementGroupCommand;
         private RelayCommand m_addDeniedMeasurementGroupCommand;
         private RelayCommand m_removeDeniedMeasurementGroupCommand;
+        private DispatcherTimer m_refreshTimer;
+        private SubscriberStatusQuery m_subscriberStatusQuery;
+        private object m_subscriberStatusQueryLock;
+        private List<Guid> m_subscriberIDs;
 
         // Delegates
 
@@ -82,6 +87,10 @@ namespace openPG.UI.ViewModels
         public Subscribers(int itemsPerPage, bool autoSave = true)
             : base(itemsPerPage, autoSave)
         {
+            m_subscriberIDs = new List<Guid>();
+            m_subscriberStatusQueryLock = new object();
+            m_subscriberStatusQuery = new SubscriberStatusQuery();
+            m_subscriberStatusQuery.SubscriberStatuses += new EventHandler<TVA.EventArgs<Dictionary<Guid, Tuple<bool, string>>>>(m_subscriberStatusQuery_SubscriberStatuses);
         }
 
         #endregion
@@ -225,6 +234,70 @@ namespace openPG.UI.ViewModels
         #endregion
 
         #region [ Methods ]
+
+        private void m_subscriberStatusQuery_SubscriberStatuses(object sender, TVA.EventArgs<Dictionary<Guid, Tuple<bool, string>>> e)
+        {
+            Dictionary<Guid, Tuple<bool, string>> subscriberStatuses = e.Argument;
+
+            lock (m_subscriberStatusQueryLock)
+            {
+                foreach (Subscriber subscriber in ItemsSource)
+                {
+                    Tuple<bool, string> status;
+                    if (subscriberStatuses.TryGetValue(subscriber.ID, out status))
+                    {
+                        subscriber.StatusColor = status.Item1 ? "green" : "red";
+                        subscriber.Version = status.Item2;
+                    }
+                }
+            }
+
+            //OnPropertyChanged("ItemsSource");
+        }
+
+        public void StartTimer()
+        {
+            try
+            {
+                if (m_refreshTimer == null)
+                {
+                    m_refreshTimer = new DispatcherTimer();
+                    m_refreshTimer.Interval = TimeSpan.FromSeconds(10);
+                    m_refreshTimer.Tick += new EventHandler(m_refreshTimer_Tick);
+                }
+
+                foreach (Subscriber subscriber in ItemsSource)
+                    m_subscriberIDs.Add(subscriber.ID);
+
+                m_subscriberStatusQuery.RequestSubsscriberStatus(m_subscriberIDs);
+                m_refreshTimer.Start();
+            }
+            catch (Exception ex)
+            {
+                Popup("Failed to start data refresh timer. Please reload page." + Environment.NewLine + ex.Message, "Refresh Data", MessageBoxImage.Error);
+            }
+        }
+
+        public void StopTimer()
+        {
+            try
+            {
+                if (m_refreshTimer != null)
+                    m_refreshTimer.Stop();
+            }
+            finally
+            {
+                m_refreshTimer = null;
+            }
+        }
+
+        private void m_refreshTimer_Tick(object sender, EventArgs e)
+        {
+            lock (m_subscriberStatusQueryLock)
+            {
+                m_subscriberStatusQuery.RequestSubsscriberStatus(m_subscriberIDs);
+            }
+        }
 
         /// <summary>
         /// Gets the primary key value of the <see cref="PagedViewModelBase{T1, T2}.CurrentItem"/>.

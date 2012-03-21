@@ -7,6 +7,8 @@
       <MenuDataItem Icon="" MenuText="_Subscriber Measurement Access" Description="Manage Subscriber Measurement Access" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscriberMeasurementUserControl"/>
       <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath="" />
       <MenuDataItem Icon="" MenuText="Measurement _Groups" Description="Manage Subscriber Measurement Groups" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.MeasurementGroupUserControl"/>
+      <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath="" />
+      <MenuDataItem Icon="" MenuText="Subscriber Status" Description="Subscriber Status" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscriberStatusUserControl"/>
     </SubMenuItems>
   </MenuDataItem>
   <MenuDataItem Icon="" MenuText="_Subscription" Description="" Roles="*" UserControlAssembly="" UserControlPath="">

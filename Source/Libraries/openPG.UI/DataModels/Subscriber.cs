@@ -66,9 +66,45 @@ namespace openPG.UI.DataModels
         private Dictionary<int, string> m_deniedMeasurementGroups;
         private Dictionary<int, string> m_availableMeasurementGroups;
 
+        // Fields below are used only for Subscriber Status screen.
+        private string m_statusColor;
+        private string m_version;
+
         #endregion
 
         #region [ Properties ]
+
+        /// <summary>
+        /// Gets or sets <see cref="Subscriber"/>'s status color.
+        /// </summary>
+        public string StatusColor
+        {
+            get
+            {
+                return m_statusColor;
+            }
+            set
+            {
+                m_statusColor = value;
+                OnPropertyChanged("StatusColor");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets version information for <see cref="Subscriber"/>.
+        /// </summary>
+        public string Version
+        {
+            get
+            {
+                return m_version;
+            }
+            set
+            {
+                m_version = value;
+                OnPropertyChanged("Version");
+            }
+        }
 
         /// <summary>
         /// Gets or sets <see cref="Subscriber"/>'s allowed measurements.
@@ -413,7 +449,9 @@ namespace openPG.UI.DataModels
                         AvailableMeasurements = GetAvailableMeasurements(database, database.Guid(row, "ID")),
                         AllowedMeasurementGroups = GetAllowedMeasurementGroups(database, database.Guid(row, "ID")),
                         DeniedMeasurementGroups = GetDeniedMeasurementGroups(database, database.Guid(row, "ID")),
-                        AvailableMeasurementGroups = GetAvailableMeasurementGroups(database, database.Guid(row, "ID"))
+                        AvailableMeasurementGroups = GetAvailableMeasurementGroups(database, database.Guid(row, "ID")),
+                        StatusColor = "gray",
+                        Version = ""
                     });
                 }
 
