@@ -365,7 +365,7 @@ namespace openPG.UI.ViewModels
                         SubscriptionChanged(this, null);
 
                     if (deviceIDsForMeasurementsToBeAdded.Count > 0)
-                        InitializeDeviceConnection(deviceIDsForMeasurementsToBeAdded);
+                        ThreadPool.QueueUserWorkItem(InitializeDeviceConnection, deviceIDsForMeasurementsToBeAdded);
 
                     SubscribedMeasurements = Measurement.GetSubscribedMeasurements(database);
 
@@ -418,7 +418,7 @@ namespace openPG.UI.ViewModels
                         SubscriptionChanged(this, null);
 
                     if (deviceIDsForMeasurementsToBeAdded.Count > 0)
-                        InitializeDeviceConnection(deviceIDsForMeasurementsToBeAdded);
+                        ThreadPool.QueueUserWorkItem(InitializeDeviceConnection, deviceIDsForMeasurementsToBeAdded);
 
                     SubscribedMeasurements = Measurement.GetSubscribedMeasurements(database);
                 }
@@ -439,9 +439,11 @@ namespace openPG.UI.ViewModels
         /// <summary>
         /// Initializes each device's connection.
         /// </summary>
-        /// <param name="deviceIDs">List of device ids need to be initialized.</param>
-        private void InitializeDeviceConnection(ObservableCollection<int> deviceIDs)
+        /// <param name="state">List of device ids need to be initialized.</param>
+        private void InitializeDeviceConnection(object state)
         {
+            ObservableCollection<int> deviceIDs = (ObservableCollection<int>)state;
+
             foreach (int id in deviceIDs)
             {
                 Device device = Device.GetDevice(null, "WHERE ID = " + id);
