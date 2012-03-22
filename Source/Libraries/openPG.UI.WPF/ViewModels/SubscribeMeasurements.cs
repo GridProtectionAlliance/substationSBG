@@ -443,12 +443,26 @@ namespace openPG.UI.ViewModels
         private void InitializeDeviceConnection(object state)
         {
             ObservableCollection<int> deviceIDs = (ObservableCollection<int>)state;
+            Dictionary<int, Device> devicesToBeNotified = new Dictionary<int, Device>();
 
             foreach (int id in deviceIDs)
             {
                 Device device = Device.GetDevice(null, "WHERE ID = " + id);
-                Device.NotifyService(device);
+                if (device.ParentID != null)
+                {
+                    int idToBeAdded = (int)device.ParentID;
+                    if (!devicesToBeNotified.ContainsKey(idToBeAdded))
+                        devicesToBeNotified[idToBeAdded] = Device.GetDevice(null, "WHERE ID = " + idToBeAdded);
+                }
+                else
+                {
+                    if (!devicesToBeNotified.ContainsKey(id))
+                        devicesToBeNotified[id] = device;
+                }
             }
+
+            foreach (KeyValuePair<int, Device> item in devicesToBeNotified)
+                Device.NotifyService(item.Value);
         }
 
         private void m_authorizationQuery_AuthorizedMeasurements(object sender, EventArgs<Guid[]> e)
