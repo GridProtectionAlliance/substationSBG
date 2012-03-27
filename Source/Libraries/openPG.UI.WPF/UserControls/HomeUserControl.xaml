@@ -76,15 +76,15 @@
                     </TextBlock>
                 </Border>
 
-                <Button Content="PG Authorization Request" Grid.Row="0" Grid.Column="1" Tag="Create Authentication Request" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
-                <Button Content="Measurement Requests" Grid.Row="1" Grid.Column="1" Tag="Measurement Subscription" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+                <Button Content="PG Authorization Request" Grid.Row="0" Grid.Column="1" Tag="openPG.UI.UserControls.SubscriberRequestUserControl" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+                <Button Content="Measurement Requests" Grid.Row="1" Grid.Column="1" Tag="openPG.UI.UserControls.SubscribeMeasurementUserControl" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
 
-                <Button Content="Subscribing PGs" Grid.Row="2" Grid.Column="1" Tag="Authorize Subscribers" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
-                <Button Content="Measurement Groups" Grid.Row="3" Grid.Column="1" Tag="Measurement Groups" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
-                <Button Content="Authorized Measurements" Grid.Row="4" Grid.Column="1" Tag="Subscriber Measurement Access" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+                <Button Content="Subscribing PGs" Grid.Row="2" Grid.Column="1" Tag="openPG.UI.UserControls.SubscriberUserControl" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+                <Button Content="Measurement Groups" Grid.Row="3" Grid.Column="1" Tag="openPG.UI.UserControls.MeasurementGroupUserControl" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+                <Button Content="Authorized Measurements" Grid.Row="4" Grid.Column="1" Tag="openPG.UI.UserControls.SubscriberMeasurementUserControl" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
 
-                <Button Content="Browse Inputs" Grid.Row="5" Grid.Column="1" Tag="Browse" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
-                <Button Content="Manage Security" Grid.Row="6" Grid.Column="1" Tag="Security" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+                <Button Content="Browse Inputs" Grid.Row="5" Grid.Column="1" Tag="openPDC.UI.UserControls.DeviceListUserControl" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
+                <Button Content="Manage Security" Grid.Row="6" Grid.Column="1" Tag="TimeSeriesFramework.UI.UserControls.SecurityUserControl" Click="CommonClickHandler" Style="{StaticResource HomeButtonStyle}" Width="170" Height="32"/>
             </Grid>
             
             

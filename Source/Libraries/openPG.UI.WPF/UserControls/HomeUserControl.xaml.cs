@@ -239,28 +239,28 @@ namespace openPG.UI.UserControls
             TextBlockLocalTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
         }
 
-        private void ButtonQuickLink_Click(object sender, RoutedEventArgs e)
-        {
-            MenuDataItem item = new MenuDataItem();
-            string stringToMatch = ((Button)sender).Tag.ToString();
+        //private void ButtonQuickLink_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MenuDataItem item = new MenuDataItem();
+        //    string stringToMatch = ((Button)sender).Tag.ToString();
 
-            if (!string.IsNullOrEmpty(stringToMatch))
-            {
-                if (stringToMatch == "Restart")
-                {
-                    RestartService();
-                }
-                else
-                {
-                    GetMenuDataItem(m_menuDataItems, stringToMatch, ref item);
+        //    if (!string.IsNullOrEmpty(stringToMatch))
+        //    {
+        //        if (stringToMatch == "Restart")
+        //        {
+        //            RestartService();
+        //        }
+        //        else
+        //        {
+        //            GetMenuDataItem(m_menuDataItems, stringToMatch, ref item);
 
-                    if (item.MenuText != null)
-                    {
-                        item.Command.Execute(null);
-                    }
-                }
-            }
-        }
+        //            if (item.MenuText != null)
+        //            {
+        //                item.Command.Execute(null);
+        //            }
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Recursively finds menu item to navigate to when a button is clicked on the UI.
@@ -272,7 +272,7 @@ namespace openPG.UI.UserControls
         {
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].MenuText.Replace("_", "").ToLower().Contains(stringToMatch.ToLower()))
+                if (items[i].UserControlPath.ToLower() == stringToMatch.ToLower())
                 {
                     item = items[i];
                     break;
@@ -572,30 +572,30 @@ namespace openPG.UI.UserControls
             }
         }
 
-        /// <summary>
-        /// Recursively finds menu item to navigate to when a button is clicked on the UI.
-        /// </summary>
-        /// <param name="items">Collection of menu items.</param>
-        /// <param name="stringToMatch">Item to search for in menu items collection.</param>
-        /// <param name="item">Returns a menu item.</param>
-        private void GetMenuDataItems(ObservableCollection<MenuDataItem> items, string stringToMatch, ref MenuDataItem item)
-        {
-            for (int i = 0; i < items.Count; i++)
-            {
-                if (items[i].MenuText.Contains(stringToMatch))
-                {
-                    item = items[i];
-                    break;
-                }
-                else
-                {
-                    if (items[i].SubMenuItems.Count > 0)
-                    {
-                        GetMenuDataItems(items[i].SubMenuItems, stringToMatch, ref item);
-                    }
-                }
-            }
-        }
+        ///// <summary>
+        ///// Recursively finds menu item to navigate to when a button is clicked on the UI.
+        ///// </summary>
+        ///// <param name="items">Collection of menu items.</param>
+        ///// <param name="stringToMatch">Item to search for in menu items collection.</param>
+        ///// <param name="item">Returns a menu item.</param>
+        //private void GetMenuDataItems(ObservableCollection<MenuDataItem> items, string stringToMatch, ref MenuDataItem item)
+        //{
+        //    for (int i = 0; i < items.Count; i++)
+        //    {
+        //        if (items[i].MenuText.Replace("_", "").ToLower().Contains(stringToMatch.ToLower()))
+        //        {
+        //            item = items[i];
+        //            break;
+        //        }
+        //        else
+        //        {
+        //            if (items[i].SubMenuItems.Count > 0)
+        //            {
+        //                GetMenuDataItems(items[i].SubMenuItems, stringToMatch, ref item);
+        //            }
+        //        }
+        //    }
+        //}
 
         #endregion
 
