@@ -1590,26 +1590,26 @@ namespace ConfigurationSetupUtility.Screens
             configFile = Directory.GetCurrentDirectory() + "\\" + App.ApplicationConfig;
 
             if (applyChangesToService && File.Exists(configFile))
-                ModifyConfigFile(configFile, connectionString, dataProviderString, encrypted);
+                ModifyConfigFile(configFile, connectionString, dataProviderString, encrypted, true);
 
             configFile = Directory.GetCurrentDirectory() + "\\" + App.ManagerConfig;
 
             if (applyChangesToLocalManager && File.Exists(configFile))
-                ModifyConfigFile(configFile, connectionString, dataProviderString, encrypted);
+                ModifyConfigFile(configFile, connectionString, dataProviderString, encrypted, false);
 
             if (webManagerDir != null)
             {
                 configFile = webManagerDir.ToString() + "\\Web.config";
 
                 if (applyChangesToWebManager && File.Exists(configFile))
-                    ModifyConfigFile(configFile, connectionString, dataProviderString, encrypted);
+                    ModifyConfigFile(configFile, connectionString, dataProviderString, encrypted, false);
             }
 
             AppendStatusMessage("Modification of configuration files was successful.");
         }
 
         // Modifies the configuration file with the given file name to contain the given connection string and data provider string.
-        private void ModifyConfigFile(string configFileName, string connectionString, string dataProviderString, bool encrypted)
+        private void ModifyConfigFile(string configFileName, string connectionString, string dataProviderString, bool encrypted, bool serviceConfigFile)
         {
             // Modify system settings.
             XmlDocument configFile = new XmlDocument();
@@ -1658,6 +1658,34 @@ namespace ConfigurationSetupUtility.Screens
                         }
                     }
                 }
+            }
+
+            // Make sure alarm services settings exist
+            XmlNode alarmServicesNode = configFile.SelectSingleNode("configuration/categorizedSettings/alarmServicesAlarmService");
+            if (serviceConfigFile && (object)alarmServicesNode == null)
+            {
+                alarmServicesNode = configFile.CreateElement("alarmServicesAlarmService");
+
+                XmlElement addElement = configFile.CreateElement("add");
+
+                XmlAttribute attribute = configFile.CreateAttribute("name");
+                attribute.Value = "Endpoints";
+                addElement.Attributes.Append(attribute);
+
+                attribute = configFile.CreateAttribute("value");
+                attribute.Value = "http.rest://localhost:5019/alarmservices";
+                addElement.Attributes.Append(attribute);
+
+                attribute = configFile.CreateAttribute("description");
+                attribute.Value = "Semicolon delimited list of URIs where the web service can be accessed.";
+                addElement.Attributes.Append(attribute);
+
+                attribute = configFile.CreateAttribute("encrypted");
+                attribute.Value = "false";
+                addElement.Attributes.Append(attribute);
+
+                alarmServicesNode.AppendChild(addElement);
+                configFile.SelectSingleNode("configuration/categorizedSettings").AppendChild(alarmServicesNode);
             }
 
             // Modify ADO metadata provider sections.
