@@ -1689,6 +1689,11 @@
             Gets or sets Acronym of the <see cref="T:openPDC.UI.DataModels.RealTimeDevice"/>.
             </summary>
         </member>
+        <member name="P:openPDC.UI.DataModels.RealTimeDevice.AcronymTruncated">
+            <summary>
+            Gets truncated acronym, i.e. removed parent device prefix. This is only for display purpose.
+            </summary>
+        </member>
         <member name="P:openPDC.UI.DataModels.RealTimeDevice.Name">
             <summary>
             Gets or sets Name of the <see cref="T:openPDC.UI.DataModels.RealTimeDevice"/>
