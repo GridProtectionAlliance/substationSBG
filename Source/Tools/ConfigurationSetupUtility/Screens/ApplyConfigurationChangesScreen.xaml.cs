@@ -199,10 +199,8 @@ namespace ConfigurationSetupUtility.Screens
             if (!webManagerOptionEnabled)
                 m_openPGManagerWebCheckBox.IsChecked = false;
 
-            if (initialDataScript)
-                m_setupHistorianCheckBox.IsChecked = true;
-            else
-                m_setupHistorianCheckBox.IsChecked = false;
+            
+            m_setupHistorianCheckBox.IsChecked = false;
 
             // Set up the state object with the proper initial values.
             m_state["applyChangesToService"] = m_openPGServiceCheckBox.IsChecked.Value;
