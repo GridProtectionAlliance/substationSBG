@@ -213,6 +213,9 @@ namespace ConfigurationSetupUtility.Screens
                         // Always make sure time series startup operations are defined in the database.
                         ValidateTimeSeriesStartupOperations();
 
+                        // Always make sure new configuration entity records are defined in the database.
+                        ValidateConfigurationEntity();
+
                         // Always make sure that node settings defines the alarm service URL.
                         ValidateNodeSettings();
 
@@ -343,6 +346,29 @@ namespace ConfigurationSetupUtility.Screens
             finally
             {
                 if (connection != null)
+                    connection.Dispose();
+            }
+        }
+
+        private void ValidateConfigurationEntity()
+        {
+            const string countQuery = "SELECT COUNT(*) FROM ConfigurationEntity WHERE RuntimeName = 'NodeInfo'";
+            const string insertQuery = "INSERT INTO ConfigurationEntity(SourceName, RuntimeName, Description, LoadOrder, Enabled) VALUES('NodeInfo', 'NodeInfo', 'Defines information about the nodes in the database', 18, 1)";
+
+            IDbConnection connection = null;
+            int configurationEntityCount;
+
+            try
+            {
+                connection = OpenNewConnection();
+                configurationEntityCount = Convert.ToInt32(connection.ExecuteScalar(countQuery));
+
+                if (configurationEntityCount == 0)
+                    connection.ExecuteNonQuery(insertQuery);
+            }
+            finally
+            {
+                if ((object)connection != null)
                     connection.Dispose();
             }
         }
