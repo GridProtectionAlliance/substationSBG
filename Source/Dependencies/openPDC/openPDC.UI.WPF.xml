@@ -4,19 +4,6 @@
         <name>openPDC.UI.WPF</name>
     </assembly>
     <members>
-        <member name="T:openPDC.UI.VersionConfigToNamespaceAssemblyObjectBinder">
-            <summary>
-            Class to override default type binding when parsing *.PmuConnection file.
-            </summary>
-        </member>
-        <member name="M:openPDC.UI.VersionConfigToNamespaceAssemblyObjectBinder.BindToType(System.String,System.String)">
-            <summary>
-            Controls the binding of a serialized object to type.
-            </summary>
-            <param name="assemblyName">Specifies the <see cref="T:System.Reflection.Assembly"/> name of the serialized object.</param>
-            <param name="typeName">Specified the <see cref="T:System.Type"/> name of the serialized object.</param>
-            <returns></returns>
-        </member>
         <member name="T:openPDC.UI.UserControls.PhasorUserControl">
             <summary>
             Interaction logic for PhasorUserControl.xaml
@@ -1511,66 +1498,6 @@
         <member name="P:openPDC.UI.Modal.ConfigurationCreator.ConfigurationFrame">
             <summary>
             Gets or sets the manually tweaked configuration frame.
-            </summary>
-        </member>
-        <member name="T:openPDC.UI.ConnectionSettings">
-            <summary>
-            Represents connection information defined in PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.PhasorProtocol">
-            <summary>
-            Defines <see cref="F:openPDC.UI.ConnectionSettings.PhasorProtocol"/> from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.TransportProtocol">
-            <summary>
-            Defines <see cref="F:openPDC.UI.ConnectionSettings.TransportProtocol"/> from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.ConnectionString">
-            <summary>
-            Defines connection string from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.PmuID">
-            <summary>
-            Defines ID of the source from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.FrameRate">
-            <summary>
-            Defines frame rate from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.AutoRepeatPlayback">
-            <summary>
-            Defines boolean flag if data needs to be repeated again and again.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.ByteEncodingDisplayFormat">
-            <summary>
-            Defines byte encoding format from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.ConnectionParameters">
-            <summary>
-            Defines additional connection information such as alternate command channel from PmuConnection file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.ConfigurationFileName">
-            <summary>
-            Defines name of the configuration file.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.RefreshConfigurationFileOnChange">
-            <summary>
-            Defines boolean flag to refresh configuration file on change.
-            </summary>
-        </member>
-        <member name="F:openPDC.UI.ConnectionSettings.ParseWordCountFromByte">
-            <summary>
-            Defines boolean flag indicating if parse word count from byte.
             </summary>
         </member>
         <member name="T:openPDC.UI.ViewModels.Phasors">
