@@ -71,7 +71,7 @@
                 <Button Content="&lt;&lt;" Command="{Binding Path=DataContext.AddAllowedMeasurementCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel, AncestorLevel=2}}" 
                         CommandParameter="{tsfBinding:Column Path=AvailableMeasurements}" ToolTip="Add Allowed Measurements" Width="Auto" Margin="2"/>
             </StackPanel>
-            <ListBox x:Name="ListBoxAllowedMeasurements" ItemsSource="{tsfBinding:Column Path=AllowedMeasurements}" Grid.Column="0" Grid.Row="1" DisplayMemberPath="Value"/>
+            <ListBox x:Name="ListBoxAllowedMeasurements" ItemsSource="{tsfBinding:Column Path=AllowedMeasurements}" Grid.Column="0" Grid.Row="1" DisplayMemberPath="Value" SelectionMode="Extended" />
 
             <TextBlock Grid.Column="0" Grid.Row="2" Text="Denied Measurements" HorizontalAlignment="Left" FontWeight="Bold"/>
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -80,7 +80,7 @@
                 <Button Content="&lt;&lt;" Command="{Binding Path=DataContext.AddDeniedMeasurementCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel, AncestorLevel=2}}" 
                         CommandParameter="{tsfBinding:Column Path=AvailableMeasurements}" ToolTip="Add Denied Measurements" Width="Auto" Margin="2"/>
             </StackPanel>
-            <ListBox x:Name="ListBoxDeniedMeasurements" ItemsSource="{tsfBinding:Column Path=DeniedMeasurements}" Grid.Column="0" Grid.Row="3" DisplayMemberPath="Value"/>
+            <ListBox x:Name="ListBoxDeniedMeasurements" ItemsSource="{tsfBinding:Column Path=DeniedMeasurements}" Grid.Column="0" Grid.Row="3" DisplayMemberPath="Value" SelectionMode="Extended" />
 
             <myuc:SelectMeasurementUserControl x:Name="UserControlSelectMeasurements" Grid.Column="2" Grid.Row="0" Grid.RowSpan="4" ItemsPerPage="11" FilterByInternal="False" Width="475" Height="425" VerticalAlignment="Top" HorizontalAlignment="Center"/>
         </Grid>
@@ -104,7 +104,7 @@
             <TextBlock Grid.Column="2" Grid.Row="0" Text="Available Measurement Groups" HorizontalAlignment="Left" FontWeight="Bold"/>
             <TextBlock Grid.Column="4" Grid.Row="0" Text="Denied Measurement Groups" HorizontalAlignment="Left" FontWeight="Bold"/>
 
-            <ListBox x:Name="ListBoxAllowedGroups" ItemsSource="{tsfBinding:Column Path=AllowedMeasurementGroups}" Grid.Row="1" Grid.Column="0" DisplayMemberPath="Value" />
+            <ListBox x:Name="ListBoxAllowedGroups" ItemsSource="{tsfBinding:Column Path=AllowedMeasurementGroups}" Grid.Row="1" Grid.Column="0" DisplayMemberPath="Value" SelectionMode="Extended" />
             <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Content="&gt;&gt;" Command="{Binding Path=DataContext.RemoveAllowedMeasurementGroupCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel, AncestorLevel=2}}" 
                        CommandParameter="{Binding ElementName=ListBoxAllowedGroups, Path=SelectedItems}" ToolTip="Remove Allowed Measurement Groups" Width="Auto" Margin="2"/>
@@ -112,7 +112,7 @@
                        CommandParameter="{Binding ElementName=ListBoxAvailableGroups, Path=SelectedItems}" ToolTip="Add Allowed Measurement Groups" Width="Auto" Margin="2"/>
             </StackPanel>
 
-            <ListBox x:Name="ListBoxAvailableGroups" ItemsSource="{tsfBinding:Column Path=AvailableMeasurementGroups}" Grid.Row="1" Grid.Column="2" DisplayMemberPath="Value" />
+            <ListBox x:Name="ListBoxAvailableGroups" ItemsSource="{tsfBinding:Column Path=AvailableMeasurementGroups}" Grid.Row="1" Grid.Column="2" DisplayMemberPath="Value" SelectionMode="Extended" />
             <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Content="&gt;&gt;" Command="{Binding Path=DataContext.AddDeniedMeasurementGroupCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel, AncestorLevel=2}}" 
                        CommandParameter="{Binding ElementName=ListBoxAvailableGroups, Path=SelectedItems}" ToolTip="Add Denied Measurement Groups" Width="Auto" Margin="2"/>
@@ -120,7 +120,7 @@
                        CommandParameter="{Binding ElementName=ListBoxDeniedGroups, Path=SelectedItems}" ToolTip="Remove Denied Measurement Groups" Width="Auto" Margin="2"/>
             </StackPanel>
 
-            <ListBox x:Name="ListBoxDeniedGroups" ItemsSource="{tsfBinding:Column Path=DeniedMeasurementGroups}" Grid.Row="1" Grid.Column="4" DisplayMemberPath="Value" />            
+            <ListBox x:Name="ListBoxDeniedGroups" ItemsSource="{tsfBinding:Column Path=DeniedMeasurementGroups}" Grid.Row="1" Grid.Column="4" DisplayMemberPath="Value" SelectionMode="Extended" />            
             
         </Grid>
         
