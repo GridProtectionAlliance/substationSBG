@@ -12,7 +12,7 @@
   <MenuDataItem Icon="" MenuText="_Subscription" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
     <SubMenuItems>
       <MenuDataItem Icon="" MenuText="_Measurement Subscriptions" Description="Manage Local Measurement Subscriptions from External Gateways" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscribeMeasurementUserControl"/>
-      <MenuDataItem Icon="" MenuText="_Create Authorization Request" Description="Create Authorization Request for Access to External Gateway" Roles="*" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscriberRequestUserControl"/>
+      <MenuDataItem Icon="" MenuText="_Create Authorization Request" Description="Create Authorization Request for Access to External Gateway" Roles="Administrator,Editor" UserControlAssembly="openPG.UI.WPF.dll" UserControlPath="openPG.UI.UserControls.SubscriberRequestUserControl"/>
     </SubMenuItems>
   </MenuDataItem>
   <MenuDataItem Icon="" MenuText="_Inputs" Description="" Roles="*" UserControlAssembly="" UserControlPath="">
