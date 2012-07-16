@@ -22,6 +22,9 @@
 //       Added code regions, comments etc.
 //  05/25/2011 - J. Ritchie Carroll
 //       Attached to before save event so class could import new keyIV's into local crypto cache.
+//  07/16/2012 - Alex Foglia
+//       Modified some controls' properties upon user's role so he/she would or wouldn't be able to
+//       modify their contents.
 //
 //******************************************************************************************************
 
@@ -87,7 +90,7 @@ namespace openPG.UI.UserControls
             m_dataContext.PropertyChanged += SubscriberUserControl_PropertyChanged;
             m_dataContext.BeforeSave += SubscriberUserControl_BeforeSave;
             LoadCurrentKeyIV();
-
+                  
             try
             {
                 using (AdoDataConnection database = new AdoDataConnection(CommonFunctions.DefaultSettingsCategory))
@@ -106,6 +109,18 @@ namespace openPG.UI.UserControls
                     else if (!hostIPs.Any(ip => localIPs.Contains(ip)))
                         MessageBox.Show("Secure key exchange may not succeed." + Environment.NewLine + "Please make sure to run manager application with administrative privileges on the server where service is hosted.", "Authorize Subscriber", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
+
+                // If the user is not an Administrator, then the following properties for these controls are readonly and not enable
+                bool isAdmin = CommonFunctions.CurrentPrincipal.IsInRole("Administrator") ? false : true;
+
+                m_acronymField.IsReadOnly = isAdmin;
+                m_nameField.IsReadOnly = isAdmin;
+                m_sharedSecretField.IsReadOnly = isAdmin;
+                m_authenticationID.IsReadOnly = isAdmin;
+                m_validIpAddressesField.IsReadOnly = isAdmin;
+                m_enablePGConnection.IsEnabled = !isAdmin;
+                m_buttonClick.IsEnabled = !isAdmin;
+                m_footerControl.IsEnabled = !isAdmin;
             }
             catch
             {
