@@ -441,46 +441,47 @@ namespace ConfigurationSetupUtility.Screens
 
                     nodeCommand = connection.CreateCommand();
                     nodeCommand.CommandText = "SELECT ID FROM Node";
-                    nodeReader = nodeCommand.ExecuteReader();
-
-                    DataTable dataTable = new DataTable();
-                    dataTable.Load(nodeReader);
-
-                    if (nodeReader != null) nodeReader.Close();
-
-                    foreach (DataRow row in dataTable.Rows)
+                    using (nodeReader = nodeCommand.ExecuteReader())
                     {
-                        string nodeID = row["ID"].ToNonNullString();
 
-                        if (settings.TryGetValue("Provider", out connectionSetting))
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(nodeReader);
+
+                        if (nodeReader != null) nodeReader.Close();
+
+                        foreach (DataRow row in dataTable.Rows)
                         {
-                            // Check if provider is for Access since it uses braces as Guid delimeters
-                            if (connectionSetting.StartsWith("Microsoft.Jet.OLEDB", StringComparison.OrdinalIgnoreCase))
-                                nodeID = "{" + nodeID + "}";
+                            string nodeID = row["ID"].ToNonNullString();
+
+                            if (settings.TryGetValue("Provider", out connectionSetting))
+                            {
+                                // Check if provider is for Access since it uses braces as Guid delimeters
+                                if (connectionSetting.StartsWith("Microsoft.Jet.OLEDB", StringComparison.OrdinalIgnoreCase))
+                                    nodeID = "{" + nodeID + "}";
+                                else
+                                    nodeID = "'" + nodeID + "'";
+                            }
                             else
                                 nodeID = "'" + nodeID + "'";
+
+                            IDbCommand command = connection.CreateCommand();
+
+                            command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Administrator'", nodeID);
+                            if (Convert.ToInt32(command.ExecuteScalar()) == 0)
+                                AddRolesForNode(connection, nodeID, "Administrator");
+                            else    // Verify an admin user exists for the node and attached to administrator role.
+                                VerifyAdminUser(connection, nodeID);
+
+                            command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Editor'", nodeID);
+                            if (Convert.ToInt32(command.ExecuteScalar()) == 0)
+                                AddRolesForNode(connection, nodeID, "Editor");
+
+                            command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Viewer'", nodeID);
+                            if (Convert.ToInt32(command.ExecuteScalar()) == 0)
+                                AddRolesForNode(connection, nodeID, "Viewer");
                         }
-                        else
-                            nodeID = "'" + nodeID + "'";
-
-                        IDbCommand command = connection.CreateCommand();
-
-                        command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Administrator'", nodeID);
-                        if (Convert.ToInt32(command.ExecuteScalar()) == 0)
-                            AddRolesForNode(connection, nodeID, "Administrator");
-                        else    // Verify an admin user exists for the node and attached to administrator role.
-                            VerifyAdminUser(connection, nodeID);
-
-                        command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Editor'", nodeID);
-                        if (Convert.ToInt32(command.ExecuteScalar()) == 0)
-                            AddRolesForNode(connection, nodeID, "Editor");
-
-                        command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Viewer'", nodeID);
-                        if (Convert.ToInt32(command.ExecuteScalar()) == 0)
-                            AddRolesForNode(connection, nodeID, "Viewer");
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -488,9 +489,6 @@ namespace ConfigurationSetupUtility.Screens
             }
             finally
             {
-                if (nodeReader != null)
-                    nodeReader.Close();
-
                 if (connection != null)
                     connection.Dispose();
             }
@@ -745,27 +743,23 @@ namespace ConfigurationSetupUtility.Screens
 
                         // Get the admin user ID from the database.
                         IDataReader userIdReader = null;
-                        try
+                        
+                        IDbDataParameter newNameParameter = adminCredentialCommand.CreateParameter();
+
+                        newNameParameter.ParameterName = paramChar + "name";
+                        newNameParameter.Value = m_state["adminUserName"].ToString();
+
+                        adminCredentialCommand.CommandText = "SELECT ID FROM UserAccount WHERE Name = " + paramChar + "name";
+                        adminCredentialCommand.Parameters.Clear();
+                        adminCredentialCommand.Parameters.Add(newNameParameter);
+                        using (userIdReader = adminCredentialCommand.ExecuteReader())
                         {
-                            IDbDataParameter nameParameter = adminCredentialCommand.CreateParameter();
-
-                            nameParameter.ParameterName = paramChar + "name";
-                            nameParameter.Value = m_state["adminUserName"].ToString();
-
-                            adminCredentialCommand.CommandText = "SELECT ID FROM UserAccount WHERE Name = " + paramChar + "name";
-                            adminCredentialCommand.Parameters.Clear();
-                            adminCredentialCommand.Parameters.Add(nameParameter);
-                            userIdReader = adminCredentialCommand.ExecuteReader();
 
                             if (userIdReader.Read())
                                 adminUserID = userIdReader["ID"].ToNonNullString();
                         }
-                        finally
-                        {
-                            if (userIdReader != null)
-                                userIdReader.Close();
-                        }
-
+                        
+                        
                         // Assign Administrative User to Administrator Role.
                         if (!string.IsNullOrEmpty(adminRoleID) && !string.IsNullOrEmpty(adminUserID))
                         {

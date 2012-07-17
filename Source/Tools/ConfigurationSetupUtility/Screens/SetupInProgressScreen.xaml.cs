@@ -1189,21 +1189,16 @@ namespace ConfigurationSetupUtility.Screens
                 IDbCommand roleIdCommand;
                 IDataReader roleIdReader = null;
 
-                // Get the node ID from the database.
-                try
+                // Get the node ID from the database.              
+                roleIdCommand = connection.CreateCommand();
+                roleIdCommand.CommandText = "SELECT ID FROM ApplicationRole WHERE Name = 'Administrator'";
+                using (roleIdReader = roleIdCommand.ExecuteReader())
                 {
-                    roleIdCommand = connection.CreateCommand();
-                    roleIdCommand.CommandText = "SELECT ID FROM ApplicationRole WHERE Name = 'Administrator'";
-                    roleIdReader = roleIdCommand.ExecuteReader();
 
                     if (roleIdReader.Read())
                         adminRoleID = roleIdReader["ID"].ToNonNullString();
                 }
-                finally
-                {
-                    if (roleIdReader != null)
-                        roleIdReader.Close();
-                }
+                
 
                 bool oracle = connection.GetType().Name == "OracleConnection";
                 char paramChar = oracle ? ':' : '@';
@@ -1278,26 +1273,20 @@ namespace ConfigurationSetupUtility.Screens
 
                 // Get the admin user ID from the database.
                 IDataReader userIdReader = null;
-                try
+                IDbDataParameter newNameParameter = adminCredentialCommand.CreateParameter();
+
+                newNameParameter.ParameterName = paramChar + "name";
+                newNameParameter.Value = m_state["adminUserName"].ToString();
+
+                adminCredentialCommand.CommandText = "SELECT ID FROM UserAccount WHERE Name = " + paramChar + "name";
+                adminCredentialCommand.Parameters.Clear();
+                adminCredentialCommand.Parameters.Add(newNameParameter);
+                using (userIdReader = adminCredentialCommand.ExecuteReader())
                 {
-                    IDbDataParameter nameParameter = adminCredentialCommand.CreateParameter();
-
-                    nameParameter.ParameterName = paramChar + "name";
-                    nameParameter.Value = m_state["adminUserName"].ToString();
-
-                    adminCredentialCommand.CommandText = "SELECT ID FROM UserAccount WHERE Name = " + paramChar + "name";
-                    adminCredentialCommand.Parameters.Clear();
-                    adminCredentialCommand.Parameters.Add(nameParameter);
-                    userIdReader = adminCredentialCommand.ExecuteReader();
 
                     if (userIdReader.Read())
                         adminUserID = userIdReader["ID"].ToNonNullString();
-                }
-                finally
-                {
-                    if (userIdReader != null)
-                        userIdReader.Close();
-                }
+                }               
 
                 // Assign Administrative User to Administrator Role.
                 if (!string.IsNullOrEmpty(adminRoleID) && !string.IsNullOrEmpty(adminUserID))
@@ -1362,22 +1351,16 @@ namespace ConfigurationSetupUtility.Screens
             }
 
             // Get the node ID from the database.
-            try
+            nodeIdCommand = connection.CreateCommand();
+            nodeIdCommand.CommandText = "SELECT ID FROM Node WHERE Name = 'Default'";
+            using (nodeIdReader = nodeIdCommand.ExecuteReader())
             {
-                nodeIdCommand = connection.CreateCommand();
-                nodeIdCommand.CommandText = "SELECT ID FROM Node WHERE Name = 'Default'";
-                nodeIdReader = nodeIdCommand.ExecuteReader();
 
                 if (nodeIdReader.Read())
                     nodeId = nodeIdReader["ID"].ToNonNullString();
 
                 m_state["selectedNodeId"] = nodeId;
-            }
-            finally
-            {
-                if (nodeIdReader != null)
-                    nodeIdReader.Close();
-            }
+            }           
 
             return defaultNodeCreated;
         }
