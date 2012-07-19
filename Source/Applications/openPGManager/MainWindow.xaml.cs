@@ -264,6 +264,14 @@ namespace openPGManager
                         ToolTipService.SetToolTip(EllipseConnectionState, "Connected to the service");
                     });
                 }
+                else
+                {
+                    EllipseConnectionState.Dispatcher.BeginInvoke((Action)delegate()
+                    {
+                        EllipseConnectionState.Fill = Application.Current.Resources["RedRadialGradientBrush"] as RadialGradientBrush;
+                        ToolTipService.SetToolTip(EllipseConnectionState, "Disconnected from the service");
+                    });
+                }
             }
         }
 
