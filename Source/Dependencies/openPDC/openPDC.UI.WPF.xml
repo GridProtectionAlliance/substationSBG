@@ -350,21 +350,9 @@
             Loads collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Measurement"/> defined in the database.
             </summary>
         </member>
-        <member name="M:openPDC.UI.ViewModels.PhasorMeasurements.m_currentItem_PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
-            <summary>
-            Handles PropertyChanged event on CurrentItem. If DeviceID is changed then get the associated phasors list.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Event arguments.</param>
-        </member>
         <member name="P:openPDC.UI.ViewModels.PhasorMeasurements.DeviceLookupList">
             <summary>
             Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of devices defined in the database.
-            </summary>
-        </member>
-        <member name="P:openPDC.UI.ViewModels.PhasorMeasurements.PhasorLookupList">
-            <summary>
-            Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of phasors defined in the database.
             </summary>
         </member>
         <member name="T:openPDC.UI.UserControls.HistorianViewUserControl">
