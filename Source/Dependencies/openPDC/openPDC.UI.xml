@@ -9,11 +9,21 @@
             Represents a record of <see cref="T:openPDC.UI.DataModels.CalculatedMeasurement"/> information as defined in the database.
             </summary>
         </member>
-        <member name="M:openPDC.UI.DataModels.CalculatedMeasurement.Load(TVA.Data.AdoDataConnection)">
+        <member name="M:openPDC.UI.DataModels.CalculatedMeasurement.LoadKeys(TVA.Data.AdoDataConnection,System.String,System.String)">
+            <summary>
+            LoadKeys <see cref="T:openPDC.UI.DataModels.CalculatedMeasurement"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>        
+            <param name="sortMember">The field to sort by.</param>
+            <param name="sortDirection"><c>ASC</c> or <c>DESC</c> for ascending or descending respectively.</param>
+            <returns>Collection of <see cref="T:openPDC.UI.DataModels.CalculatedMeasurement"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.DataModels.CalculatedMeasurement.Load(TVA.Data.AdoDataConnection,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Loads <see cref="T:openPDC.UI.DataModels.CalculatedMeasurement"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
             </summary>
-            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>        
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>      
+            <param name="keys"> Keys of the measurement to be loaded from  the database</param>
             <returns>Collection of <see cref="T:openPDC.UI.DataModels.CalculatedMeasurement"/>.</returns>
         </member>
         <member name="M:openPDC.UI.DataModels.CalculatedMeasurement.GetLookupList(TVA.Data.AdoDataConnection,System.Boolean)">
@@ -1499,12 +1509,23 @@
             Represents a record of <see cref="T:openPDC.UI.DataModels.Phasor"/> information as defined in the database.
             </summary>
         </member>
-        <member name="M:openPDC.UI.DataModels.Phasor.Load(TVA.Data.AdoDataConnection,System.Int32)">
+        <member name="M:openPDC.UI.DataModels.Phasor.LoadKeys(TVA.Data.AdoDataConnection,System.String,System.String)">
+            <summary>
+            LoadKeys <see cref="T:openPDC.UI.DataModels.Phasor"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="deviceID">ID of the <see cref="T:openPDC.UI.DataModels.Device"/> to filter data.</param>
+            <param name="sortMember">The field to sort by.</param>
+            <param name="sortDirection"><c>ASC</c> or <c>DESC</c> for ascending or descending respectively.</param>
+            <returns>Collection of <see cref="T:openPDC.UI.DataModels.Phasor"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.DataModels.Phasor.Load(TVA.Data.AdoDataConnection,System.Int32,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Loads <see cref="T:openPDC.UI.DataModels.Phasor"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
             <param name="deviceID">ID of the <see cref="T:openPDC.UI.DataModels.Device"/> to filter data.</param>
+            <param name="keys"> Keys of the measurement to be loaded from  the database</param>
             <returns>Collection of <see cref="T:openPDC.UI.DataModels.Phasor"/>.</returns>
         </member>
         <member name="M:openPDC.UI.DataModels.Phasor.GetLookupList(TVA.Data.AdoDataConnection,System.Int32,System.Boolean)">
