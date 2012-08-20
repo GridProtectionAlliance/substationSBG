@@ -224,12 +224,23 @@
             Represents a record of <see cref="T:openPDC.UI.DataModels.Device"/> information as defined in the database.
             </summary>
         </member>
-        <member name="M:openPDC.UI.DataModels.Device.Load(TVA.Data.AdoDataConnection,System.Int32)">
+        <member name="M:openPDC.UI.DataModels.Device.LoadKeys(TVA.Data.AdoDataConnection,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            LoadKeys <see cref="T:openPDC.UI.DataModels.Phasor"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="parentID">ID of the parent device to filter data.</param>
+            <param name="searchText">The text to search by.</param>
+            <param name="sortMember">The field to sort by.</param>
+            <param name="sortDirection"><c>ASC</c> or <c>DESC</c> for ascending or descending respectively.</param>
+            <returns>Collection of <see cref="T:openPDC.UI.DataModels.Phasor"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.DataModels.Device.Load(TVA.Data.AdoDataConnection,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Loads <see cref="T:openPDC.UI.DataModels.Device"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
             </summary>
-            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>        
-            <param name="parentID">ID of the parent device to filter data.</param>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="keys">Keys of the measurement to be loaded from the database</param>
             <returns>Collection of <see cref="T:openPDC.UI.DataModels.Device"/>.</returns>
         </member>
         <member name="M:openPDC.UI.DataModels.Device.GetLookupList(TVA.Data.AdoDataConnection,openPDC.UI.DataModels.DeviceType,System.Boolean,System.Boolean)">
@@ -710,12 +721,22 @@
             Represents a record of <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> as defined in the database.
             </summary>
         </member>
-        <member name="M:openPDCManager.UI.DataModels.OutputStream.Load(TVA.Data.AdoDataConnection,System.Boolean)">
+        <member name="M:openPDCManager.UI.DataModels.OutputStream.LoadKeys(TVA.Data.AdoDataConnection,System.Boolean,System.String,System.String)">
             <summary>
             Loads <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="enabledOnly">Boolean flag indicating if only enabled <see cref="T:openPDCManager.UI.DataModels.OutputStream"/>s needed.</param>        
+            <param name="enabledOnly">Boolean flag indicating if only enabled <see cref="T:openPDCManager.UI.DataModels.OutputStream"/>s needed.</param>   
+            <param name="sortMember">The field to sort by.</param>
+            <param name="sortDirection"><c>ASC</c> or <c>DESC</c> for ascending or descending respectively.</param>
+            <returns>Collection of <see cref="T:openPDCManager.UI.DataModels.OutputStream"/>.</returns>
+        </member>
+        <member name="M:openPDCManager.UI.DataModels.OutputStream.Load(TVA.Data.AdoDataConnection,System.Collections.Generic.IList{System.Int32})">
+            <summary>
+            Loads <see cref="T:openPDCManager.UI.DataModels.OutputStream"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="keys">Keys of the measuremnets to be loaded from the database</param>
             <returns>Collection of <see cref="T:openPDCManager.UI.DataModels.OutputStream"/>.</returns>
         </member>
         <member name="M:openPDCManager.UI.DataModels.OutputStream.Save(TVA.Data.AdoDataConnection,openPDCManager.UI.DataModels.OutputStream,System.Boolean)">
@@ -941,12 +962,22 @@
             Represents a record of <see cref="T:openPDC.UI.DataModels.OutputStreamDevice"/> information as defined in the database.
             </summary>
         </member>
-        <member name="M:openPDC.UI.DataModels.OutputStreamDevice.Load(TVA.Data.AdoDataConnection,System.Int32)">
+        <member name="M:openPDC.UI.DataModels.OutputStreamDevice.LoadKeys(TVA.Data.AdoDataConnection,System.Int32,System.String,System.String)">
+            <summary>
+            LoadKeys <see cref="T:openPDC.UI.DataModels.OutputStreamDevice"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="outputStreamID">ID of the OutputStream to filter data.</param>
+            <param name="sortMember">The field to sort by.</param>
+            <param name="sortDirection"><c>ASC</c> or <c>DESC</c> for ascending or descending respectively.</param>
+            <returns>Collection of <see cref="T:openPDC.UI.DataModels.Phasor"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.DataModels.OutputStreamDevice.Load(TVA.Data.AdoDataConnection,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Loads <see cref="T:openPDC.UI.DataModels.OutputStreamDevice"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="outputStreamID">ID of the OutputStream to filter data.</param>
+            <param name="keys">Keys of the measurement to be loaded from the datbase</param>
             <returns>Collection of <see cref="T:openPDC.UI.DataModels.OutputStreamDevice"/>.</returns>
         </member>
         <member name="M:openPDC.UI.DataModels.OutputStreamDevice.GetLookupList(TVA.Data.AdoDataConnection,System.Int32,System.Boolean)">
@@ -1103,12 +1134,22 @@
             Represents a record of <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceAnalog"/> information as defined in the database.
             </summary>
         </member>
-        <member name="M:openPDC.UI.DataModels.OutputStreamDeviceAnalog.Load(TVA.Data.AdoDataConnection,System.Int32)">
+        <member name="M:openPDC.UI.DataModels.OutputStreamDeviceAnalog.LoadKeys(TVA.Data.AdoDataConnection,System.Int32,System.String,System.String)">
+            <summary>
+            LoadKeys <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceAnalog"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="outputStreamDeviceID">ID of the output stream device to filter data.</param>
+            <param name="sortMember">The field to sort by.</param>
+            <param name="sortDirection"><c>ASC</c> or <c>DESC</c> for ascending or descending respectively.</param>
+            <returns>Collection of <see cref="T:openPDC.UI.DataModels.OutputStreamDevicePhasor"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.DataModels.OutputStreamDeviceAnalog.Load(TVA.Data.AdoDataConnection,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Loads <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceAnalog"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="outputStreamDeviceID">ID of the <see cref="T:openPDC.UI.DataModels.OutputStreamDevice"/> to filter data.</param>
+            <param name="keys">Keys of the measuremnets to be loaded from the database</param>
             <returns>Collection of <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceAnalog"/>.</returns>
         </member>
         <member name="M:openPDC.UI.DataModels.OutputStreamDeviceAnalog.GetLookupList(TVA.Data.AdoDataConnection,System.Int32,System.Boolean)">
@@ -1130,10 +1171,10 @@
         </member>
         <member name="M:openPDC.UI.DataModels.OutputStreamDeviceAnalog.Delete(TVA.Data.AdoDataConnection,System.Int32)">
             <summary>
-            Deletes specified <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceAnalog"/> record from database.
+            Deletes specified <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceAnalog"/> record and its associated measurements from database.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="OutputStreamDeviceAnalogID">ID of the record to be deleted.</param>
+            <param name="outputStreamDeviceAnalogID">ID of the record to be deleted.</param>
             <returns>String, for display use, indicating success.</returns>
         </member>
         <member name="P:openPDC.UI.DataModels.OutputStreamDeviceAnalog.NodeID">
@@ -1201,12 +1242,22 @@
             Represents a record of <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceDigital"/> information as defined in the database.
             </summary>
         </member>
-        <member name="M:openPDC.UI.DataModels.OutputStreamDeviceDigital.Load(TVA.Data.AdoDataConnection,System.Int32)">
+        <member name="M:openPDC.UI.DataModels.OutputStreamDeviceDigital.LoadKeys(TVA.Data.AdoDataConnection,System.Int32,System.String,System.String)">
+            <summary>
+            LoadKeys <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceDigital"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="outputStreamDeviceID">ID of the output stream device to filter data.</param>
+            <param name="sortMember">The field to sort by.</param>
+            <param name="sortDirection"><c>ASC</c> or <c>DESC</c> for ascending or descending respectively.</param>
+            <returns>Collection of <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceDigital"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.DataModels.OutputStreamDeviceDigital.Load(TVA.Data.AdoDataConnection,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Loads <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceDigital"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="outputStreamDeviceID">ID of the output stream device to filter data.</param>
+            <param name="keys">Keys of the measurement to be loaded from  the database</param>
             <returns>Collection of <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceDigital"/>.</returns>
         </member>
         <member name="M:openPDC.UI.DataModels.OutputStreamDeviceDigital.GetLookupList(TVA.Data.AdoDataConnection,System.Int32,System.Boolean)">
@@ -1231,7 +1282,7 @@
             Deletes specified <see cref="T:openPDC.UI.DataModels.OutputStreamDeviceDigital"/> record from database.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="OutputStreamDeviceDigitalID">ID of the record to be deleted.</param>
+            <param name="outputStreamDeviceDigitalID">ID of the record to be deleted.</param>
             <returns>String, for display use, indicating success.</returns>
         </member>
         <member name="P:openPDC.UI.DataModels.OutputStreamDeviceDigital.NodeID">
@@ -1294,12 +1345,22 @@
             Represents a record of <see cref="T:openPDC.UI.DataModels.OutputStreamDevicePhasor"/> information as defined in the database.
             </summary>
         </member>
-        <member name="M:openPDC.UI.DataModels.OutputStreamDevicePhasor.Load(TVA.Data.AdoDataConnection,System.Int32)">
+        <member name="M:openPDC.UI.DataModels.OutputStreamDevicePhasor.LoadKeys(TVA.Data.AdoDataConnection,System.Int32,System.String,System.String)">
+            <summary>
+            LoadKeys <see cref="T:openPDC.UI.DataModels.OutputStreamDevicePhasor"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="outputStreamDeviceID">ID of the output stream device to filter data.</param>
+            <param name="sortMember">The field to sort by.</param>
+            <param name="sortDirection"><c>ASC</c> or <c>DESC</c> for ascending or descending respectively.</param>
+            <returns>Collection of <see cref="T:openPDC.UI.DataModels.OutputStreamDevicePhasor"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.DataModels.OutputStreamDevicePhasor.Load(TVA.Data.AdoDataConnection,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Loads <see cref="T:openPDC.UI.DataModels.OutputStreamDevicePhasor"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="outputStreamDeviceID">ID of the output stream device to filter data.</param>
+            <param name="keys">Keys of the measuremnets to be loaded from the database</param>
             <returns>Collection of <see cref="T:openPDC.UI.DataModels.OutputStreamDevicePhasor"/>.</returns>
         </member>
         <member name="M:openPDC.UI.DataModels.OutputStreamDevicePhasor.GetLookupList(TVA.Data.AdoDataConnection,System.Int32,System.Boolean)">
@@ -1321,10 +1382,10 @@
         </member>
         <member name="M:openPDC.UI.DataModels.OutputStreamDevicePhasor.Delete(TVA.Data.AdoDataConnection,System.Int32)">
             <summary>
-            Deletes specified <see cref="T:openPDC.UI.DataModels.OutputStreamDevicePhasor"/> record from database.
+            Deletes specified <see cref="T:openPDC.UI.DataModels.OutputStreamDevicePhasor"/> record and its associated measurements from database.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="OutputStreamDevicePhasorID">ID of the record to be deleted.</param>
+            <param name="outputStreamDevicePhasorID">ID of the record to be deleted.</param>
             <returns>String, for display use, indicating success.</returns>
         </member>
         <member name="P:openPDC.UI.DataModels.OutputStreamDevicePhasor.NodeID">
@@ -1402,12 +1463,22 @@
             Represents a record of <see cref="T:openPDC.UI.DataModels.OutputStreamMeasurement"/> information as defined in the database.
             </summary>
         </member>
-        <member name="M:openPDC.UI.DataModels.OutputStreamMeasurement.Load(TVA.Data.AdoDataConnection,System.Int32)">
+        <member name="M:openPDC.UI.DataModels.OutputStreamMeasurement.LoadKeys(TVA.Data.AdoDataConnection,System.Int32,System.String,System.String)">
+            <summary>
+            LoadKeys <see cref="T:openPDC.UI.DataModels.OutputStreamMeasurement"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
+            </summary>
+            <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
+            <param name="outputStreamID">ID of the <see cref="T:openPDC.UI.DataModels.Device"/> to filter data.</param>
+            <param name="sortMember">The field to sort by.</param>
+            <param name="sortDirection"><c>ASC</c> or <c>DESC</c> for ascending or descending respectively.</param>
+            <returns>Collection of <see cref="T:openPDC.UI.DataModels.Phasor"/>.</returns>
+        </member>
+        <member name="M:openPDC.UI.DataModels.OutputStreamMeasurement.Load(TVA.Data.AdoDataConnection,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Loads <see cref="T:openPDC.UI.DataModels.OutputStreamMeasurement"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="outputStreamID">ID of the output stream to fileter data.</param>
+            <param name="keys">Keys of the measurement to be loaded from the database</param>
             <returns>Collection of <see cref="T:openPDC.UI.DataModels.OutputStreamMeasurement"/>.</returns>
         </member>
         <member name="M:openPDC.UI.DataModels.OutputStreamMeasurement.GetLookupList(TVA.Data.AdoDataConnection,System.Int32,System.Boolean)">
@@ -1509,7 +1580,7 @@
             Represents a record of <see cref="T:openPDC.UI.DataModels.Phasor"/> information as defined in the database.
             </summary>
         </member>
-        <member name="M:openPDC.UI.DataModels.Phasor.LoadKeys(TVA.Data.AdoDataConnection,System.String,System.String)">
+        <member name="M:openPDC.UI.DataModels.Phasor.LoadKeys(TVA.Data.AdoDataConnection,System.Int32,System.String,System.String)">
             <summary>
             LoadKeys <see cref="T:openPDC.UI.DataModels.Phasor"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
             </summary>
@@ -1519,13 +1590,12 @@
             <param name="sortDirection"><c>ASC</c> or <c>DESC</c> for ascending or descending respectively.</param>
             <returns>Collection of <see cref="T:openPDC.UI.DataModels.Phasor"/>.</returns>
         </member>
-        <member name="M:openPDC.UI.DataModels.Phasor.Load(TVA.Data.AdoDataConnection,System.Int32,System.Collections.Generic.IList{System.Int32})">
+        <member name="M:openPDC.UI.DataModels.Phasor.Load(TVA.Data.AdoDataConnection,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Loads <see cref="T:openPDC.UI.DataModels.Phasor"/> information as an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> style list.
             </summary>
             <param name="database"><see cref="T:TVA.Data.AdoDataConnection"/> to connection to database.</param>
-            <param name="deviceID">ID of the <see cref="T:openPDC.UI.DataModels.Device"/> to filter data.</param>
-            <param name="keys"> Keys of the measurement to be loaded from  the database</param>
+            <param name="keys">Keys of the phasors to be loaded from the database</param>
             <returns>Collection of <see cref="T:openPDC.UI.DataModels.Phasor"/>.</returns>
         </member>
         <member name="M:openPDC.UI.DataModels.Phasor.GetLookupList(TVA.Data.AdoDataConnection,System.Int32,System.Boolean)">

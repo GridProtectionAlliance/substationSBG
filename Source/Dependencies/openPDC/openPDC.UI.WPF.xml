@@ -81,7 +81,7 @@
             <summary>
             Hanldes <see cref="P:openPDC.UI.ViewModels.Devices.SearchCommand"/>.
             </summary>
-            <param name="paramter">string value to search for in measurement collection.</param>
+            <param name="parameter">string value to search for in measurement collection.</param>
         </member>
         <member name="M:openPDC.UI.ViewModels.Devices.ShowAll">
             <summary>
@@ -355,6 +355,69 @@
             Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of devices defined in the database.
             </summary>
         </member>
+        <member name="T:openPDC.UI.ViewModels.AverageFrequencyViewModel">
+            <summary>
+            View model for the <see cref="T:openPDC.UI.UserControls.AverageFrequencyUserControl"/>.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.AverageFrequencyViewModel.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:openPDC.UI.ViewModels.AverageFrequencyViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.AverageFrequencyViewModel.Load">
+            <summary>
+            Called when the view is loaded.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.AverageFrequencyViewModel.Unload">
+            <summary>
+            Called when the view is unloaded.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.ViewModels.AverageFrequencyViewModel.HandlePropertyChangedOnce(System.String)">
+            <summary>
+            Handles change in a property once per call stack.
+            </summary>
+            <param name="propertyName">The name of the property that was changed.</param>
+        </member>
+        <member name="T:openPDC.UI.ViewModels.AverageFrequencyViewModel.IOMapping">
+            <summary>
+            Represents a mapping between a frequency input definition
+            and an average frequency output definition.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.AverageFrequencyViewModel.IOMapping.SignalReference">
+            <summary>
+            Gets or sets the signal reference of the frequency input.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.AverageFrequencyViewModel.IOMapping.InputKey">
+            <summary>
+            Gets or sets the measurement key of the frequency input.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.AverageFrequencyViewModel.IOMapping.OutputKey">
+            <summary>
+            Gets or sets the measurement key of the frequency output.
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.ViewModels.AverageFrequencyViewModel.FrequencyMeasurement">
+            <summary>
+            Represents a frequency measurement which can be selected
+            as an input to the average frequency calculator.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.AverageFrequencyViewModel.FrequencyMeasurement.SignalReference">
+            <summary>
+            Gets or sets the signal reference of the frequency measurement.
+            </summary>
+        </member>
+        <member name="P:openPDC.UI.ViewModels.AverageFrequencyViewModel.FrequencyMeasurement.Key">
+            <summary>
+            Gets or sets the measurement key of the frequency measurement.
+            </summary>
+        </member>
         <member name="T:openPDC.UI.UserControls.HistorianViewUserControl">
             <summary>
             Interaction logic for HistorianViewUserControl.xaml
@@ -494,6 +557,24 @@
             <param name="e">Arguments for the event.</param>
         </member>
         <member name="M:openPDC.UI.UserControls.DeviceListUserControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:openPDC.UI.UserControls.AverageFrequencyUserControl">
+            <summary>
+            Interaction logic for AverageFrequencyUserControl.xaml
+            </summary>
+            <summary>
+            AverageFrequencyUserControl
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.AverageFrequencyUserControl.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:openPDC.UI.UserControls.AverageFrequencyUserControl"/> class.
+            </summary>
+        </member>
+        <member name="M:openPDC.UI.UserControls.AverageFrequencyUserControl.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
