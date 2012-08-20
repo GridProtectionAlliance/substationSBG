@@ -91,6 +91,21 @@ namespace ConfigurationSetupUtility
         #region [ Properties ]
 
         /// <summary>
+        /// Gets or sets the path to the MySQL client executable.
+        /// </summary>
+        public string MysqlExe
+        {
+            get
+            {
+                return m_mysqlExe;
+            }
+            set
+            {
+                m_mysqlExe = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the host name of the MySQL database.
         /// </summary>
         public string HostName
