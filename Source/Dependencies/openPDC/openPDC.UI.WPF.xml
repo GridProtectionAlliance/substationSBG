@@ -1520,6 +1520,11 @@
             Overrides Load() method from the base class to add aditional functionalities.
             </summary>
         </member>
+        <member name="M:openPDC.UI.ViewModels.RealTimeStreams.TerminateSubscription">
+            <summary>
+            Unsubscribes data from the service.
+            </summary>
+        </member>
         <member name="M:openPDC.UI.ViewModels.RealTimeStreams.UnsubscribeUnsynchronizedData">
             <summary>
             Unsubscribes data from the service.
