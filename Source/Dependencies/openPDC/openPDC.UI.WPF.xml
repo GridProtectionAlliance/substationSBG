@@ -758,6 +758,11 @@
             </summary>
             <returns>The string based named identifier of the <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/>.</returns>
         </member>
+        <member name="E:openPDC.UI.ViewModels.RealTimeStatistics.NewMeasurements">
+            <summary>
+            When new measurements are received from the unsynchronized subscriber.
+            </summary>
+        </member>
         <member name="P:openPDC.UI.ViewModels.RealTimeStatistics.RestartConnectionCycle">
             <summary>
             Gets or sets a boolean flag indicating if connection to backend windows service needs to be reestablished upon disconnection.
