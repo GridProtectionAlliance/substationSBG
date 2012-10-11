@@ -38,27 +38,27 @@
             Initialization to be done before the initial call to <see cref="M:TimeSeriesFramework.UI.PagedViewModelBase`2.Load"/>.
             </summary>
         </member>
-        <member name="M:openPG.UI.ViewModels.Subscribers.AddAllowedMeasurement(System.Object)">
+        <member name="M:openPG.UI.ViewModels.Subscribers.AddAllowedMeasurements(System.Collections.Generic.ICollection{System.Guid})">
             <summary>
-            Handles <see cref="P:openPG.UI.ViewModels.Subscribers.AddAllowedMeasurementCommand"/>.
+            Handles <see cref="!:AddAllowedMeasurementCommand"/>.
             </summary>
             <param name="parameter">Collection of measurements to be allowed.</param>
         </member>
-        <member name="M:openPG.UI.ViewModels.Subscribers.RemoveAllowedMeasurement(System.Object)">
+        <member name="M:openPG.UI.ViewModels.Subscribers.RemoveAllowedMeasurements(System.Collections.Generic.ICollection{System.Guid})">
             <summary>
-            Handles <see cref="P:openPG.UI.ViewModels.Subscribers.RemoveAllowedMeasurementCommand"/>.
+            Handles <see cref="!:RemoveAllowedMeasurementCommand"/>.
             </summary>
             <param name="parameter">Collection of measurements to be disallowed.</param>
         </member>
-        <member name="M:openPG.UI.ViewModels.Subscribers.AddDeniedMeasurement(System.Object)">
+        <member name="M:openPG.UI.ViewModels.Subscribers.AddDeniedMeasurements(System.Collections.Generic.ICollection{System.Guid})">
             <summary>
-            Handles <see cref="P:openPG.UI.ViewModels.Subscribers.AddDeniedMeasurementCommand"/>.
+            Handles <see cref="!:AddDeniedMeasurementCommand"/>.
             </summary>
             <param name="parameter">Collection of measurements to be denied.</param>
         </member>
-        <member name="M:openPG.UI.ViewModels.Subscribers.RemoveDeniedMeasurement(System.Object)">
+        <member name="M:openPG.UI.ViewModels.Subscribers.RemoveDeniedMeasurements(System.Collections.Generic.ICollection{System.Guid})">
             <summary>
-            Handles <see cref="P:openPG.UI.ViewModels.Subscribers.RemoveDeniedMeasurementCommand"/>
+            Handles <see cref="!:RemoveDeniedMeasurementCommand"/>
             </summary>
             <param name="parameter">Collection of measurements to be removed.</param>
         </member>
@@ -99,26 +99,6 @@
         <member name="P:openPG.UI.ViewModels.Subscribers.NodeLookupList">
             <summary>
             Gets <see cref="T:System.Collections.Generic.Dictionary`2"/> type collection of <see cref="T:TimeSeriesFramework.UI.DataModels.Node"/> defined in the database.
-            </summary>
-        </member>
-        <member name="P:openPG.UI.ViewModels.Subscribers.AddAllowedMeasurementCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> to add allowed measurements.
-            </summary>
-        </member>
-        <member name="P:openPG.UI.ViewModels.Subscribers.RemoveAllowedMeasurementCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> to remove allowed measurements.
-            </summary>
-        </member>
-        <member name="P:openPG.UI.ViewModels.Subscribers.AddDeniedMeasurementCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> to add denied measurements.
-            </summary>
-        </member>
-        <member name="P:openPG.UI.ViewModels.Subscribers.RemoveDeniedMeasurementCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> to remove denied measurements.
             </summary>
         </member>
         <member name="P:openPG.UI.ViewModels.Subscribers.AddAllowedMeasurementGroupCommand">
@@ -401,19 +381,9 @@
             Gets or sets list of <see cref="T:openPDC.UI.DataModels.Device"/> with protocol type set to Measurement.
             </summary>
         </member>
-        <member name="P:openPG.UI.ViewModels.SubscribeMeasurements.SubscribedMeasurements">
+        <member name="P:openPG.UI.ViewModels.SubscribeMeasurements.CurrentSubscribedMeasurementsPage">
             <summary>
             Gets or sets measurements with Subscribed flag set to true.
-            </summary>
-        </member>
-        <member name="P:openPG.UI.ViewModels.SubscribeMeasurements.SubscribeMeasurementCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> object to subscribe measurements.
-            </summary>
-        </member>
-        <member name="P:openPG.UI.ViewModels.SubscribeMeasurements.UnsubscribeMeasurementCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> object to unsubscribe measurements.
             </summary>
         </member>
         <member name="P:openPG.UI.ViewModels.SubscribeMeasurements.CurrentDevice">
@@ -523,27 +493,6 @@
             Creates an instance of <see cref="T:openPG.UI.UserControls.SubscriberMeasurementUserControl"/>.
             </summary>
         </member>
-        <member name="M:openPG.UI.UserControls.SubscriberMeasurementUserControl.m_dataContext_MeasurementsAdded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles MeasurementsAdded event raised by MeasurementGroups view model class.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Event arguments.</param>
-        </member>
-        <member name="M:openPG.UI.UserControls.SubscriberMeasurementUserControl.SubscriberMeasurementUserControl_Loaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Hanldes Loaded event of <see cref="T:openPG.UI.UserControls.SubscriberMeasurementUserControl"/>.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Event arguments</param>
-        </member>
-        <member name="M:openPG.UI.UserControls.SubscriberMeasurementUserControl.UpdatePossibleMeasurements(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Method to retireve user's selection in the SelectMeasurementUserControl.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Event arguments</param>
-        </member>
         <member name="M:openPG.UI.UserControls.SubscriberMeasurementUserControl.InitializeComponent">
             <summary>
             InitializeComponent
@@ -607,27 +556,6 @@
             Creates an instance of <see cref="T:openPG.UI.UserControls.MeasurementGroupUserControl"/>.
             </summary>
         </member>
-        <member name="M:openPG.UI.UserControls.MeasurementGroupUserControl.m_dataContext_MeasurementsAdded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles MeasurementsAdded event raised by MeasurementGroups view model class.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Event arguments.</param>
-        </member>
-        <member name="M:openPG.UI.UserControls.MeasurementGroupUserControl.MeasurementGroupUserControl_Loaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Hanldes Loaded event of <see cref="T:openPG.UI.UserControls.MeasurementGroupUserControl"/>.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Event arguments</param>
-        </member>
-        <member name="M:openPG.UI.UserControls.MeasurementGroupUserControl.UpdatePossibleMeasurements(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Method to retireve user's selection in the SelectMeasurementUserControl.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Event arguments</param>
-        </member>
         <member name="M:openPG.UI.UserControls.MeasurementGroupUserControl.InitializeComponent">
             <summary>
             InitializeComponent
@@ -662,44 +590,22 @@
             Creates a new instance of <see cref="T:openPG.UI.DataModels.MeasurementGroup"/> and assigns it to CurrentItem.
             </summary>
         </member>
-        <member name="M:openPG.UI.ViewModels.MeasurementGroups.AddMeasurement(System.Object)">
+        <member name="M:openPG.UI.ViewModels.MeasurementGroups.AddMeasurement(System.Collections.Generic.ICollection{System.Guid})">
             <summary>
-            Handles <see cref="P:openPG.UI.ViewModels.MeasurementGroups.AddMeasurementCommand"/>.
+            Adds the measurements identified by the given collection to the measurement group.
             </summary>
-            <param name="parameter">Collection of measurements to be added.</param>
+            <param name="measurementIDs">Collection of signal identifiers for the measurements to be added.</param>
         </member>
-        <member name="M:openPG.UI.ViewModels.MeasurementGroups.RemoveMeasurement(System.Object)">
+        <member name="M:openPG.UI.ViewModels.MeasurementGroups.RemoveMeasurement(System.Collections.Generic.ICollection{System.Guid})">
             <summary>
-            Handles <see cref="P:openPG.UI.ViewModels.MeasurementGroups.RemoveMeasurementCommand"/>.
+            Removes the measurements identified by the given collection from the measurement group.
             </summary>
-            <param name="parameter">Collection of measurements to be removed.</param>
-        </member>
-        <member name="E:openPG.UI.ViewModels.MeasurementGroups.MeasurementsAdded">
-            <summary>
-            Event to notify subscribers that measurements have been added to the group.
-            </summary>
+            <param name="measurementIDs">Collection of signal identifiers for the measurements to be removed.</param>
         </member>
         <member name="P:openPG.UI.ViewModels.MeasurementGroups.IsNewRecord">
             <summary>
             Gets flag that determines if <see cref="P:TimeSeriesFramework.UI.PagedViewModelBase`2.CurrentItem"/> is a new record.
             </summary>
-        </member>
-        <member name="P:openPG.UI.ViewModels.MeasurementGroups.AddMeasurementCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> for add measurements operation.
-            </summary>
-        </member>
-        <member name="P:openPG.UI.ViewModels.MeasurementGroups.RemoveMeasurementCommand">
-            <summary>
-            Gets <see cref="T:System.Windows.Input.ICommand"/> to remove measurements operation.
-            </summary>
-        </member>
-        <member name="T:openPG.UI.ViewModels.MeasurementGroups.OnMeasurementsAdded">
-            <summary>
-            Method signature for a function which handles MeasurementsAdded event.
-            </summary>
-            <param name="sender">Source of an event.</param>
-            <param name="e">Event arguments.</param>
         </member>
         <member name="T:openPG.UI.UserControls.SubscriberRequestUserControl">
             <summary>
