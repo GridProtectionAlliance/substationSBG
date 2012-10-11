@@ -653,13 +653,6 @@
             Creates an instance of <see cref="T:TimeSeriesFramework.UI.UserControls.AdapterUserControl"/> class.
             </summary>
         </member>
-        <member name="M:TimeSeriesFramework.UI.UserControls.AdapterUserControl.AdapterUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles unload event of the <see cref="T:TimeSeriesFramework.UI.UserControls.AdapterUserControl"/>.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Argument of the event.</param>
-        </member>
         <member name="M:TimeSeriesFramework.UI.UserControls.AdapterUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
             <summary>
             Handles PreviewKeyDown event on the datagrid.
@@ -734,13 +727,6 @@
             <summary>
             Creates a new instance of <see cref="T:TimeSeriesFramework.UI.UserControls.CompanyUserControl"/>.
             </summary>
-        </member>
-        <member name="M:TimeSeriesFramework.UI.UserControls.CompanyUserControl.CompanyUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles unload event of the <see cref="T:TimeSeriesFramework.UI.UserControls.CompanyUserControl"/>.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Arguments for the event.</param>
         </member>
         <member name="M:TimeSeriesFramework.UI.UserControls.CompanyUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
             <summary>
@@ -846,10 +832,23 @@
             <see cref="T:System.Windows.DependencyProperty"/> to bind to <see cref="P:TimeSeriesFramework.UI.UserControls.DataPagerUserControl.LastCommand"/>.
             </summary>
         </member>
+        <member name="F:TimeSeriesFramework.UI.UserControls.DataPagerUserControl.ShowPageSizeProperty">
+            <summary>
+            <see cref="T:System.Windows.DependencyProperty"/> to bind to <see cref="P:TimeSeriesFramework.UI.UserControls.DataPagerUserControl.ShowPageSize"/>.
+            </summary>
+        </member>
         <member name="M:TimeSeriesFramework.UI.UserControls.DataPagerUserControl.#ctor">
             <summary>
             Creates a new instance of <see cref="T:TimeSeriesFramework.UI.UserControls.DataPagerUserControl"/>.
             </summary>
+        </member>
+        <member name="M:TimeSeriesFramework.UI.UserControls.DataPagerUserControl.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Invoked whenever the effective value of any dependency property on this <see cref="T:System.Windows.FrameworkElement"/>
+            has been updated. The specific dependency property that changed is reported in the arguments parameter.
+            Overrides <see cref="M:System.Windows.DependencyObject.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)"/>.
+            </summary>
+            <param name="e">The event data that describes the property that changed, as well as old and new values.</param>
         </member>
         <member name="M:TimeSeriesFramework.UI.UserControls.DataPagerUserControl.InitializeComponent">
             <summary>
@@ -884,6 +883,12 @@
         <member name="P:TimeSeriesFramework.UI.UserControls.DataPagerUserControl.LastCommand">
             <summary>
             Gets or sets <see cref="T:System.Windows.Input.ICommand"/> for moving to the last page.
+            </summary>
+        </member>
+        <member name="P:TimeSeriesFramework.UI.UserControls.DataPagerUserControl.ShowPageSize">
+            <summary>
+            Gets or sets the boolean flag which determines whether
+            the page size should be shown on the control.
             </summary>
         </member>
         <member name="T:TimeSeriesFramework.UI.UserControls.DetailViewFooterUserControl">
@@ -976,13 +981,6 @@
             Creates an instance of <see cref="T:TimeSeriesFramework.UI.UserControls.HistorianUserControl"/> class.
             </summary>
         </member>
-        <member name="M:TimeSeriesFramework.UI.UserControls.HistorianUserControl.HistorianUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles unload event of the <see cref="T:TimeSeriesFramework.UI.UserControls.HistorianUserControl"/>.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Arguments for the event.</param>
-        </member>
         <member name="M:TimeSeriesFramework.UI.UserControls.HistorianUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
             <summary>
             Handles PreviewKeyDown event on the datagrid.
@@ -1066,6 +1064,16 @@
             label to reflect the total number of selected measurements.
             </summary>
         </member>
+        <member name="M:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.ClearSelections">
+            <summary>
+            Causes all selections to be cleared from the data grid.
+            </summary>
+        </member>
+        <member name="M:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.ReloadDataGrid">
+            <summary>
+            Causes the data grid to be reloaded with a new set of data.
+            </summary>
+        </member>
         <member name="M:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
             <summary>
             Invoked whenever the effective value of any dependency property on this <see cref="T:System.Windows.FrameworkElement"/>
@@ -1094,9 +1102,29 @@
             <see cref="T:System.Windows.DependencyProperty"/> for the <see cref="P:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.Searchable"/> property.
             </summary>
         </member>
+        <member name="F:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.ShowPageSizeProperty">
+            <summary>
+            <see cref="T:System.Windows.DependencyProperty"/> for the <see cref="P:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.ShowPageSize"/> property.
+            </summary>
+        </member>
         <member name="M:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="E:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.CurrentPageChanged">
+            <summary>
+            Event triggered whenever the current page changes.
+            </summary>
+        </member>
+        <member name="E:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.CurrentItemChanged">
+            <summary>
+            Event triggered whenever the currently highlighted item changes.
+            </summary>
+        </member>
+        <member name="E:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.SelectedMeasurementsChanged">
+            <summary>
+            Event triggered whenever the set of selected measurements changes.
             </summary>
         </member>
         <member name="P:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.ItemsPerPage">
@@ -1122,9 +1150,25 @@
             this control can be filtered by a search expression.
             </summary>
         </member>
+        <member name="P:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.ShowPageSize">
+            <summary>
+            Gets or sets the boolean flag which determines whether
+            the page size should be shown on the control.
+            </summary>
+        </member>
         <member name="P:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.DataGridColumns">
             <summary>
             Gets the collection of data grid columns to be displayed.
+            </summary>
+        </member>
+        <member name="P:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.CurrentPage">
+            <summary>
+            Gets the current page of measurements in the measurement pager.
+            </summary>
+        </member>
+        <member name="P:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.CurrentItem">
+            <summary>
+            Gets the currently highlighted item on the data grid.
             </summary>
         </member>
         <member name="P:TimeSeriesFramework.UI.UserControls.MeasurementPagerUserControl.SelectedMeasurements">
@@ -1150,13 +1194,6 @@
             Creates an instance of <see cref="T:TimeSeriesFramework.UI.UserControls.MeasurementUserControl"/> class.
             </summary>
             <param name="deviceID">ID of the device to filter measurements.</param>
-        </member>
-        <member name="M:TimeSeriesFramework.UI.UserControls.MeasurementUserControl.MeasurementUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles unloaded event.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Arguments of the event.</param>
         </member>
         <member name="M:TimeSeriesFramework.UI.UserControls.MeasurementUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
             <summary>
@@ -1255,13 +1292,6 @@
             Creates an instance of <see cref="T:TimeSeriesFramework.UI.UserControls.NodeUserControl"/> class.
             </summary>
         </member>
-        <member name="M:TimeSeriesFramework.UI.UserControls.NodeUserControl.NodeUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles unload event of the <see cref="T:TimeSeriesFramework.UI.UserControls.NodeUserControl"/>.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Arguments for the event.</param>
-        </member>
         <member name="M:TimeSeriesFramework.UI.UserControls.NodeUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
             <summary>
             Handles PreviewKeyDown event on the datagrid.
@@ -1307,13 +1337,6 @@
             Creates an instance of <see cref="T:TimeSeriesFramework.UI.UserControls.ProtocolGroupUserControl"/> class.
             </summary> 
         </member>
-        <member name="M:TimeSeriesFramework.UI.UserControls.ProtocolGroupUserControl.ProtocolGroupUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles unloaded event.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Arguments of the event.</param>
-        </member>
         <member name="M:TimeSeriesFramework.UI.UserControls.ProtocolGroupUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
             <summary>
             Handles key down event on the datagrid object.
@@ -1357,13 +1380,6 @@
             Creates an instance of <see cref="T:TimeSeriesFramework.UI.UserControls.VendorDeviceUserControl"/> class.
             </summary>
         </member>
-        <member name="M:TimeSeriesFramework.UI.UserControls.VendorDeviceUserControl.VendorDeviceUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Hanldes unloaded event of the <see cref="T:TimeSeriesFramework.UI.UserControls.VendorDeviceUserControl"/>.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Arguments of the event.</param>
-        </member>
         <member name="M:TimeSeriesFramework.UI.UserControls.VendorDeviceUserControl.InitializeComponent">
             <summary>
             InitializeComponent
@@ -1381,13 +1397,6 @@
             <summary>
             Creates a new instance of <see cref="T:TimeSeriesFramework.UI.UserControls.VendorUserControl"/>.
             </summary>
-        </member>
-        <member name="M:TimeSeriesFramework.UI.UserControls.VendorUserControl.VendorUserControl_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            Handles unload event of the <see cref="T:TimeSeriesFramework.UI.UserControls.VendorUserControl"/>.
-            </summary>
-            <param name="sender">Source of the event.</param>
-            <param name="e">Arguments for the event.</param>
         </member>
         <member name="M:TimeSeriesFramework.UI.UserControls.VendorUserControl.DataGrid_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
             <summary>
@@ -1743,6 +1752,18 @@
             <param name="searchDirectory">The directory in which to search for assemblies.</param>
             <param name="adapterType">The type to be searched for in the assemblies.</param>
             <returns>The collection of types found as well as their descriptions.</returns>
+        </member>
+        <member name="M:TimeSeriesFramework.UI.ViewModels.Adapters.GetEditorBrowsableState(System.Type)">
+            <summary>
+            Gets the editor browsable state of the given type. This method will
+            search for a <see cref="T:System.ComponentModel.EditorBrowsableAttribute"/> using reflection.
+            If none is found, it will default to <see cref="F:System.ComponentModel.EditorBrowsableState.Always"/>.
+            </summary>
+            <param name="type">The type for which an editor browsable state is found.</param>
+            <returns>
+            Either the editor browsable state as defined by an <see cref="T:System.ComponentModel.EditorBrowsableAttribute"/>
+            or else <see cref="F:System.ComponentModel.EditorBrowsableState.Always"/>.
+            </returns>
         </member>
         <member name="M:TimeSeriesFramework.UI.ViewModels.Adapters.GetDescription(System.Type)">
             <summary>
