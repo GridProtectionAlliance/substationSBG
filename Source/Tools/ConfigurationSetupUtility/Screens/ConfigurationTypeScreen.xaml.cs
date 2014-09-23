@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  ConfigurationTypeScreen.xaml.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -60,14 +60,14 @@ namespace ConfigurationSetupUtility.Screens
 
             try
             {
-                // Determine if the openPG is installed in this folder (could be stand-alone debug application or service), we check exe
-                // instead of config file since config file can remain between installations. Since only the openPG can be setup with a
-                // XML or web service configuration, we disable these radio buttons for openPG Manager only installations.
-                string exeFileName = Directory.GetCurrentDirectory() + "\\" + App.ApplicationExe;
+                // Determine if the substationSBG is installed in this folder (could be stand-alone debug application or service), we check exe
+                // instead of config file since config file can remain between installations. Since only the substationSBG can be setup with a
+                // XML or web service configuration, we disable these radio buttons for substationSBG Manager only installations.
+                string exeFileName = Directory.GetCurrentDirectory() + "\\substationSBG.exe";
 
                 if (!File.Exists(exeFileName))
                 {
-                    // If the openPG is not be installed user may have chosen to only install the openPG Manager on this system,
+                    // If the substationSBG is not be installed user may have chosen to only install the substationSBG Manager on this system,
                     // so we disable the non-database options...
                     m_xmlRadioButton.IsEnabled = false;
                     m_webServiceRadioButton.IsEnabled = false;
@@ -75,7 +75,7 @@ namespace ConfigurationSetupUtility.Screens
             }
             catch
             {
-                // Not failing if we cannot determine if openPG is available...
+                // Not failing if we cannot determine if substationSBG is available...
             }
         }
 

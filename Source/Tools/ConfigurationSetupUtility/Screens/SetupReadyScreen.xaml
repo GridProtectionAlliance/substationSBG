@@ -9,7 +9,7 @@
         <Label Content="Setup is ready" Margin="10" HorizontalContentAlignment="Center" DockPanel.Dock="Top" FontSize="16" FontWeight="Bold" />
         <TextBlock Name="textBlock1" TextAlignment="Center" DockPanel.Dock="Bottom" TextWrapping="Wrap" Margin="20,0">
             The configuration setup utility is now ready to modify your configuration.<LineBreak/><LineBreak/>
-            Note that if either the openPG Windows service or the openPG Manager are running they will be stopped before configuration changes are made.<LineBreak/><LineBreak/>
+            Note that if either the substationSBG Windows service or the substationSBG Manager are running they will be stopped before configuration changes are made.<LineBreak/><LineBreak/>
             Select &quot;Next&quot; to continue.
         </TextBlock>
     </DockPanel>

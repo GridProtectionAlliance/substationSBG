@@ -1,37 +1,16 @@
-﻿//******************************************************************************************************
-//  SqliteDatabaseSetupScreen.xaml.cs - Gbtc
-//
-//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
-//
-//  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
-//  the NOTICE file distributed with this work for additional information regarding copyright ownership.
-//  The GPA licenses this file to you under the Eclipse Public License -v 1.0 (the "License"); you may
-//  not use this file except in compliance with the License. You may obtain a copy of the License at:
-//
-//      http://www.opensource.org/licenses/eclipse-1.0.php
-//
-//  Unless agreed to in writing, the subject software distributed under the License is distributed on an
-//  "AS-IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. Refer to the
-//  License for the specific language governing permissions and limitations.
-//
-//  Code Modification History:
-//  ----------------------------------------------------------------------------------------------------
-//  07/18/2011 - Stephen C. Wills
-//       Generated original version of source code.
-//
-//******************************************************************************************************
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml.Linq;
+using GSF;
+using GSF.Data;
+using GSF.IO;
 using Microsoft.Win32;
-using TVA;
-using TVA.Data;
-using TVA.IO;
 
 namespace ConfigurationSetupUtility.Screens
 {
@@ -41,6 +20,9 @@ namespace ConfigurationSetupUtility.Screens
     public partial class SqliteDatabaseSetupScreen : UserControl, IScreen
     {
         #region [ Members ]
+
+        // Constants
+        private const string DataProviderString = "AssemblyName={System.Data.SQLite, Version=1.0.93.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139}; ConnectionType=System.Data.SQLite.SQLiteConnection; AdapterType=System.Data.SQLite.SQLiteDataAdapter";
 
         // Fields
         private Dictionary<string, object> m_state;
@@ -152,10 +134,9 @@ namespace ConfigurationSetupUtility.Screens
                         {
                             string destination = m_state["sqliteDatabaseFilePath"].ToString();
                             string connectionString = "Data Source=" + destination + "; Version=3";
-                            string dataProviderString = "AssemblyName={System.Data.SQLite, Version=1.0.79.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139}; ConnectionType=System.Data.SQLite.SQLiteConnection; AdapterType=System.Data.SQLite.SQLiteDataAdapter";
 
                             Dictionary<string, string> settings = connectionString.ParseKeyValuePairs();
-                            Dictionary<string, string> dataProviderSettings = dataProviderString.ParseKeyValuePairs();
+                            Dictionary<string, string> dataProviderSettings = DataProviderString.ParseKeyValuePairs();
                             string assemblyName = dataProviderSettings["AssemblyName"];
                             string connectionTypeName = dataProviderSettings["ConnectionType"];
                             string connectionSetting;
@@ -224,7 +205,11 @@ namespace ConfigurationSetupUtility.Screens
         /// Allows the screen to update the navigation buttons after a change is made
         /// that would affect the user's ability to navigate to other screens.
         /// </summary>
-        public Action UpdateNavigation { get; set; }
+        public Action UpdateNavigation
+        {
+            get;
+            set;
+        }
 
         #endregion
 
@@ -238,27 +223,62 @@ namespace ConfigurationSetupUtility.Screens
             string newDatabaseMessage = "Please select the location in which to save the new database file.";
             string oldDatabaseMessage = "Please select the location of your existing database file.";
 
+            XDocument serviceConfig;
+            string connectionString;
+            string dataProviderString;
+
+            Dictionary<string, string> settings;
+            string setting;
+
             m_sqliteDatabaseInstructionTextBlock.Text = (!existing || migrate) ? newDatabaseMessage : oldDatabaseMessage;
 
             try
             {
                 // Set a default path for SQLite database that will allow non-restrictive read/write access
-                string sqliteDatabaseFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "openPG\\");
+                string sqliteDatabaseFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "substationSBG\\");
 
                 // Make sure path exists
 
                 if (!Directory.Exists(sqliteDatabaseFilePath))
                     Directory.CreateDirectory(sqliteDatabaseFilePath);
 
-                m_sqliteDatabaseFilePathTextBox.Text = Path.Combine(sqliteDatabaseFilePath, migrate ? App.SqliteConfigv2 : App.BaseSqliteConfig);
+                m_sqliteDatabaseFilePathTextBox.Text = Path.Combine(sqliteDatabaseFilePath, migrate ? "substationSBGv2.db" : "substationSBG.db");
             }
             catch
             {
-                m_sqliteDatabaseFilePathTextBox.Text = migrate ? App.SqliteConfigv2 : App.BaseSqliteConfig;
+                m_sqliteDatabaseFilePathTextBox.Text = migrate ? "substationSBGv2.db" : "substationSBG.db";
             }
 
             if (!m_state.ContainsKey("sqliteDatabaseFilePath"))
                 m_state.Add("sqliteDatabaseFilePath", m_sqliteDatabaseFilePathTextBox.Text);
+
+            // When using an existing database as-is, read existing connection settings out of the configuration file
+            if (existing && !migrate)
+            {
+                serviceConfig = XDocument.Load(FilePath.GetAbsolutePath("substationSBG.exe.config"));
+
+                connectionString = serviceConfig
+                    .Descendants("systemSettings")
+                    .SelectMany(systemSettings => systemSettings.Elements("add"))
+                    .Where(element => "ConnectionString".Equals((string)element.Attribute("name"), StringComparison.OrdinalIgnoreCase))
+                    .Select(element => (string)element.Attribute("value"))
+                    .FirstOrDefault();
+
+                dataProviderString = serviceConfig
+                    .Descendants("systemSettings")
+                    .SelectMany(systemSettings => systemSettings.Elements("add"))
+                    .Where(element => "DataProviderString".Equals((string)element.Attribute("name"), StringComparison.OrdinalIgnoreCase))
+                    .Select(element => (string)element.Attribute("value"))
+                    .FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(connectionString) && DataProviderString.Equals(dataProviderString, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    settings = connectionString.ParseKeyValuePairs();
+
+                    if (settings.TryGetValue("Data Source", out setting) && File.Exists(setting))
+                        m_sqliteDatabaseFilePathTextBox.Text = setting;
+                }
+            }
         }
 
         // Occurs when the user changes the path name of the SQLite database file.

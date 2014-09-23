@@ -18,5 +18,5 @@
 ::*******************************************************************************************************
 
 @ECHO OFF
-C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\msbuild.exe openPG.buildproj /p:ForceBuild=true /l:FileLogger,Microsoft.Build.Engine;logfile=openPG.output
+C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\msbuild.exe substationSBG.buildproj /p:ForceBuild=true /l:FileLogger,Microsoft.Build.Engine;logfile=substationSBG.output
 PAUSE

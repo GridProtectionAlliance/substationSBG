@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  WarningMessageScreen.xaml.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -25,8 +25,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows.Controls;
+using System.Diagnostics;
 
 namespace ConfigurationSetupUtility.Screens
 {
@@ -53,11 +53,7 @@ namespace ConfigurationSetupUtility.Screens
         /// <summary>
         /// Gets the screen to be displayed when the user clicks the "Next" button.
         /// </summary>
-        public IScreen NextScreen
-        {
-            get;
-            set;
-        }
+        public IScreen NextScreen { get; set; }
 
         /// <summary>
         /// Gets a boolean indicating whether the user can advance to
@@ -109,21 +105,13 @@ namespace ConfigurationSetupUtility.Screens
         /// <summary>
         /// Collection shared among screens that represents the state of the setup.
         /// </summary>
-        public Dictionary<string, object> State
-        {
-            get;
-            set;
-        }
+        public Dictionary<string, object> State { get; set; }
 
         /// <summary>
         /// Allows the screen to update the navigation buttons after a change is made
         /// that would affect the user's ability to navigate to other screens.
         /// </summary>
-        public Action UpdateNavigation
-        {
-            get;
-            set;
-        }
+        public Action UpdateNavigation { get; set; }
 
         #endregion
 
@@ -131,7 +119,7 @@ namespace ConfigurationSetupUtility.Screens
 
         private void hyperlinkHelp_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Process.Start("http://openPG.codeplex.com/documentation/");
+            Process.Start("http://substationSBG.codeplex.com/documentation/");
         }
 
         #endregion

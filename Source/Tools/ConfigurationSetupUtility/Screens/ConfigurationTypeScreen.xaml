@@ -16,7 +16,7 @@
             </StackPanel>
             <TextBlock TextAlignment="Center" TextWrapping="Wrap" Margin="20,0,20,10">
                 <LineBreak/>
-                XML and Web service configuration types are only available for the openPG. The openPG Manager requires a database for operation.
+                XML and Web service configuration types are only available for the substationSBG. The substationSBG Manager requires a database for operation.
             </TextBlock>
         </StackPanel>
     </DockPanel>

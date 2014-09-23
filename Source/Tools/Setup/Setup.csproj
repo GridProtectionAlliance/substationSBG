@@ -91,6 +91,24 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Mono|AnyCPU'">
+    <OutputPath>bin\Mono\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Mono|x86'">
+    <OutputPath>bin\x86\Mono\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Deployment" />
@@ -116,8 +134,8 @@
       <Link>Database Scripts\MySQL\InitialDataSet.sql</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\Data\MySQL\openPG.sql">
-      <Link>Database Scripts\MySQL\openPG.sql</Link>
+    <Content Include="..\..\Data\MySQL\substationSBG.sql">
+      <Link>Database Scripts\MySQL\substationSBG.sql</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Data\MySQL\SampleDataSet.sql">
@@ -132,8 +150,8 @@
       <Link>Database Scripts\Oracle\InitialDataSet.sql</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\Data\Oracle\openPG.sql">
-      <Link>Database Scripts\Oracle\openPG.sql</Link>
+    <Content Include="..\..\Data\Oracle\substationSBG.sql">
+      <Link>Database Scripts\Oracle\substationSBG.sql</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Data\Oracle\SampleDataSet.sql">
@@ -148,8 +166,8 @@
       <Link>Database Scripts\SQL Server\InitialDataSet.sql</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\Data\SQL Server\openPG.sql">
-      <Link>Database Scripts\SQL Server\openPG.sql</Link>
+    <Content Include="..\..\Data\SQL Server\substationSBG.sql">
+      <Link>Database Scripts\SQL Server\substationSBG.sql</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Data\SQL Server\SampleDataSet.sql">
@@ -160,8 +178,9 @@
       <Link>Database Scripts\SQLite\InitialDataSet.sql</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\Data\SQLite\openPG.sql">
-      <Link>Database Scripts\SQLite\openPG.sql</Link>
+    <Content Include="..\..\Data\SQLite\substationSBG.sql">
+      <Link>Database Scripts\SQLite\substationSBG.sql</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\Data\SQLite\SampleDataSet.sql">
       <Link>Database Scripts\SQLite\SampleDataSet.sql</Link>
@@ -182,7 +201,6 @@
     <Content Include="System\GPA.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="WelcomeScreen.png" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -196,6 +214,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Content Include="Installers\PMUConnectionTesterSetup64.msi">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -211,7 +232,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Installers\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

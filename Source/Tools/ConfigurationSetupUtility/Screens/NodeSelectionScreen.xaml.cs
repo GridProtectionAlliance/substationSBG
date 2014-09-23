@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  NodeSelectionScreen.xaml.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -25,14 +25,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
-using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Controls;
 using System.Xml;
-using TVA;
+using GSF;
 
 namespace ConfigurationSetupUtility.Screens
 {
@@ -48,10 +47,26 @@ namespace ConfigurationSetupUtility.Screens
 
         private class NodeInfo
         {
-            public string Name { get; set; }
-            public string Company { get; set; }
-            public string Description { get; set; }
-            public Guid Id { get; set; }
+            public string Name
+            {
+                get;
+                set;
+            }
+            public string Company
+            {
+                get;
+                set;
+            }
+            public string Description
+            {
+                get;
+                set;
+            }
+            public Guid Id
+            {
+                get;
+                set;
+            }
         }
 
         // Fields
@@ -154,7 +169,11 @@ namespace ConfigurationSetupUtility.Screens
         /// Allows the screen to update the navigation buttons after a change is made
         /// that would affect the user's ability to navigate to other screens.
         /// </summary>
-        public Action UpdateNavigation { get; set; }
+        public Action UpdateNavigation
+        {
+            get;
+            set;
+        }
 
         #endregion
 
@@ -177,8 +196,13 @@ namespace ConfigurationSetupUtility.Screens
             IDbConnection connection;
 
             Guid nodeId;
-            NodeInfo defaultSelection;
             int defaultIndex;
+
+            bool applyChangesToService;
+            bool applyChangesToLocalManager;
+
+            applyChangesToService = Convert.ToBoolean(m_state["applyChangesToService"]);
+            applyChangesToLocalManager = Convert.ToBoolean(m_state["applyChangesToLocalManager"]);
 
             // Avoid accessing the database again
             // if we already have database nodes.
@@ -189,12 +213,11 @@ namespace ConfigurationSetupUtility.Screens
             }
 
             m_nodeList = new List<NodeInfo>(m_dbNodes);
-            nodeId = GetNodeIdFromConfigFile();
-            defaultSelection = m_nodeList.SingleOrDefault(info => info.Id == nodeId);
-            defaultIndex = (defaultSelection == null) ? 0 : m_nodeList.IndexOf(defaultSelection);
 
             if (m_nodeList.Count > 0)
-                m_infoTextBlock.Text = "Please select the node you would like the openPDC to use.";
+            {
+                m_infoTextBlock.Text = "Please select the node you would like the substationSBG to use.";
+            }
             else
             {
                 // Inform the user that the node list could not be found.
@@ -203,23 +226,31 @@ namespace ConfigurationSetupUtility.Screens
                     + " This will not affect your ability to complete the setup.";
             }
 
+            if (applyChangesToService)
+                nodeId = GetNodeIdFromConfigFile("substationSBG.exe.config");
+            else if (applyChangesToLocalManager)
+                nodeId = GetNodeIdFromConfigFile("substationSBGManager.exe.config");
+            else
+                nodeId = Guid.Empty;
+
+            defaultIndex = m_nodeList.TakeWhile(info => info.Id != nodeId).Count();
+
+            if (defaultIndex == m_nodeList.Count)
+                defaultIndex = 0;
+
             // If the configuration file node is not already in the list,
             // add it as a possible selection in case the user does not wish to change it.
-            if (defaultSelection == null)
-            {
-                m_nodeList.Add(new NodeInfo()
-                {
-                    Name = "ConfigFile",
-                    Company = GetCompanyNameFromConfigFile(),
-                    Description = "This node was found in the configuration file.",
-                    Id = nodeId
-                });
-            }
-            else if (m_nodeList.Count == 1)
+            if (applyChangesToService)
+                TryAddNodeInfo("substationSBG.exe.config");
+
+            if (applyChangesToLocalManager)
+                TryAddNodeInfo("substationSBGManager.exe.config");
+
+            if (m_nodeList.Count == 1)
             {
                 ScreenManager manager = m_state["screenManager"] as ScreenManager;
 
-                if (manager != null)
+                if ((object)manager != null)
                 {
                     manager.GoToNextScreen(false);
                     return;
@@ -228,6 +259,22 @@ namespace ConfigurationSetupUtility.Screens
 
             m_dataGrid.ItemsSource = new ObservableCollection<NodeInfo>(m_nodeList);
             m_dataGrid.SelectedIndex = defaultIndex;
+        }
+
+        private void TryAddNodeInfo(string configFileName)
+        {
+            Guid nodeId = GetNodeIdFromConfigFile(configFileName);
+
+            if (m_nodeList.All(info => info.Id != nodeId))
+            {
+                m_nodeList.Add(new NodeInfo()
+                {
+                    Name = "ConfigFile",
+                    Company = GetCompanyNameFromConfigFile(),
+                    Description = string.Format("This node was found in {0}.", configFileName),
+                    Id = nodeId
+                });
+            }
         }
 
         // Updates the new node with the name entered by the user.
@@ -252,8 +299,6 @@ namespace ConfigurationSetupUtility.Screens
 
             m_newNode.Name = nodeName;
 
-            // Deselect first so that new
-            // selection will not be overlooked
             m_dataGrid.SelectedIndex = -1;
             m_dataGrid.ItemsSource = new ObservableCollection<NodeInfo>(m_nodeList);
             m_dataGrid.SelectedIndex = m_nodeList.IndexOf(m_newNode);
@@ -268,27 +313,17 @@ namespace ConfigurationSetupUtility.Screens
                 return GetConnectionFromConfigFile();
             else
             {
-                string databaseType = m_state["databaseType"].ToString();
+                string databaseType = m_state["newDatabaseType"].ToString();
 
-                if (databaseType == "access")
-                    return GetAccessDatabaseConnection();
-                else if (databaseType == "sql server")
+                if (databaseType == "SQLServer")
                     return GetSqlServerConnection();
-                else if (databaseType == "mysql")
+                else if (databaseType == "MySQL")
                     return GetMySqlConnection();
-                else if (databaseType == "oracle")
+                else if (databaseType == "Oracle")
                     return GetOracleConnection();
                 else
                     return GetSqliteDatabaseConnection();
             }
-        }
-
-        // Gets a database connection to the Access database configured earlier in the setup.
-        private IDbConnection GetAccessDatabaseConnection()
-        {
-            string databaseFileName = m_state["accessDatabaseFilePath"].ToString();
-            string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + databaseFileName;
-            return new OleDbConnection(connectionString);
         }
 
         // Gets a database connection to the SQL Server database configured earlier in the setup.
@@ -303,7 +338,7 @@ namespace ConfigurationSetupUtility.Screens
         {
             MySqlSetup sqlSetup = m_state["mySqlSetup"] as MySqlSetup;
             string connectionString = (sqlSetup == null) ? null : sqlSetup.ConnectionString;
-            string dataProviderString = m_state["mySqlDataProviderString"].ToString();
+            string dataProviderString = (sqlSetup == null) ? null : sqlSetup.DataProviderString;
             return GetConnection(connectionString, dataProviderString);
         }
 
@@ -316,12 +351,12 @@ namespace ConfigurationSetupUtility.Screens
             return GetConnection(connectionString, dataProviderString);
         }
 
-        // Gets a database connection to the Access database configured earlier in the setup.
+        // Gets a database connection to the SQLite database configured earlier in the setup.
         private IDbConnection GetSqliteDatabaseConnection()
         {
             string databaseFileName = m_state["sqliteDatabaseFilePath"].ToString();
             string connectionString = "Data Source=" + databaseFileName + "; Version=3";
-            string dataProviderString = "AssemblyName={System.Data.SQLite, Version=1.0.79.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139}; ConnectionType=System.Data.SQLite.SQLiteConnection; AdapterType=System.Data.SQLite.SQLiteDataAdapter";
+            string dataProviderString = "AssemblyName={System.Data.SQLite, Version=1.0.93.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139}; ConnectionType=System.Data.SQLite.SQLiteConnection; AdapterType=System.Data.SQLite.SQLiteDataAdapter";
             return GetConnection(connectionString, dataProviderString);
         }
 
@@ -329,7 +364,7 @@ namespace ConfigurationSetupUtility.Screens
         private IDbConnection GetConnectionFromConfigFile()
         {
             IDbConnection connection = null;
-            string configFileName = Directory.GetCurrentDirectory() + "\\" + App.ApplicationConfig;
+            string configFileName = Directory.GetCurrentDirectory() + "\\substationSBG.exe.config";
             XmlDocument doc = new XmlDocument();
             IEnumerable<XmlNode> systemSettings;
             XmlNode connectionNode, dataProviderNode;
@@ -405,9 +440,9 @@ namespace ConfigurationSetupUtility.Screens
                     connection.Open();
                     command = connection.CreateCommand();
                     command.CommandText = "SELECT ID, Name, CompanyName AS Company, Description FROM NodeDetail WHERE Enabled <> 0";
+
                     using (reader = command.ExecuteReader())
                     {
-
                         while (reader.Read())
                         {
                             Guid nodeId;
@@ -440,12 +475,12 @@ namespace ConfigurationSetupUtility.Screens
         }
 
         // Gets the node ID that is currently stored in the config file.
-        private Guid GetNodeIdFromConfigFile()
+        private Guid GetNodeIdFromConfigFile(string configFileName)
         {
             string nodeIDString;
             Guid nodeID;
 
-            nodeIDString = GetValueOfSystemSetting("NodeID").ToNonNullString();
+            nodeIDString = GetValueOfSystemSetting(configFileName, "NodeID").ToNonNullString();
 
             if (Guid.TryParse(nodeIDString, out nodeID))
                 return nodeID;
@@ -456,13 +491,13 @@ namespace ConfigurationSetupUtility.Screens
         // Gets the company acronym that is currently stored in the config file.
         private string GetCompanyNameFromConfigFile()
         {
-            return GetValueOfSystemSetting("CompanyName");
+            return GetValueOfSystemSetting("substationSBG.exe.config", "CompanyName");
         }
 
         // Gets the value of the config file system setting with the given name.
-        private string GetValueOfSystemSetting(string settingName)
+        private string GetValueOfSystemSetting(string configFileName, string settingName)
         {
-            string configFileName = Directory.GetCurrentDirectory() + '\\' + App.ApplicationConfig;
+            string configFilePath = Directory.GetCurrentDirectory() + "\\" + configFileName;
             XmlDocument doc = new XmlDocument();
 
             IEnumerable<XmlNode> systemSettings;
@@ -471,7 +506,7 @@ namespace ConfigurationSetupUtility.Screens
 
             try
             {
-                doc.Load(configFileName);
+                doc.Load(configFilePath);
                 systemSettings = doc.SelectNodes("configuration/categorizedSettings/systemSettings/add").Cast<XmlNode>();
                 idNode = systemSettings.SingleOrDefault(node => node.Attributes != null && node.Attributes["name"].Value == settingName);
 
@@ -498,7 +533,7 @@ namespace ConfigurationSetupUtility.Screens
                 UpdateDataGrid();
         }
 
-        // Occurs when the user selects a different node to be used by the openPDC.
+        // Occurs when the user selects a different node to be used by the substationSBG.
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             object selectedItem = m_dataGrid.SelectedItem;

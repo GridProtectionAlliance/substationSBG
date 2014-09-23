@@ -28,13 +28,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using TimeSeriesFramework.Adapters;
-using TVA;
-using TVA.ErrorManagement;
-using TVA.IO;
-using TVA.Reflection;
+using GSF.TimeSeries.Adapters;
+using GSF;
+using GSF.ErrorManagement;
+using GSF.IO;
+using GSF.Reflection;
 
 namespace ConfigurationSetupUtility.Screens
 {
@@ -49,7 +50,7 @@ namespace ConfigurationSetupUtility.Screens
         private class HistorianAdapter
         {
             #region [ Members ]
-            
+
             // Fields
             private Type m_type;
             private string m_description;
@@ -188,9 +189,8 @@ namespace ConfigurationSetupUtility.Screens
 
                 m_parametersScreen.RefreshConnectionStringParameters(assemblyName, typeName);
 
-                // As long as there are parameters for this adapter, go to the connection string
-                // parameters setup screen
-                if (m_parametersScreen.ConnectionStringParameters.Count > 0)
+                // Skip the connection parameters screen when selecting virtual historian
+                if (assemblyName != "TestingAdapters.dll" || typeName != "TestingAdapters.VirtualOutputAdapter")
                     return m_parametersScreen;
 
                 // Otherwise, setup is ready
@@ -271,7 +271,11 @@ namespace ConfigurationSetupUtility.Screens
         /// Allows the screen to update the navigation buttons after a change is made
         /// that would affect the user's ability to navigate to other screens.
         /// </summary>
-        public Action UpdateNavigation { get; set; }
+        public Action UpdateNavigation
+        {
+            get;
+            set;
+        }
 
         #endregion
 
@@ -307,13 +311,11 @@ namespace ConfigurationSetupUtility.Screens
         // OutputIsForArchive is true.
         private List<Type> GetHistorianTypes()
         {
-            Func<Type, bool> outputIsForArchive = type =>
+            return typeof(IOutputAdapter).LoadImplementations(true).Where(type =>
             {
                 IOutputAdapter adapter = Activator.CreateInstance(type) as IOutputAdapter;
                 return (adapter != null) && adapter.OutputIsForArchive;
-            };
-
-            return typeof(IOutputAdapter).LoadImplementations(true).Where(outputIsForArchive).ToList();
+            }).ToList();
         }
 
         // Occurs when the user changes the selection in the historian list box.

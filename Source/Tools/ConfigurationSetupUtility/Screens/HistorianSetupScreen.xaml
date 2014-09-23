@@ -8,7 +8,7 @@
     <DockPanel>
         <Label Content="Set up primary historian" DockPanel.Dock="Top" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="16" Margin="7" />
         <StackPanel DockPanel.Dock="Bottom">
-            <TextBlock Text="Please select an initial historian adapter type. Additional historians can be defined later from within the openPG Manager." Margin="40,0" TextAlignment="Center" TextWrapping="Wrap" />
+            <TextBlock Text="Please select an initial historian adapter type. Additional historians can be defined later from within the substationSBG Manager." Margin="40,0" TextAlignment="Center" TextWrapping="Wrap" />
             <ListBox Height="135" Name="HistorianAdapterListBox" SelectionChanged="HistorianAdapterListBox_SelectionChanged" Margin="2" />
             <Label Height="22" Content="Namespace.Type from Assembly.dll" Name="AssemblyInfoTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="10" Margin="0,-7,0,2" />
             <Grid Margin="10,0,10,0">

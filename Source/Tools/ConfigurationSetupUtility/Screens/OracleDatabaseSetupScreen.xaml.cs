@@ -16,7 +16,7 @@
 //
 //  Code Modification History:
 //  ----------------------------------------------------------------------------------------------------
-//  09/23/2011 - Stephen C. Wills
+//  09/27/2011 - Stephen C. Wills
 //       Generated original version of source code.
 //
 //******************************************************************************************************
@@ -24,10 +24,13 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using TVA.Data;
+using System.Xml.Linq;
+using GSF.Data;
+using GSF.IO;
 
 namespace ConfigurationSetupUtility.Screens
 {
@@ -36,7 +39,6 @@ namespace ConfigurationSetupUtility.Screens
     /// </summary>
     public partial class OracleDatabaseSetupScreen : UserControl, IScreen
     {
-
         #region [ Members ]
 
         // Fields
@@ -244,6 +246,10 @@ namespace ConfigurationSetupUtility.Screens
                 string newDatabaseMessage = "Please enter the needed information about the\r\nOracle database you would like to create.";
                 string oldDatabaseMessage = "Please enter the needed information about\r\nyour existing Oracle database.";
 
+                XDocument serviceConfig;
+                string connectionString;
+                string dataProviderString;
+
                 m_state["oracleSetup"] = m_oracleSetup;
                 m_oracleSetup.TnsName = m_tnsNameTextBox.Text;
                 m_oracleSetup.AdminUserName = m_adminUserNameTextBox.Text;
@@ -273,7 +279,35 @@ namespace ConfigurationSetupUtility.Screens
                     m_oracleSetup.SchemaPassword = m_schemaUserPasswordTextBox.Password;
                 }
 
-                m_schemaUserNameTextBox.Text = migrate ? "openPGv2" : "openPG";
+                m_schemaUserNameTextBox.Text = migrate ? "substationSBGv2" : "substationSBG";
+
+                // When using an existing database as-is, read existing connection settings out of the configuration file
+                if (existing && !migrate)
+                {
+                    serviceConfig = XDocument.Load(FilePath.GetAbsolutePath("substationSBG.exe.config"));
+
+                    connectionString = serviceConfig
+                        .Descendants("systemSettings")
+                        .SelectMany(systemSettings => systemSettings.Elements("add"))
+                        .Where(element => "ConnectionString".Equals((string)element.Attribute("name"), StringComparison.OrdinalIgnoreCase))
+                        .Select(element => (string)element.Attribute("value"))
+                        .FirstOrDefault();
+
+                    dataProviderString = serviceConfig
+                        .Descendants("systemSettings")
+                        .SelectMany(systemSettings => systemSettings.Elements("add"))
+                        .Where(element => "DataProviderString".Equals((string)element.Attribute("name"), StringComparison.OrdinalIgnoreCase))
+                        .Select(element => (string)element.Attribute("value"))
+                        .FirstOrDefault();
+
+                    if (!string.IsNullOrEmpty(connectionString) && m_oracleSetup.DataProviderString.Equals(dataProviderString, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        m_oracleSetup.ConnectionString = connectionString;
+                        m_tnsNameTextBox.Text = m_oracleSetup.TnsName;
+                        m_schemaUserNameTextBox.Text = m_oracleSetup.SchemaUserName;
+                        m_schemaUserPasswordTextBox.Password = m_oracleSetup.SchemaPassword;
+                    }
+                }
             }
         }
 

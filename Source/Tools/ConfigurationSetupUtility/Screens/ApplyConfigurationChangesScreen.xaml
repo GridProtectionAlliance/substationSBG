@@ -10,9 +10,9 @@
         <StackPanel DockPanel.Dock="Bottom">
             <TextBlock Height="23" Text="Apply configuration changes to:" Margin="10" TextWrapping="Wrap" TextAlignment="Center" />
             <StackPanel HorizontalAlignment="Center" Width="220">
-                <CheckBox Content="openPG Windows service" Height="16" IsChecked="True" HorizontalAlignment="Left" Checked="OpenPGServiceCheckBox_Checked" Unchecked="OpenPGServiceCheckBox_Unchecked" Name="m_openPGServiceCheckBox" />
-                <CheckBox Content="openPG Manager (local application)" Height="16" IsChecked="True" HorizontalAlignment="Left" Checked="OpenPGManagerLocalCheckBox_Checked" Unchecked="OpenPGManagerLocalCheckBox_Unchecked" Name="m_openPGManagerLocalCheckBox" />
-                <CheckBox Content="openPG Manager (web application)" Height="16" IsChecked="True" HorizontalAlignment="Left" Checked="OpenPGManagerWebCheckBox_Checked" Unchecked="OpenPGManagerWebCheckBox_Unchecked" Name="m_openPGManagerWebCheckBox" />
+                <CheckBox Content="substationSBG Windows service" Height="16" IsChecked="True" HorizontalAlignment="Left" Checked="substationSBGServiceCheckBox_Checked" Unchecked="substationSBGServiceCheckBox_Unchecked" Name="m_substationSBGServiceCheckBox" />
+                <CheckBox Content="substationSBG Manager (local application)" Height="16" IsChecked="True" HorizontalAlignment="Left" Checked="substationSBGManagerLocalCheckBox_Checked" Unchecked="substationSBGManagerLocalCheckBox_Unchecked" Name="m_substationSBGManagerLocalCheckBox" />
+                <CheckBox Content="substationSBG Manager (web application)" Height="16" IsChecked="True" HorizontalAlignment="Left" Checked="substationSBGManagerWebCheckBox_Checked" Unchecked="substationSBGManagerWebCheckBox_Unchecked" Name="m_substationSBGManagerWebCheckBox" />
                 <Line Stretch="Fill"  Stroke="DarkGray" X2="1" Margin="0,10" Name="m_horizontalRule" />
                 <CheckBox Content="Setup / change primary historian" Height="16" HorizontalAlignment="Left" Checked="SetupHistorianCheckBox_Checked" Unchecked="SetupHistorianCheckBox_Unchecked" Name="m_setupHistorianCheckBox" />
             </StackPanel>

@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  App.xaml.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -24,12 +24,14 @@
 //******************************************************************************************************
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Principal;
 using System.Windows;
-using TVA.ErrorManagement;
-using TVA.IO;
-using TVA.Security.Cryptography;
+using System.Xml;
+using GSF.Windows.ErrorManagement;
+using GSF.IO;
+using GSF.Security.Cryptography;
 
 namespace ConfigurationSetupUtility
 {
@@ -43,19 +45,7 @@ namespace ConfigurationSetupUtility
         // Constants
         public const CipherStrength CryptoStrength = CipherStrength.Aes256;
         public const string CipherLookupKey = "0679d9ae-aca5-4702-a3f5-604415096987";
-        public const string ApplicationExe = "openPG.exe";
-        public const string ApplicationConfig = "openPG.exe.config";
-        public const string Manager = "openPGManager";
-        public const string ManagerExe = "openPGManager.exe";
-        public const string ManagerConfig = "openPGManager.exe.config";
-        public const string BaseAccessConfig = "openPG.mdb";
-        public const string AccessConfigv2 = "openPGv2.mdb";
-        public const string AccessSampleData = "openPG-SampleDataSet.mdb";
-        public const string AccessInitialData = "openPG-InitialDataSet.mdb";
-        public const string BaseSqliteConfig = "openPG.db";
-        public const string SqliteConfigv2 = "openPGv2.db";
-        public const string SqliteSampleData = "openPG-SampleDataSet.db";
-        public const string SqliteInitialData = "openPG-InitialDataSet.db";
+
         private ErrorLogger m_errorLogger;
         private Func<string> m_defaultErrorText;
 
@@ -81,6 +71,43 @@ namespace ConfigurationSetupUtility
 
             // When run from the installer the current directory may not be the directory where this application is running
             Directory.SetCurrentDirectory(FilePath.GetAbsolutePath(""));
+
+            // Attempt to create an event log source for the substationSBG Manager for authentication logging. This needs to be done
+            // here since the CSU runs with administrative privileges and the substationSBG Manager normally does not; also there is
+            // a short system delay that exists before you can write to a new event log source after it is first created.
+            try
+            {
+                string applicationName = "substationSBG";
+
+                // Create the event log source based on defined application name for substationSBG if it does not already exist
+                if (!EventLog.SourceExists(applicationName))
+                    EventLog.CreateEventSource(applicationName, "Application");
+
+                applicationName = "substationSBG Manager";
+
+                // Create the event log source based on defined application name for substationSBG Manager if it does not already exist
+                if (!EventLog.SourceExists(applicationName))
+                    EventLog.CreateEventSource(applicationName, "Application");
+            }
+            catch (Exception ex)
+            {
+                m_errorLogger.Log(new InvalidOperationException(string.Format("Warning: failed to create or validate the event log source for the substationSBG Manager: {0}", ex.Message), ex), false);
+            }
+        }
+
+        #endregion
+
+        #region [ Properties ]
+
+        /// <summary>
+        /// Gets reference to global error logger.
+        /// </summary>
+        public ErrorLogger ErrorLogger
+        {
+            get
+            {
+                return m_errorLogger;
+            }
         }
 
         #endregion

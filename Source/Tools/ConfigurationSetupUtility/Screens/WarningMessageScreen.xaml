@@ -8,11 +8,11 @@
     <DockPanel>
         <Label Content="Define configuration" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" DockPanel.Dock="Top" Margin="10" />
         <TextBlock DockPanel.Dock="Bottom" TextAlignment="Center" TextWrapping="Wrap" Margin="20,0,20,10">
-            Make sure the openPG configuration is defined before you click next.<LineBreak/><LineBreak/>
+            Make sure the substationSBG configuration is defined before you click next.<LineBreak/><LineBreak/>
             See online <Hyperlink Click="hyperlinkHelp_Click">help</Hyperlink> for more detail...
             <LineBreak/><LineBreak/>
-            Note that configuration updates for a non-database configuration type are only applied to the openPG.
-            The openPG Manager configuration will not be affected by this operation.
+            Note that configuration updates for a non-database configuration type are only applied to the substationSBG.
+            The substationSBG Manager configuration will not be affected by this operation.
         </TextBlock>
     </DockPanel>
 </UserControl>

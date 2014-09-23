@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  ExistingConfigurationScreen.xaml.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -129,6 +129,9 @@ namespace ConfigurationSetupUtility.Screens
 
                 if (!m_state.ContainsKey("existing"))
                     m_state.Add("existing", false);
+
+                if (m_state.ContainsKey("updateConfiguration"))
+                    m_state.Remove("updateConfiguration");
             }
         }
 
@@ -136,7 +139,11 @@ namespace ConfigurationSetupUtility.Screens
         /// Allows the screen to update the navigation buttons after a change is made
         /// that would affect the user's ability to navigate to other screens.
         /// </summary>
-        public Action UpdateNavigation { get; set; }
+        public Action UpdateNavigation
+        {
+            get;
+            set;
+        }
 
         #endregion
 
@@ -145,14 +152,14 @@ namespace ConfigurationSetupUtility.Screens
         // Occurs when the user chooses to set up using a new configuration.
         private void NewConfigurationRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            if(m_state != null)
+            if (m_state != null)
                 m_state["existing"] = false;
         }
 
         // Occurs when the user chooses to set up using an existing configuration.
         private void ExistingConfigurationRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            if(m_state != null)
+            if (m_state != null)
                 m_state["existing"] = true;
         }
 

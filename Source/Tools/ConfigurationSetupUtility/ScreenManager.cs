@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  ScreenManager.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -117,6 +117,7 @@ namespace ConfigurationSetupUtility
             if (m_currentScreen.CanGoBack && m_history.Count > 0)
             {
                 m_currentScreen = m_history.Pop();
+                m_currentScreen.State = m_state;
                 UpdateScreenPanel();
                 UpdateNavigation();
             }
@@ -183,6 +184,6 @@ namespace ConfigurationSetupUtility
             m_mainWindow.Activate();
         }
 
-        #endregion        
+        #endregion
     }
 }

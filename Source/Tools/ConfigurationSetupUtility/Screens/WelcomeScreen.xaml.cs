@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  WelcomePage.xaml.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -154,7 +154,7 @@ namespace ConfigurationSetupUtility.Screens
                 m_state["64bit"] = args.Contains("-64bit", StringComparer.CurrentCultureIgnoreCase);
     
             if (installFlag)
-                m_welcomeMessageTextBlock.Text = "You now need to set up the openPG configuration.\r\n";
+                m_welcomeMessageTextBlock.Text = "You now need to set up the substationSBG configuration.\r\n";
             else
                 m_welcomeMessageTextBlock.Text = "";
 

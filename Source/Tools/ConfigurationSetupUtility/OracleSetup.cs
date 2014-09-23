@@ -16,7 +16,7 @@
 //
 //  Code Modification History:
 //  ----------------------------------------------------------------------------------------------------
-//  09/23/2011 - Stephen C. Wills
+//  09/27/2011 - Stephen C. Wills
 //       Generated original version of source code.
 //
 //******************************************************************************************************
@@ -29,7 +29,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using TVA;
+using GSF;
 
 namespace ConfigurationSetupUtility
 {
@@ -337,7 +337,7 @@ namespace ConfigurationSetupUtility
                             statement = statement.Remove(statement.Length - 1);
 
                             // Fix name of tablespace for index
-                            statement = statement.Replace("OPG_INDEX", indexTablespaceName);
+                            statement = statement.Replace("substationSBG_INDEX", indexTablespaceName);
 
                             // Remove comments and execute the statement.
                             command.CommandText = statement;
@@ -409,6 +409,6 @@ namespace ConfigurationSetupUtility
                                                        "DECLARE", "BEGIN" };
 
         #endregion
-        
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  MainWindow.xaml.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -24,16 +24,8 @@
 //******************************************************************************************************
 
 using System;
-using System.Diagnostics;
-using System.Security.Principal;
-using System.Threading;
 using System.Windows;
 using ConfigurationSetupUtility.Screens;
-using TVA.Collections;
-using TVA.ErrorManagement;
-using TVA.Identity;
-using TVA.IO;
-using TVA.Reflection;
 
 namespace ConfigurationSetupUtility
 {
@@ -60,18 +52,23 @@ namespace ConfigurationSetupUtility
 
             // Setup screen manager
             m_screenManager = new ScreenManager(this, new WelcomeScreen());
-
-            Loaded += MainWindow_Loaded;
         }
 
         #endregion
 
         #region [ Methods ]
 
-        // Make sure window is focused
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        // Make sure the window is on top when initialized
+        private void Window_Initialized(object sender, EventArgs e)
         {
+            Topmost = true;
             Activate();
+        }
+
+        // Make sure the window doesn't stay on top if the user clicks away
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            Topmost = false;
         }
 
         // Occurs when the user clicks the "Next" button.

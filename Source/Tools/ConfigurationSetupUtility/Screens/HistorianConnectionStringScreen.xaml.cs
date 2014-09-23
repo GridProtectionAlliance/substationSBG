@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  HistorianConnectionStringScreen.xaml.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -29,9 +29,9 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using TimeSeriesFramework.Adapters;
-using TVA;
-using TVA.Reflection;
+using GSF.TimeSeries.Adapters;
+using GSF;
+using GSF.Reflection;
 using System.IO;
 
 namespace ConfigurationSetupUtility.Screens

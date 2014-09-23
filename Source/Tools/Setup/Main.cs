@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  Main.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -33,8 +33,8 @@ namespace Setup
 {
     public partial class Main : Form
     {
-        // openPG product code, as defined in the setup packages
-        private const string ProductCode = "{1AB71735-451A-4C0E-A71B-621E6E15F011}";
+        // substationSBG product code, as defined in the setup packages
+        private const string ProductCode = "{493D6CED-50C6-4CF5-93A3-306C364F10A3}";
 
         private enum SetupType
         {
@@ -49,15 +49,10 @@ namespace Setup
 
         private void Main_Load(object sender, EventArgs e)
         {
-            radioButton64bit.Enabled = (IntPtr.Size > 4);
-
-            if (radioButton64bit.Enabled)
-                radioButton64bit.Checked = true;
-
             try
             {
                 Version version = Assembly.GetEntryAssembly().GetName().Version;
-                labelVersion.Text = string.Format(labelVersion.Text, version.Major, version.Minor, version.Build, version.Revision);
+                labelVersion.Text = string.Format(labelVersion.Text, version.Major, version.Minor, version.Build);
             }
             catch
             {
@@ -69,73 +64,73 @@ namespace Setup
         {
             bool runSetup = false;
 
-            // Verify that .NET 4.0 is installed
+            // Verify that .NET 4.5 is installed
             try
             {
-                RegistryKey net40 = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\.NETFramework\\v4.0.30319");
+                RegistryKey net45 = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\.NETFramework\\v4.0.30319\\SKUs\\.NETFramework,Version=v4.5");
 
-                if (net40 == null)
+                if (net45 == null)
                 {
-                    if (MessageBox.Show("Microsoft .NET 4.0 does not appear to be installed on this computer. The .NET 4.0 framework is required to be installed before you continue installation. Would you like to install it now?", ".NET 4.0 Check", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Microsoft .NET 4.5 does not appear to be installed on this computer. The .NET 4.5 framework is required to be installed before you continue installation. Would you like to install it now?", ".NET 4.5 Check", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        Process net40Install;
-                        string netInstallPath = "Installers\\dotNetFx40_Full_x86_x64.exe";
+                        Process net45Install;
+                        const string netInstallPath = "Installers\\dotnetfx45_full_x86_x64.exe";
 
                         if (File.Exists(netInstallPath))
                         {
                             try
                             {
-                                // Attempt to launch .NET 4.0 installer...
-                                net40Install = new Process();
-                                net40Install.StartInfo.FileName = netInstallPath;
-                                net40Install.StartInfo.UseShellExecute = false;
-                                net40Install.Start();
+                                // Attempt to launch .NET 4.5 installer...
+                                net45Install = new Process();
+                                net45Install.StartInfo.FileName = netInstallPath;
+                                net45Install.StartInfo.UseShellExecute = false;
+                                net45Install.Start();
                             }
                             catch
                             {
-                                // At a minimum open folder containing .NET 4.0 installer since its available to run...
-                                net40Install = new Process();
-                                net40Install.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\Installers\\";
-                                net40Install.StartInfo.UseShellExecute = true;
-                                net40Install.Start();
+                                // At a minimum open folder containing .NET 4.5 installer since its available to run...
+                                net45Install = new Process();
+                                net45Install.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\Installers\\";
+                                net45Install.StartInfo.UseShellExecute = true;
+                                net45Install.Start();
                             }
                         }
                         else
                         {
-                            net40Install = new Process();
-                            net40Install.StartInfo.FileName = "http://www.microsoft.com/downloads/en/details.aspx?FamilyID=9cfb2d51-5ff4-4491-b0e5-b386f32c0992&displaylang=en";
-                            net40Install.StartInfo.UseShellExecute = true;
-                            net40Install.Start();
+                            net45Install = new Process();
+                            net45Install.StartInfo.FileName = "http://www.microsoft.com/en-us/download/details.aspx?id=30653";
+                            net45Install.StartInfo.UseShellExecute = true;
+                            net45Install.Start();
                         }
                     }
                     else
-                        runSetup = (MessageBox.Show("Would you like to attempt installation anyway?", ".NET 4.0 Check", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                        runSetup = (MessageBox.Show("Would you like to attempt installation anyway?", ".NET 4.5 Check", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
                 }
                 else
                     runSetup = true;
             }
             catch
             {
-                runSetup = (MessageBox.Show("The setup program was not able to determine if Microsoft .NET 4.0 is installed on this computer. The .NET 4.0 framework is required to be installed before you continue installation. Would you like to attempt installation anyway?", ".NET 4.0 Check", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+                runSetup = (MessageBox.Show("The setup program was not able to determine if Microsoft .NET 4.5 is installed on this computer. The .NET 4.5 framework is required to be installed before you continue installation. Would you like to attempt installation anyway?", ".NET 4.5 Check", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
             }
 
             // See if an existing version is currently installed
-            RegistryKey openPGInstallKey;
+            RegistryKey substationSBGInstallKey;
 
-            openPGInstallKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\" + ProductCode);
+            substationSBGInstallKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\" + ProductCode);
 
             // If key wasn't found, test for 32-bit virtualized location
-            if (openPGInstallKey == null)
-                openPGInstallKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\" + ProductCode);
+            if (substationSBGInstallKey == null)
+                substationSBGInstallKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\" + ProductCode);
 
-            if (openPGInstallKey != null)
+            if (substationSBGInstallKey != null)
             {
-                if (MessageBox.Show("An existing version of the openPG is installed on this computer. Would you like to remove the existing version?\r\n\r\nCurrent configuration will be preserved.", "Previous Version Check", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("An existing version of the substationSBG is installed on this computer. Would you like to remove the existing version?\r\n\r\nCurrent configuration will be preserved.", "Previous Version Check", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     runSetup = RunSetup(SetupType.Uninstall, false);
                 else
                     runSetup = (MessageBox.Show("Would you like to attempt installation anyway?", "Previous Version Check", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
 
-                openPGInstallKey.Close();
+                substationSBGInstallKey.Close();
             }
 
             if (runSetup)
@@ -156,53 +151,41 @@ namespace Setup
         {
             this.WindowState = FormWindowState.Minimized;
 
-            // Install or uninstall openPG
-            Process openPGInstall = new Process();
+            // Install or uninstall substationSBG
+            Process substationSBGInstall = new Process();
 
-            openPGInstall.StartInfo.FileName = "msiexec.exe";
+            substationSBGInstall.StartInfo.FileName = "msiexec.exe";
 
             if (type == SetupType.Uninstall)
             {
                 // Attempt to shutdown processes before uninstall
                 AttemptToStopKeyProcesses();
 
-                // Uninstall any version of the openPG
-                openPGInstall.StartInfo.Arguments = "/x " + ProductCode + " /qr";
+                // Uninstall any version of the substationSBG
+                substationSBGInstall.StartInfo.Arguments = "/x " + ProductCode + " /qr";
             }
             else
             {
-                // Install current version of the openPG
-                if (radioButton64bit.Checked)
-                    openPGInstall.StartInfo.Arguments = "/i Installers\\openPGSetup64.msi";
-                else
-                    openPGInstall.StartInfo.Arguments = "/i Installers\\openPGSetup.msi";
+                // Install current version of the substationSBG
+                substationSBGInstall.StartInfo.Arguments = "/i Installers\\substationSBGSetup.msi";
             }
 
-            openPGInstall.StartInfo.UseShellExecute = false;
-            openPGInstall.StartInfo.CreateNoWindow = true;
-            openPGInstall.Start();
-            openPGInstall.WaitForExit();
+            substationSBGInstall.StartInfo.UseShellExecute = false;
+            substationSBGInstall.StartInfo.CreateNoWindow = true;
+            substationSBGInstall.Start();
+            substationSBGInstall.WaitForExit();
 
-            if (openPGInstall.ExitCode == 0)
+            if (substationSBGInstall.ExitCode == 0)
             {
-                // Run configuration setup utility post installation of openPG, but not for uninstalls
+                // Run configuration setup utility post installation of substationSBG, but not for uninstalls
                 if (type == SetupType.Install)
                 {
                     // Read registry installation parameters
                     string installPath, targetBitSize;
 
-                    if (IntPtr.Size == 4 || radioButton64bit.Checked)
-                    {
-                        // Read values from primary registry location
-                        installPath = AddPathSuffix(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Grid Protection Alliance\openPG", "InstallPath", "").ToString().Trim());
-                        targetBitSize = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Grid Protection Alliance\openPG", "TargetBitSize", "32bit").ToString().Trim();
-                    }
-                    else
-                    {
-                        // Read values from 32-bit virtualized registry location
-                        installPath = AddPathSuffix(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Grid Protection Alliance\openPG", "InstallPath", "").ToString().Trim());
-                        targetBitSize = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Grid Protection Alliance\openPG", "TargetBitSize", "32bit").ToString().Trim();
-                    }
+                    // Read values from primary registry location
+                    installPath = AddPathSuffix(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Grid Protection Alliance\substationSBG", "InstallPath", "").ToString().Trim());
+                    targetBitSize = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Grid Protection Alliance\substationSBG", "TargetBitSize", "64bit").ToString().Trim();
 
                     try
                     {
@@ -217,7 +200,7 @@ namespace Setup
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Setup program was not able to launch the openPG Configuration Setup Utility due to an exception. You will need to run this program manually before starting the openPG.\r\n\r\nError: " + ex.Message, "Configuration Setup Utility Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Setup program was not able to launch the substationSBG Configuration Setup Utility due to an exception. You will need to run this program manually before starting the substationSBG.\r\n\r\nError: " + ex.Message, "Configuration Setup Utility Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -231,15 +214,12 @@ namespace Setup
                     if (type == SetupType.Uninstall)
                     {
                         // Uninstall any version of the PMU Connection Tester
-                        connectionTesterInstall.StartInfo.Arguments = "/x {6602B32E-0671-4FE1-A7A4-63025D325F49} /qr";
+                        connectionTesterInstall.StartInfo.Arguments = "/x Installers\\PMUConnectionTesterSetup64.msi /passive";
                     }
                     else
                     {
                         // Install current version of the PMU Connection Tester
-                        if (radioButton64bit.Checked)
-                            connectionTesterInstall.StartInfo.Arguments = "/i Installers\\PMUConnectionTesterSetup64.msi";
-                        else
-                            connectionTesterInstall.StartInfo.Arguments = "/i Installers\\PMUConnectionTesterSetup.msi";
+                        connectionTesterInstall.StartInfo.Arguments = "/i Installers\\PMUConnectionTesterSetup64.msi";
                     }
 
                     connectionTesterInstall.StartInfo.UseShellExecute = false;
@@ -247,18 +227,12 @@ namespace Setup
                     connectionTesterInstall.Start();
                     connectionTesterInstall.WaitForExit();
 
-                    if (connectionTesterInstall.ExitCode == 0)
-                    {
-                        if (closeOnSuccess)
-                            this.Close();
-                        else
-                            this.WindowState = FormWindowState.Normal;
+                    if (closeOnSuccess)
+                        this.Close();
+                    else
+                        this.WindowState = FormWindowState.Normal;
 
-                        return true;
-                    }
-
-                    this.WindowState = FormWindowState.Normal;
-                    return false;
+                    return true;
                 }
 
                 if (closeOnSuccess)
@@ -317,17 +291,14 @@ namespace Setup
         {
             try
             {
-                Process[] instances = Process.GetProcessesByName("TsfManager");
+                Process[] instances = Process.GetProcessesByName("substationSBGManager");
 
                 if (instances.Length > 0)
                 {
-                    int total = 0;
-
-                    // Terminate all instances of TSF Manager running on the local computer
+                    // Terminate all instances of substationSBG Manager running on the local computer
                     foreach (Process process in instances)
                     {
                         process.Kill();
-                        total++;
                     }
                 }
             }
@@ -335,16 +306,16 @@ namespace Setup
             {
             }
 
-            // Attempt to access service controller for the openPG
-            ServiceController openPGServiceController = null;
+            // Attempt to access service controller for the substationSBG
+            ServiceController substationSBGServiceController = null;
 
             try
             {
                 foreach (ServiceController service in ServiceController.GetServices())
                 {
-                    if (string.Compare(service.ServiceName, "openPG", true) == 0)
+                    if (string.Compare(service.ServiceName, "substationSBG", true) == 0)
                     {
-                        openPGServiceController = service;
+                        substationSBGServiceController = service;
                         break;
                     }
                 }
@@ -353,16 +324,16 @@ namespace Setup
             {
             }
 
-            if (openPGServiceController != null)
+            if (substationSBGServiceController != null)
             {
                 try
                 {
-                    if (openPGServiceController.Status == ServiceControllerStatus.Running)
+                    if (substationSBGServiceController.Status == ServiceControllerStatus.Running)
                     {
-                        openPGServiceController.Stop();
+                        substationSBGServiceController.Stop();
 
                         // Can't wait forever for service to stop, so we time-out after 20 seconds
-                        openPGServiceController.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(20.0D));
+                        substationSBGServiceController.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(20.0D));
                     }
                 }
                 catch
@@ -370,20 +341,17 @@ namespace Setup
                 }
             }
 
-            // If the openPG service failed to stop or it is installed as stand-alone debug application, we try to stop any remaining running instances
+            // If the substationSBG service failed to stop or it is installed as stand-alone debug application, we try to stop any remaining running instances
             try
             {
-                Process[] instances = Process.GetProcessesByName("openPG");
+                Process[] instances = Process.GetProcessesByName("substationSBG");
 
                 if (instances.Length > 0)
                 {
-                    int total = 0;
-
-                    // Terminate all instances of openPG running on the local computer
+                    // Terminate all instances of substationSBG running on the local computer
                     foreach (Process process in instances)
                     {
                         process.Kill();
-                        total++;
                     }
                 }
             }
@@ -400,13 +368,10 @@ namespace Setup
 
                     if (instances.Length > 0)
                     {
-                        int total = 0;
-
                         // Terminate all instances of PMU Connection Tester running on the local computer
                         foreach (Process process in instances)
                         {
                             process.Kill();
-                            total++;
                         }
                     }
                 }

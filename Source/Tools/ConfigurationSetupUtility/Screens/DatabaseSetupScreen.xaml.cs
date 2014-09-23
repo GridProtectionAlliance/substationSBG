@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  DatabaseSetupScreen.xaml.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -32,9 +32,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
 using Microsoft.Win32;
-using TVA;
-using TVA.Data;
-using TVA.Security.Cryptography;
+using GSF;
+using GSF.Data;
+using GSF.Security.Cryptography;
 
 namespace ConfigurationSetupUtility.Screens
 {
@@ -46,7 +46,6 @@ namespace ConfigurationSetupUtility.Screens
         #region [ Members ]
 
         // Fields
-        private AccessDatabaseSetupScreen m_accessDatabaseSetupScreen;
         private SqlServerDatabaseSetupScreen m_sqlServerDatabaseSetupScreen;
         private MySqlDatabaseSetupScreen m_mySqlDatabaseSetupScreen;
         private OracleDatabaseSetupScreen m_oracleDatabaseSetupScreen;
@@ -81,15 +80,13 @@ namespace ConfigurationSetupUtility.Screens
         {
             get
             {
-                string databaseType = m_state["databaseType"].ToString();
+                string databaseType = m_state["newDatabaseType"].ToString();
 
-                if (databaseType == "access")
-                    return m_accessDatabaseSetupScreen;
-                else if (databaseType == "sql server")
+                if (databaseType == "SQLServer")
                     return m_sqlServerDatabaseSetupScreen;
-                else if (databaseType == "mysql")
+                else if (databaseType == "MySQL")
                     return m_mySqlDatabaseSetupScreen;
-                else if (databaseType == "oracle")
+                else if (databaseType == "Oracle")
                     return m_oracleDatabaseSetupScreen;
                 else
                     return m_sqliteDatabaseSetupScreen;
@@ -192,8 +189,8 @@ namespace ConfigurationSetupUtility.Screens
                 else
                     m_newDatabaseWarning.Visibility = existingVisibility;
 
-                if (!m_state.ContainsKey("databaseType"))
-                    m_state.Add("databaseType", "sql server");
+                if (!m_state.ContainsKey("newDatabaseType"))
+                    m_state.Add("newDatabaseType", "SQLServer");
 
                 if (!m_state.ContainsKey("initialDataScript"))
                     m_state.Add("initialDataScript", true);
@@ -211,14 +208,14 @@ namespace ConfigurationSetupUtility.Screens
                 // schema update from a non-security enabled database so that we can request admin credentials for the first time...
                 if (migrate)
                 {
-                    object webManagerDir = Registry.GetValue("HKEY_LOCAL_MACHINE\\Software\\openPGManagerServices", "Installation Path", null) ?? Registry.GetValue("HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\openPGManagerServices", "Installation Path", null);
+                    object webManagerDir = Registry.GetValue("HKEY_LOCAL_MACHINE\\Software\\substationSBGManagerServices", "Installation Path", null) ?? Registry.GetValue("HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\substationSBGManagerServices", "Installation Path", null);
                     string configFile;
 
                     m_oldConnectionString = null;
                     m_oldDataProviderString = null;
 
-                    // Attempt to use the openPG config file first
-                    configFile = Directory.GetCurrentDirectory() + "\\" + App.ApplicationConfig;
+                    // Attempt to use the substationSBG config file first
+                    configFile = Directory.GetCurrentDirectory() + "\\substationSBG.exe.config";
 
                     if (File.Exists(configFile))
                     {
@@ -226,8 +223,8 @@ namespace ConfigurationSetupUtility.Screens
                     }
                     else
                     {
-                        // Attempt to use the openPG Manager config file second
-                        configFile = Directory.GetCurrentDirectory() + "\\" + App.ManagerConfig;
+                        // Attempt to use the substationSBG Manager config file second
+                        configFile = Directory.GetCurrentDirectory() + "\\substationSBGManager.exe.config";
 
                         if (File.Exists(configFile))
                         {
@@ -235,7 +232,7 @@ namespace ConfigurationSetupUtility.Screens
                         }
                         else
                         {
-                            // Attempt to use the web based openPG Manager config file as a last resort
+                            // Attempt to use the web based substationSBG Manager config file as a last resort
                             if (webManagerDir != null)
                             {
                                 configFile = webManagerDir.ToString() + "\\Web.config";
@@ -297,31 +294,17 @@ namespace ConfigurationSetupUtility.Screens
         // Initializes the screens that can be used as the next screen based on user input.
         private void InitializeNextScreens()
         {
-            m_accessDatabaseSetupScreen = new AccessDatabaseSetupScreen();
             m_sqlServerDatabaseSetupScreen = new SqlServerDatabaseSetupScreen();
             m_mySqlDatabaseSetupScreen = new MySqlDatabaseSetupScreen();
             m_oracleDatabaseSetupScreen = new OracleDatabaseSetupScreen();
             m_sqliteDatabaseSetupScreen = new SqliteDatabaseSetupScreen();
         }
 
-        // Occurs when the user chooses to set up an Access database.
-        private void AccessDatabaseRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            if (m_state != null)
-                m_state["databaseType"] = "access";
-
-            if (!m_sampleScriptChanged && m_sampleDataScriptCheckBox != null)
-                m_sampleDataScriptCheckBox.IsChecked = true;
-
-            if (m_enableAuditLogCheckBox != null)
-                ManageEnableAuditLogCheckBox();
-        }
-
         // Occurs when the user chooses to set up a SQL Server database.
         private void SqlServerDatabaseRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             if (m_state != null)
-                m_state["databaseType"] = "sql server";
+                m_state["newDatabaseType"] = "SQLServer";
 
             if (!m_sampleScriptChanged && m_sampleDataScriptCheckBox != null)
                 m_sampleDataScriptCheckBox.IsChecked = false;
@@ -340,7 +323,7 @@ namespace ConfigurationSetupUtility.Screens
         private void MySqlRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             if (m_state != null)
-                m_state["databaseType"] = "mysql";
+                m_state["newDatabaseType"] = "MySQL";
 
             if (!m_sampleScriptChanged && m_sampleDataScriptCheckBox != null)
                 m_sampleDataScriptCheckBox.IsChecked = false;
@@ -354,18 +337,18 @@ namespace ConfigurationSetupUtility.Screens
             }
         }
 
-        // Occurs when the user chooses to set up an Oracle database.
+        // Occurs when the user chooses to set up a Oracle database.
         private void OracleRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             if (m_state != null)
-                m_state["databaseType"] = "oracle";
+                m_state["newDatabaseType"] = "Oracle";
 
             if (!m_sampleScriptChanged && m_sampleDataScriptCheckBox != null)
                 m_sampleDataScriptCheckBox.IsChecked = false;
 
             if (m_enableAuditLogCheckBox != null)
             {
-                // Make it visible for Oracle database
+                //Make it visible for Oracle database.
                 ManageEnableAuditLogCheckBox();
 
                 if (!m_enableAuditLogChanged)
@@ -373,11 +356,11 @@ namespace ConfigurationSetupUtility.Screens
             }
         }
 
-        // Occurs when the user chooses to set up an SQLite database.
+        // Occurs when the user chooses to set up a SQLite database.
         private void SqliteRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             if (m_state != null)
-                m_state["databaseType"] = "sqlite";
+                m_state["newDatabaseType"] = "SQLite";
 
             if (!m_sampleScriptChanged && m_sampleDataScriptCheckBox != null)
                 m_sampleDataScriptCheckBox.IsChecked = true;
@@ -449,7 +432,7 @@ namespace ConfigurationSetupUtility.Screens
             {
                 m_enableAuditLogCheckBox.Visibility = Visibility.Visible;
 
-                if (m_state.ContainsKey("databaseType") && (m_state["databaseType"].ToString() == "access" || m_state["databaseType"].ToString() == "sqlite"))
+                if (m_state.ContainsKey("newDatabaseType") && m_state["newDatabaseType"].ToString() == "SQLite")
                     m_enableAuditLogCheckBox.Visibility = Visibility.Collapsed;
             }
             else
@@ -468,13 +451,16 @@ namespace ConfigurationSetupUtility.Screens
 
             foreach (XmlNode child in systemSettings.ChildNodes)
             {
-                if (child.Attributes != null)
+                if (child.Attributes != null && child.Attributes["name"] != null)
                 {
                     if (child.Attributes["name"].Value == "DataProviderString")
                     {
                         // Retrieve the old data provider string from the config file.
                         if (m_oldDataProviderString == null)
+                        {
                             m_oldDataProviderString = child.Attributes["value"].Value;
+                            m_state["oldDataProviderString"] = m_oldDataProviderString;
+                        }
                     }
                     else if (child.Attributes["name"].Value == "ConnectionString")
                     {
@@ -485,6 +471,8 @@ namespace ConfigurationSetupUtility.Screens
 
                             if (Convert.ToBoolean(child.Attributes["encrypted"].Value))
                                 m_oldConnectionString = Cipher.Decrypt(m_oldConnectionString, App.CipherLookupKey, App.CryptoStrength);
+
+                            m_state["oldConnectionString"] = m_oldConnectionString;
                         }
                     }
                 }

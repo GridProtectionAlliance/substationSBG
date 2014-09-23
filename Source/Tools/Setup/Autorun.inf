@@ -1,5 +1,5 @@
 [autorun]
 icon=System\GPA.ico
 open=setup.exe
-label=GPA openPG Setup
-action=Install the openPG
+label=GPA substationSBG Setup
+action=Install the substationSBG

@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  ApplyConfigurationChangesScreen.xaml.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -34,7 +34,6 @@ namespace ConfigurationSetupUtility.Screens
     /// </summary>
     public partial class ApplyConfigurationChangesScreen : UserControl, IScreen
     {
-
         #region [ Members ]
 
         // Fields
@@ -68,15 +67,17 @@ namespace ConfigurationSetupUtility.Screens
             get
             {
                 bool applyChangesToService = Convert.ToBoolean(m_state["applyChangesToService"]);
+                bool applyChangesToLocalManager = Convert.ToBoolean(m_state["applyChangesToLocalManager"]);
                 bool existing = Convert.ToBoolean(m_state["existing"]);
                 bool setupHistorian = Convert.ToBoolean(m_state["setupHistorian"]);
 
                 if (setupHistorian)
                     return m_historianSetupScreen;
-                else if (existing && applyChangesToService)
+
+                if (existing && (applyChangesToService || applyChangesToLocalManager))
                     return m_nodeSelectionScreen;
-                else
-                    return m_setupReadyScreen;
+
+                return m_setupReadyScreen;
             }
         }
 
@@ -147,11 +148,7 @@ namespace ConfigurationSetupUtility.Screens
         /// Allows the screen to update the navigation buttons after a change is made
         /// that would affect the user's ability to navigate to other screens.
         /// </summary>
-        public Action UpdateNavigation
-        {
-            get;
-            set;
-        }
+        public Action UpdateNavigation { get; set; }
 
         #endregion
 
@@ -160,7 +157,7 @@ namespace ConfigurationSetupUtility.Screens
         // Initializes the state keys to their default values.
         private void InitializeState()
         {
-            object webManagerDir = Registry.GetValue("HKEY_LOCAL_MACHINE\\Software\\openPGManagerServices", "Installation Path", null) ?? Registry.GetValue("HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\openPGManagerServices", "Installation Path", null);
+            object webManagerDir = Registry.GetValue("HKEY_LOCAL_MACHINE\\Software\\substationSBGManagerServices", "Installation Path", null) ?? Registry.GetValue("HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\substationSBGManagerServices", "Installation Path", null);
             bool managerOptionsEnabled = m_state["configurationType"].ToString() == "database";
             bool webManagerOptionEnabled = managerOptionsEnabled && (webManagerDir != null);
             bool existing = Convert.ToBoolean(m_state["existing"]);
@@ -189,23 +186,25 @@ namespace ConfigurationSetupUtility.Screens
             }
 
             // Enable or disable the options based on whether those options are available for the current configuration.
-            m_openPGManagerLocalCheckBox.IsEnabled = managerOptionsEnabled;
-            m_openPGManagerWebCheckBox.IsEnabled = webManagerOptionEnabled;
+            m_substationSBGManagerLocalCheckBox.IsEnabled = managerOptionsEnabled;
+            m_substationSBGManagerWebCheckBox.IsEnabled = webManagerOptionEnabled;
 
             // If the options are disabled, they must also be unchecked.
             if (!managerOptionsEnabled)
-                m_openPGManagerLocalCheckBox.IsChecked = false;
+                m_substationSBGManagerLocalCheckBox.IsChecked = false;
 
             if (!webManagerOptionEnabled)
-                m_openPGManagerWebCheckBox.IsChecked = false;
+                m_substationSBGManagerWebCheckBox.IsChecked = false;
 
-            
-            m_setupHistorianCheckBox.IsChecked = false;
+            if (initialDataScript)
+                m_setupHistorianCheckBox.IsChecked = true;
+            else
+                m_setupHistorianCheckBox.IsChecked = false;
 
             // Set up the state object with the proper initial values.
-            m_state["applyChangesToService"] = m_openPGServiceCheckBox.IsChecked.Value;
-            m_state["applyChangesToLocalManager"] = m_openPGManagerLocalCheckBox.IsChecked.Value;
-            m_state["applyChangesToWebManager"] = m_openPGManagerWebCheckBox.IsChecked.Value;
+            m_state["applyChangesToService"] = m_substationSBGServiceCheckBox.IsChecked.Value;
+            m_state["applyChangesToLocalManager"] = m_substationSBGManagerLocalCheckBox.IsChecked.Value;
+            m_state["applyChangesToWebManager"] = m_substationSBGManagerWebCheckBox.IsChecked.Value;
             //m_state["setupHistorian"] = initialDataScript;
             //m_setupHistorianCheckBox.Visibility = (Convert.ToBoolean(m_state["setupHistorian"]) ? Visibility.Visible : Visibility.Collapsed);
 
@@ -216,43 +215,43 @@ namespace ConfigurationSetupUtility.Screens
             m_horizontalRule.Visibility = m_setupHistorianCheckBox.Visibility;
         }
 
-        // Occurs when the user chooses to apply changes to the openPG service.
-        private void OpenPGServiceCheckBox_Checked(object sender, RoutedEventArgs e)
+        // Occurs when the user chooses to apply changes to the substationSBG service.
+        private void substationSBGServiceCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             if (m_state != null)
                 m_state["applyChangesToService"] = true;
         }
 
-        // Occurs when the user chooses to not apply changes to the openPG service.
-        private void OpenPGServiceCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        // Occurs when the user chooses to not apply changes to the substationSBG service.
+        private void substationSBGServiceCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             if (m_state != null)
                 m_state["applyChangesToService"] = false;
         }
 
-        // Occurs when the user chooses to changes to the local openPG Manager application.
-        private void OpenPGManagerLocalCheckBox_Checked(object sender, RoutedEventArgs e)
+        // Occurs when the user chooses to changes to the local substationSBG Manager application.
+        private void substationSBGManagerLocalCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             if (m_state != null)
                 m_state["applyChangesToLocalManager"] = true;
         }
 
-        // Occurs when the user chooses to not apply changes to the local openPG Manager application.
-        private void OpenPGManagerLocalCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        // Occurs when the user chooses to not apply changes to the local substationSBG Manager application.
+        private void substationSBGManagerLocalCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             if (m_state != null)
                 m_state["applyChangesToLocalManager"] = false;
         }
 
-        // Occurs when the user chooses to apply changes to the openPG Manager web application.
-        private void OpenPGManagerWebCheckBox_Checked(object sender, RoutedEventArgs e)
+        // Occurs when the user chooses to apply changes to the substationSBG Manager web application.
+        private void substationSBGManagerWebCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             if (m_state != null)
                 m_state["applyChangesToWebManager"] = true;
         }
 
-        // Occurs when the user chooses to not apply changes to the openPG Manager web application.
-        private void OpenPGManagerWebCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        // Occurs when the user chooses to not apply changes to the substationSBG Manager web application.
+        private void substationSBGManagerWebCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             if (m_state != null)
                 m_state["applyChangesToWebManager"] = false;

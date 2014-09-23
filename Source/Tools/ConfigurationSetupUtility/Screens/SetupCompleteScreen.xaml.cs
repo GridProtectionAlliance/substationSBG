@@ -1,7 +1,7 @@
 ﻿//******************************************************************************************************
 //  SetupCompleteScreen.xaml.cs - Gbtc
 //
-//  Copyright © 2011, Grid Protection Alliance.  All Rights Reserved.
+//  Copyright © 2010, Grid Protection Alliance.  All Rights Reserved.
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -32,15 +33,15 @@ using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Threading;
-using System.Web.Security;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using TVA;
-using TVA.Configuration;
-using TVA.Data;
-using TVA.Identity;
-using TVA.IO;
+using System.Xml.Linq;
+using GSF;
+using GSF.Configuration;
+using GSF.Data;
+using GSF.IO;
+using GSF.Security;
 
 namespace ConfigurationSetupUtility.Screens
 {
@@ -54,7 +55,7 @@ namespace ConfigurationSetupUtility.Screens
         // Fields
 
         private Dictionary<string, object> m_state;
-        private ServiceController m_openPGServiceController;
+        private ServiceController m_substationSBGServiceController;
 
         #endregion
 
@@ -66,7 +67,7 @@ namespace ConfigurationSetupUtility.Screens
         public SetupCompleteScreen()
         {
             InitializeComponent();
-            InitializeOpenPGServiceController();
+            InitializesubstationSBGServiceController();
             InitializeServiceCheckboxState();
             InitializeManagerCheckboxState();
         }
@@ -139,48 +140,42 @@ namespace ConfigurationSetupUtility.Screens
 
                         if (migrate)
                         {
+                            const string SerializedSchemaPath = "SerializedSchema.bin";
+
                             string dataFolder = FilePath.GetApplicationDataFolder();
-                            string migrationDataFolder = dataFolder + "\\..\\DataMigrationUtility";
-                            string newOleDbConnectionString = m_state["newOleDbConnectionString"].ToString();
-                            string databaseType = m_state["databaseType"].ToString().Replace(" ", "");
-                            ConfigurationFile configFile = null;
-                            CategorizedSettingsElementCollection applicationSettings = null;
+                            string dataMigrationUtilityUserSettingsFolder = dataFolder + "\\..\\DataMigrationUtility";
+                            string userSettingsFile = dataMigrationUtilityUserSettingsFolder + "\\Settings.xml";
 
-                            // Copy user-level DataMigrationUtility config file to the ConfigurationSetupUtility application folder.
-                            if (File.Exists(migrationDataFolder + "\\Settings.xml"))
-                            {
-                                if (!Directory.Exists(dataFolder))
-                                    Directory.CreateDirectory(dataFolder);
+                            string newConnectionString = m_state["newConnectionString"].ToString();
+                            string oldConnectionString = m_state.ContainsKey("oldConnectionString") ? m_state["oldConnectionString"].ToString() : string.Empty;
+                            string newDataProviderString = m_state["newDataProviderString"].ToString();
+                            string oldDataProviderString = m_state.ContainsKey("oldDataProviderString") ? m_state["oldDataProviderString"].ToString() : string.Empty;
+                            string newDatabaseType = m_state["newDatabaseType"].ToString().Replace(" ", "");
 
-                                File.Copy(migrationDataFolder + "\\Settings.xml", dataFolder + "\\Settings.xml", true);
-                            }
+                            if (!Directory.Exists(dataMigrationUtilityUserSettingsFolder))
+                                Directory.CreateDirectory(dataMigrationUtilityUserSettingsFolder);
 
-                            // Modify OleDB configuration file settings for the DataMigrationUtility.
-                            configFile = ConfigurationFile.Open("DataMigrationUtility.exe.config");
-                            applicationSettings = configFile.Settings["applicationSettings"];
-                            applicationSettings["FromDataType", true].Value = "Unspecified";
-                            applicationSettings["ToConnectionString", true].Value = newOleDbConnectionString;
-                            applicationSettings["ToDataType", true].Value = databaseType;
+                            oldConnectionString += string.Format("; dataProviderString={{ {0} }}; serializedSchema={1}", oldDataProviderString, SerializedSchemaPath);
+                            newConnectionString += string.Format("; dataProviderString={{ {0} }}; serializedSchema={1}", newDataProviderString, SerializedSchemaPath);
 
-                            if (m_state.ContainsKey("oldOleDbConnectionString"))
-                            {
-                                string oldOleDbConnectionString = m_state["oldOleDbConnectionString"].ToString();
-                                applicationSettings["FromConnectionString", true].Value = oldOleDbConnectionString;
+                            XDocument doc = new XDocument(
+                                                new XElement("settings",
+                                                    new XElement("applicationSettings",
+                                                        new XElement("add", new XAttribute("name", "FromConnectionString"),
+                                                                            new XAttribute("value", oldConnectionString)),
+                                                        new XElement("add", new XAttribute("name", "ToConnectionString"),
+                                                                            new XAttribute("value", newConnectionString)),
+                                                        new XElement("add", new XAttribute("name", "ToDataType"),
+                                                                            new XAttribute("value", newDatabaseType)),
+                                                        new XElement("add", new XAttribute("name", "UseFromConnectionForRI"),
+                                                                            new XAttribute("value", string.Empty)),
+                                                        new XElement("add", new XAttribute("name", "FromDataType"),
+                                                                            new XAttribute("value", m_state.ContainsKey("oldDatabaseType") ? m_state["oldDatabaseType"].ToString() : "Unspecified"))
+                                                    )
+                                                )
+                                            );
 
-                                if (m_state.ContainsKey("oldOleDbDataType"))
-                                    applicationSettings["FromDataType", true].Value = m_state["oldOleDbDataType"].ToString();
-                            }
-
-                            configFile.Save();
-
-                            // Copy user-level ConfigurationSetupUtility config file to DataMigrationUtility application folder.
-                            if (File.Exists(dataFolder + "\\Settings.xml"))
-                            {
-                                if (!Directory.Exists(migrationDataFolder))
-                                    Directory.CreateDirectory(migrationDataFolder);
-
-                                File.Copy(dataFolder + "\\Settings.xml", migrationDataFolder + "\\Settings.xml", true);
-                            }
+                            doc.Save(userSettingsFile);
 
                             try
                             {
@@ -197,7 +192,7 @@ namespace ConfigurationSetupUtility.Screens
                             }
                             catch
                             {
-                                // Nothing to if we failt to minimize...
+                                // Nothing to do if we fail to minimize...
                             }
 
                             // Run the DataMigrationUtility.
@@ -213,54 +208,81 @@ namespace ConfigurationSetupUtility.Screens
                         // Always make sure time series startup operations are defined in the database.
                         ValidateTimeSeriesStartupOperations();
 
+                        // Always make sure the datapublisher record in the config file is changed to internaldatapublisher.
+                        ValidateInternalDataPublisher();
+
+                        if (migrate)
+                        {
+                            // Always make sure data operation assembly names
+                            // and type names are correct after an upgrade.
+                            ValidateGridSolutionsNamespaces();
+
+                            // Always make sure skipOptimization is true after an upgrade
+                            ValidatePhasorDataSourceValidation();
+                        }
+
                         // Always make sure new configuration entity records are defined in the database.
                         ValidateConfigurationEntity();
 
-                        // Always make sure that node settings defines the alarm service URL.
+                        // Always make sure that node settings defines security settings and the alarm service URL.
                         ValidateNodeSettings();
 
-                        // Always make sure that all three needed roles are available for each defined node(s) in the database.
+                        // Always make sure that all three needed roles are available for each defined node(s) in the database
                         ValidateSecurityRoles();
 
-                        // If the user requested it, start or restart the openPG service.
+                        // Convert node table to new format (i.e., columns to connection settings string), if nedded
+                        ConvertNodeTableFormat();
+
+                        // Remove old configuration file settings
+                        try
+                        {
+                            ConfigurationFile substationSBGConfig = ConfigurationFile.Open("substationSBG.exe.config");
+
+                            // Some of the crypto settings elements were renamed for consistency, remove the old ones
+                            CategorizedSettingsElementCollection cryptoSection = substationSBGConfig.Settings["cryptographyServices"];
+                            cryptoSection.Remove("RetryDelayInterval");
+                            cryptoSection.Remove("MaximumRetryAttempts");
+
+                            // Example connection settings are updated between builds - remove the section and substationSBG will add back the latest
+                            substationSBGConfig.Settings.Remove("exampleConnectionSettings");
+
+                            // Data publisher categories are now always lower case (such that code references are case insensitive)
+                            substationSBGConfig.Settings.Remove("dataPublisher");
+
+                            substationSBGConfig.Save(ConfigurationSaveMode.Full);
+                        }
+                        catch
+                        {
+                            // Just continue on errors with removal of old settings - this is not critical
+                        }
+
+                        // If the user requested it, start or restart the substationSBG service
                         if (m_serviceStartCheckBox.IsChecked.Value)
                         {
                             try
                             {
 #if DEBUG
-                                Process.Start(App.ApplicationExe);
+                                Process.Start("substationSBG.exe");
 #else
-                                m_openPGServiceController.Start();
+                                m_substationSBGServiceController.Start();
 #endif
                             }
                             catch
                             {
-                                MessageBox.Show("The configuration utility was unable to start openPG service, you will need to manually start the service.", "Cannot Start Windows Service", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show("The configuration utility was unable to start substationSBG service, you will need to manually start the service.", "Cannot Start Windows Service", MessageBoxButton.OK, MessageBoxImage.Information);
                             }
                         }
 
-                        // If the user requested it, start the openPG Manager.
+                        // If the user requested it, start the substationSBG Manager.
                         if (m_managerStartCheckBox.IsChecked.Value)
                         {
-                            if (UserAccountControl.IsUacEnabled && UserAccountControl.IsCurrentProcessElevated)
-                            {
-                                try
-                                {
-                                    UserAccountControl.CreateProcessAsStandardUser(App.ManagerExe);
-                                }
-                                catch
-                                {
-                                    Process.Start(App.ManagerExe);
-                                }
-                            }
-                            else
-                                Process.Start(App.ManagerExe);
+                            Process.Start("substationSBGManager.exe");
                         }
                     }
                     finally
                     {
-                        if (m_openPGServiceController != null)
-                            m_openPGServiceController.Close();
+                        if (m_substationSBGServiceController != null)
+                            m_substationSBGServiceController.Close();
                     }
                 }
 
@@ -282,7 +304,7 @@ namespace ConfigurationSetupUtility.Screens
                 m_state = value;
 
                 if (Convert.ToBoolean(m_state["restarting"]))
-                    m_serviceStartCheckBox.Content = "Restart the openPG";
+                    m_serviceStartCheckBox.Content = "Restart the substationSBG";
             }
         }
 
@@ -300,29 +322,29 @@ namespace ConfigurationSetupUtility.Screens
 
         #region [ Methods ]
 
-        // Initializes the openPG service controller.
-        private void InitializeOpenPGServiceController()
+        // Initializes the substationSBG service controller.
+        private void InitializesubstationSBGServiceController()
         {
             ServiceController[] services = ServiceController.GetServices();
-            m_openPGServiceController = services.SingleOrDefault(svc => string.Compare(svc.ServiceName, "openPG", true) == 0);
+            m_substationSBGServiceController = services.SingleOrDefault(svc => string.Compare(svc.ServiceName, "substationSBG", true) == 0);
         }
 
-        // Initializes the state of the openPG service checkbox.
+        // Initializes the state of the substationSBG service checkbox.
         private void InitializeServiceCheckboxState()
         {
 #if DEBUG
-            bool serviceInstalled = File.Exists(App.ApplicationExe);
+            bool serviceInstalled = File.Exists("substationSBG.exe");
 #else
-            bool serviceInstalled = m_openPGServiceController != null;
+            bool serviceInstalled = m_substationSBGServiceController != null;
 #endif
             m_serviceStartCheckBox.IsChecked = serviceInstalled;
             m_serviceStartCheckBox.IsEnabled = serviceInstalled;
         }
 
-        // Initializes the state of the openPG Manager checkbox.
+        // Initializes the state of the substationSBG Manager checkbox.
         private void InitializeManagerCheckboxState()
         {
-            bool managerInstalled = File.Exists(App.ManagerExe);
+            bool managerInstalled = File.Exists("substationSBGManager.exe");
             m_managerStartCheckBox.IsChecked = managerInstalled;
             m_managerStartCheckBox.IsEnabled = managerInstalled;
         }
@@ -330,7 +352,7 @@ namespace ConfigurationSetupUtility.Screens
         private void ValidateTimeSeriesStartupOperations()
         {
             const string countQuery = "SELECT COUNT(*) FROM DataOperation WHERE MethodName = 'PerformTimeSeriesStartupOperations'";
-            const string insertQuery = "INSERT INTO DataOperation(Description, AssemblyName, TypeName, MethodName, Arguments, LoadOrder, Enabled) VALUES('Time Series Startup Operations', 'TimeSeriesFramework.dll', 'TimeSeriesFramework.TimeSeriesStartupOperations', 'PerformTimeSeriesStartupOperations', '', 0, 1)";
+            const string insertQuery = "INSERT INTO DataOperation(Description, AssemblyName, TypeName, MethodName, Arguments, LoadOrder, Enabled) VALUES('Time Series Startup Operations', 'GSF.TimeSeries.dll', 'GSF.TimeSeries.TimeSeriesStartupOperations', 'PerformTimeSeriesStartupOperations', '', 0, 1)";
 
             IDbConnection connection = null;
             int timeSeriesStartupOperationsCount;
@@ -342,6 +364,74 @@ namespace ConfigurationSetupUtility.Screens
 
                 if (timeSeriesStartupOperationsCount == 0)
                     connection.ExecuteNonQuery(insertQuery);
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Dispose();
+            }
+        }
+
+        private void ValidateInternalDataPublisher()
+        {
+            string configFile = Directory.GetCurrentDirectory() + "\\substationSBG.exe.config";
+            string configText = File.ReadAllText(configFile);
+            string replacedConfigText = configText.Replace("<datapublisher>", "<internaldatapublisher>").Replace("</datapublisher>", "</internaldatapublisher>");
+            File.WriteAllText(configFile, replacedConfigText);
+        }
+
+        private void ValidateGridSolutionsNamespaces()
+        {
+            const string assemblyNameUpdateQuery = "UPDATE {0} SET AssemblyName = '{1}' WHERE AssemblyName = '{2}'";
+            const string typeNameUpdateQuery = "UPDATE {0} SET TypeName = '{1}' WHERE TypeName = '{2}'";
+
+            string[] tables = { "DataOperation", "Historian", "Protocol", "CustomInputAdapter", "CustomActionAdapter", "CustomOutputAdapter", "CalculatedMeasurement", "Statistic" };
+
+            Tuple<string, string>[] assemblyNames = { Tuple.Create("GSF.TimeSeries.dll", "TimeSeriesFramework.dll"), Tuple.Create("PhasorProtocolAdapters.dll", "TVA.PhasorProtocols.dll") };
+
+            Tuple<string, string>[] typeNames =
+            {
+                Tuple.Create("GSF.TimeSeries.TimeSeriesStartupOperations", "TimeSeriesFramework.TimeSeriesStartupOperations"),
+                Tuple.Create("GSF.TimeSeries.Transport.DataSubscriber", "TimeSeriesFramework.Transport.DataSubscriber"),
+                Tuple.Create("GSF.TimeSeries.Transport.DataPublisher", "TimeSeriesFramework.Transport.DataPublisher"),
+                Tuple.Create("GSF.TimeSeries.Statistics.StatisticsEngine", "TimeSeriesFramework.Statistics.StatisticsEngine"),
+                Tuple.Create("GSF.TimeSeries.Statistics.PerformanceStatistics", "TimeSeriesFramework.Statistics.PerformanceStatistics"),
+                Tuple.Create("GSF.TimeSeries.Statistics.GatewayStatistics", "TimeSeriesFramework.Statistics.GatewayStatistics"),
+                Tuple.Create("PhasorProtocolAdapters.CommonPhasorServices", "TVA.PhasorProtocols.CommonPhasorServices"),
+                Tuple.Create("PhasorProtocolAdapters.PhasorMeasurementMapper", "TVA.PhasorProtocols.PhasorMeasurementMapper")
+            };
+
+            IDbConnection connection = null;
+
+            try
+            {
+                connection = OpenNewConnection();
+
+                foreach (string table in tables)
+                {
+                    foreach (Tuple<string, string> assemblyNamePair in assemblyNames)
+                        connection.ExecuteNonQuery(string.Format(assemblyNameUpdateQuery, table, assemblyNamePair.Item1, assemblyNamePair.Item2));
+
+                    foreach (Tuple<string, string> typeNamePair in typeNames)
+                        connection.ExecuteNonQuery(string.Format(typeNameUpdateQuery, table, typeNamePair.Item1, typeNamePair.Item2));
+                }
+            }
+            finally
+            {
+                if ((object)connection != null)
+                    connection.Dispose();
+            }
+        }
+
+        private void ValidatePhasorDataSourceValidation()
+        {
+            const string updateQuery = "UPDATE DataOperation SET Arguments = 'skipOptimization = True' WHERE AssemblyName = 'GSF.PhasorProtocols.dll' AND TypeName = 'GSF.PhasorProtocols.CommonPhasorServices' AND MethodName = 'PhasorDataSourceValidation'";
+            IDbConnection connection = null;
+
+            try
+            {
+                connection = OpenNewConnection();
+                connection.ExecuteNonQuery(updateQuery);
             }
             finally
             {
@@ -385,6 +475,8 @@ namespace ConfigurationSetupUtility.Screens
             object nodeSettingsConnectionString;
             Dictionary<string, string> nodeSettings;
 
+            Dictionary<string, string> remoteStatusServerSettings;
+            string remoteStatusServerConnectionString;
             string alarmServiceUrl;
 
             try
@@ -396,24 +488,31 @@ namespace ConfigurationSetupUtility.Screens
                     nodeIDQueryString = selectedNodeId.ToString();
                     connection = OpenNewConnection();
 
-                    // Fix nodeIDQueryString if this is a Microsoft Access database connection
-                    if (IsAccessDbConnection(connection))
-                        nodeIDQueryString = "{" + nodeIDQueryString + "}";
-
                     // Get node settings from the database
                     nodeSettingsConnectionString = connection.ExecuteScalar(string.Format(settingsQuery, nodeIDQueryString));
                     nodeSettings = nodeSettingsConnectionString.ToNonNullString().ParseKeyValuePairs();
 
+                    // Make sure security settings are enabled for the node
+                    if (!nodeSettings.TryGetValue("RemoteStatusServerConnectionString", out remoteStatusServerConnectionString))
+                    {
+                        nodeSettings.Add("RemoteStatusServerConnectionString", "server=localhost:8515;integratedSecurity=true");
+                    }
+                    else
+                    {
+                        remoteStatusServerSettings = remoteStatusServerConnectionString.ParseKeyValuePairs();
+                        remoteStatusServerSettings["integratedSecurity"] = "true";
+                        nodeSettings["RemoteStatusServerConnectionString"] = remoteStatusServerSettings.JoinKeyValuePairs();
+                    }
+
                     // If the AlarmServiceUrl does not exist in node settings, add it and then update the database record
                     if (!nodeSettings.TryGetValue("AlarmServiceUrl", out alarmServiceUrl))
-                    {
-                        if (connection.GetType().Name == "OracleConnection")
-                            updateQuery = updateQuery.Replace('@', ':');
+                        nodeSettings.Add("AlarmServiceUrl", "http://localhost:5021/alarmservices");
 
-                        nodeSettings.Add("AlarmServiceUrl", "http://localhost:5019/alarmservices");
-                        nodeSettingsConnectionString = nodeSettings.JoinKeyValuePairs();
-                        connection.ExecuteNonQuery(string.Format(updateQuery, nodeIDQueryString), nodeSettingsConnectionString);
-                    }
+                    // Execute query to update node settings
+                    if (connection.GetType().Name == "OracleConnection")
+                        updateQuery = updateQuery.Replace('@', ':');
+
+                    connection.ExecuteNonQuery(string.Format(updateQuery, nodeIDQueryString), nodeSettings.JoinKeyValuePairs());
                 }
             }
             finally
@@ -428,178 +527,57 @@ namespace ConfigurationSetupUtility.Screens
         {
             // For each Node in new database make sure all roles exist
             IDataReader nodeReader = null;
-            IDbConnection connection = null;
-            try
-            {
-                connection = OpenNewConnection();
+            IDbConnection connection = OpenNewConnection();
 
-                if (connection != null)
+            if (connection != null)
+            {
+                try
                 {
-                    Dictionary<string, string> settings = connection.ConnectionString.ParseKeyValuePairs();
-                    string connectionSetting;
                     IDbCommand nodeCommand;
+                    string databaseType = m_state["newDatabaseType"].ToString();
 
                     nodeCommand = connection.CreateCommand();
                     nodeCommand.CommandText = "SELECT ID FROM Node";
+
                     using (nodeReader = nodeCommand.ExecuteReader())
                     {
-
                         DataTable dataTable = new DataTable();
                         dataTable.Load(nodeReader);
 
-                        if (nodeReader != null) nodeReader.Close();
+                        if (nodeReader != null)
+                            nodeReader.Close();
 
                         foreach (DataRow row in dataTable.Rows)
                         {
-                            string nodeID = row["ID"].ToNonNullString();
-
-                            if (settings.TryGetValue("Provider", out connectionSetting))
-                            {
-                                // Check if provider is for Access since it uses braces as Guid delimeters
-                                if (connectionSetting.StartsWith("Microsoft.Jet.OLEDB", StringComparison.OrdinalIgnoreCase))
-                                    nodeID = "{" + nodeID + "}";
-                                else
-                                    nodeID = "'" + nodeID + "'";
-                            }
-                            else
-                                nodeID = "'" + nodeID + "'";
-
+                            string nodeID = string.Format("'{0}'", row["ID"].ToNonNullString());
                             IDbCommand command = connection.CreateCommand();
 
-                            command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Administrator'", nodeID);
+                            command.CommandText = string.Format("SELECT COUNT(*) FROM ApplicationRole WHERE NodeID = {0} AND Name = 'Administrator'", nodeID);
                             if (Convert.ToInt32(command.ExecuteScalar()) == 0)
                                 AddRolesForNode(connection, nodeID, "Administrator");
-                            else    // Verify an admin user exists for the node and attached to administrator role.
-                                VerifyAdminUser(connection, nodeID);
+                            else
+                                VerifyAdminUser(connection, nodeID); // Verify an admin user exists for the node and attached to administrator role.
 
-                            command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Editor'", nodeID);
+                            command.CommandText = string.Format("SELECT COUNT(*) FROM ApplicationRole WHERE NodeID = {0} AND Name = 'Editor'", nodeID);
                             if (Convert.ToInt32(command.ExecuteScalar()) == 0)
                                 AddRolesForNode(connection, nodeID, "Editor");
 
-                            command.CommandText = string.Format("Select Count(*) From ApplicationRole Where NodeID = {0} AND Name = 'Viewer'", nodeID);
+                            command.CommandText = string.Format("SELECT COUNT(*) FROM ApplicationRole WHERE NodeID = {0} AND Name = 'Viewer'", nodeID);
                             if (Convert.ToInt32(command.ExecuteScalar()) == 0)
                                 AddRolesForNode(connection, nodeID, "Viewer");
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to Validate Application Roles for Node(s)" + Environment.NewLine + ex.Message);
-            }
-            finally
-            {
-                if (connection != null)
-                    connection.Dispose();
-            }
-        }
-
-        private IDbConnection OpenNewConnection()
-        {
-            IDbConnection connection = null;
-
-            try
-            {
-                string databaseType = m_state["databaseType"].ToString();
-                string connectionString = string.Empty;
-                string dataProviderString = string.Empty;
-
-                if (databaseType == "access")
+                catch (Exception ex)
                 {
-                    string destination = m_state["accessDatabaseFilePath"].ToString();
-                    connectionString = "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + destination;
-                    dataProviderString = "AssemblyName={System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089}; ConnectionType=System.Data.OleDb.OleDbConnection; AdapterType=System.Data.OleDb.OleDbDataAdapter";
+                    MessageBox.Show("Failed to validate application roles: " + ex.Message, "Configuration Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                else if (databaseType == "sql server")
+                finally
                 {
-                    SqlServerSetup sqlServerSetup = m_state["sqlServerSetup"] as SqlServerSetup;
-                    connectionString = sqlServerSetup.ConnectionString;
-
-                    object dataProviderStringValue;
-                    if (m_state.TryGetValue("sqlServerDataProviderString", out dataProviderStringValue))
-                        dataProviderString = dataProviderStringValue.ToString();
-
-                    if (string.IsNullOrWhiteSpace(dataProviderString))
-                        dataProviderString = "AssemblyName={System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089}; ConnectionType=System.Data.SqlClient.SqlConnection; AdapterType=System.Data.SqlClient.SqlDataAdapter";
-                }
-                else if (databaseType == "mysql")
-                {
-                    MySqlSetup mySqlSetup = m_state["mySqlSetup"] as MySqlSetup;
-                    connectionString = mySqlSetup.ConnectionString;
-
-                    object dataProviderStringValue;
-                    // Get user customized data provider string
-                    if (m_state.TryGetValue("mySqlDataProviderString", out dataProviderStringValue))
-                        dataProviderString = dataProviderStringValue.ToString();
-
-                    if (string.IsNullOrWhiteSpace(dataProviderString))
-                        dataProviderString = "AssemblyName={MySql.Data, Version=6.3.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d}; ConnectionType=MySql.Data.MySqlClient.MySqlConnection; AdapterType=MySql.Data.MySqlClient.MySqlDataAdapter";
-                }
-                else if (databaseType == "oracle")
-                {
-                    OracleSetup oracleSetup = m_state["oracleSetup"] as OracleSetup;
-                    connectionString = oracleSetup.ConnectionString;
-                    dataProviderString = oracleSetup.DataProviderString;
-
-                    if (string.IsNullOrWhiteSpace(dataProviderString))
-                        dataProviderString = OracleSetup.DefaultDataProviderString;
-                }
-                else
-                {
-                    string destination = m_state["sqliteDatabaseFilePath"].ToString();
-                    connectionString = "Data Source=" + destination + "; Version=3";
-                    dataProviderString = "AssemblyName={System.Data.SQLite, Version=1.0.79.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139}; ConnectionType=System.Data.SQLite.SQLiteConnection; AdapterType=System.Data.SQLite.SQLiteDataAdapter";
-                }
-
-                if (!string.IsNullOrEmpty(connectionString) && !string.IsNullOrEmpty(dataProviderString))
-                {
-                    Dictionary<string, string> settings = connectionString.ParseKeyValuePairs();
-                    Dictionary<string, string> dataProviderSettings = dataProviderString.ParseKeyValuePairs();
-                    string assemblyName = dataProviderSettings["AssemblyName"];
-                    string connectionTypeName = dataProviderSettings["ConnectionType"];
-                    string connectionSetting;
-
-                    Assembly assembly = Assembly.Load(new AssemblyName(assemblyName));
-                    Type connectionType = assembly.GetType(connectionTypeName);
-
-                    if (settings.TryGetValue("Provider", out connectionSetting))
-                    {
-                        // Check if provider is for Access to make sure the path is fully qualified.
-                        if (connectionSetting.StartsWith("Microsoft.Jet.OLEDB", StringComparison.OrdinalIgnoreCase))
-                        {
-                            if (settings.TryGetValue("Data Source", out connectionSetting))
-                            {
-                                settings["Data Source"] = FilePath.GetAbsolutePath(connectionSetting);
-                                connectionString = settings.JoinKeyValuePairs();
-                            }
-                        }
-                    }
-
-                    connection = (IDbConnection)Activator.CreateInstance(connectionType);
-                    connection.ConnectionString = connectionString;
-                    connection.Open();
+                    if (connection != null)
+                        connection.Dispose();
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to open new database connection: " + ex.Message, "Configuration Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                if (connection != null)
-                    connection.Dispose();
-
-                connection = null;
-            }
-
-            return connection;
-        }
-
-        private bool IsAccessDbConnection(IDbConnection connection)
-        {
-            Dictionary<string, string> connectionStringSettings;
-            string provider;
-
-            connectionStringSettings = connection.ConnectionString.ParseKeyValuePairs();
-            return connectionStringSettings.TryGetValue("Provider", out provider) && provider.StartsWith("Microsoft.Jet.OLEDB", StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -613,11 +591,11 @@ namespace ConfigurationSetupUtility.Screens
             adminCredentialCommand = connection.CreateCommand();
 
             if (roleName == "Administrator")
-                adminCredentialCommand.CommandText = string.Format("Insert Into ApplicationRole (Name, Description, NodeID, UpdatedBy, CreatedBy) Values ('Administrator', 'Administrator Role', {0}, '{1}', '{2}')", nodeID, Thread.CurrentPrincipal.Identity.Name, Thread.CurrentPrincipal.Identity.Name);
+                adminCredentialCommand.CommandText = string.Format("INSERT INTO ApplicationRole(Name, Description, NodeID, UpdatedBy, CreatedBy) VALUES('Administrator', 'Administrator Role', {0}, '{1}', '{2}')", nodeID, Thread.CurrentPrincipal.Identity.Name, Thread.CurrentPrincipal.Identity.Name);
             else if (roleName == "Editor")
-                adminCredentialCommand.CommandText = string.Format("Insert Into ApplicationRole (Name, Description, NodeID, UpdatedBy, CreatedBy) Values ('Editor', 'Editor Role', {0}, '{1}', '{2}')", nodeID, Thread.CurrentPrincipal.Identity.Name, Thread.CurrentPrincipal.Identity.Name);
+                adminCredentialCommand.CommandText = string.Format("INSERT INTO ApplicationRole(Name, Description, NodeID, UpdatedBy, CreatedBy) VALUES('Editor', 'Editor Role', {0}, '{1}', '{2}')", nodeID, Thread.CurrentPrincipal.Identity.Name, Thread.CurrentPrincipal.Identity.Name);
             else
-                adminCredentialCommand.CommandText = string.Format("Insert Into ApplicationRole (Name, Description, NodeID, UpdatedBy, CreatedBy) Values ('Viewer', 'Viewer Role', {0}, '{1}', '{2}')", nodeID, Thread.CurrentPrincipal.Identity.Name, Thread.CurrentPrincipal.Identity.Name);
+                adminCredentialCommand.CommandText = string.Format("INSERT INTO ApplicationRole(Name, Description, NodeID, UpdatedBy, CreatedBy) VALUES('Viewer', 'Viewer Role', {0}, '{1}', '{2}')", nodeID, Thread.CurrentPrincipal.Identity.Name, Thread.CurrentPrincipal.Identity.Name);
 
             adminCredentialCommand.ExecuteNonQuery();
 
@@ -631,20 +609,9 @@ namespace ConfigurationSetupUtility.Screens
             IDbCommand command = connection.CreateCommand();
             command.CommandText = string.Format("SELECT ID FROM ApplicationRole WHERE Name = 'Administrator' AND NodeID = {0}", nodeID);
             string adminRoleID = command.ExecuteScalar().ToNonNullString();
+            string databaseType = m_state["newDatabaseType"].ToString();
 
-            bool databaseIsAccess = false;
-            Dictionary<string, string> settings = connection.ConnectionString.ParseKeyValuePairs();
-            string connectionSetting;
-            if (settings.TryGetValue("Provider", out connectionSetting))
-            {
-                if (connectionSetting.StartsWith("Microsoft.Jet.OLEDB", StringComparison.OrdinalIgnoreCase))
-                    databaseIsAccess = true;
-            }
-
-            if (databaseIsAccess)
-                adminRoleID = adminRoleID.StartsWith("{") ? adminRoleID : "{" + adminRoleID + "}";
-            else
-                adminRoleID = adminRoleID.StartsWith("'") ? adminRoleID : "'" + adminRoleID + "'";
+            adminRoleID = adminRoleID.StartsWith("'") ? adminRoleID : "'" + adminRoleID + "'";
 
             // Check if there is any user associated with the administrator role ID in the ApplicationRoleUserAccount table.
             // if so that means there is atleast one user associated with that role. So we do not need to take any action.
@@ -660,18 +627,14 @@ namespace ConfigurationSetupUtility.Screens
 
                     if (!string.IsNullOrEmpty(adminUserID)) //if user exists then attach it to admin role and we'll be done with it.
                     {
-                        if (databaseIsAccess)
-                            adminUserID = adminUserID.StartsWith("{") ? adminUserID : "{" + adminUserID + "}";
-                        else
-                            adminUserID = adminUserID.StartsWith("'") ? adminUserID : "'" + adminUserID + "'";
-
-                        command.CommandText = string.Format("INSERT INTO ApplicationRoleUserAccount(ApplicationRoleID, UserAccountID) VALUES ({0}, {1})", adminRoleID, adminUserID);
+                        adminUserID = adminUserID.StartsWith("'") ? adminUserID : "'" + adminUserID + "'";
+                        command.CommandText = string.Format("INSERT INTO ApplicationRoleUserAccount(ApplicationRoleID, UserAccountID) VALUES({0}, {1})", adminRoleID, adminUserID);
                         command.ExecuteNonQuery();
                     }
                     else    //we need to add user to the UserAccount table and then attach it to admin role.
                     {
-                        bool oracle = connection.GetType().Name == "OracleConnection";
-                        char paramChar = oracle ? ':' : '@';
+                        bool databaseIsOracle = (databaseType == "Oracle");
+                        char paramChar = databaseIsOracle ? ':' : '@';
 
                         // Add Administrative User.                
                         IDbCommand adminCredentialCommand = connection.CreateCommand();
@@ -693,10 +656,10 @@ namespace ConfigurationSetupUtility.Screens
                             adminCredentialCommand.Parameters.Add(createdByParameter);
                             adminCredentialCommand.Parameters.Add(updatedByParameter);
 
-                            if (oracle)
-                                adminCredentialCommand.CommandText = string.Format("INSERT INTO UserAccount(Name, DefaultNodeID, CreatedBy, UpdatedBy) Values (:name, {0}, :createdBy, :updatedBy)", nodeID);
+                            if (databaseIsOracle)
+                                adminCredentialCommand.CommandText = string.Format("INSERT INTO UserAccount(Name, DefaultNodeID, CreatedBy, UpdatedBy) VALUES(:name, {0}, :createdBy, :updatedBy)", nodeID);
                             else
-                                adminCredentialCommand.CommandText = string.Format("INSERT INTO UserAccount(Name, DefaultNodeID, CreatedBy, UpdatedBy) Values (@name, {0}, @createdBy, @updatedBy)", nodeID);
+                                adminCredentialCommand.CommandText = string.Format("INSERT INTO UserAccount(Name, DefaultNodeID, CreatedBy, UpdatedBy) VALUES(@name, {0}, @createdBy, @updatedBy)", nodeID);
                         }
                         else
                         {
@@ -715,7 +678,7 @@ namespace ConfigurationSetupUtility.Screens
                             updatedByParameter.ParameterName = paramChar + "updatedBy";
 
                             nameParameter.Value = m_state["adminUserName"].ToString();
-                            passwordParameter.Value = FormsAuthentication.HashPasswordForStoringInConfigFile(@"O3990\P78f9E66b:a35_V©6M13©6~2&[" + m_state["adminPassword"].ToString(), "SHA1");
+                            passwordParameter.Value = SecurityProviderUtility.EncryptPassword(m_state["adminPassword"].ToString());
                             firstNameParameter.Value = m_state["adminUserFirstName"].ToString();
                             lastNameParameter.Value = m_state["adminUserLastName"].ToString();
                             createdByParameter.Value = Thread.CurrentPrincipal.Identity.Name;
@@ -728,14 +691,11 @@ namespace ConfigurationSetupUtility.Screens
                             adminCredentialCommand.Parameters.Add(createdByParameter);
                             adminCredentialCommand.Parameters.Add(updatedByParameter);
 
-                            if (!string.IsNullOrEmpty(connectionSetting) && connectionSetting.StartsWith("Microsoft.Jet.OLEDB", StringComparison.OrdinalIgnoreCase))
-                                adminCredentialCommand.CommandText = string.Format("INSERT INTO UserAccount(Name, [Password], FirstName, LastName, DefaultNodeID, UseADAuthentication, CreatedBy, UpdatedBy) Values " +
-                                    "(@name, @password, @firstName, @lastName, {0}, 0, @createdBy, @updatedBy)", nodeID);
-                            else if (oracle)
-                                adminCredentialCommand.CommandText = string.Format("INSERT INTO UserAccount(Name, Password, FirstName, LastName, DefaultNodeID, UseADAuthentication, CreatedBy, UpdatedBy) Values " +
+                            if (databaseIsOracle)
+                                adminCredentialCommand.CommandText = string.Format("INSERT INTO UserAccount(Name, Password, FirstName, LastName, DefaultNodeID, UseADAuthentication, CreatedBy, UpdatedBy) VALUES" +
                                     "(:name, :password, :firstName, :lastName, {0}, 0, :createdBy, :updatedBy)", nodeID);
                             else
-                                adminCredentialCommand.CommandText = string.Format("INSERT INTO UserAccount(Name, Password, FirstName, LastName, DefaultNodeID, UseADAuthentication, CreatedBy, UpdatedBy) Values " +
+                                adminCredentialCommand.CommandText = string.Format("INSERT INTO UserAccount(Name, Password, FirstName, LastName, DefaultNodeID, UseADAuthentication, CreatedBy, UpdatedBy) VALUES" +
                                     "(@name, @password, @firstName, @lastName, {0}, 0, @createdBy, @updatedBy)", nodeID);
                         }
 
@@ -743,7 +703,6 @@ namespace ConfigurationSetupUtility.Screens
 
                         // Get the admin user ID from the database.
                         IDataReader userIdReader = null;
-                        
                         IDbDataParameter newNameParameter = adminCredentialCommand.CreateParameter();
 
                         newNameParameter.ParameterName = paramChar + "name";
@@ -752,28 +711,215 @@ namespace ConfigurationSetupUtility.Screens
                         adminCredentialCommand.CommandText = "SELECT ID FROM UserAccount WHERE Name = " + paramChar + "name";
                         adminCredentialCommand.Parameters.Clear();
                         adminCredentialCommand.Parameters.Add(newNameParameter);
+
                         using (userIdReader = adminCredentialCommand.ExecuteReader())
                         {
-
                             if (userIdReader.Read())
                                 adminUserID = userIdReader["ID"].ToNonNullString();
                         }
-                        
-                        
+
                         // Assign Administrative User to Administrator Role.
                         if (!string.IsNullOrEmpty(adminRoleID) && !string.IsNullOrEmpty(adminUserID))
                         {
-                            if (databaseIsAccess)
-                                adminUserID = adminUserID.StartsWith("{") ? adminUserID : "{" + adminUserID + "}";
-                            else
-                                adminUserID = adminUserID.StartsWith("'") ? adminUserID : "'" + adminUserID + "'";
-
+                            adminUserID = adminUserID.StartsWith("'") ? adminUserID : "'" + adminUserID + "'";
                             adminCredentialCommand.CommandText = string.Format("INSERT INTO ApplicationRoleUserAccount(ApplicationRoleID, UserAccountID) VALUES ({0}, {1})", adminRoleID, adminUserID);
                             adminCredentialCommand.ExecuteNonQuery();
                         }
                     }
                 }
             }
+        }
+
+        private void ConvertNodeTableFormat()
+        {
+            IDbConnection oldConnection = OpenOldConnection();
+
+            if (oldConnection != null)
+            {
+                IDbCommand nodeCommand;
+
+                //Dictionary<string, string> settings = m_state["oldConnectionString"].ToString().ParseKeyValuePairs();
+                //string oldDatabaseType = "undetermined";
+
+                //switch (oldConnection.GetType().Name)
+                //{
+                //    case "SqlConnection":
+                //        oldDatabaseType = "SQLServer";
+                //        break;
+                //    case "MySqlConnection":
+                //        oldDatabaseType = "MySQL";
+                //        break;
+                //    case "OracleConnection":
+                //        oldDatabaseType = "Oracle";
+                //        break;
+                //    case "SQLiteConnection":
+                //        oldDatabaseType = "SQLite";
+                //        break;
+                //    case "OleDbConnection":
+                //        string connectionSetting;
+                //        if (settings.TryGetValue("Provider", out connectionSetting) && connectionSetting.StartsWith("Microsoft.Jet.OLEDB", StringComparison.OrdinalIgnoreCase))
+                //            oldDatabaseType = "access";
+                //        break;
+                //}
+
+                nodeCommand = oldConnection.CreateCommand();
+                nodeCommand.CommandText = "SELECT * FROM Node";
+                using (IDataReader nodeReader = nodeCommand.ExecuteReader())
+                {
+
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(nodeReader);
+
+                    if (nodeReader != null)
+                        nodeReader.Close();
+
+                    // See if old database contains old column names
+                    if (dataTable.Columns.Contains("TimeSeriesDataServiceUrl"))
+                    {
+                        IDbConnection newConnection = OpenNewConnection();
+
+                        if (newConnection != null)
+                        {
+                            // Convert original columns into connection settings format
+                            foreach (DataRow row in dataTable.Rows)
+                            {
+                                string nodeID = string.Format("'{0}'", row["ID"].ToNonNullString());
+                                string remoteStatusServer = row["RemoteStatusServiceUrl"].ToNonNullString();
+                                string realTimeStatisticServiceUrl = row["RealTimeStatisticServiceUrl"].ToNonNullString();
+
+                                // Make sure remote status server contains a data publisher port
+                                Dictionary<string, string> remoteStatusServerSettings = remoteStatusServer.ParseKeyValuePairs();
+
+                                if (!remoteStatusServerSettings.ContainsKey("dataPublisherPort"))
+                                {
+                                    remoteStatusServerSettings["dataPublisherPort"] = "6180";
+                                    remoteStatusServer = remoteStatusServerSettings.JoinKeyValuePairs();
+                                }
+
+                                string connectionSettings = string.Format("RemoteStatusServerConnectionString={{{0}}}; RealTimeStatisticServiceUrl={1}", remoteStatusServer, realTimeStatisticServiceUrl);
+
+                                IDbCommand command = newConnection.CreateCommand();
+                                command.CommandText = string.Format("UPDATE Node SET Settings = '{0}' WHERE ID = {1}", connectionSettings, nodeID);
+                                command.ExecuteNonQuery();
+                            }
+
+                            newConnection.Dispose();
+                        }
+                    }
+                }
+                oldConnection.Dispose();
+            }
+        }
+
+        private IDbConnection OpenOldConnection()
+        {
+            IDbConnection connection = null;
+
+            try
+            {
+                string connectionString, dataProviderString;
+
+                if (m_state.ContainsKey("oldConnectionString") && !string.IsNullOrWhiteSpace(m_state["oldConnectionString"].ToString()))
+                    connectionString = m_state["oldConnectionString"].ToString();
+                else
+                    connectionString = null;
+
+                if (m_state.ContainsKey("oldDataProviderString") && !string.IsNullOrWhiteSpace(m_state["oldDataProviderString"].ToString()))
+                    dataProviderString = m_state["oldDataProviderString"].ToString();
+                else
+                    dataProviderString = null;
+
+                if (connectionString != null && dataProviderString != null)
+                {
+                    Dictionary<string, string> dataProviderSettings = dataProviderString.ParseKeyValuePairs();
+                    string assemblyName = dataProviderSettings["AssemblyName"];
+                    string connectionTypeName = dataProviderSettings["ConnectionType"];
+
+                    Assembly assembly = Assembly.Load(new AssemblyName(assemblyName));
+                    Type connectionType = assembly.GetType(connectionTypeName);
+                    connection = (IDbConnection)Activator.CreateInstance(connectionType);
+                    connection.ConnectionString = connectionString;
+                    connection.Open();
+                }
+            }
+            catch
+            {
+                if (connection != null)
+                    connection.Dispose();
+                connection = null;
+            }
+
+            return connection;
+        }
+
+        private IDbConnection OpenNewConnection()
+        {
+            IDbConnection connection = null;
+
+            try
+            {
+                string databaseType = m_state["newDatabaseType"].ToString();
+                string connectionString = null;
+                string dataProviderString = null;
+
+                if (databaseType == "SQLServer")
+                {
+                    SqlServerSetup sqlServerSetup = m_state["sqlServerSetup"] as SqlServerSetup;
+                    connectionString = sqlServerSetup.ConnectionString;
+                    dataProviderString = sqlServerSetup.DataProviderString;
+
+                    if (string.IsNullOrWhiteSpace(dataProviderString))
+                        dataProviderString = "AssemblyName={System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089}; ConnectionType=System.Data.SqlClient.SqlConnection; AdapterType=System.Data.SqlClient.SqlDataAdapter";
+                }
+                else if (databaseType == "MySQL")
+                {
+                    MySqlSetup mySqlSetup = m_state["mySqlSetup"] as MySqlSetup;
+                    connectionString = mySqlSetup.ConnectionString;
+                    dataProviderString = mySqlSetup.DataProviderString;
+
+                    if (string.IsNullOrWhiteSpace(dataProviderString))
+                        dataProviderString = "AssemblyName={MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d}; ConnectionType=MySql.Data.MySqlClient.MySqlConnection; AdapterType=MySql.Data.MySqlClient.MySqlDataAdapter";
+                }
+                else if (databaseType == "Oracle")
+                {
+                    OracleSetup oracleSetup = m_state["oracleSetup"] as OracleSetup;
+                    connectionString = oracleSetup.ConnectionString;
+                    dataProviderString = oracleSetup.DataProviderString;
+
+                    if (string.IsNullOrWhiteSpace(dataProviderString))
+                        dataProviderString = OracleSetup.DefaultDataProviderString;
+                }
+                else
+                {
+                    string destination = m_state["sqliteDatabaseFilePath"].ToString();
+                    connectionString = "Data Source=" + destination + "; Version=3";
+                    dataProviderString = "AssemblyName={System.Data.SQLite, Version=1.0.93.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139}; ConnectionType=System.Data.SQLite.SQLiteConnection; AdapterType=System.Data.SQLite.SQLiteDataAdapter";
+                }
+
+                if (!string.IsNullOrEmpty(connectionString) && !string.IsNullOrEmpty(dataProviderString))
+                {
+                    Dictionary<string, string> dataProviderSettings = dataProviderString.ParseKeyValuePairs();
+                    string assemblyName = dataProviderSettings["AssemblyName"];
+                    string connectionTypeName = dataProviderSettings["ConnectionType"];
+
+                    Assembly assembly = Assembly.Load(new AssemblyName(assemblyName));
+                    Type connectionType = assembly.GetType(connectionTypeName);
+                    connection = (IDbConnection)Activator.CreateInstance(connectionType);
+                    connection.ConnectionString = connectionString;
+                    connection.Open();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to open new database connection: " + ex.Message, "Configuration Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                if (connection != null)
+                    connection.Dispose();
+
+                connection = null;
+            }
+
+            return connection;
         }
 
         #endregion
