@@ -34,7 +34,7 @@ namespace Setup
     public partial class Main : Form
     {
         // substationSBG product code, as defined in the setup packages
-        private const string ProductCode = "{493D6CED-50C6-4CF5-93A3-306C364F10A3}";
+        private const string ProductCode = "{88E29EE4-2904-47A5-91C6-41087519F0BE}";
 
         private enum SetupType
         {

@@ -150,6 +150,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationSetupUtility", "Tools\ConfigurationSetupUtility\ConfigurationSetupUtility.csproj", "{2A74EACF-8291-47C7-A2ED-0D58771F24E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Setup", "Tools\Setup\Setup.csproj", "{A4C500AC-70AC-4869-8A08-E10CCD45F64F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6858B393-77B4-4F28-A4B1-14B484C10FB2} = {6858B393-77B4-4F28-A4B1-14B484C10FB2}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "substationSBGManager", "Applications\substationSBGManager\substationSBGManager\substationSBGManager.csproj", "{6903507C-C289-4F8F-887C-C2D94C72BA99}"
 EndProject
@@ -288,7 +291,7 @@ Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 9
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://172.21.1.142:8000/tfs/gpa
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs07
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = Applications\\substationSBG\\substationSBG\\substationSBG.csproj
 		SccProjectTopLevelParentUniqueName1 = substationSBG.sln
