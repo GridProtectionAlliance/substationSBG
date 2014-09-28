@@ -235,7 +235,10 @@ namespace ConfigurationSetupUtility.Screens
             try
             {
                 // Set a default path for SQLite database that will allow non-restrictive read/write access
-                string sqliteDatabaseFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "substationSBG\\");
+                // *** For the substationSBG, we default this to ConfigurationCache folder so that DFS replication can be simple ***
+                string sqliteDatabaseFilePath = string.Format("{0}{1}ConfigurationCache{1}", FilePath.GetAbsolutePath(""), Path.DirectorySeparatorChar);
+
+                //string sqliteDatabaseFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "substationSBG\\");
 
                 // Make sure path exists
 
