@@ -31,10 +31,10 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
-using Microsoft.Win32;
 using GSF;
 using GSF.Data;
 using GSF.Security.Cryptography;
+using Microsoft.Win32;
 
 namespace ConfigurationSetupUtility.Screens
 {
@@ -362,8 +362,9 @@ namespace ConfigurationSetupUtility.Screens
             if (m_state != null)
                 m_state["newDatabaseType"] = "SQLite";
 
-            if (!m_sampleScriptChanged && m_sampleDataScriptCheckBox != null)
-                m_sampleDataScriptCheckBox.IsChecked = true;
+            // *** For the substationSBG, not defaulting to sample data enabled...
+            //if (!m_sampleScriptChanged && m_sampleDataScriptCheckBox != null)
+            //    m_sampleDataScriptCheckBox.IsChecked = true;
 
             if (m_enableAuditLogCheckBox != null)
                 ManageEnableAuditLogCheckBox();
