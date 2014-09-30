@@ -189,8 +189,9 @@ namespace ConfigurationSetupUtility.Screens
                 else
                     m_newDatabaseWarning.Visibility = existingVisibility;
 
+                // *** For the substationSBG, defaulting to SQLite...
                 if (!m_state.ContainsKey("newDatabaseType"))
-                    m_state.Add("newDatabaseType", "SQLServer");
+                    m_state.Add("newDatabaseType", "SQLite");
 
                 if (!m_state.ContainsKey("initialDataScript"))
                     m_state.Add("initialDataScript", true);
