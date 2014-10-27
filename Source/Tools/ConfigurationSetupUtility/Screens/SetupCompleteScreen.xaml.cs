@@ -351,8 +351,9 @@ namespace ConfigurationSetupUtility.Screens
 
         private void ValidateTimeSeriesStartupOperations()
         {
-            const string countQuery = "SELECT COUNT(*) FROM DataOperation WHERE MethodName = 'PerformTimeSeriesStartupOperations'";
-            const string insertQuery = "INSERT INTO DataOperation(Description, AssemblyName, TypeName, MethodName, Arguments, LoadOrder, Enabled) VALUES('Time Series Startup Operations', 'GSF.TimeSeries.dll', 'GSF.TimeSeries.TimeSeriesStartupOperations', 'PerformTimeSeriesStartupOperations', '', 0, 1)";
+            const string CountQuery = "SELECT COUNT(*) FROM DataOperation WHERE MethodName = 'PerformTimeSeriesStartupOperations'";
+            const string InsertQuery = "INSERT INTO DataOperation(Description, AssemblyName, TypeName, MethodName, Arguments, LoadOrder, Enabled) VALUES('Time Series Startup Operations', 'GSF.TimeSeries.dll', 'GSF.TimeSeries.TimeSeriesStartupOperations', 'PerformTimeSeriesStartupOperations', '', 0, 1)";
+            const string UpdateQuery = "UPDATE DataOperation SET Arguments = 'externalDataPublisherEnabled=false;tlsDataPublisherEnabled=false' WHERE MethodName = 'PerformTimeSeriesStartupOperations'";
 
             IDbConnection connection = null;
             int timeSeriesStartupOperationsCount;
@@ -360,10 +361,12 @@ namespace ConfigurationSetupUtility.Screens
             try
             {
                 connection = OpenNewConnection();
-                timeSeriesStartupOperationsCount = Convert.ToInt32(connection.ExecuteScalar(countQuery));
+                timeSeriesStartupOperationsCount = Convert.ToInt32(connection.ExecuteScalar(CountQuery));
 
                 if (timeSeriesStartupOperationsCount == 0)
-                    connection.ExecuteNonQuery(insertQuery);
+                    connection.ExecuteNonQuery(InsertQuery);
+
+                connection.ExecuteNonQuery(UpdateQuery);
             }
             finally
             {
@@ -495,12 +498,13 @@ namespace ConfigurationSetupUtility.Screens
                     // Make sure security settings are enabled for the node
                     if (!nodeSettings.TryGetValue("RemoteStatusServerConnectionString", out remoteStatusServerConnectionString))
                     {
-                        nodeSettings.Add("RemoteStatusServerConnectionString", "server=localhost:8515;integratedSecurity=true");
+                        nodeSettings.Add("RemoteStatusServerConnectionString", "server=localhost:8515;integratedSecurity=true;interface=0.0.0.0");
                     }
                     else
                     {
                         remoteStatusServerSettings = remoteStatusServerConnectionString.ParseKeyValuePairs();
                         remoteStatusServerSettings["integratedSecurity"] = "true";
+                        remoteStatusServerSettings["interface"] = "0.0.0.0";
                         nodeSettings["RemoteStatusServerConnectionString"] = remoteStatusServerSettings.JoinKeyValuePairs();
                     }
 
