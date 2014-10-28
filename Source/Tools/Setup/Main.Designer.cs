@@ -146,9 +146,8 @@
             this.labelInstallationOptions.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelInstallationOptions.Size = new System.Drawing.Size(379, 66);
             this.labelInstallationOptions.TabIndex = 6;
-            this.labelInstallationOptions.Text = "This setup utility will install the substationSBG and/or related tools. This installati" +
-    "on requires .NET 4.5. Starting with version 2.0, the substationSBG is only available a" +
-    "s a 64-bit installation.";
+            this.labelInstallationOptions.Text = "This setup utility will install the substationSBG and/or related tools. This inst" +
+    "allation requires .NET 4.5 and is only available as a 64-bit installation.";
             this.labelInstallationOptions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelNotes
