@@ -42,16 +42,24 @@ ECHO Getting latest version...
 %tfs% get %target1% /version:T /force /recursive /noprompt
 %tfs% get "%sourcetools%ConfigCrypter.exe" /version:T /force /recursive /noprompt
 %tfs% get "%sourcetools%ConfigurationEditor.exe" /version:T /force /recursive /noprompt
+%tfs% get "%sourcetools%DataMigrationUtility.exe" /force /recursive /noprompt
+%tfs% get "%sourcetools%HistorianPlaybackUtility.exe" /force /recursive /noprompt
+%tfs% get "%sourcetools%HistorianView.exe" /force /recursive /noprompt
 %tfs% get "%sourcetools%StatHistorianReportGenerator.exe" /version:T /force /recursive /noprompt
 %tfs% get "%sourcetools%NoInetFixUtil.exe" /version:T /force /recursive /noprompt
+%tfs% get "%sourcetools%DNP3ConfigGenerator.exe" /version:T /force /recursive /noprompt
 
 ECHO.
 ECHO Checking out dependencies...
 %tfs% checkout %target1% /recursive /noprompt
 %tfs% checkout "%sourcetools%ConfigCrypter.exe" /noprompt
 %tfs% checkout "%sourcetools%ConfigurationEditor.exe" /noprompt
+%tfs% checkout "%sourcetools%DataMigrationUtility.exe" /noprompt
+%tfs% checkout "%sourcetools%HistorianPlaybackUtility.exe" /noprompt
+%tfs% checkout "%sourcetools%HistorianView.exe" /noprompt
 %tfs% checkout "%sourcetools%StatHistorianReportGenerator.exe" /noprompt
 %tfs% checkout "%sourcetools%NoInetFixUtil.exe" /noprompt
+%tfs% checkout "%sourcetools%DNP3ConfigGenerator.exe" /noprompt
 %tfs% checkout "%targetschema%" /recursive /noprompt
 
 ECHO.
@@ -59,8 +67,12 @@ ECHO Updating dependencies...
 XCOPY %source1% %target1% /Y /E
 XCOPY "%frameworktools%ConfigCrypter\ConfigCrypter.exe" "%sourcetools%ConfigCrypter.exe" /Y
 XCOPY "%frameworktools%ConfigEditor\ConfigEditor.exe" "%sourcetools%ConfigurationEditor.exe" /Y
+XCOPY "%frameworktools%DataMigrationUtility\DataMigrationUtility.exe" "%sourcetools%DataMigrationUtility.exe" /Y
+XCOPY "%frameworktools%HistorianPlaybackUtility\HistorianPlaybackUtility.exe" "%sourcetools%HistorianPlaybackUtility.exe" /Y
+XCOPY "%frameworktools%HistorianView\HistorianView.exe" "%sourcetools%HistorianView.exe" /Y
 XCOPY "%frameworktools%StatHistorianReportGenerator\StatHistorianReportGenerator.exe" "%sourcetools%StatHistorianReportGenerator.exe" /Y
 XCOPY "%frameworktools%NoInetFixUtil\NoInetFixUtil.exe" "%sourcetools%NoInetFixUtil.exe" /Y
+XCOPY "%frameworktools%DNP3ConfigGenerator\DNP3ConfigGenerator.exe" "%sourcetools%DNP3ConfigGenerator.exe" /Y
 
 ECHO.
 ECHO Updating database schema defintions...
@@ -96,8 +108,12 @@ ECHO Checking in dependencies...
 %tfs% checkin %target1% /noprompt /recursive /comment:"Updated grid solutions framework dependencies."
 %tfs% checkin "%sourcetools%ConfigCrypter.exe" /noprompt /comment:"Updated grid solutions framework tool: ConfigCrypter."
 %tfs% checkin "%sourcetools%ConfigurationEditor.exe" /noprompt /comment:"Updated grid solutions framework tool: ConfigurationEditor."
+%tfs% checkin "%sourcetools%DataMigrationUtility.exe" /noprompt /comment:"Synchrophasor-VS2012: Updated grid solutions framework tool: DataMigrationUtility."
+%tfs% checkin "%sourcetools%HistorianPlaybackUtility.exe" /noprompt /comment:"Synchrophasor-VS2012: Updated openHistorian playback / export tool: HistorianPlaybackUtility."
+%tfs% checkin "%sourcetools%HistorianView.exe" /noprompt /comment:"Synchrophasor-VS2012: Updated openHistorian trending tool: HistorianView."
 %tfs% checkin "%sourcetools%StatHistorianReportGenerator.exe" /noprompt /comment:"Updated grid solutions framework tool: StatHistorianReportGenerator."
 %tfs% checkin "%sourcetools%NoInetFixUtil.exe" /noprompt /comment:"Updated grid solutions framework tool: NoInetFixUtil."
+%tfs% checkin "%sourcetools%DNP3ConfigGenerator.exe" /noprompt /comment:"Synchrophasor-VS2012: Updated grid solutions framework tool: DNP3ConfigGenerator."
 %tfs% checkin "%targetschema%" /noprompt /recursive /comment:"Updated database schema definitions from GSF source."
 
 :Finalize
