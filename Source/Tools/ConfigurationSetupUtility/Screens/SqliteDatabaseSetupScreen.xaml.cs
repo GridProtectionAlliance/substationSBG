@@ -245,11 +245,11 @@ namespace ConfigurationSetupUtility.Screens
                 if (!Directory.Exists(sqliteDatabaseFilePath))
                     Directory.CreateDirectory(sqliteDatabaseFilePath);
 
-                m_sqliteDatabaseFilePathTextBox.Text = Path.Combine(sqliteDatabaseFilePath, migrate ? "substationSBGv2.db" : "substationSBG.db");
+                m_sqliteDatabaseFilePathTextBox.Text = Path.Combine(sqliteDatabaseFilePath, migrate ? "substationSBG" + App.DatabaseVersionSuffix + ".db" : "substationSBG.db");
             }
             catch
             {
-                m_sqliteDatabaseFilePathTextBox.Text = migrate ? "substationSBGv2.db" : "substationSBG.db";
+                m_sqliteDatabaseFilePathTextBox.Text = migrate ? "substationSBG" + App.DatabaseVersionSuffix + ".db" : "substationSBG.db";
             }
 
             if (!m_state.ContainsKey("sqliteDatabaseFilePath"))

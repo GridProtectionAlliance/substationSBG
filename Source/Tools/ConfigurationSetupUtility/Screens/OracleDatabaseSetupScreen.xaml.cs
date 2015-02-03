@@ -279,7 +279,7 @@ namespace ConfigurationSetupUtility.Screens
                     m_oracleSetup.SchemaPassword = m_schemaUserPasswordTextBox.Password;
                 }
 
-                m_schemaUserNameTextBox.Text = migrate ? "substationSBGv2" : "substationSBG";
+                m_schemaUserNameTextBox.Text = migrate ? "substationSBG" + App.DatabaseVersionSuffix : "substationSBG";
 
                 // When using an existing database as-is, read existing connection settings out of the configuration file
                 if (existing && !migrate)
