@@ -16,6 +16,7 @@
       <Feature Id="substationSBGFeature" Title="substationSBG">
         <ComponentGroupRef Id="substationSBGComponents" />
         <ComponentGroupRef Id="AdapterComponents" />
+        <ComponentGroupRef Id="ConfigurationSetupUtilityComponents" />
         <ComponentGroupRef Id="GSFDependencyComponents" />
         <ComponentGroupRef Id="SQLiteDependencyComponents" />
         <ComponentGroupRef Id="MySQLScriptComponents" />
@@ -30,6 +31,7 @@
       <Feature Id="substationSBGManagerFeature" Title="substationSBG Manager">
         <ComponentGroupRef Id="substationSBGManagerComponents" />
         <ComponentGroupRef Id="AdapterComponents" />
+        <ComponentGroupRef Id="ConfigurationSetupUtilityComponents" />
         <ComponentGroupRef Id="GSFDependencyComponents" />
         <ComponentGroupRef Id="MicrosoftDependencyComponents" />
         <ComponentGroupRef Id="SQLiteDependencyComponents" />
@@ -238,13 +240,6 @@
       <Component Id="substationSBGConfig" Permanent="yes">
         <File Id="substationSBG.exe.config" Name="$(var.substationSBG.TargetFileName).config" Source="$(var.substationSBG.TargetPath).config" />
       </Component>
-      <Component Id="ConfigurationSetupUtility">
-        <File Id="ConfigurationSetupUtility.exe" Name="$(var.ConfigurationSetupUtility.TargetFileName)" Source="$(var.ConfigurationSetupUtility.TargetPath)" />
-        <Shortcut Id="ConfigurationSetupUtilityStartMenuShortcut" Name="Configuration Setup Utility" Icon="ConfigurationSetupUtility.ico.exe" Description="Utility used to set up substationSBG service configuration database." WorkingDirectory="INSTALLFOLDER" Directory="ApplicationProgramsFolder" Advertise="yes" />
-      </Component>
-      <Component Id="ConfigurationSetupUtilityConfig">
-        <File Id="ConfigurationSetupUtility.exe.config" Name="$(var.ConfigurationSetupUtility.TargetFileName).config" Source="$(var.ConfigurationSetupUtility.TargetPath).config" />
-      </Component>
       <Component Id="DataMigrationUtility">
         <File Id="DataMigrationUtility.exe" Name="DataMigrationUtility.exe" Source="$(var.ProjectDir)\DataMigrationUtility.exe" />
         <Shortcut Id="DataMigrationUtilityStartMenuShortcut" Name="Data Migration Utility" Icon="DataMigrationUtility.ico.exe" Description="Tool used to migrate data from an old configuration database to the latest version." WorkingDirectory="INSTALLFOLDER" Directory="ApplicationProgramsFolder" Advertise="yes" />
@@ -329,6 +324,16 @@
       </Component>
       <Component Id="ConfigurationEditorConfig">
         <File Id="ConfigurationEditor.exe.config" Name="ConfigurationEditor.exe.config" Source="$(var.ProjectDir)\ConfigurationEditor.exe.config" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="ConfigurationSetupUtilityComponents" Directory="INSTALLFOLDER">
+      <Component Id="ConfigurationSetupUtility">
+        <File Id="ConfigurationSetupUtility.exe" Name="$(var.ConfigurationSetupUtility.TargetFileName)" Source="$(var.ConfigurationSetupUtility.TargetPath)" />
+        <Shortcut Id="ConfigurationSetupUtilityStartMenuShortcut" Name="Configuration Setup Utility" Icon="ConfigurationSetupUtility.ico.exe" Description="Utility used to set up substationSBG service configuration database." WorkingDirectory="INSTALLFOLDER" Directory="ApplicationProgramsFolder" Advertise="yes" />
+      </Component>
+      <Component Id="ConfigurationSetupUtilityConfig">
+        <File Id="ConfigurationSetupUtility.exe.config" Name="$(var.ConfigurationSetupUtility.TargetFileName).config" Source="$(var.ConfigurationSetupUtility.TargetPath).config" />
       </Component>
     </ComponentGroup>
 
