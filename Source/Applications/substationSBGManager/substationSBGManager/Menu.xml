@@ -70,9 +70,10 @@
           <MenuDataItem Icon="" MenuText="_View Iaon Tree" Description="View Iaon Tree" Roles="*" UserControlAssembly="GSF.TimeSeries.UI.WPF.dll" UserControlPath="GSF.TimeSeries.UI.UserControls.IaonTreeUserControl"/>
           <!--
           <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath="" />
-          <MenuDataItem Icon="" MenuText="_Reporting" Description="SSBG Reporting Components" Roles="*" UserControlAssembly="" UserControlPath="">
+          <MenuDataItem Icon="" MenuText="_Reporting" Description="Reports" Roles="*" UserControlAssembly="" UserControlPath="">
             <SubMenuItems>
-              <MenuDataItem Icon="" MenuText="Data Quality Reports" Description="Configure Data Quality Reports" Roles="*" UserControlAssembly="GSF.TimeSeries.UI.WPF.dll" UserControlPath="GSF.TimeSeries.UI.UserControls.DataQualityReportUserControl"/>
+              <MenuDataItem Icon="" MenuText="Completeness Reports" Description="Configure Completeness Reports" Roles="*" UserControlAssembly="GSF.TimeSeries.UI.WPF.dll" UserControlPath="GSF.TimeSeries.UI.UserControls.CompletenessReportUserControl"/>
+              <MenuDataItem Icon="" MenuText="Correctness Reports" Description="Configure Correctness Reports" Roles="*" UserControlAssembly="GSF.TimeSeries.UI.WPF.dll" UserControlPath="GSF.TimeSeries.UI.UserControls.CorrectnessReportUserControl"/>
             </SubMenuItems>
           </MenuDataItem>
           -->
