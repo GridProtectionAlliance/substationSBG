@@ -33,11 +33,12 @@
     <PropertyGroup>
       <!-- Must-override setting(s). -->
       <ProjectName>substationSBG</ProjectName>
-      <ServerFolder>$/openPG/Main</ServerFolder>
-      <!-- Use Visual Studio 11.0 tools -->
-      <TfsClient Condition="'$(TfsClient)' == ''">$(VS110COMNTOOLS)\..\IDE\tf.exe</TfsClient>
-      <VisualStudio Condition="'$(VisualStudio)' == ''">$(VS110COMNTOOLS)\..\IDE\devenv.com</VisualStudio>
-      <MSTest Condition="'$(MSTest)' == ''">$(VS110COMNTOOLS)\..\IDE\mstest.exe</MSTest>
+      <GitServer>git@github.com:GridProtectionAlliance/substationSBG.git</GitServer>
+      
+      <VersionMajorChange>None</VersionMajorChange>
+      <VersionMinorChange>None</VersionMinorChange>
+      <VersionBuildChange>Increment</VersionBuildChange>
+      <VersionRevisionChange>Reset</VersionRevisionChange>
     </PropertyGroup>
   </Target>
 
@@ -46,6 +47,8 @@
       <!-- Project specific settings. -->
       <ProjectSolution>$(LocalFolder)\Source\$(ProjectName).sln</ProjectSolution>
       <BuildDeployFolder Condition="'$(BuildDeployFolder)' == ''">\\GPAWEB\NightlyBuilds\substationSBG\Beta\</BuildDeployFolder>
+      <SourceArchiveFileName Condition="'$(SourceArchiveFileName)' == ''">$(LocalFolder)\Source.zip</SourceArchiveFileName>
+      <SourceArchiveWorkingDirectory Condition="'$(SourceArchiveWorkingDirectory)' == ''">$(LocalFolder)\Archives\Source</SourceArchiveWorkingDirectory>
     </PropertyGroup>
   </Target>
 
@@ -93,7 +96,15 @@
   </Target>
   
   <Target Name="BeforeDeployBuild">
+    <!--Directories containing help files.-->
+    <PropertyGroup>
+      <HelpOutputFolder>$(BuildOutputFolder)\..\..\Help\</HelpOutputFolder>
+      <HelpDeployFolder>$(BuildDeployFolder)\..\Help\</HelpDeployFolder>
+    </PropertyGroup>
+    
     <ItemGroup>
+      <!--List of source code files to archive.-->
+      <SourcesToArchive Include="$(LocalFolder)\Source\**\*.*" Exclude="$(LocalFolder)\Source\**\obj\**\*.*"/>
       <!-- List of binaries to archive. -->
       <BinariesToArchive Include="$(BuildOutputFolder)\**\*.*"/>
       <!-- List of installs to archive. -->
@@ -103,4 +114,34 @@
     </ItemGroup>
   </Target>
 
+  <Target Name="AfterDeployBuild">
+    <CallTarget Targets="DeploySource"/>
+    <CallTarget Targets="DeployHelpFiles"/>
+  </Target>
+  
+  <Target Name="DeploySource" Condition="'$(ForceBuild)' == 'true' And '$(BuildDeployFolder)' != ''">
+    <!-- Create archive of source tree. -->
+    <Message Text="Archiving source code..."/>
+    <Copy SourceFiles="@(SourcesToArchive)" DestinationFolder="$(SourceArchiveWorkingDirectory)\%(SourcesToArchive.RecursiveDir)"/>
+    <ItemGroup>
+      <SourcesToArchive Remove="@(SourcesToArchive)"/>
+      <SourcesToArchive Include="$(SourceArchiveWorkingDirectory)\**\*.*"/>
+    </ItemGroup>
+    <MSBuild.Community.Tasks.Zip Files="@(SourcesToArchive)" ZipFileName="$(SourceArchiveFileName)" WorkingDirectory="$(SourceArchiveWorkingDirectory)" Condition="'@(SourcesToArchive)' != ''"/>
+    <ItemGroup>
+      <SourceArchive Include="$(SourceArchiveFileName)"/>
+      <SourceArchiveDestination Include="$(BuildDeployFolder)\..\"/>
+    </ItemGroup>
+    <Copy SourceFiles="@(SourceArchive)" DestinationFolder="%(SourceArchiveDestination.FullPath)" ContinueOnError="true"/>
+  </Target>
+  
+  <Target Name="DeployHelpFiles" Condition="'$(SkipHelpFiles)' != 'true' And '$(BuildOutputFolder)' != '' And '$(BuildDeployFolder)' != ''">
+    <!-- Copy help files to the deploy folder. -->
+    <Message Text="Deploying help files..."/>
+    <ItemGroup>
+      <HelpFilesToDeploy Include="$(HelpOutputFolder)\**\*.*"/>
+    </ItemGroup>
+    <MakeDir Directories="$(HelpDeployFolder)" Condition="!Exists('$(HelpDeployFolder)')"/>
+    <Copy SourceFiles="@(HelpFilesToDeploy)" DestinationFolder="$(HelpDeployFolder)\%(HelpFilesToDeploy.RecursiveDir)"/>
+  </Target>
 </Project>
