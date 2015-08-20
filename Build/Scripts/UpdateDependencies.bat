@@ -25,6 +25,8 @@
 
 @ECHO OFF
 
+SETLOCAL
+
 SET pwd="%CD%"
 SET gwd="%LOCALAPPDATA%\Temp\substationSBG"
 SET git="%PROGRAMFILES(X86)%\Git\cmd\git.exe"
