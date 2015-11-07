@@ -11,7 +11,7 @@
 <td style="width: 25%; text-align:center;"><b><a href="http://www.gridprotectionalliance.org">Grid Protection Alliance</a></b></td>
 <td style="width: 25%; text-align:center;"><b><a href="https://github.com/GridProtectionAlliance/substationSBG">substationSBG Project on GitHub</a></b></td>
 <td style="width: 25%; text-align:center;"><b><a href="https://github.com/GridProtectionAlliance/substationSBG/blob/master/Source/Documentation/wiki/Substation_Secure_Buffered_Gateway.md">substationSBG Wiki Home</a></b></td>
-<td style="width: 25%; text-align:center;"><b><a href="https://github.com/GridProtectionAlliance/substationDBG/tree/master/Source/Documentation">Documentation</a></b></td>
+<td style="width: 25%; text-align:center;"><b><a href="https://github.com/GridProtectionAlliance/substationSBG/tree/master/Source/Documentation/">Documentation</a></b></td>
 </tr>
 </table>
 </div>
