@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{BD933E0E-B3FD-470B-B53B-56DA8BC27467}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{A19659A8-EA00-4D5E-90C5-E8ABE7F4FB1C}"
@@ -119,16 +121,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLite", "SQLite", "{53255B
 		Data\SQLite\substationSBG.db = Data\SQLite\substationSBG.db
 		Data\SQLite\substationSBG.sql = Data\SQLite\substationSBG.sql
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLite", "SQLite", "{44A76C31-308D-4D46-B263-734DD9FA3570}"
-	ProjectSection(SolutionItems) = preProject
-		Dependencies\SQLite\System.Data.SQLite.dll = Dependencies\SQLite\System.Data.SQLite.dll
-		Dependencies\SQLite\System.Data.SQLite.Linq.dll = Dependencies\SQLite\System.Data.SQLite.Linq.dll
-		Dependencies\SQLite\System.Data.SQLite.Linq.xml = Dependencies\SQLite\System.Data.SQLite.Linq.xml
-		Dependencies\SQLite\System.Data.SQLite.xml = Dependencies\SQLite\System.Data.SQLite.xml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "x86", "x86", "{AD1920D4-64C4-43C9-903D-3C78981C8850}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Oracle", "Oracle", "{051BD028-6567-442A-B7C5-A5DD9F70B357}"
 	ProjectSection(SolutionItems) = preProject
@@ -288,44 +280,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "substationSBGShell", "Applications\substationSBG\substationSBGShell\substationSBGShell.csproj", "{5D7F9600-E7F9-491C-AD0C-CECBA54F7083}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs07
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Applications\\substationSBG\\substationSBG\\substationSBG.csproj
-		SccProjectTopLevelParentUniqueName1 = substationSBG.sln
-		SccProjectName1 = Applications/substationSBG/substationSBG
-		SccLocalPath1 = Applications\\substationSBG\\substationSBG
-		SccProjectUniqueName2 = Applications\\substationSBG\\substationSBGConsole\\substationSBGConsole.csproj
-		SccProjectTopLevelParentUniqueName2 = substationSBG.sln
-		SccProjectName2 = Applications/substationSBG/substationSBGConsole
-		SccLocalPath2 = Applications\\substationSBG\\substationSBGConsole
-		SccProjectUniqueName3 = Applications\\substationSBG\\substationSBGServices\\substationSBGServices.csproj
-		SccProjectTopLevelParentUniqueName3 = substationSBG.sln
-		SccProjectName3 = Applications/substationSBG/substationSBGServices
-		SccLocalPath3 = Applications\\substationSBG\\substationSBGServices
-		SccProjectUniqueName4 = Applications\\substationSBG\\substationSBGSetup\\substationSBGSetup.wixproj
-		SccProjectTopLevelParentUniqueName4 = substationSBG.sln
-		SccProjectName4 = Applications/substationSBG/substationSBGSetup
-		SccLocalPath4 = Applications\\substationSBG\\substationSBGSetup
-		SccProjectUniqueName5 = Applications\\substationSBG\\substationSBGShell\\substationSBGShell.csproj
-		SccProjectTopLevelParentUniqueName5 = substationSBG.sln
-		SccProjectName5 = Applications/substationSBG/substationSBGShell
-		SccLocalPath5 = Applications\\substationSBG\\substationSBGShell
-		SccProjectUniqueName6 = Applications\\substationSBGManager\\substationSBGManager\\substationSBGManager.csproj
-		SccProjectTopLevelParentUniqueName6 = substationSBG.sln
-		SccProjectName6 = Applications/substationSBGManager/substationSBGManager
-		SccLocalPath6 = Applications\\substationSBGManager\\substationSBGManager
-		SccProjectUniqueName7 = Tools\\ConfigurationSetupUtility\\ConfigurationSetupUtility.csproj
-		SccProjectTopLevelParentUniqueName7 = substationSBG.sln
-		SccProjectName7 = Tools/ConfigurationSetupUtility
-		SccLocalPath7 = Tools\\ConfigurationSetupUtility
-		SccProjectUniqueName8 = Tools\\Setup\\Setup.csproj
-		SccProjectTopLevelParentUniqueName8 = substationSBG.sln
-		SccProjectName8 = Tools/Setup
-		SccLocalPath8 = Tools\\Setup
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
@@ -456,30 +410,28 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{94B7694B-F813-47FF-8C50-33DCA32D183D} = {BD933E0E-B3FD-470B-B53B-56DA8BC27467}
-		{CE260396-797B-45DF-AC53-E4FC553B57C0} = {BD933E0E-B3FD-470B-B53B-56DA8BC27467}
 		{89F8C302-E1C2-4C61-9CFB-CB4879B04B38} = {A19659A8-EA00-4D5E-90C5-E8ABE7F4FB1C}
-		{44A76C31-308D-4D46-B263-734DD9FA3570} = {A19659A8-EA00-4D5E-90C5-E8ABE7F4FB1C}
-		{A72A7B6D-E22F-4900-984D-8751836859B5} = {A19659A8-EA00-4D5E-90C5-E8ABE7F4FB1C}
-		{6CFC0EB9-8610-4200-806B-E2B62B63F8B3} = {A19659A8-EA00-4D5E-90C5-E8ABE7F4FB1C}
-		{B1E85C83-F93D-4C3C-BB90-905B93D7C8AD} = {E0BCE54D-F114-4ECD-B688-3C79BD0BE97A}
-		{060A349D-E92D-4F13-A857-01609631D3BE} = {E0BCE54D-F114-4ECD-B688-3C79BD0BE97A}
-		{F7821DF0-BD48-481E-9DF9-D64AEFD24F57} = {9EEDE95F-8333-4957-B270-02D3CD4629B5}
-		{D71CBFB5-291F-484E-9DAE-7442F4CA746A} = {9EEDE95F-8333-4957-B270-02D3CD4629B5}
-		{6903507C-C289-4F8F-887C-C2D94C72BA99} = {94B7694B-F813-47FF-8C50-33DCA32D183D}
-		{29821B31-3A0D-469E-B8BA-AD006159BC3D} = {89F8C302-E1C2-4C61-9CFB-CB4879B04B38}
-		{83A90AB9-3DC7-4FB6-9AF3-79AB2F6EB0C6} = {89F8C302-E1C2-4C61-9CFB-CB4879B04B38}
-		{9597F7EC-CCCD-4CC5-A5B4-440C4204752B} = {89F8C302-E1C2-4C61-9CFB-CB4879B04B38}
 		{9A59B9E0-A36F-4C52-8568-CB004B20885B} = {E7006E3E-A430-4AB2-A6CA-7653D7F62D4B}
 		{B1AC9848-2909-4A7B-9541-8EA4E89E72F1} = {E7006E3E-A430-4AB2-A6CA-7653D7F62D4B}
+		{CE260396-797B-45DF-AC53-E4FC553B57C0} = {BD933E0E-B3FD-470B-B53B-56DA8BC27467}
+		{F7821DF0-BD48-481E-9DF9-D64AEFD24F57} = {9EEDE95F-8333-4957-B270-02D3CD4629B5}
+		{29821B31-3A0D-469E-B8BA-AD006159BC3D} = {89F8C302-E1C2-4C61-9CFB-CB4879B04B38}
+		{D71CBFB5-291F-484E-9DAE-7442F4CA746A} = {9EEDE95F-8333-4957-B270-02D3CD4629B5}
+		{83A90AB9-3DC7-4FB6-9AF3-79AB2F6EB0C6} = {89F8C302-E1C2-4C61-9CFB-CB4879B04B38}
+		{9597F7EC-CCCD-4CC5-A5B4-440C4204752B} = {89F8C302-E1C2-4C61-9CFB-CB4879B04B38}
+		{B1E85C83-F93D-4C3C-BB90-905B93D7C8AD} = {E0BCE54D-F114-4ECD-B688-3C79BD0BE97A}
+		{060A349D-E92D-4F13-A857-01609631D3BE} = {E0BCE54D-F114-4ECD-B688-3C79BD0BE97A}
 		{53255BB7-2046-4606-BF76-7B5C13F49819} = {E7006E3E-A430-4AB2-A6CA-7653D7F62D4B}
 		{051BD028-6567-442A-B7C5-A5DD9F70B357} = {E7006E3E-A430-4AB2-A6CA-7653D7F62D4B}
 		{0BF2447E-252D-4712-B154-E350AF463081} = {CE260396-797B-45DF-AC53-E4FC553B57C0}
 		{449F2CB1-89BF-4E75-8E6C-C42FEB1AB087} = {CE260396-797B-45DF-AC53-E4FC553B57C0}
 		{17C0E07E-646F-4D20-9394-0CC34AD6D5B1} = {CE260396-797B-45DF-AC53-E4FC553B57C0}
-		{6858B393-77B4-4F28-A4B1-14B484C10FB2} = {CE260396-797B-45DF-AC53-E4FC553B57C0}
-		{5D7F9600-E7F9-491C-AD0C-CECBA54F7083} = {CE260396-797B-45DF-AC53-E4FC553B57C0}
 		{2A74EACF-8291-47C7-A2ED-0D58771F24E2} = {F7821DF0-BD48-481E-9DF9-D64AEFD24F57}
 		{A4C500AC-70AC-4869-8A08-E10CCD45F64F} = {D71CBFB5-291F-484E-9DAE-7442F4CA746A}
-		{AD1920D4-64C4-43C9-903D-3C78981C8850} = {44A76C31-308D-4D46-B263-734DD9FA3570}
+		{6903507C-C289-4F8F-887C-C2D94C72BA99} = {94B7694B-F813-47FF-8C50-33DCA32D183D}
+		{A72A7B6D-E22F-4900-984D-8751836859B5} = {A19659A8-EA00-4D5E-90C5-E8ABE7F4FB1C}
+		{6858B393-77B4-4F28-A4B1-14B484C10FB2} = {CE260396-797B-45DF-AC53-E4FC553B57C0}
+		{6CFC0EB9-8610-4200-806B-E2B62B63F8B3} = {A19659A8-EA00-4D5E-90C5-E8ABE7F4FB1C}
+		{5D7F9600-E7F9-491C-AD0C-CECBA54F7083} = {CE260396-797B-45DF-AC53-E4FC553B57C0}
 	EndGlobalSection
 EndGlobal
