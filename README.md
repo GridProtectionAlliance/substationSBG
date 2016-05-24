@@ -31,7 +31,7 @@ The substationSBG executes on ruggedized, fanless substation 64-bit computers li
   * SQLite
 
 ## Latest Stable Release
-Download the latest stable release [here (empty)]().
+Download the latest stable release [here](http://substationsbg.codeplex.com/downloads/get/917087).
 
 ## Nightly Build
 Download the nightly build [here](http://gridprotectionalliance.org/nightlybuilds/substationSBG/Beta/substationSBG.Installs.zip).
