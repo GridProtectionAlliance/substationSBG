@@ -9,12 +9,13 @@ Documentation for substationSBG can be found [here](https://github.com/GridProte
 
 # Deployment
 To deploy:
+
 1. Make sure your system meets all the requirements below.
-2. Download the [latest stable release](#latest-stable-release) or [nightly build](#nightly-build).
-3. Unzip files.
-4. Start "setup.exe".
-4. Follow the wizard.
-5. Enjoy.
+* Download the [latest stable release](#latest-stable-release) or [nightly build](#nightly-build).
+* Unzip files.
+* Start "setup.exe".
+* Follow the wizard.
+* Enjoy.
 
 ## Requirements
 ### Hardware
@@ -37,7 +38,8 @@ Download the nightly build [here](http://gridprotectionalliance.org/nightlybuild
 
 # Contributing
 If you would like to contribute please:
+
 1. Read the [styleguide.](https://www.gridprotectionalliance.org/docs/GPA_Coding_Guidelines_2011_03.pdf)
-2. Fork the repository.
-3. Do awesome things.
-4. Create a pull request.
+* Fork the repository.
+* Do awesome things.
+* Create a pull request.
