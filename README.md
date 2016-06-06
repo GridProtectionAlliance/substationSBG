@@ -10,8 +10,8 @@ Documentation for substationSBG can be found [here](https://github.com/GridProte
 # Deployment
 To deploy:
 
-1. Make sure your system meets all the requirements below.
-* Download the [latest stable release](#latest-stable-release) or [nightly build](#nightly-build).
+1. Make sure your system meets all the [requirements](#requirements) below.
+* Choose a [download](#downloads) option below.
 * Unzip files.
 * Start "setup.exe".
 * Follow the wizard.
@@ -24,22 +24,23 @@ The substationSBG executes on ruggedized, fanless substation 64-bit computers li
 * The substationSBG is intended for deployment using Windows Server 2008 or later. However, the substationSBG will run under other Windows operating systems. Automated gap filling and some security features requires use of a centrally hosted openPDC, SIEGate node, or substationSBG.
 * 64-bit OS.
 * .NET 4.5.
-* Database Management System such as
-  * SQL Server
-  * MySQL
-  * Oracle
-  * SQLite
+* Database Management System such as:
+  * SQL Server.
+  * MySQL.
+  * Oracle.
+  * SQLite (recommended) - included.
 
-## Latest Stable Release
-Download the latest stable release [here](http://substationsbg.codeplex.com/downloads/get/917087).
-
-## Nightly Build
-Download the nightly build [here](http://gridprotectionalliance.org/nightlybuilds/substationSBG/Beta/substationSBG.Installs.zip).
+## Downloads
+* Download the latest stable release [here](http://substationsbg.codeplex.com/downloads/get/917087).
+* Download the nightly build [here](http://gridprotectionalliance.org/nightlybuilds/substationSBG/Beta/substationSBG.Installs.zip).
 
 # Contributing
 If you would like to contribute please:
 
-1. Read the [styleguide.](https://www.gridprotectionalliance.org/docs/GPA_Coding_Guidelines_2011_03.pdf)
+1. Read our [styleguide.](https://www.gridprotectionalliance.org/docs/GPA_Coding_Guidelines_2011_03.pdf)
 * Fork the repository.
 * Do awesome things.
 * Create a pull request.
+
+# License
+SubstationSBG is licenced for use under the [MIT License](https://opensource.org/licenses/MIT).
