@@ -3,9 +3,12 @@
 substationSBG couples the features of [openPDC](https://github.com/GridProtectionAlliance/openPDC) and [SIEGate](https://github.com/GridProtectionAlliance/SIEGate) to form a purpose-built, high-availability data gateway for use in substations. It is both a substation PDC with a local data historian and a phasor gateway to enable the secure, reliable communication of synchrophasor data from the substation to the control center. It has been extensively tested on fan-less substation computers for both 32 and 64 bit processors using either Windows or Linux operating systems.
 Phasor data that moves through the substationSBG is persisted locally in a short-term rolling archive. Following any communications outage between the substation and control center, data archived locally by the substationSBG is transmitted (at lower priority than real-time data) back to the control central to ensure that the central archive-of-record is complete. The substationSBG is typically configured to use the [Gateway Exchange Protocol (GEP)](http://www.gridprotectionalliance.org/docs/products/gsf/gep-overview.pdf) to transfer data from the substation to other systems.
 
-# Documentation
+# Documentation and Support
 
-Documentation for substationSBG can be found [here](https://github.com/GridProtectionAlliance/substationSBG/blob/master/Source/Documentation/wiki/Substation_Secure_Buffered_Gateway.md)
+* Documentation for substationSBG can be found [here](https://github.com/GridProtectionAlliance/substationSBG/blob/master/Source/Documentation/wiki/Substation_Secure_Buffered_Gateway.md)
+* Get in contact with our development team on our new [discussion board](http://discussions.gridprotectionalliance.org/c/gpa-products/substation-sbg).
+* View old discussion board topics [here](http://substationsbg.codeplex.com/discussions).
+* Check out the [wiki](https://gridprotectionalliance.org/wiki/doku.php?id=substationsbg:overview).
 
 # Deployment
 To deploy:
