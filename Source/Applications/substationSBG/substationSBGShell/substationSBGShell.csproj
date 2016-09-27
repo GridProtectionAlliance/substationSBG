@@ -91,7 +91,7 @@
   <ItemGroup>
     <ProjectReference Include="..\substationSBG\substationSBG.csproj">
       <Project>{0bf2447e-252d-4712-b154-e350af463081}</Project>
-      <Name>substationSBG %28Applications\substationSBG\substationSBG%29</Name>
+      <Name>substationSBG</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
