@@ -1,12 +1,12 @@
-﻿To install the openHistorian, extract and run openHistorianSetup.msi.
-The MSI may also be used to upgrade an existing version of openHistorian.
+﻿To install the substationSBG, extract and run substationSBGSetup.msi.
+The MSI may also be used to upgrade an existing version of substationSBG.
 Configuration will be preserved across installations.
 
-openHistorian product page:
-http://www.gridprotectionalliance.org/products.asp#Historian
+substationSBG product page:
+http://www.gridprotectionalliance.org/products.asp#SBG
 
-openHistorian on GitHub:
-https://github.com/GridProtectionAlliance/openHistorian
+substationSBG on GitHub:
+https://github.com/GridProtectionAlliance/substationSBG
 
-openHistorian discussions:
-http://discussions.gridprotectionalliance.org/c/gpa-products/openhistorian
+substationSBG discussions:
+http://discussions.gridprotectionalliance.org/c/gpa-products/substation-sbg
