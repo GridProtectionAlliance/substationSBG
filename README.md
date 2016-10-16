@@ -16,22 +16,26 @@ To deploy:
 1. Make sure your system meets all the [requirements](#requirements) below.
 * Choose a [download](#downloads) option below.
 * Unzip files.
-* Start "setup.exe".
+* Run substationSBGSetup.msi.
 * Follow the wizard.
 * Enjoy.
 
 ## Requirements
+
 ### Hardware
 The substationSBG executes on ruggedized, fanless substation 64-bit computers like the SEL 3355.
+
 ### Software
 * The substationSBG is intended for deployment using Windows Server 2008 or later. However, the substationSBG will run under other Windows operating systems. Automated gap filling and some security features requires use of a centrally hosted openPDC, SIEGate node, or substationSBG.
-* 64-bit OS.
-* .NET 4.5.
-* Database Management System such as:
-  * SQL Server.
-  * MySQL.
-  * Oracle.
-  * SQLite (recommended) - included.
+
+* .NET 4.6 or higher.
+* 64-bit Windows 7 or newer.
+* Database management system such as:
+  * SQL Server (Express version is fine)
+  * MySQL
+  * Oracle
+  * PostgreSQL
+  * SQLite (included, no extra install required)
 
 ## Downloads
 * Download the latest stable release [here](http://substationsbg.codeplex.com/downloads/get/917087).
