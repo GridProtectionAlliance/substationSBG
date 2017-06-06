@@ -16,7 +16,7 @@
         </member>
         <member name="F:TestingAdapters.FrameBasedRandomValueInputAdapter.DefaultLatency">
             <summary>
-            The default number of milliseconds for the dealy;
+            The default number of milliseconds for the delay;
             </summary>
         </member>
         <member name="F:TestingAdapters.FrameBasedRandomValueInputAdapter.DefaultJitter">
@@ -413,6 +413,11 @@
         <member name="T:TestingAdapters.VirtualOutputAdapter">
             <summary>
             Represents a virtual historian output adapter used for testing purposes - no data gets archived.
+            </summary>
+        </member>
+        <member name="P:TestingAdapters.VirtualOutputAdapter.InputMeasurementKeys">
+            <summary>
+            Causes this adapter to receive no measurements
             </summary>
         </member>
         <member name="P:TestingAdapters.VirtualOutputAdapter.OutputIsForArchive">

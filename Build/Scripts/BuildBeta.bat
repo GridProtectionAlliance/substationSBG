@@ -18,5 +18,10 @@
 ::*******************************************************************************************************
 
 @ECHO OFF
-"C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" substationSBG.buildproj /p:ForceBuild=true /l:FileLogger,Microsoft.Build.Engine;logfile=substationSBG.output
-PAUSE
+
+SetLocal
+
+IF NOT "%1" == "" SET logflag=/l:FileLogger,Microsoft.Build.Engine;logfile=%1
+
+ECHO BuildBeta: C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\msbuild.exe substationSBG.buildproj /p:ForceBuild=true %logflag%
+"C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" substationSBG.buildproj /p:ForceBuild=true %logFlag%

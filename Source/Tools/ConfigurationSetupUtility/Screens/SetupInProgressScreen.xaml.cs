@@ -441,6 +441,8 @@ namespace ConfigurationSetupUtility.Screens
                             sqlServerSetup.UserName = userName;
                             sqlServerSetup.Password = password;
 
+                            sqlServerSetup.IntegratedSecurity = null;
+
                             AppendStatusMessage("");
                             UpdateProgressBar(90);
                         }
@@ -717,7 +719,7 @@ namespace ConfigurationSetupUtility.Screens
                 string destination = m_state["sqliteDatabaseFilePath"].ToString();
                 string destinationDirectory = Path.GetDirectoryName(destination);
                 string connectionString = "Data Source=" + destination + "; Version=3; Foreign Keys=True; FailIfMissing=True";
-                string dataProviderString = "AssemblyName={System.Data.SQLite, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139}; ConnectionType=System.Data.SQLite.SQLiteConnection; AdapterType=System.Data.SQLite.SQLiteDataAdapter";
+                string dataProviderString = SqliteDatabaseSetupScreen.DataProviderString;
                 bool existing = Convert.ToBoolean(m_state["existing"]);
                 bool migrate = existing && Convert.ToBoolean(m_state["updateConfiguration"]);
 

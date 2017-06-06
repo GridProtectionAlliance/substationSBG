@@ -36,6 +36,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Xml;
 using System.Xml.Linq;
 using GSF;
 using GSF.Configuration;
@@ -138,6 +139,9 @@ namespace ConfigurationSetupUtility.Screens
                         bool existing = Convert.ToBoolean(m_state["existing"]);
                         bool migrate = existing && Convert.ToBoolean(m_state["updateConfiguration"]);
 
+                        // Validate needed end-point bindings for Grafana interfaces
+                        ValidateGrafanaBindings();
+
                         if (migrate)
                         {
                             const string SerializedSchemaPath = "SerializedSchema.bin";
@@ -154,6 +158,9 @@ namespace ConfigurationSetupUtility.Screens
 
                             if (!Directory.Exists(dataMigrationUtilityUserSettingsFolder))
                                 Directory.CreateDirectory(dataMigrationUtilityUserSettingsFolder);
+
+                            if (oldDataProviderString == SqliteDatabaseSetupScreen.OldSQLiteDataProviderString)
+                                oldDataProviderString = SqliteDatabaseSetupScreen.DataProviderString;
 
                             oldConnectionString += string.Format("; dataProviderString={{ {0} }}; serializedSchema={1}", oldDataProviderString, SerializedSchemaPath);
                             newConnectionString += string.Format("; dataProviderString={{ {0} }}; serializedSchema={1}", newDataProviderString, SerializedSchemaPath);
@@ -230,8 +237,11 @@ namespace ConfigurationSetupUtility.Screens
                         // Always make sure that all three needed roles are available for each defined node(s) in the database
                         ValidateSecurityRoles();
 
-                        // Convert node table to new format (i.e., columns to connection settings string), if nedded
-                        ConvertNodeTableFormat();
+                        if (migrate)
+                        {
+                            // Convert node table to new format (i.e., columns to connection settings string), if nedded
+                            ConvertNodeTableFormat();
+                        }
 
                         // Remove old configuration file settings
                         try
@@ -347,6 +357,88 @@ namespace ConfigurationSetupUtility.Screens
             bool managerInstalled = File.Exists("substationSBGManager.exe");
             m_managerStartCheckBox.IsChecked = managerInstalled;
             m_managerStartCheckBox.IsEnabled = managerInstalled;
+        }
+        private void ValidateGrafanaBindings()
+        {
+            string configFileName = Path.Combine(Directory.GetCurrentDirectory(), "substationSBG.exe.config");
+
+            if (!File.Exists(configFileName))
+                return;
+
+            XmlDocument configFile = new XmlDocument();
+            configFile.Load(configFileName);
+
+            XmlNode categorizedSettings = configFile.SelectSingleNode("configuration/categorizedSettings");
+
+            if ((object)categorizedSettings == null)
+            {
+                XmlNode config = configFile.SelectSingleNode("configuration");
+
+                if ((object)config == null)
+                    return;
+
+                categorizedSettings = configFile.CreateElement("categorizedSettings");
+                config.AppendChild(categorizedSettings);
+            }
+
+            const string GrafanaArchiveBinding =
+                @"<{0}GrafanaDataService>
+                  <add name=""Endpoints"" value=""{1}"" description=""Semicolon delimited list of URIs where the web service can be accessed."" encrypted=""false"" />
+                  <add name=""Contract"" value=""GrafanaAdapters.IGrafanaDataService, GrafanaAdapters"" description=""Assembly qualified name of the contract interface implemented by the web service."" encrypted=""false"" />
+                  <add name=""Singleton"" value=""True"" description=""True if the web service is singleton; otherwise False."" encrypted=""false"" />
+                  <add name=""SecurityPolicy"" value="""" description=""Assembly qualified name of the authorization policy to be used for securing the web service."" encrypted=""false"" />
+                  <add name=""PublishMetadata"" value=""True"" description=""True if the web service metadata is to be published at all the endpoints; otherwise False."" encrypted=""false"" />
+                  <add name=""AllowCrossDomainAccess"" value=""False"" description=""True to allow Silverlight and Flash cross-domain access to the web service."" encrypted=""false"" />
+                  <add name=""AllowedDomainList"" value=""*"" description=""Comma separated list of domain names for Silverlight and Flash cross-domain access to use when allowCrossDomainAccess is true. Use * for domain wildcards, e.g., *.consoto.com."" encrypted=""false"" />
+                  <add name=""CloseTimeout"" value=""00:02:00"" description=""Maximum time allowed for a connection to close before raising a timeout exception."" encrypted=""false"" />
+                  <add name=""Enabled"" value=""True"" description=""Determines if web service should be enabled at startup."" encrypted=""false"" />
+                </{0}GrafanaDataService>";
+
+            if (configFile.SelectSingleNode("configuration/categorizedSettings/statGrafanaDataService") == null)
+            {
+                string archiveBinding = string.Format(GrafanaArchiveBinding, "stat", "http.rest://localhost:6358/api/grafana");
+
+                XmlDocument grafanaBindingsXml = new XmlDocument();
+                grafanaBindingsXml.LoadXml(archiveBinding);
+
+                XmlDocumentFragment grafanaBindings = configFile.CreateDocumentFragment();
+                grafanaBindings.InnerXml = grafanaBindingsXml.InnerXml;
+
+                categorizedSettings.AppendChild(grafanaBindings);
+            }
+
+            object setupHistorianValue;
+            bool setupHistorian = false;
+
+            if (m_state.TryGetValue("setupHistorian", out setupHistorianValue))
+                setupHistorian = setupHistorianValue.ToNonNullNorWhiteSpace("False").ParseBoolean();
+
+            if (setupHistorian)
+            {
+                object historianAcronymValue;
+                string historianAcronym;
+
+                m_state.TryGetValue("historianAcronym", out historianAcronymValue);
+                historianAcronym = historianAcronymValue.ToNonNullNorWhiteSpace("ppa").ToLowerInvariant();
+
+                object historianTypeName;
+                m_state.TryGetValue("historianTypeName", out historianTypeName);
+
+                if (historianTypeName.ToNonNullString().Equals("HistorianAdapters.LocalOutputAdapter") && configFile.SelectSingleNode($"configuration/categorizedSettings/{historianAcronym}GrafanaDataService") == null)
+                {
+                    string archiveBinding = string.Format(GrafanaArchiveBinding, historianAcronym, "http.rest://localhost:6458/api/grafana");
+
+                    XmlDocument grafanaBindingsXml = new XmlDocument();
+                    grafanaBindingsXml.LoadXml(archiveBinding);
+
+                    XmlDocumentFragment grafanaBindings = configFile.CreateDocumentFragment();
+                    grafanaBindings.InnerXml = grafanaBindingsXml.InnerXml;
+
+                    categorizedSettings.AppendChild(grafanaBindings);
+                }
+            }
+
+            configFile.Save(configFileName);
         }
 
         private void ValidateTimeSeriesStartupOperations()
@@ -903,7 +995,7 @@ namespace ConfigurationSetupUtility.Screens
                 {
                     string destination = m_state["sqliteDatabaseFilePath"].ToString();
                     connectionString = "Data Source=" + destination + "; Version=3";
-                    dataProviderString = "AssemblyName={System.Data.SQLite, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139}; ConnectionType=System.Data.SQLite.SQLiteConnection; AdapterType=System.Data.SQLite.SQLiteDataAdapter";
+                    dataProviderString = SqliteDatabaseSetupScreen.DataProviderString;
                 }
 
                 if (!string.IsNullOrEmpty(connectionString) && !string.IsNullOrEmpty(dataProviderString))

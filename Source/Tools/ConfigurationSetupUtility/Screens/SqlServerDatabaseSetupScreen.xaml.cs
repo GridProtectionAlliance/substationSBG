@@ -26,15 +26,16 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Management;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Xml.Linq;
 using GSF;
 using GSF.Communication;
+using GSF.Configuration;
 using GSF.Data;
 using GSF.IO;
 
@@ -48,7 +49,7 @@ namespace ConfigurationSetupUtility.Screens
         #region [ Members ]
 
         // Fields
-        private SqlServerSetup m_sqlServerSetup;
+        private readonly SqlServerSetup m_sqlServerSetup;
         private Dictionary<string, object> m_state;
         private Button m_advancedButton;
 
@@ -289,7 +290,7 @@ namespace ConfigurationSetupUtility.Screens
                 string newDatabaseMessage = "Please enter the needed information about the\r\nSQL Server database you would like to create.";
                 string oldDatabaseMessage = "Please enter the needed information about\r\nyour existing SQL Server database.";
 
-                XDocument serviceConfig;
+                ConfigurationFile serviceConfig;
                 string connectionString;
                 string dataProviderString;
 
@@ -302,6 +303,7 @@ namespace ConfigurationSetupUtility.Screens
                 m_newUserNameTextBox.Visibility = newUserVisibility;
                 m_newUserPasswordTextBox.Visibility = newUserVisibility;
                 m_sqlServerDatabaseInstructionTextBlock.Text = (!existing || migrate) ? newDatabaseMessage : oldDatabaseMessage;
+                m_checkBoxIntegratedSecurity.IsChecked = true;
 
                 // If connecting to existing database, user name and password need not be admin user:
                 if (existing && !migrate)
@@ -333,23 +335,16 @@ namespace ConfigurationSetupUtility.Screens
                 m_databaseNameTextBox.Text = migrate ? "substationSBG" + App.DatabaseVersionSuffix : "substationSBG";
 
                 // When using an existing database as-is, read existing connection settings out of the configuration file
-                if (existing && !migrate)
+                string configFile = FilePath.GetAbsolutePath(App.ApplicationConfig);
+
+                if (!File.Exists(configFile))
+                    configFile = FilePath.GetAbsolutePath(App.ManagerConfig);
+
+                if (existing && !migrate && File.Exists(configFile))
                 {
-                    serviceConfig = XDocument.Load(FilePath.GetAbsolutePath("substationSBG.exe.config"));
-
-                    connectionString = serviceConfig
-                        .Descendants("systemSettings")
-                        .SelectMany(systemSettings => systemSettings.Elements("add"))
-                        .Where(element => "ConnectionString".Equals((string)element.Attribute("name"), StringComparison.OrdinalIgnoreCase))
-                        .Select(element => (string)element.Attribute("value"))
-                        .FirstOrDefault();
-
-                    dataProviderString = serviceConfig
-                        .Descendants("systemSettings")
-                        .SelectMany(systemSettings => systemSettings.Elements("add"))
-                        .Where(element => "DataProviderString".Equals((string)element.Attribute("name"), StringComparison.OrdinalIgnoreCase))
-                        .Select(element => (string)element.Attribute("value"))
-                        .FirstOrDefault();
+                    serviceConfig = ConfigurationFile.Open(configFile);
+                    connectionString = serviceConfig.Settings["systemSettings"]["ConnectionString"]?.Value;
+                    dataProviderString = serviceConfig.Settings["systemSettings"]["DataProviderString"]?.Value;
 
                     if (!string.IsNullOrEmpty(connectionString) && m_sqlServerSetup.DataProviderString.Equals(dataProviderString, StringComparison.InvariantCultureIgnoreCase))
                     {
@@ -359,6 +354,7 @@ namespace ConfigurationSetupUtility.Screens
                         m_adminUserNameTextBox.Text = m_sqlServerSetup.UserName;
                         m_adminPasswordTextBox.Password = m_sqlServerSetup.Password;
                         m_checkBoxIntegratedSecurity.IsChecked = ((object)m_sqlServerSetup.IntegratedSecurity != null);
+                        m_state["encryptSqlServerConnectionStrings"] = serviceConfig.Settings["systemSettings"]["ConnectionString"].Encrypted;
                     }
                 }
             }
@@ -494,6 +490,9 @@ namespace ConfigurationSetupUtility.Screens
         // Occurs when the user chooses to not use pass-through authentication.
         private void UseIntegratedSecurity_Unchecked(object sender, RoutedEventArgs e)
         {
+            if (m_state != null)
+                m_state["useSqlServerIntegratedSecurity"] = false;
+
             m_userNameLabel.IsEnabled = true;
             m_passwordLabel.IsEnabled = true;
             m_adminUserNameTextBox.IsEnabled = true;

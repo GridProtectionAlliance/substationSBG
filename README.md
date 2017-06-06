@@ -1,11 +1,14 @@
-![substationSBG](https://raw.githubusercontent.com/GridProtectionAlliance/substationSBG/master/Source/Documentation/wiki/substationSBG_Logo.png)
+![Icon](http://www.gridprotectionalliance.org/images/products/icons%2064/substationSBG.png)![substationSBG](http://www.gridprotectionalliance.org/images/products/substationSBG.png)
 # About
 substationSBG couples the features of [openPDC](https://github.com/GridProtectionAlliance/openPDC) and [SIEGate](https://github.com/GridProtectionAlliance/SIEGate) to form a purpose-built, high-availability data gateway for use in substations. It is both a substation PDC with a local data historian and a phasor gateway to enable the secure, reliable communication of synchrophasor data from the substation to the control center. It has been extensively tested on fan-less substation computers for both 32 and 64 bit processors using either Windows or Linux operating systems.
 Phasor data that moves through the substationSBG is persisted locally in a short-term rolling archive. Following any communications outage between the substation and control center, data archived locally by the substationSBG is transmitted (at lower priority than real-time data) back to the control central to ensure that the central archive-of-record is complete. The substationSBG is typically configured to use the [Gateway Exchange Protocol (GEP)](http://www.gridprotectionalliance.org/docs/products/gsf/gep-overview.pdf) to transfer data from the substation to other systems.
 
-# Documentation
+# Documentation and Support
 
-Documentation for substationSBG can be found [here](https://github.com/GridProtectionAlliance/substationSBG/blob/master/Source/Documentation/wiki/Substation_Secure_Buffered_Gateway.md)
+* Documentation for substationSBG can be found [here](https://github.com/GridProtectionAlliance/substationSBG/blob/master/Source/Documentation/wiki/Substation_Secure_Buffered_Gateway.md)
+* Get in contact with our development team on our new [discussion board](http://discussions.gridprotectionalliance.org/c/gpa-products/substation-sbg).
+* View old discussion board topics [here](http://substationsbg.codeplex.com/discussions).
+* Check out the [wiki](https://gridprotectionalliance.org/wiki/doku.php?id=substationsbg:overview).
 
 # Deployment
 To deploy:
@@ -13,25 +16,29 @@ To deploy:
 1. Make sure your system meets all the [requirements](#requirements) below.
 * Choose a [download](#downloads) option below.
 * Unzip files.
-* Start "setup.exe".
+* Run substationSBGSetup.msi.
 * Follow the wizard.
 * Enjoy.
 
 ## Requirements
+
 ### Hardware
 The substationSBG executes on ruggedized, fanless substation 64-bit computers like the SEL 3355.
+
 ### Software
 * The substationSBG is intended for deployment using Windows Server 2008 or later. However, the substationSBG will run under other Windows operating systems. Automated gap filling and some security features requires use of a centrally hosted openPDC, SIEGate node, or substationSBG.
-* 64-bit OS.
-* .NET 4.5.
-* Database Management System such as:
-  * SQL Server.
-  * MySQL.
-  * Oracle.
-  * SQLite (recommended) - included.
+
+* .NET 4.6 or higher.
+* 64-bit Windows 7 or newer.
+* Database management system such as:
+  * SQL Server (Express version is fine)
+  * MySQL
+  * Oracle
+  * PostgreSQL
+  * SQLite (included, no extra install required)
 
 ## Downloads
-* Download the latest stable release [here](http://substationsbg.codeplex.com/downloads/get/917087).
+* Download the latest stable release [here](https://github.com/GridProtectionAlliance/substationSBG/releases).
 * Download the nightly build [here](http://gridprotectionalliance.org/nightlybuilds/substationSBG/Beta/substationSBG.Installs.zip).
 
 # Contributing
