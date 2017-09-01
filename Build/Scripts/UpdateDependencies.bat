@@ -73,7 +73,7 @@ GOTO UpdateDependencies
 :UpdateDependencies
 ECHO.
 ECHO Updating dependencies...
-XCOPY "%libraries%\" "%dependencies%\" /Y /E
+XCOPY "%libraries%" "%dependencies%\" /Y /E
 XCOPY "%sourcemasterbuild%" "%targetmasterbuild%\" /Y
 COPY /Y "%sourcetools%\ConfigCrypter\ConfigCrypter.exe" "%targettools%\ConfigCrypter.exe"
 COPY /Y "%sourcetools%\ConfigEditor\ConfigEditor.exe" "%targettools%\ConfigurationEditor.exe"
