@@ -24,6 +24,7 @@
       <MenuDataItem Icon="" MenuText="_Inputs       " Description="Manage SSBG Inputs" Roles="Administrator,Editor" UserControlAssembly="" UserControlPath="">
         <SubMenuItems>
           <MenuDataItem Icon="" MenuText="Manage Custom _Inputs" Description="Manage Custom Input Adapters" Roles="*" UserControlAssembly="GSF.TimeSeries.UI.WPF.dll" UserControlPath="GSF.TimeSeries.UI.UserControls.CustomInputAdapterUserControl" />
+          <MenuDataItem Icon="" MenuText="Manage Custom _Filters" Description="Manage Custom Filter Adapters" Roles="*" UserControlAssembly="GSF.TimeSeries.UI.WPF.dll" UserControlPath="GSF.TimeSeries.UI.UserControls.CustomFilterAdapterUserControl" />
           <MenuDataItem Icon="" MenuText="Manually Add _New Device" Description="Add New Device Configuration" Roles="Administrator,Editor" UserControlAssembly="GSF.PhasorProtocols.UI.WPF.dll" UserControlPath="GSF.PhasorProtocols.UI.UserControls.DeviceUserControl" />
           <MenuDataItem Icon="" MenuText="" Description="" Roles="*" UserControlAssembly="" UserControlPath="" />
           <MenuDataItem Icon="" MenuText="_Create Internal Subscription" Description="Create Subscription to Internal Gateway Publisher" Roles="Administrator,Editor" UserControlAssembly="GSF.TimeSeries.Transport.UI.WPF.dll" UserControlPath="GSF.TimeSeries.Transport.UI.UserControls.InternalSubscriptionUserControl"/>
