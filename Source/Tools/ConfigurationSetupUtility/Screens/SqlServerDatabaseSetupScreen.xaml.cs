@@ -178,6 +178,7 @@ namespace ConfigurationSetupUtility.Screens
                     try
                     {
                         m_sqlServerSetup.OpenConnection(ref connection);
+
                         if ((int)connection.ExecuteScalar("SELECT COUNT(*) FROM UserAccount") > 0)
                             m_state["securityUpgrade"] = false;
                         else
@@ -203,6 +204,7 @@ namespace ConfigurationSetupUtility.Screens
                 {
                     string host = m_sqlServerSetup.HostName.Split('\\')[0].Trim();
                     bool hostIsLocal;
+
                     try
                     {
                         hostIsLocal = (host == "." || host == "(local)" || Transport.IsLocalAddress(host));
@@ -231,6 +233,49 @@ namespace ConfigurationSetupUtility.Screens
 
                             MessageBox.Show(string.Format(failMessage, serviceAccountName));
                             m_adminUserNameTextBox.Focus();
+                            return false;
+                        }
+                    }
+                }
+
+                if (m_createNewUserCheckBox.IsChecked.GetValueOrDefault())
+                {
+                    bool userExists;
+
+                    using (AdoDataConnection connection = m_sqlServerSetup.OpenConnection())
+                    {
+                        string query = "SELECT COUNT(*) FROM sys.syslogins WHERE name = {0}";
+                        int count = connection.ExecuteScalar<int>(query, m_newUserNameTextBox.Text);
+                        userExists = (count > 0);
+                    }
+
+                    if (userExists)
+                    {
+                        try
+                        {
+                            // Set up new user credentials to determine if they are correct
+                            SqlServerSetup newUserSqlServerSetup = new SqlServerSetup();
+                            newUserSqlServerSetup.ConnectionString = m_sqlServerSetup.ConnectionString;
+                            newUserSqlServerSetup.DataProviderString = m_sqlServerSetup.DataProviderString;
+                            newUserSqlServerSetup.UserName = m_newUserNameTextBox.Text;
+                            newUserSqlServerSetup.Password = m_newUserPasswordTextBox.Password;
+                            newUserSqlServerSetup.IntegratedSecurity = null;
+                            newUserSqlServerSetup.DatabaseName = null;
+                            newUserSqlServerSetup.Timeout = "5";
+
+                            using (AdoDataConnection connection = newUserSqlServerSetup.OpenConnection())
+                            {
+                            }
+                        }
+                        catch
+                        {
+                            const string failMessage =
+                                "Configuration Setup Utility has detected that a login for the user to be created already exists, " +
+                                "but was unable to connect to the server using the credentials that were provided. " +
+                                "Please double-check the username and password.";
+
+                            MessageBox.Show(failMessage);
+                            m_newUserNameTextBox.Focus();
                             return false;
                         }
                     }
@@ -520,7 +565,7 @@ namespace ConfigurationSetupUtility.Screens
             if (m_state != null)
             {
                 string password = m_sqlServerSetup.Password;
-                string connectionString = m_sqlServerSetup.PooledConnectionString;
+                string connectionString = m_sqlServerSetup.ConnectionString;
                 string dataProviderString = m_sqlServerSetup.DataProviderString;
                 bool encrypt = Convert.ToBoolean(m_state["encryptSqlServerConnectionStrings"]);
                 AdvancedSettingsWindow advancedWindow;
@@ -534,7 +579,7 @@ namespace ConfigurationSetupUtility.Screens
                 {
                     // Force use of non-pooled connection string such that database can later be deleted if needed
                     Dictionary<string, string> settings = advancedWindow.ConnectionString.ParseKeyValuePairs();
-                    m_sqlServerSetup.ConnectionString = settings.JoinKeyValuePairs() + "; pooling=false";
+                    m_sqlServerSetup.ConnectionString = settings.JoinKeyValuePairs();
                     m_sqlServerSetup.DataProviderString = advancedWindow.DataProviderString;
                     m_state["encryptSqlServerConnectionStrings"] = advancedWindow.Encrypt;
                 }
