@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{BD933E0E-B3FD-470B-B53B-56DA8BC27467}"
 EndProject
@@ -44,8 +44,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "substationSBG", "substation
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6B697ECD-E3BE-485B-BE90-BAAA12F3A68D}"
 	ProjectSection(SolutionItems) = preProject
+		..\LICENSE = ..\LICENSE
 		LICENSE.txt = LICENSE.txt
 		NOTICE.txt = NOTICE.txt
+		..\README.md = ..\README.md
 		substationSBG.snk = substationSBG.snk
 		..\Build\Scripts\substationSBG.version = ..\Build\Scripts\substationSBG.version
 	EndProjectSection
@@ -400,5 +402,8 @@ Global
 		{6858B393-77B4-4F28-A4B1-14B484C10FB2} = {CE260396-797B-45DF-AC53-E4FC553B57C0}
 		{6CFC0EB9-8610-4200-806B-E2B62B63F8B3} = {A19659A8-EA00-4D5E-90C5-E8ABE7F4FB1C}
 		{FDD47B45-8AC6-4CB4-A807-3156F24D8F5E} = {E7006E3E-A430-4AB2-A6CA-7653D7F62D4B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6353525-5FDC-4832-91E4-FEFA96ED666A}
 	EndGlobalSection
 EndGlobal

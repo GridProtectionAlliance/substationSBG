@@ -7,7 +7,7 @@ Phasor data that moves through the substationSBG is persisted locally in a short
 
 * Documentation for substationSBG can be found [here](https://github.com/GridProtectionAlliance/substationSBG/blob/master/Source/Documentation/wiki/Substation_Secure_Buffered_Gateway.md)
 * Get in contact with our development team on our new [discussion board](http://discussions.gridprotectionalliance.org/c/gpa-products/substation-sbg).
-* View old discussion board topics [here](http://substationsbg.codeplex.com/discussions).
+* View old discussion board topics [here](https://archive.codeplex.com/?p=substationsbg).
 * Check out the [wiki](https://gridprotectionalliance.org/wiki/doku.php?id=substationsbg:overview).
 
 # Deployment
