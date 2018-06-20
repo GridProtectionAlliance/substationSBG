@@ -114,6 +114,9 @@
     <Content Include="substationSBGSetupLogo.jpg" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
+  <Target Name="Build" DependsOnTargets="$(BuildDependsOn)" Outputs="$(TargetPath)">
+    <OnError ExecuteTargets="RestoreBitmap" />
+  </Target>
   <PropertyGroup>
     <BeforeBuildDependsOn>
       VersionBitmap
