@@ -1802,6 +1802,9 @@ namespace ConfigurationSetupUtility.Screens
                         {
                             m_oldDataProviderString = child.Attributes["value"].Value;
 
+                            if (m_oldDataProviderString.Contains("System.Data.SQLite"))
+                                m_oldDataProviderString = SqliteDatabaseSetupScreen.DataProviderString;
+
                             if (serviceConfigFile)
                                 m_state["oldDataProviderString"] = m_oldDataProviderString;
                         }

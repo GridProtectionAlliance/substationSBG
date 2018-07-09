@@ -159,9 +159,6 @@ namespace ConfigurationSetupUtility.Screens
                             if (!Directory.Exists(dataMigrationUtilityUserSettingsFolder))
                                 Directory.CreateDirectory(dataMigrationUtilityUserSettingsFolder);
 
-                            if (oldDataProviderString == SqliteDatabaseSetupScreen.OldSQLiteDataProviderString)
-                                oldDataProviderString = SqliteDatabaseSetupScreen.DataProviderString;
-
                             oldConnectionString += string.Format("; dataProviderString={{ {0} }}; serializedSchema={1}", oldDataProviderString, SerializedSchemaPath);
                             newConnectionString += string.Format("; dataProviderString={{ {0} }}; serializedSchema={1}", newDataProviderString, SerializedSchemaPath);
 
