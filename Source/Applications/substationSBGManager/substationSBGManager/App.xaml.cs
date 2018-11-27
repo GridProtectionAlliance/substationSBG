@@ -22,13 +22,17 @@
 //******************************************************************************************************
 
 using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Security.Principal;
 using System.Windows;
+using GSF;
+using GSF.Configuration;
+using GSF.Data;
+using GSF.Reflection;
 using GSF.TimeSeries;
 using GSF.TimeSeries.UI;
-using GSF.Data;
 using GSF.Windows.ErrorManagement;
-using GSF.Reflection;
 
 namespace substationSBGManager
 {
@@ -76,6 +80,31 @@ namespace substationSBGManager
             try
             {
                 database = new AdoDataConnection(CommonFunctions.DefaultSettingsCategory);
+
+                if (!Environment.CommandLine.Contains("-elevated"))
+                {
+                    ConfigurationFile configurationFile = ConfigurationFile.Current;
+                    CategorizedSettingsElementCollection systemSettings = configurationFile.Settings["SystemSettings"];
+                    string elevateSetting = systemSettings["ElevateProcess"]?.Value;
+                    bool elevateProcess;
+
+                    if (!string.IsNullOrEmpty(elevateSetting))
+                        elevateProcess = elevateSetting.ParseBoolean();
+                    else
+                        elevateProcess = database.IsSqlite;
+
+                    if (elevateProcess && !Environment.CommandLine.Contains("-elevated"))
+                    {
+                        ProcessStartInfo startInfo = new ProcessStartInfo();
+                        startInfo.FileName = Environment.GetCommandLineArgs()[0];
+                        startInfo.Arguments = string.Join(" ", Environment.GetCommandLineArgs().Skip(1)) + " -elevated";
+                        startInfo.UseShellExecute = true;
+                        startInfo.Verb = "runas";
+                        using (Process.Start(startInfo)) { }
+                        Environment.Exit(0);
+                    }
+                }
+
                 MeasurementKey.EstablishDefaultCache(database.Connection, database.AdapterType);
             }
             catch (Exception ex)
