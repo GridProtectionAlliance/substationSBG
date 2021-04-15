@@ -5,10 +5,10 @@
 //
 //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
 //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
-//  The GPA licenses this file to you under the Eclipse Public License -v 1.0 (the "License"); you may
+//  The GPA licenses this file to you under the MIT License (MIT), the "License"; you may
 //  not use this file except in compliance with the License. You may obtain a copy of the License at:
 //
-//      http://www.opensource.org/licenses/eclipse-1.0.php
+//      http://opensource.org/licenses/MIT
 //
 //  Unless agreed to in writing, the subject software distributed under the License is distributed on an
 //  "AS-IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. Refer to the
@@ -23,17 +23,27 @@
 
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Windows;
+using System.Windows.Forms;
+using System.Xml.Linq;
 using GSF;
 using GSF.Configuration;
 using GSF.Data;
+using GSF.Diagnostics;
+using GSF.IO;
+using GSF.Windows.ErrorManagement;
 using GSF.Reflection;
 using GSF.TimeSeries;
 using GSF.TimeSeries.UI;
-using GSF.Windows.ErrorManagement;
+using substationSBGManager.Properties;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
 
+// ReSharper disable RedundantExtendsListEntry
+// ReSharper disable ConstantConditionalAccessQualifier
 namespace substationSBGManager
 {
     /// <summary>
@@ -43,11 +53,13 @@ namespace substationSBGManager
     {
         #region [ Members ]
 
+        // Constants
+        private const string SystemSettings = CommonFunctions.DefaultSettingsCategory;
+
         // Fields
         private Guid m_nodeID;
-        private ErrorLogger m_errorLogger;
-        private Func<string> m_defaultErrorText;
-        private string m_title;
+        private readonly ErrorLogger m_errorLogger;
+        private readonly Func<string> m_defaultErrorText;
 
         #endregion
 
@@ -58,48 +70,144 @@ namespace substationSBGManager
         /// </summary>
         public App()
         {
-            AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
+            string systemName = null;
 
-            m_errorLogger = new ErrorLogger();
-            m_defaultErrorText = m_errorLogger.ErrorTextMethod;
-            m_errorLogger.ErrorTextMethod = ErrorText;
-            m_errorLogger.ExitOnUnhandledException = false;
-            m_errorLogger.HandleUnhandledException = true;
-            m_errorLogger.LogToEmail = false;
-            m_errorLogger.LogToEventLog = true;
-            m_errorLogger.LogToFile = true;
-            m_errorLogger.LogToScreenshot = true;
-            m_errorLogger.LogToUI = true;
+            AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
+            Application.Current.SessionEnding += Application_SessionEnding;
+
+            try
+            {
+                string getElementValue(XElement[] elements, string name)
+                {
+                    XElement element = elements.Elements("add").FirstOrDefault(elem =>
+                        elem.Attributes("name").Any(nameAttribute =>
+                        string.Compare(nameAttribute.Value, name, StringComparison.OrdinalIgnoreCase) == 0));
+
+                    return element?.Attributes("value").FirstOrDefault()?.Value;
+                }
+
+                string configPath = FilePath.GetAbsolutePath(ConfigurationFile.Current.Configuration.FilePath.Replace("Manager", ""));
+
+                if (File.Exists(configPath))
+                {
+                    XDocument hostConfig = XDocument.Load(configPath);
+                    XElement[] systemSettings = hostConfig.Descendants(SystemSettings).ToArray();
+
+                    // Get system name from host service config
+                    systemName = getElementValue(systemSettings, "SystemName");
+
+                    // Validate manager database connection as compared to host service
+                    string hostConnectionString = getElementValue(systemSettings, "ConnectionString");
+                    string hostDataProviderString = getElementValue(systemSettings, "DataProviderString");
+                    string hostNodeID = getElementValue(systemSettings, "NodeID");
+
+                    ConfigurationFile config = ConfigurationFile.Current;
+                    CategorizedSettingsElementCollection configSettings = config.Settings[SystemSettings];
+
+                    configSettings.Add("KeepCustomConnection", "false", "Determines if manager should keep custom database connection setting separate from host service.");
+
+                    if (!configSettings["KeepCustomConnection"].Value.ParseBoolean())
+                    {
+                        string connectionString = configSettings["ConnectionString"].Value;
+                        string dataProviderString = configSettings["DataProviderString"].Value;
+                        string nodeID = configSettings["NodeID"].Value;
+
+                        if (!hostConnectionString.Equals(connectionString, StringComparison.OrdinalIgnoreCase) ||
+                            !hostDataProviderString.Equals(dataProviderString, StringComparison.OrdinalIgnoreCase) ||
+                            !hostNodeID.Equals(nodeID, StringComparison.OrdinalIgnoreCase))
+                        {
+                            bool mismatchHandled = false;
+
+                            if (Environment.CommandLine.Contains("-elevated") && Environment.CommandLine.Contains("-connection"))
+                            {
+                                if (Environment.CommandLine.Contains("-connectionFix"))
+                                {
+                                    configSettings["ConnectionString"].Value = hostConnectionString;
+                                    configSettings["DataProviderString"].Value = hostDataProviderString;
+                                    configSettings["NodeID"].Value = hostNodeID;
+                                    config.Save();
+                                    mismatchHandled = true;
+                                }
+                                else if (Environment.CommandLine.Contains("-connectionKeep"))
+                                {
+                                    configSettings["KeepCustomConnection"].Value = "true";
+                                    config.Save();
+                                    mismatchHandled = true;
+                                }
+                            }
+                            
+                            if (!mismatchHandled)
+                            {
+                                bool correctMismatch = System.Windows.Forms.MessageBox.Show(new NativeWindow(), "Manager database connection does not match host service. Do you want to correct this?", "Database Mismatch", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+                                string elevatedOperation = correctMismatch ? "-connectionFix" : "-connectionKeep";
+
+                                ProcessStartInfo startInfo = new ProcessStartInfo
+                                {
+                                    FileName = Environment.GetCommandLineArgs()[0],
+                                    Arguments = $"{string.Join(" ", Environment.GetCommandLineArgs().Skip(1))} -elevated {elevatedOperation}",
+                                    UseShellExecute = true,
+                                    Verb = "runas"
+                                };
+
+                                using (Process.Start(startInfo)) { }
+                                Environment.Exit(0);
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                // If this fails, it's not a huge deal
+            }
+
+            m_errorLogger = new ErrorLogger
+            {
+                ErrorTextMethod = ErrorText, 
+                ExitOnUnhandledException = false, 
+                HandleUnhandledException = true, 
+                LogToEmail = false, 
+                LogToEventLog = true, 
+                LogToFile = true, 
+                LogToScreenshot = true, 
+                LogToUI = true
+            };
+
             m_errorLogger.Initialize();
 
-            m_title = AssemblyInfo.EntryAssembly.Title;
+            m_defaultErrorText = m_errorLogger.ErrorTextMethod;
+
+            Title = AssemblyInfo.EntryAssembly.Title;
+
+            // Add system name to title
+            if (!string.IsNullOrWhiteSpace(systemName))
+                Title = $"{Title} [{systemName.Trim()}]";
 
             // Setup default cache for measurement keys and associated Guid based signal ID's
             AdoDataConnection database = null;
 
             try
             {
-                database = new AdoDataConnection(CommonFunctions.DefaultSettingsCategory);
+                database = new AdoDataConnection(SystemSettings);
 
                 if (!Environment.CommandLine.Contains("-elevated"))
                 {
                     ConfigurationFile configurationFile = ConfigurationFile.Current;
-                    CategorizedSettingsElementCollection systemSettings = configurationFile.Settings["SystemSettings"];
+                    CategorizedSettingsElementCollection systemSettings = configurationFile.Settings[SystemSettings];
                     string elevateSetting = systemSettings["ElevateProcess"]?.Value;
-                    bool elevateProcess;
 
-                    if (!string.IsNullOrEmpty(elevateSetting))
-                        elevateProcess = elevateSetting.ParseBoolean();
-                    else
-                        elevateProcess = database.IsSqlite;
+                    bool elevateProcess = !string.IsNullOrEmpty(elevateSetting) ? elevateSetting.ParseBoolean() : database.IsSqlite;
 
-                    if (elevateProcess && !Environment.CommandLine.Contains("-elevated"))
+                    if (elevateProcess)
                     {
-                        ProcessStartInfo startInfo = new ProcessStartInfo();
-                        startInfo.FileName = Environment.GetCommandLineArgs()[0];
-                        startInfo.Arguments = string.Join(" ", Environment.GetCommandLineArgs().Skip(1)) + " -elevated";
-                        startInfo.UseShellExecute = true;
-                        startInfo.Verb = "runas";
+                        ProcessStartInfo startInfo = new ProcessStartInfo
+                        {
+                            FileName = Environment.GetCommandLineArgs()[0],
+                            Arguments = $"{string.Join(" ", Environment.GetCommandLineArgs().Skip(1))} -elevated",
+                            UseShellExecute = true,
+                            Verb = "runas"
+                        };
+
                         using (Process.Start(startInfo)) { }
                         Environment.Exit(0);
                     }
@@ -114,12 +222,11 @@ namespace substationSBGManager
                 MessageBox.Show(ex.Message);
 
                 // Log and display error, then exit application - manager must connect to database to continue
-                m_errorLogger.Log(new InvalidOperationException(string.Format("{0} cannot connect to database: {1}", m_title, ex.Message), ex), true);
+                m_errorLogger.Log(new InvalidOperationException($"{Title} cannot connect to database: {ex.Message}", ex), true);
             }
             finally
             {
-                if (database != null)
-                    database.Dispose();
+                database?.Dispose();
             }
 
             IsolatedStorageManager.WriteToIsolatedStorage("MirrorMode", false);
@@ -134,10 +241,7 @@ namespace substationSBGManager
         /// </summary>
         public Guid NodeID
         {
-            get
-            {
-                return m_nodeID;
-            }
+            get => m_nodeID;
             set
             {
                 m_nodeID = value;
@@ -148,21 +252,22 @@ namespace substationSBGManager
         /// <summary>
         /// Gets title of the application window.
         /// </summary>
-        public string Title
-        {
-            get
-            {
-                return m_title;
-            }
-        }
+        public string Title { get; }
 
         #endregion
 
         #region [ Methods ]
 
-        private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
+        private static void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
         {
-            global::substationSBGManager.Properties.Settings.Default.Save();
+            try
+            {
+                Settings.Default.Save();
+            }
+            catch (Exception ex)
+            {
+                Logger.SwallowException(ex);
+            }
         }
 
         private string ErrorText()
@@ -172,10 +277,10 @@ namespace substationSBGManager
 
             if (ex != null)
             {
-                if (string.Compare(ex.Message, "UnhandledException", true) == 0 && ex.InnerException != null)
+                if (string.Compare(ex.Message, "UnhandledException", StringComparison.OrdinalIgnoreCase) == 0 && ex.InnerException != null)
                     ex = ex.InnerException;
 
-                errorMessage = string.Format("{0}\r\n\r\nError details: {1}", errorMessage, ex.Message);
+                errorMessage = $"{errorMessage}\r\n\r\nError details: {ex.Message}";
             }
 
             return errorMessage;
