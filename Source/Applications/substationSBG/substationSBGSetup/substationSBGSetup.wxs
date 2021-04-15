@@ -14,7 +14,7 @@
 
     <!-- Restore last installation folder -->
     <Property Id="INSTALLFOLDER">
-      <RegistrySearch Id="InstallFolderRegSearch" Root="HKLM" Key="SOFTWARE\Grid Protection Alliance\ProjectAlpha" Name="InstallPath" Type="raw" />
+      <RegistrySearch Id="InstallFolderRegSearch" Root="HKLM" Key="SOFTWARE\Grid Protection Alliance\substationSBG" Name="InstallPath" Type="raw" />
     </Property>
 
     <Feature Id="AllProducts" Title="All Products" Level="1" Display="expand" ConfigurableDirectory="INSTALLFOLDER">
