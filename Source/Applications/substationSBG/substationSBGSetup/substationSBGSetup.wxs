@@ -127,6 +127,7 @@
     <Property Id="INSTALLTOOLSFEATURE" Secure="yes" />
 
     <Property Id="SERVICENAME" Value="$(var.substationSBG.TargetName)" />
+    <Property Id="SERVICEACCOUNT" Secure="yes" />
     <Property Id="SERVICEPASSWORD" Hidden="yes" />
     <Property Id="HTTPSERVICEPORTS" Value="6057,6058,6157,6158,6358,6458,5021" />
     <Property Id="COMPANYNAME" Value="Grid Protection Alliance" />
