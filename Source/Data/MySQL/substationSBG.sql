@@ -38,7 +38,7 @@ USE substationSBG;
 -- IMPORTANT NOTE: When making updates to this schema, please increment the version number!
 -- *******************************************************************************************
 CREATE VIEW SchemaVersion AS
-SELECT 15 AS VersionNumber;
+SELECT 16 AS VersionNumber;
 
 CREATE TABLE ErrorLog(
     ID INT AUTO_INCREMENT NOT NULL,
@@ -628,6 +628,7 @@ CREATE TABLE AccessLog (
     ID INT(11) NOT NULL AUTO_INCREMENT,
     UserName VARCHAR(200) NOT NULL,
     AccessGranted TINYINT NOT NULL,
+    NodeID NCHAR(36) NOT NULL,
     CreatedOn DATETIME NULL,
     CONSTRAINT PK_AccessLog PRIMARY KEY (ID ASC)
 );
@@ -1161,7 +1162,8 @@ CREATE VIEW HistorianMetadata
 AS
 SELECT PointID AS HistorianID, IF(SignalAcronym = N'DIGI', 1, 0) AS DataType, PointTag AS Name, SignalReference AS Synonym1, 
     SignalAcronym AS Synonym2, AlternateTag AS Synonym3, Description, VendorDeviceDescription AS HardwareInfo, N'' AS Remarks, 
-    HistorianAcronym AS PlantCode, 1 AS UnitNumber, DeviceAcronym AS SystemName, ProtocolID AS SourceID, Enabled, 1 / FramesPerSecond AS ScanRate, 
+    HistorianAcronym AS PlantCode, 1 AS UnitNumber, DeviceAcronym AS SystemName, ProtocolID AS SourceID, Enabled,
+    IF(FramesPerSecond = 0, 1.0, 1.0 / FramesPerSecond) AS ScanRate, 
     0 AS CompressionMinTime, 0 AS CompressionMaxTime, EngineeringUnits,
     CASE SignalAcronym WHEN N'FREQ' THEN 59.95 WHEN N'VPHM' THEN 475000 WHEN N'IPHM' THEN 0 WHEN N'VPHA' THEN -181 WHEN N'IPHA' THEN -181 ELSE 0 END AS LowWarning,
     CASE SignalAcronym WHEN N'FREQ' THEN 60.05 WHEN N'VPHM' THEN 525000 WHEN N'IPHM' THEN 3150 WHEN N'VPHA' THEN 181 WHEN N'IPHA' THEN 181 ELSE 0 END AS HighWarning,

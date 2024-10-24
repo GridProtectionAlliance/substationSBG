@@ -4,6 +4,35 @@
         <name>PhasorWebUI</name>
     </assembly>
     <members>
+        <member name="T:PhasorWebUI.PhasorConfigController">
+            <summary>
+            Defines an API controller for saving and loading phasor protocol configurations.
+            </summary>
+        </member>
+        <member name="M:PhasorWebUI.PhasorConfigController.SaveDeviceConfiguration(System.String,Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Saves the configuration for the device with the given acronym.
+            </summary>
+            <param name="acronym">Acronym of device.</param>
+            <param name="configuration">JSON config.</param>
+        </member>
+        <member name="M:PhasorWebUI.PhasorConfigController.LoadDeviceConfiguration(System.String)">
+            <summary>
+            Loads the configuration for the device with the given acronym.
+            </summary>
+            <param name="acronym">Acronym of device.</param>
+        </member>
+        <member name="M:PhasorWebUI.PhasorConfigController.GetJsonConfigurationFileName(System.String)">
+            <summary>
+            Gets the file name of the JSON configuration file for the device with the given acronym.
+            </summary>
+            <param name="acronym">Acronym of device.</param>
+        </member>
+        <member name="M:PhasorWebUI.PhasorConfigController.GetJsonConfigurationPath">
+            <summary>
+            Gets the path to the configuration cache directory.
+            </summary>
+        </member>
         <member name="P:PhasorWebUI.Model.Device.CreatedOn">
             <summary>
                 Created on field.
@@ -46,22 +75,27 @@
         </member>
         <member name="P:PhasorWebUI.Model.Phasor.CreatedOn">
             <summary>
-                Created on field.
+            Created on field.
             </summary>
         </member>
         <member name="P:PhasorWebUI.Model.Phasor.CreatedBy">
             <summary>
-                Created by field.
+            Created by field.
             </summary>
         </member>
         <member name="P:PhasorWebUI.Model.Phasor.UpdatedOn">
             <summary>
-                Updated on field.
+            Updated on field.
             </summary>
+            <remarks>
+            For phasors, any time record is saved, we increment time of update
+            as compared to the time of creation to ensure that any future loads
+            do not attempt to guess phase data that has already been edited.
+            </remarks>
         </member>
         <member name="P:PhasorWebUI.Model.Phasor.UpdatedBy">
             <summary>
-                Updated by field.
+            Updated by field.
             </summary>
         </member>
         <member name="T:PhasorWebUI.PhasorHub">
